@@ -77,6 +77,21 @@ class rhizomatica_base_system {
       recurse => true,
     }
 
+  file { '/etc/service/osmo-nitb':
+      ensure  => link,
+      target  => "/etc/sv/osmo-nitb",
+    }
+
+file { '/etc/service/freeswitch':
+      ensure  => link,
+      target  => "/etc/sv/freeswitch",
+    }
+
+file { '/etc/service/rapi':
+      ensure  => link,
+      target  => "/etc/sv/rapi",
+    }
+
   package { 'mosh':
       ensure  => installed,
       require => Apt::Source['mosh'],
