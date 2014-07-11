@@ -18,9 +18,13 @@ class rhizomatica_base_system {
   $kannel_admin_password = ('rhizo::kannel_admin_password')
   $kannel_sendsms_password = hiera('rhizo::kannel_sendsms_password')
 
-
   include 'ntp'
   include 'kannel'
+
+  file { '/etc/apt/apt.conf.d/90unsigned':
+      ensure  => present,
+      content => 'APT::Get::AllowUnauthenticated "true";',
+    }
   
   class { 'apt': }
 
@@ -41,10 +45,6 @@ class rhizomatica_base_system {
       require           => File['/etc/apt/apt.conf.d/90unsigned'],
     }
 
-  file { '/etc/apt/apt.conf.d/90unsigned':
-      ensure  => present,
-      content => 'APT::Get::AllowUnauthenticated "true";',
-    }
 
 #  file { '/var/rhizomatica':
 #      ensure  => directory,
@@ -69,6 +69,12 @@ class rhizomatica_base_system {
 
   package { ['openvpn', 'lm-sensors', 'runit']:
       ensure  => installed,
+    }
+
+  file { '/etc/sv':
+      ensure  => directory,
+      source  => "puppet:///modules/rhizomatica_base_system/etc/sv",
+      recurse => true,
     }
 
   package { 'mosh':

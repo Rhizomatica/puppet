@@ -1,0 +1,8 @@
+#!/bin/sh
+ulimit -c unlimited
+/etc/init.d/kannel stop
+sleep 5
+/usr/bin/killall -9 run_kannel_box bearerbox smsbox
+/etc/init.d/kannel start
+exec 2>&1
+exec chrt 10 /usr/bin/osmo-nitb -P -m -c /etc/osmocom/osmo-nitb.cfg -l /var/lib/osmocom/hlr.sqlite3
