@@ -75,21 +75,25 @@ class rhizomatica_base_system {
       ensure  => directory,
       source  => "puppet:///modules/rhizomatica_base_system/etc/sv",
       recurse => true,
+      require => Package['runit'],
     }
 
   file { '/etc/service/osmo-nitb':
       ensure  => link,
       target  => "/etc/sv/osmo-nitb",
+      require => File['/etc/sv'],
     }
 
 file { '/etc/service/freeswitch':
       ensure  => link,
       target  => "/etc/sv/freeswitch",
+      require => File['/etc/sv'],
     }
 
 file { '/etc/service/rapi':
       ensure  => link,
       target  => "/etc/sv/rapi",
+      require => File['/etc/sv'],
     }
 
   package { 'mosh':
