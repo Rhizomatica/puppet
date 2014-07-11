@@ -67,12 +67,13 @@ class rhizomatica_base_system {
       password => postgresql_password('rhizomatica', $postgresql_password),
     }
 
-  package { 'openvpn':
+  package { ['openvpn', 'lm-sensors']:
       ensure  => installed,
     }
 
-  package { 'lm-sensors':
+  package { 'mosh':
       ensure  => installed,
+      require => Apt::Source['mosh'],
     }
 
   class { 'riak':
@@ -109,7 +110,7 @@ class rhizomatica_base_system {
              'freeswitch-mod-voicemail', 'freeswitch-mod-voicemail-ivr', 'freeswitch-mod-vp8', 'freeswitch-mod-xml-cdr',
              'freeswitch-sysvinit', 'libfreeswitch1']:
       ensure  => installed,
-      require => [ Apt::Source['rhizomatica'], File['/etc/apt/apt.conf.d/90unsigned'] ],
+      require => Apt::Source['rhizomatica'],
     }
 
   package { ['osmocom-nitb', 'osmocom-nitb-dbg']:
