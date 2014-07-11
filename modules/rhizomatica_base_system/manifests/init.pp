@@ -67,7 +67,7 @@ class rhizomatica_base_system {
       password => postgresql_password('rhizomatica', $postgresql_password),
     }
 
-  package { ['openvpn', 'lm-sensors']:
+  package { ['openvpn', 'lm-sensors', 'runit']:
       ensure  => installed,
     }
 
