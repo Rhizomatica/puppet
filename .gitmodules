@@ -1,0 +1,6 @@
+[submodule "modules/riak"]
+	path = modules/riak
+	url = https://github.com/basho/puppet-riak
+[submodule "modules/python"]
+	path = modules/python
+	url = https://github.com/stankevich/puppet-python.git
