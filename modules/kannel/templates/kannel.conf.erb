@@ -1,0 +1,85 @@
+group = core
+admin-port = 14000
+admin-password = <%= @kannel_admin_password %>
+log-file = "/var/log/kannel/bearerbox.log"
+log-level = 0
+access-log = "/var/log/kannel/bearerbox_access.log"
+# Smsbox related
+smsbox-port = 14001
+#box-deny-ip = "*.*.*.*"
+#box-allow-ip = "127.0.0.1"
+#sms-resend-retry = 2
+
+# SMSC SMPP
+group = smsc
+smsc = smpp
+smsc-id = KSMPP
+host = 127.0.0.1
+port = 2775
+#receive-port = 2775
+interface-version=34
+alt-charset = ISO-8859-1
+enquire-link-interval = 298
+connect-allow-ip = 127.0.0.1
+transceiver-mode = 0
+smsc-username = OSMPP
+smsc-password = <%= @smsc_password %>
+system-type = kannel
+#source-addr-ton = 2
+#source-addr-npi = 1
+#dest-addr-ton = 1
+#dest-addr-npi = 1
+
+# SMSC SMPP
+group = smsc
+smsc = smpp
+smsc-id = KSMPP
+host = 127.0.0.1
+port = 0
+receive-port = 2775
+interface-version=34
+#alt-charset = ISO-8859-1
+enquire-link-interval = 298
+connect-allow-ip = 127.0.0.1
+transceiver-mode = false
+smsc-username = OSMPP
+smsc-password = <%= @smsc_password %>
+system-type = kannel
+#source-addr-ton = 2
+#source-addr-npi = 1
+#dest-addr-ton = 1
+#dest-addr-npi = 1
+
+
+group = smsbox-route
+smsbox-id = mysm
+smsc-id = KSMPP
+
+# receive SMS
+group = sms-service
+#keyword =
+keyword-regex = .*
+catch-all = yes
+max-messages = 0
+post-url = "http://localhost:8085/sms?source=%p&destination=%P&charset=%C&coding=%c&text=%a"
+
+# send to web cgi
+group = sendsms-user
+default-smsc = KSMPP
+username = rhizomatica
+password = <%= @kannel_sendsms_password %>
+concatenation = true
+max-messages = 3
+
+# SMSBOX SETUP
+group = smsbox
+#smsbox-port = 14001
+sendsms-port = 14002
+smsbox-id = mysm
+#mo-recode=true
+#immediate-sendsms-reply = true
+bearerbox-host = 127.0.0.1
+bearerbox-port = 14001
+log-file = "/var/log/kannel/smsbox.log"
+log-level = 0
+access-log = "/var/log/kannel/smsbox_access.log"
