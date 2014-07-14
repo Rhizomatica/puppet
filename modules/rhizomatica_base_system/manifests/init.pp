@@ -88,7 +88,7 @@ class rhizomatica_base_system {
   file { '/etc/sv':
       ensure  => directory,
       source  => 'puppet:///modules/rhizomatica_base_system/etc/sv',
-      recurse => true,
+      recurse => remote,
       require => Package['runit'],
     }
 
