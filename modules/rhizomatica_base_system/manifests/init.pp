@@ -12,20 +12,34 @@
 #
 class rhizomatica_base_system {
 
-  $vpn_address = hiera('rhizo::vpn_address')
-  $postgresql_password = hiera('rhizo::postgresql_password')
-  $smsc_password= hiera('rhizo::smsc_password')
-  $kannel_admin_password = ('rhizo::kannel_admin_password')
+  $vpn_address             = hiera('rhizo::vpn_address')
+  $bts1_address            = hiera('rhizo::bts1_address')
+  $mail_admins             = hiera('rhizo::mail_admins')
+  $postgresql_password     = hiera('rhizo::postgresql_password')
+  $smsc_password           = hiera('rhizo::smsc_password')
+  $kannel_admin_password   = hiera('rhizo::kannel_admin_password')
   $kannel_sendsms_password = hiera('rhizo::kannel_sendsms_password')
 
-  include 'ntp'
-  include 'kannel'
+  include ntp
+  include kannel
 
   file { '/etc/apt/apt.conf.d/90unsigned':
       ensure  => present,
       content => 'APT::Get::AllowUnauthenticated "true";',
     }
-  
+
+  file { '/home/rhizomatica/bin':
+      ensure  => directory,
+      source  => 'puppet:///modules/rhizomatica_base_system/bin',
+      recurse => true,
+      purge   => false,
+    }
+
+  file { '/home/rhizomatica/bin/vars.sh':
+      ensure  => present,
+      content => template('rhizomatica_base_system/vars.sh.erb'),
+    }
+
   class { 'apt': }
 
   apt::source { 'rhizomatica':
@@ -73,26 +87,26 @@ class rhizomatica_base_system {
 
   file { '/etc/sv':
       ensure  => directory,
-      source  => "puppet:///modules/rhizomatica_base_system/etc/sv",
+      source  => 'puppet:///modules/rhizomatica_base_system/etc/sv',
       recurse => true,
       require => Package['runit'],
     }
 
   file { '/etc/service/osmo-nitb':
       ensure  => link,
-      target  => "/etc/sv/osmo-nitb",
-      require => File['/etc/sv'],
+      target  => '/etc/sv/osmo-nitb',
+      require => [ File['/etc/sv'], Package['osmocom-nitb'] ],
     }
 
-file { '/etc/service/freeswitch':
+  file { '/etc/service/freeswitch':
       ensure  => link,
-      target  => "/etc/sv/freeswitch",
-      require => File['/etc/sv'],
+      target  => '/etc/sv/freeswitch',
+      require => [ File['/etc/sv'], Package['freeswitch'] ],
     }
 
-file { '/etc/service/rapi':
+  file { '/etc/service/rapi':
       ensure  => link,
-      target  => "/etc/sv/rapi",
+      target  => '/etc/sv/rapi',
       require => File['/etc/sv'],
     }
 
@@ -102,11 +116,11 @@ file { '/etc/service/rapi':
     }
 
   class { 'riak':
-      version => '1.4.7-1',
-      template => 'rhizomatica_base_system/app.config.erb',
+      version         => '1.4.7-1',
+      template        => 'rhizomatica_base_system/app.config.erb',
       vmargs_template => 'rhizomatica_base_system/vm.args.erb',
     }
-  
+
   class { 'python':
       version => 'system',
       pip     => true,
@@ -143,4 +157,4 @@ file { '/etc/service/rapi':
       require => Apt::Source['rhizomatica'],
     }
 
-}
+  }
