@@ -228,9 +228,10 @@ class rhizomatica_base_system {
   file { '/usr/lib/freeswitch/mod/mod_g729.so':
       source  => 'puppet:///modules/rhizomatica_base_system/mod_g729.so',
       require => Package['freeswitch'],
-      }
+    }
 
   file { '/etc/freeswitch':
+      ensure  => directory,
       source  => 'puppet:///modules/rhizomatica_base_system/etc/freeswitch',
       recurse => remote,
       require => Package['freeswitch'],
@@ -239,11 +240,11 @@ class rhizomatica_base_system {
   file { '/etc/freeswitch/vars.xml':
       content => template('rhizomatica_base_system/vars.xml.erb'),
       require => Package['freeswitch'],
-      }
+    }
 
   file {'/etc/freeswitch/sip_profiles/external':
       ensure  => directory,
-      }
+    }
 
   file { '/etc/freeswitch/sip_profiles/external/provider.xml':
       content => template('rhizomatica_base_system/provider.xml.erb'),
@@ -259,6 +260,20 @@ class rhizomatica_base_system {
   file { '/etc/osmocom/osmo-nitb.cfg':
       content => template('rhizomatica_base_system/osmo-nitb.cfg.erb'),
       require => Package['osmocom-nitb'],
+    }
+
+#LCR
+  package { 'lcr':
+      ensure => installed,
+      require => Apt::Source['rhizomatica'],
+    }
+
+  file { '/usr/etc/lcr':
+      ensure  => directory,
+      source  => 'puppet:///modules/rhizomatica_base_system/usr/etc/lcr',
+      recurse => remote,
+      purge   => true,
+      require Package['lcr'],
     }
 
   file { '/etc/cron.d/rhizomatica':
