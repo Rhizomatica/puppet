@@ -57,7 +57,7 @@ class rhizomatica_base_system {
   $sms_destination_unauthorized = hiera('rhizo::sms_destination_unauthorized')
 
   $rai_admin_user  = hiera('rhizo::rai_admin_user')
-  $rai_admin_pwd   = hiera('rhizo::rai_admin_pass')
+  $rai_admin_pwd   = hiera('rhizo::rai_admin_pwd')
 
   $kannel_server   = hiera('rhizo::kannel_server')
   $kannel_port     = hiera('rhizo::kannel_port')
