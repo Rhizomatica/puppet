@@ -22,13 +22,11 @@ class kannel (
       ensure  => present,
       content => template('kannel/kannel.conf.erb'),
       require => Package['kannel'],
-      notify  => Service['kannel'],
   }
 
   file { '/etc/default/kannel':
       ensure  => present,
       source  => ['puppet:///modules/kannel/kannel-default'],
-      notify  => Service['kannel'],
   }
 
 }
