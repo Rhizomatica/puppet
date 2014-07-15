@@ -276,6 +276,12 @@ class rhizomatica_base_system {
       require => Package['lcr'],
     }
 
+  file { '/etc/default/lcr':
+      ensure  => present,
+      source  => 'puppet:///modules/rhizomatica_base_system/etc/default/lcr',
+      require => Package['lcr'],
+    }
+
   file { '/etc/cron.d/rhizomatica':
       source => 'puppet:///modules/rhizomatica_base_system/etc/cron.d/rhizomatica',
     }

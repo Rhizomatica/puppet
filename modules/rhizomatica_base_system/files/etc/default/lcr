@@ -1,0 +1,6 @@
+# This file allows you to alter the configuration of the lcr
+# init.d script. Normally you should leave the file as-is.
+#
+# RUNLCR: If set to anything other that 'yes', the lcr init.d script
+#              will not run. The default is 'yes'.
+RUNLCR=yes
