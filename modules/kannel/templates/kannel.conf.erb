@@ -19,37 +19,14 @@ port = 2775
 #receive-port = 2775
 interface-version=34
 alt-charset = ISO-8859-1
-enquire-link-interval = 298
+enquire-link-interval = 10
+connection-timeout = 10
+reconnect-delay = 10
 connect-allow-ip = 127.0.0.1
-transceiver-mode = 0
+transceiver-mode = true
 smsc-username = OSMPP
 smsc-password = <%= @smsc_password %>
 system-type = kannel
-#source-addr-ton = 2
-#source-addr-npi = 1
-#dest-addr-ton = 1
-#dest-addr-npi = 1
-
-# SMSC SMPP
-group = smsc
-smsc = smpp
-smsc-id = KSMPP
-host = 127.0.0.1
-port = 0
-receive-port = 2775
-interface-version=34
-#alt-charset = ISO-8859-1
-enquire-link-interval = 298
-connect-allow-ip = 127.0.0.1
-transceiver-mode = false
-smsc-username = OSMPP
-smsc-password = <%= @smsc_password %>
-system-type = kannel
-#source-addr-ton = 2
-#source-addr-npi = 1
-#dest-addr-ton = 1
-#dest-addr-npi = 1
-
 
 group = smsbox-route
 smsbox-id = mysm
