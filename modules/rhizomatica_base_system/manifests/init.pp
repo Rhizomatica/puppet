@@ -81,11 +81,7 @@ class rhizomatica_base_system {
   include ntp
   include kannel
 
-  file { '/etc/apt/apt.conf.d/90unsigned':
-      ensure  => present,
-      content => 'APT::Get::AllowUnauthenticated "true";',
-    }
-
+#Rizhomatica scripts
   file { '/home/rhizomatica/bin':
       ensure  => directory,
       source  => 'puppet:///modules/rhizomatica_base_system/bin',
@@ -98,11 +94,11 @@ class rhizomatica_base_system {
       content => template('rhizomatica_base_system/vars.sh.erb'),
     }
 
-  file { '/home/rhizomatica/config_values.py':
+#APT + Repos
+  file { '/etc/apt/apt.conf.d/90unsigned':
       ensure  => present,
-      content => template('rhizomatica_base_system/config_values.py.erb'),
+      content => 'APT::Get::AllowUnauthenticated "true";',
     }
-
 
   class { 'apt': }
 
@@ -128,11 +124,17 @@ class rhizomatica_base_system {
 #      ensure  => directory,
 #    }
 
+  file { '/home/rhizomatica/config_values.py':
+      ensure  => present,
+      content => template('rhizomatica_base_system/config_values.py.erb'),
+    }
+
   file { '/var/www/rmai':
       ensure  => link,
       target  => '/var/rhizomatica/rmai',
     }
 
+#PostgreSQL server
   class { 'postgresql::globals':
       manage_package_repo => true,
       version             => '9.3',
@@ -145,10 +147,12 @@ class rhizomatica_base_system {
       password => postgresql_password('rhizomatica', $pgsql_pwd),
     }
 
+#Various packages
   package { ['openvpn', 'lm-sensors', 'runit']:
       ensure  => installed,
     }
 
+#Runit scripts
   file { '/etc/sv':
       ensure  => directory,
       source  => 'puppet:///modules/rhizomatica_base_system/etc/sv',
@@ -174,17 +178,20 @@ class rhizomatica_base_system {
       require => File['/etc/sv'],
     }
 
+#MoSH
   package { 'mosh':
       ensure  => installed,
       require => Apt::Source['mosh'],
     }
 
+#Riak server
   class { 'riak':
       version         => '1.4.7-1',
       template        => 'rhizomatica_base_system/app.config.erb',
       vmargs_template => 'rhizomatica_base_system/vm.args.erb',
     }
 
+#Python modules
   class { 'python':
       version => 'system',
       pip     => true,
@@ -195,11 +202,13 @@ class rhizomatica_base_system {
       ensure  => present,
     }
 
+#Apache2 + PHP
   package { ['apache2','libapache2-mod-php5', 'rrdtool', 'python-twisted-web', 'python-psycopg2', 'python-pysqlite2',
              'php5', 'php5-pgsql', 'php5-curl', 'python-corepost']:
       ensure  => installed,
     }
 
+#FreeSWITCH
   package { ['freeswitch', 'freeswitch-lang-en', 'freeswitch-mod-amr', 'freeswitch-mod-amrwb', 'freeswitch-mod-b64',
              'freeswitch-mod-bv', 'freeswitch-mod-cdr-pg-csv', 'freeswitch-mod-cluechoo', 'freeswitch-mod-commands',
              'freeswitch-mod-conference', 'freeswitch-mod-console', 'freeswitch-mod-db', 'freeswitch-mod-dialplan-asterisk',
@@ -216,6 +225,28 @@ class rhizomatica_base_system {
       require => Apt::Source['rhizomatica'],
     }
 
+  file { '/usr/lib/freeswitch/mod/mod_g729.so':
+      source  => 'puppet:///modules/rhizomatica_base_system/mod_g729.so',
+      require => Package['freeswitch'],
+      }
+
+  file { '/etc/freeswitch':
+      source  => 'puppet:///modules/rhizomatica_base_system/etc/freeswitch',
+      recurse => remote,
+      require => Package['freeswitch'],
+    }
+
+  file { '/etc/freeswitch/vars.xml':
+      content => template('rhizomatica_base_system/vars.xml.erb'),
+      require => Package['freeswitch'],
+      }
+
+  file { '/etc/freeswitch/sip_profiles/external/provider.xml':
+      content => template('rhizomatica_base_system/provider.xml.erb'),
+      require => Package['freeswitch'],
+    }
+
+#OpenBSC
   package { ['osmocom-nitb', 'osmocom-nitb-dbg']:
       ensure  => installed,
       require => Apt::Source['rhizomatica'],
