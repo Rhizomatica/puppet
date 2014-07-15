@@ -31,9 +31,4 @@ class kannel (
       notify  => Service['kannel'],
   }
 
-  service { 'kannel':
-      ensure  => running,
-      enable  => true,
-      require => Package['kannel'],
-  }
 }

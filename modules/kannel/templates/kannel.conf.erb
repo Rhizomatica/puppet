@@ -10,6 +10,7 @@ smsbox-port = 14001
 #box-allow-ip = "127.0.0.1"
 #sms-resend-retry = 2
 
+
 # SMSC SMPP
 group = smsc
 smsc = smpp
@@ -20,17 +21,19 @@ port = 2775
 interface-version=34
 alt-charset = ISO-8859-1
 enquire-link-interval = 10
-connection-timeout = 10
-reconnect-delay = 10
 connect-allow-ip = 127.0.0.1
 transceiver-mode = true
 smsc-username = OSMPP
 smsc-password = <%= @smsc_password %>
 system-type = kannel
+connection-timeout = 10
+reconnect-delay = 10
+
 
 group = smsbox-route
 smsbox-id = mysm
 smsc-id = KSMPP
+
 
 # receive SMS
 group = sms-service
@@ -40,6 +43,7 @@ catch-all = yes
 max-messages = 0
 post-url = "http://localhost:8085/sms?source=%p&destination=%P&charset=%C&coding=%c&text=%a"
 
+
 # send to web cgi
 group = sendsms-user
 default-smsc = KSMPP
@@ -47,6 +51,7 @@ username = rhizomatica
 password = <%= @kannel_sendsms_password %>
 concatenation = true
 max-messages = 3
+
 
 # SMSBOX SETUP
 group = smsbox
