@@ -264,7 +264,7 @@ class rhizomatica_base_system {
 
 #LCR
   package { 'lcr':
-      ensure => installed,
+      ensure  => installed,
       require => Apt::Source['rhizomatica'],
     }
 
@@ -273,7 +273,7 @@ class rhizomatica_base_system {
       source  => 'puppet:///modules/rhizomatica_base_system/usr/etc/lcr',
       recurse => remote,
       purge   => true,
-      require Package['lcr'],
+      require => Package['lcr'],
     }
 
   file { '/etc/cron.d/rhizomatica':
