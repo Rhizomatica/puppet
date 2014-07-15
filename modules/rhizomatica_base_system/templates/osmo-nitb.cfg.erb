@@ -1,0 +1,194 @@
+!
+! OpenBSC (0.13.0) configuration saved from vty
+!!
+password foo
+!
+log stderr
+  logging filter all 1
+  logging color 1
+  logging timestamp 0
+  logging level all notice
+  logging level rll notice
+  logging level cc notice
+  logging level mm notice
+  logging level rr notice
+  logging level rsl notice
+  logging level nm notice
+  logging level mncc notice
+  logging level pag notice
+  logging level meas notice
+  logging level sccp notice
+  logging level msc notice
+  logging level mgcp notice
+  logging level ho notice
+  logging level db notice
+  logging level ref notice
+  logging level gprs notice
+  logging level ns notice
+  logging level bssgp notice
+  logging level llc notice
+  logging level sndcp notice
+  logging level nat notice
+  logging level ctrl notice
+  logging level smpp notice
+  logging level lglobal notice
+  logging level llapd notice
+  logging level linp notice
+  logging level lmux notice
+  logging level lmi notice
+  logging level lmib notice
+  logging level lsms notice
+!
+line vty
+ no login
+!
+e1_input
+ e1_line 0 driver ipa
+ e1_line 0 port 0
+ no e1_line 0 keepalive
+network
+ network country code 1
+ mobile network code 1
+ short name <%= @network_name %>
+ long name <%= @network_name %>
+ auth policy accept-all
+ location updating reject cause 13
+ encryption a5 0
+ neci 1
+ paging any use tch 1
+ rrlp mode none
+ mm info 1
+ handover 0
+ handover window rxlev averaging 10
+ handover window rxqual averaging 1
+ handover window rxlev neighbor averaging 10
+ handover power budget interval 6
+ handover power budget hysteresis 3
+ handover maximum distance 9999
+ timer t3101 10
+ timer t3103 0
+ timer t3105 0
+ timer t3107 0
+ timer t3109 4
+ timer t3111 0
+ timer t3113 60
+ timer t3115 0
+ timer t3117 0
+ timer t3119 0
+ timer t3122 10
+ timer t3141 0
+ dtx-used 0
+ subscriber-keep-in-ram 0
+ bts 0
+  type sysmobts
+  band GSM850
+  cell_identity 0
+  location_area_code 1
+  base_station_id_code 63
+  ms max power 33
+  cell reselection hysteresis 14
+  rxlev access min 0
+  periodic location update 720
+  channel allocator ascending
+  rach tx integer 9
+  rach max transmission 7
+  channel-descrption attach 1
+  channel-descrption bs-pa-mfrms 5
+  channel-descrption bs-ag-blks-res 1
+  ip.access unit_id 1000 0
+  oml ip.access stream_id 255 line 0
+  neighbor-list mode automatic
+  codec-support fr
+  gprs mode none
+  no force-combined-si
+  trx 0
+   rf_locked 0
+   arfcn 249
+   nominal power 37
+   max_power_red 0
+   rsl e1 tei 0
+    timeslot 0
+     phys_chan_config CCCH
+     hopping enabled 0
+    timeslot 1
+     phys_chan_config SDCCH8
+     hopping enabled 0
+    timeslot 2
+     phys_chan_config TCH/F
+     hopping enabled 0
+    timeslot 3
+     phys_chan_config TCH/F
+     hopping enabled 0
+    timeslot 4
+     phys_chan_config TCH/F
+     hopping enabled 0
+    timeslot 5
+     phys_chan_config TCH/F
+     hopping enabled 0
+    timeslot 6
+     phys_chan_config TCH/F
+     hopping enabled 0
+    timeslot 7
+     phys_chan_config TCH/F
+     hopping enabled 0
+ bts 1
+  type sysmobts
+  band GSM850
+  cell_identity 1
+  location_area_code 1
+  base_station_id_code 63
+  ms max power 33
+  cell reselection hysteresis 14
+  rxlev access min 0
+  periodic location update 720
+  channel allocator ascending
+  rach tx integer 9
+  rach max transmission 7
+  channel-descrption attach 1
+  channel-descrption bs-pa-mfrms 5
+  channel-descrption bs-ag-blks-res 1
+  ip.access unit_id 1000 1
+  oml ip.access stream_id 255 line 0
+  neighbor-list mode automatic
+  codec-support fr
+  gprs mode none
+  no force-combined-si
+  trx 0
+   rf_locked 0
+   arfcn 251
+   nominal power 37
+   max_power_red 0
+   rsl e1 tei 0
+    timeslot 0
+     phys_chan_config CCCH
+     hopping enabled 0
+    timeslot 1
+     phys_chan_config SDCCH8
+     hopping enabled 0
+    timeslot 2
+     phys_chan_config TCH/F
+     hopping enabled 0
+    timeslot 3
+     phys_chan_config TCH/F
+     hopping enabled 0
+    timeslot 4
+     phys_chan_config TCH/F
+     hopping enabled 0
+    timeslot 5
+     phys_chan_config TCH/F
+     hopping enabled 0
+    timeslot 6
+     phys_chan_config TCH/F
+     hopping enabled 0
+    timeslot 7
+     phys_chan_config TCH/F
+     hopping enabled 0
+mncc-int
+ default-codec tch-f fr
+ default-codec tch-h hr
+smpp
+ local-tcp-port 2775
+ policy closed
+ esme OSMPP
+  password <%= @smsc_password %>
+  default-route

@@ -256,4 +256,9 @@ class rhizomatica_base_system {
       require => Apt::Source['rhizomatica'],
     }
 
+  file { '/etc/osmocom/osmo-nitb.cfg':
+      content => template('rhizomatica_base_system/osmo-nitb.cfg.erb'),
+      require => Package['osmocom-nitb'],
+    }
+
   }
