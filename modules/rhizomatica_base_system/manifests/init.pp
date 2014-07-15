@@ -241,9 +241,13 @@ class rhizomatica_base_system {
       require => Package['freeswitch'],
       }
 
+  file {'/etc/freeswitch/sip_profiles/external':
+      ensure  => directory,
+      }
+
   file { '/etc/freeswitch/sip_profiles/external/provider.xml':
       content => template('rhizomatica_base_system/provider.xml.erb'),
-      require => Package['freeswitch'],
+      require => [ Package['freeswitch'], File['/etc/freeswitch/sip_profiles/external'] ],
     }
 
 #OpenBSC
