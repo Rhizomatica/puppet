@@ -12,13 +12,71 @@
 #
 class rhizomatica_base_system {
 
-  $vpn_address             = hiera('rhizo::vpn_address')
-  $bts1_address            = hiera('rhizo::bts1_address')
+  $bts1_ip_address         = hiera('rhizo::bts1_ip_address')
   $mail_admins             = hiera('rhizo::mail_admins')
-  $postgresql_password     = hiera('rhizo::postgresql_password')
   $smsc_password           = hiera('rhizo::smsc_password')
   $kannel_admin_password   = hiera('rhizo::kannel_admin_password')
   $kannel_sendsms_password = hiera('rhizo::kannel_sendsms_password')
+
+  # Configuration settings
+  $rhizomatica_dir = hiera('rhizo::rhizomatica_dir')
+  $sq_hlr_path     = hiera('rhizo::sq_hlr_path')
+
+  # database
+  $pgsql_db   = hiera('rhizo::pgsql_db')
+  $pgsql_user = hiera('rhizo::pgsql_user')
+  $pgsql_pwd  = hiera('rhizo::pgsql_pwd')
+  $pgsql_host = hiera('rhizo::pgsql_host')
+
+  # SITE
+  $site_name    = hiera('rhizo::site_name')
+  $postcode     = hiera('rhizo::postcode')
+  $pbxcode      = hiera('rhizo::pbxcode')
+  # network name
+  $network_name = hiera('rhizo::network_name')
+
+  # VPN ip address
+  $vpn_ip_address = hiera('rhizo::vpn_ip_address')
+  $wan_ip_address = hiera('rhizo::wan_ip_address')
+
+  # SITE settings
+  # rate type can be "call" or "min"
+  $limit_local_calls            = hiera('rhizo::limit_local_calls')
+  $limit_local_minutes          = hiera('rhizo::limit_local_minutes')
+  $charge_local_calls           = hiera('rhizo::charge_local_calls')
+  $charge_local_rate            = hiera('rhizo::charge_local_rate')
+  $charge_local_rate_type       = hiera('rhizo::charge_local_rate_type')
+  $charge_internal_calls        = hiera('rhizo::charge_internal_calls')
+  $charge_internal_rate         = hiera('rhizo::charge_internal_rate')
+  $charge_internal_rate_type    = hiera('rhizo::charge_internal_rate_type')
+  $charge_inbound_calls         = hiera('rhizo::charge_inbound_calls')
+  $charge_inbound_rate          = hiera('rhizo::charge_inbound_rate')
+  $charge_inbound_rate_type     = hiera('rhizo::charge_inbound_rate_type')
+  $smsc_shortcode               = hiera('rhizo::smsc_shortcode')
+  $sms_sender_unauthorized      = hiera('rhizo::sms_sender_unauthorized')
+  $sms_destination_unauthorized = hiera('rhizo::sms_destination_unauthorized')
+
+  $rai_admin_user  = hiera('rhizo::rai_admin_user')
+  $rai_admin_pwd   = hiera('rhizo::rai_admin_pass')
+
+  $kannel_server   = hiera('rhizo::kannel_server')
+  $kannel_port     = hiera('rhizo::kannel_port')
+  $kannel_username = hiera('rhizo::kannel_username')
+  $kannel_password = hiera('rhizo::kannel_password')
+
+  # VOIP provider
+  $voip_provider_name = hiera('rhizo::voip_provider_name')
+  $voip_username      = hiera('rhizo::voip_username')
+  $voip_fromuser      = hiera('rhizo::voip_fromuser')
+  $voip_password      = hiera('rhizo::voip_password')
+  $voip_proxy         = hiera('rhizo::voip_proxy')
+  $voip_did           = hiera('rhizo::voip_did')
+  $voip_cli           = hiera('rhizo::voip_cli')
+
+  # Subscription SMS notification
+  $notice_msg     = hiera('rhizo::notice_msg')
+  $reminder_msg   = hiera('rhizo::reminder_msg')
+  $deactivate_msg = hiera('rhizo::deactivate_msg')
 
   include ntp
   include kannel
@@ -39,6 +97,12 @@ class rhizomatica_base_system {
       ensure  => present,
       content => template('rhizomatica_base_system/vars.sh.erb'),
     }
+
+  file { '/home/rhizomatica/config_values.py':
+      ensure  => present,
+      content => template('rhizomatica_base_system/config_values.py.erb'),
+    }
+
 
   class { 'apt': }
 
@@ -78,7 +142,7 @@ class rhizomatica_base_system {
 
   postgresql::server::db { 'rhizomatica':
       user     => 'rhizomatica',
-      password => postgresql_password('rhizomatica', $postgresql_password),
+      password => postgresql_password('rhizomatica', $pgsql_pwd),
     }
 
   package { ['openvpn', 'lm-sensors', 'runit']:
