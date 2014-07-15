@@ -261,4 +261,8 @@ class rhizomatica_base_system {
       require => Package['osmocom-nitb'],
     }
 
+  file { '/etc/cron.d/rhizomatica':
+      source => 'puppet:///modules/rhizomatica_base_system/etc/cron.d/rhizomatica',
+    }
+
   }

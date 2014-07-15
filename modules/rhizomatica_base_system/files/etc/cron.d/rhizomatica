@@ -1,0 +1,13 @@
+#Rhizomatica cron jobs
+PYTHONPATH=$PYTHONPATH:/var/rhizomatica/rccn
+
+# m h  dom mon dow   user command
+  0 8  1   *   *     root /usr/bin/python /var/rhizomatica/rccn/rsc.py notice
+  0 8  3   *   *     root /usr/bin/python /var/rhizomatica/rccn/rsc.py reminder
+  0 21 7   *   *     root /usr/bin/python /var/rhizomatica/rccn/rsc.py deactivate
+  0 */5  * *   *     root /var/rhizomatica/bin/check_account_balance.sh
+  0 3  *   *   *     root /var/rhizomatica/bin/sms_cleanup.sh
+*/5 *  *   *   *     root /var/rhizomatica/bin/platform_update_rrd.sh
+*/5 *  *   *   *     root /var/rhizomatica/bin/network_update_rrd.sh
+#  */10  * *   *   *  root /home/rhizomatica/bin/bind_check.sh
+
