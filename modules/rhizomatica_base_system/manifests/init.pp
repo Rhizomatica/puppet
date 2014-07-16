@@ -120,9 +120,12 @@ class rhizomatica_base_system {
     }
 
 
-#  file { '/var/rhizomatica':
-#      ensure  => directory,
-#    }
+  file { '/var/rhizomatica':
+      ensure  => directory,
+    }
+
+  exec { 'clone_git_repository':
+      }
 
   file { '/home/rhizomatica/config_values.py':
       ensure  => present,
@@ -202,9 +205,16 @@ class rhizomatica_base_system {
       ensure  => present,
     }
 
+  file { '/usr/lib/python2.7/dist-packages':
+      ensure  => directory,
+      source  => 'puppet:///modules/rhizomatica_base_system/usr/lib/python2.7/dist-packages',
+      recurse => remote,
+      require => Class['python'],
+    }
+
 #Apache2 + PHP
   package { ['apache2','libapache2-mod-php5', 'rrdtool', 'python-twisted-web', 'python-psycopg2', 'python-pysqlite2',
-             'php5', 'php5-pgsql', 'php5-curl', 'python-corepost']:
+             'php5', 'php5-pgsql', 'php5-curl', 'php5-cli', 'php5-gd', 'python-corepost']:
       ensure  => installed,
     }
 
