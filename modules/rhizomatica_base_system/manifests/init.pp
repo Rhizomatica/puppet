@@ -124,14 +124,24 @@ class rhizomatica_base_system {
       ensure  => directory,
     }
 
-  file { '/home/rhizomatica/config_values.py':
-      ensure  => present,
-      content => template('rhizomatica_base_system/config_values.py.erb'),
+  vcsrepo { '/var/rhizomatica':
+      ensure   => latest,
+      provider => git,
+      source   => 'https://github.com/Rhizomatica/rccn.git',
+      revision => 'master',
+      require  => File['/var/rhizomatica'],
     }
 
-  file { '/var/www/rmai':
+  file { '/var/rhizomatica/rccn/config_values.py':
+      ensure  => present,
+      content => template('rhizomatica_base_system/config_values.py.erb'),
+      require => Vcsrepo['/var/rhizomatica'],
+    }
+
+  file { '/var/www/rai':
       ensure  => link,
-      target  => '/var/rhizomatica/rmai',
+      target  => '/var/rhizomatica/rai',
+      require => Vcsrepo['/var/rhizomatica'],
     }
 
 #PostgreSQL server
