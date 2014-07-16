@@ -134,6 +134,7 @@ class rhizomatica_base_system {
       source   => 'https://github.com/Rhizomatica/rccn.git',
       revision => 'master',
       require  => [ File['/var/rhizomatica'], Package['git'] ],
+      notify   => Exec['install_rccn'],
     }
 
   file { '/var/rhizomatica/rccn/config_values.py':
