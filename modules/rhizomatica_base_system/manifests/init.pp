@@ -124,9 +124,6 @@ class rhizomatica_base_system {
       ensure  => directory,
     }
 
-  exec { 'clone_git_repository':
-      }
-
   file { '/home/rhizomatica/config_values.py':
       ensure  => present,
       content => template('rhizomatica_base_system/config_values.py.erb'),
