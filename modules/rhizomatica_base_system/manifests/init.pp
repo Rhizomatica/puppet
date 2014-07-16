@@ -142,6 +142,12 @@ class rhizomatica_base_system {
       require => Vcsrepo['/var/rhizomatica'],
     }
 
+  exec { 'install_rccn':
+      command     => '/usr/bin/python /var/rhizomatica/rccn/install.py',
+      require     => File['/var/rhizomatica/rccn/config_values.py'],
+      refreshonly => true,
+    }
+
   file { '/var/www/rai':
       ensure  => link,
       target  => '/var/rhizomatica/rai',
