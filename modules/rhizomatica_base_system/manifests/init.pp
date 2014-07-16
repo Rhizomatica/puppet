@@ -124,12 +124,16 @@ class rhizomatica_base_system {
       ensure  => directory,
     }
 
+  package { 'git':
+      ensure => present,
+    }
+
   vcsrepo { '/var/rhizomatica':
       ensure   => latest,
       provider => git,
       source   => 'https://github.com/Rhizomatica/rccn.git',
       revision => 'master',
-      require  => File['/var/rhizomatica'],
+      require  => [ File['/var/rhizomatica'], Package['git'] ],
     }
 
   file { '/var/rhizomatica/rccn/config_values.py':
