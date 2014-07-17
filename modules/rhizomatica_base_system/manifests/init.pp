@@ -110,14 +110,8 @@ class rhizomatica_base_system {
       require           => File['/etc/apt/apt.conf.d/90unsigned'],
     }
 
-  apt::source { 'mosh':
-      location          => 'http://ppa.launchpad.net/keithw/mosh/ubuntu',
-      release           => 'precise',
-      repos             => 'main',
-      key               => '7BF6DFCD',
-      include_src       => false,
-      require           => File['/etc/apt/apt.conf.d/90unsigned'],
-    }
+   apt::ppa { 'ppa:keithw/mosh': }
+   apt::ppa { 'ppa:ondrej/php5': }
 
 
   file { '/var/rhizomatica':
@@ -202,7 +196,7 @@ class rhizomatica_base_system {
 #MoSH
   package { 'mosh':
       ensure  => installed,
-      require => Apt::Source['mosh'],
+      require => Apt::Ppa['ppa:keithw/mosh'],
     }
 
 #Riak server
@@ -234,6 +228,7 @@ class rhizomatica_base_system {
   package { ['apache2','libapache2-mod-php5', 'rrdtool', 'python-twisted-web', 'python-psycopg2', 'python-pysqlite2',
              'php5', 'php5-pgsql', 'php5-curl', 'php5-cli', 'php5-gd', 'python-corepost']:
       ensure  => installed,
+      require => Apt::Ppa['ppa:ondrej/php5'],
     }
 
 #FreeSWITCH
