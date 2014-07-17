@@ -137,6 +137,12 @@ class rhizomatica_base_system {
       require => Vcsrepo['/var/rhizomatica'],
     }
 
+  file { '/var/rhizomatica/rai/include/database.php':
+      ensure  => present,
+      content => template('rhizomatica_base_system/database.php.erb'),
+      require => Vcsrepo['/var/rhizomatica'],
+    }
+
   exec { 'install_rccn':
       command     => '/usr/bin/python /var/rhizomatica/rccn/install.py',
       require     => File['/var/rhizomatica/rccn/config_values.py'],
