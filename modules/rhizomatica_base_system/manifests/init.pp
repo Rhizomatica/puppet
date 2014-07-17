@@ -240,6 +240,12 @@ class rhizomatica_base_system {
       require => Apt::Ppa['ppa:ondrej/php5'],
     }
 
+  file { '/etc/php5/apache2/php.ini':
+      ensure  => present,
+      source  => 'puppet:///modules/rhizomatica_base_system/etc/php5/apache2/php.ini',
+      require => Package['libapache2-mod-php5'],
+    }
+
 #FreeSWITCH
   package { ['freeswitch', 'freeswitch-lang-en',
   'freeswitch-mod-amr', 'freeswitch-mod-amrwb',
