@@ -155,6 +155,12 @@ class rhizomatica_base_system {
       require => Vcsrepo['/var/rhizomatica'],
     }
 
+  file { '/var/www/html/rai/graphs':
+      ensure  => link,
+      target  => '/var/rhizomatica/rrd/graphs',
+      require => Vcsrepo['/var/rhizomatica'],
+    }
+
 #PostgreSQL server
   class { 'postgresql::globals':
       manage_package_repo => true,
