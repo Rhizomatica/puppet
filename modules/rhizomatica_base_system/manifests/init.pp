@@ -143,7 +143,7 @@ class rhizomatica_base_system {
       refreshonly => true,
     }
 
-  file { '/var/www/rai':
+  file { '/var/www/html/rai':
       ensure  => link,
       target  => '/var/rhizomatica/rai',
       require => Vcsrepo['/var/rhizomatica'],
