@@ -110,8 +110,8 @@ class rhizomatica_base_system {
       require           => File['/etc/apt/apt.conf.d/90unsigned'],
     }
 
-   apt::ppa { 'ppa:keithw/mosh': }
-   apt::ppa { 'ppa:ondrej/php5': }
+  apt::ppa { 'ppa:keithw/mosh': }
+  apt::ppa { 'ppa:ondrej/php5': }
 
 
   file { '/var/rhizomatica':
@@ -231,25 +231,36 @@ class rhizomatica_base_system {
     }
 
 #Apache2 + PHP
-  package { ['apache2','libapache2-mod-php5', 'rrdtool', 'python-twisted-web', 'python-psycopg2', 'python-pysqlite2',
-             'php5', 'php5-pgsql', 'php5-curl', 'php5-cli', 'php5-gd', 'python-corepost']:
+  package { ['apache2','libapache2-mod-php5',
+  'rrdtool', 'python-twisted-web', 'python-psycopg2',
+  'python-pysqlite2', 'php5', 'php5-pgsql',
+  'php5-curl', 'php5-cli', 'php5-gd', 'python-corepost',
+  'python-yaml']:
       ensure  => installed,
       require => Apt::Ppa['ppa:ondrej/php5'],
     }
 
 #FreeSWITCH
-  package { ['freeswitch', 'freeswitch-lang-en', 'freeswitch-mod-amr', 'freeswitch-mod-amrwb', 'freeswitch-mod-b64',
-             'freeswitch-mod-bv', 'freeswitch-mod-cdr-pg-csv', 'freeswitch-mod-cluechoo', 'freeswitch-mod-commands',
-             'freeswitch-mod-conference', 'freeswitch-mod-console', 'freeswitch-mod-db', 'freeswitch-mod-dialplan-asterisk',
-             'freeswitch-mod-dialplan-xml', 'freeswitch-mod-dptools', 'freeswitch-mod-enum', 'freeswitch-mod-esf', 
-             'freeswitch-mod-event-socket','freeswitch-mod-expr', 'freeswitch-mod-fifo','freeswitch-mod-fsv',
-             'freeswitch-mod-g723-1', 'freeswitch-mod-g729', 'freeswitch-mod-h26x', 'freeswitch-mod-hash',
-             'freeswitch-mod-httapi', 'freeswitch-mod-local-stream', 'freeswitch-mod-logfile', 'freeswitch-mod-loopback',
-             'freeswitch-mod-lua', 'freeswitch-mod-native-file', 'freeswitch-mod-python', 'freeswitch-mod-say-en',
-             'freeswitch-mod-say-es', 'freeswitch-mod-sms', 'freeswitch-mod-sndfile', 'freeswitch-mod-sofia',
-             'freeswitch-mod-spandsp', 'freeswitch-mod-speex', 'freeswitch-mod-syslog', 'freeswitch-mod-tone-stream',
-             'freeswitch-mod-voicemail', 'freeswitch-mod-voicemail-ivr', 'freeswitch-mod-vp8', 'freeswitch-mod-xml-cdr',
-             'freeswitch-sysvinit', 'libfreeswitch1']:
+  package { ['freeswitch', 'freeswitch-lang-en',
+  'freeswitch-mod-amr', 'freeswitch-mod-amrwb',
+  'freeswitch-mod-b64', 'freeswitch-mod-bv',
+  'freeswitch-mod-cdr-pg-csv', 'freeswitch-mod-cluechoo',
+  'freeswitch-mod-commands', 'freeswitch-mod-conference',
+  'freeswitch-mod-console', 'freeswitch-mod-db',
+  'freeswitch-mod-dialplan-asterisk', 'freeswitch-mod-dialplan-xml',
+  'freeswitch-mod-dptools', 'freeswitch-mod-enum', 'freeswitch-mod-esf',
+  'freeswitch-mod-event-socket','freeswitch-mod-expr', 'freeswitch-mod-fifo',
+  'freeswitch-mod-fsv', 'freeswitch-mod-g723-1', 'freeswitch-mod-g729',
+  'freeswitch-mod-h26x', 'freeswitch-mod-hash', 'freeswitch-mod-httapi',
+  'freeswitch-mod-local-stream', 'freeswitch-mod-logfile',
+  'freeswitch-mod-loopback', 'freeswitch-mod-lua',
+  'freeswitch-mod-native-file', 'freeswitch-mod-python',
+  'freeswitch-mod-say-en', 'freeswitch-mod-say-es', 'freeswitch-mod-sms',
+  'freeswitch-mod-sndfile', 'freeswitch-mod-sofia', 'freeswitch-mod-spandsp',
+  'freeswitch-mod-speex', 'freeswitch-mod-syslog',
+  'freeswitch-mod-tone-stream', 'freeswitch-mod-voicemail',
+  'freeswitch-mod-voicemail-ivr', 'freeswitch-mod-vp8',
+  'freeswitch-mod-xml-cdr', 'freeswitch-sysvinit', 'libfreeswitch1']:
       ensure  => installed,
       require => Apt::Source['rhizomatica'],
     }
@@ -277,7 +288,8 @@ class rhizomatica_base_system {
 
   file { '/etc/freeswitch/sip_profiles/external/provider.xml':
       content => template('rhizomatica_base_system/provider.xml.erb'),
-      require => [ Package['freeswitch'], File['/etc/freeswitch/sip_profiles/external'] ],
+      require => [ Package['freeswitch'],
+      File['/etc/freeswitch/sip_profiles/external'] ],
     }
 
 #OpenBSC
