@@ -145,7 +145,8 @@ class rhizomatica_base_system {
 
   exec { 'install_rccn':
       command     => '/usr/bin/python /var/rhizomatica/rccn/install.py',
-      require     => File['/var/rhizomatica/rccn/config_values.py'],
+      require     => [ File['/var/rhizomatica/rccn/config_values.py'],
+      Class['postgresql::server'], Class['riak'] ],
       refreshonly => true,
     }
 
