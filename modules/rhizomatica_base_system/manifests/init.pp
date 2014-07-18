@@ -207,7 +207,7 @@ class rhizomatica_base_system {
       require => File['/etc/sv'],
     }
 
-#MoSH
+#Mosh
   package { 'mosh':
       ensure  => installed,
       require => Apt::Ppa['ppa:keithw/mosh'],
@@ -264,8 +264,8 @@ class rhizomatica_base_system {
   'freeswitch-mod-dialplan-asterisk', 'freeswitch-mod-dialplan-xml',
   'freeswitch-mod-dptools', 'freeswitch-mod-enum', 'freeswitch-mod-esf',
   'freeswitch-mod-event-socket','freeswitch-mod-expr', 'freeswitch-mod-fifo',
-  'freeswitch-mod-fsv', 'freeswitch-mod-g723-1', 'freeswitch-mod-g729',
-  'freeswitch-mod-h26x', 'freeswitch-mod-hash', 'freeswitch-mod-httapi',
+  'freeswitch-mod-fsv', 'freeswitch-mod-g723-1', 'freeswitch-mod-h26x',
+  'freeswitch-mod-hash', 'freeswitch-mod-httapi',
   'freeswitch-mod-local-stream', 'freeswitch-mod-logfile',
   'freeswitch-mod-loopback', 'freeswitch-mod-lua',
   'freeswitch-mod-native-file', 'freeswitch-mod-python',
