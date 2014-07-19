@@ -16,7 +16,6 @@ class rhizomatica_base_system {
   $mail_admins             = hiera('rhizo::mail_admins')
   $smsc_password           = hiera('rhizo::smsc_password')
   $kannel_admin_password   = hiera('rhizo::kannel_admin_password')
-  $kannel_sendsms_password = hiera('rhizo::kannel_sendsms_password')
 
   # Configuration settings
   $rhizomatica_dir = hiera('rhizo::rhizomatica_dir')
@@ -59,10 +58,10 @@ class rhizomatica_base_system {
   $rai_admin_user  = hiera('rhizo::rai_admin_user')
   $rai_admin_pwd   = hiera('rhizo::rai_admin_pwd')
 
-  $kannel_server   = hiera('rhizo::kannel_server')
-  $kannel_port     = hiera('rhizo::kannel_port')
-  $kannel_username = hiera('rhizo::kannel_username')
-  $kannel_password = hiera('rhizo::kannel_password')
+  $kannel_server           = hiera('rhizo::kannel_server')
+  $kannel_port             = hiera('rhizo::kannel_port')
+  $kannel_username         = hiera('rhizo::kannel_username')
+  $kannel_sendsms_password = hiera('rhizo::kannel_sendsms_password')
 
   # VOIP provider
   $voip_provider_name = hiera('rhizo::voip_provider_name')
