@@ -163,7 +163,7 @@ class rhizomatica_base_system {
     }
 
   exec { 'locale-gen':
-      commnd      => '/usr/sbin/locale-gen es_ES.utf8',
+      command     => '/usr/sbin/locale-gen es_ES.utf8',
       require     => File['/var/rhizomatica/rccn/config_values.py'],
       refreshonly => true,
       }
