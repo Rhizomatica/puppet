@@ -163,7 +163,7 @@ class rhizomatica_base_system {
     }
 
   exec { 'locale-gen':
-      commnd => '/usr/sbin/locale-gen es_ES.utf8',
+      commnd      => '/usr/sbin/locale-gen es_ES.utf8',
       require     => File['/var/rhizomatica/rccn/config_values.py'],
       refreshonly => true,
       }
@@ -325,7 +325,7 @@ class rhizomatica_base_system {
 
   file { '/etc/freeswitch/autoload_configs/cdr_pg_csv.conf.xml':
       content => template('rhizomatica_base_system/cdr_pg_csv.conf.xml.erb'),
-      require => [ Package['freeswitch'],
+      require => Package['freeswitch'],
     }
 
 #OpenBSC
