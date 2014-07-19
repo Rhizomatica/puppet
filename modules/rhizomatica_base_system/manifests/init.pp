@@ -80,6 +80,17 @@ class rhizomatica_base_system {
   include ntp
   include kannel
 
+#Grub fix
+  file { '/etc/default/grub':
+      ensure  => present,
+      source  => 'puppet:///modules/rhizomatica_base_system/etc/default/grub',
+      notify  => Exec['update-grub'],
+    }
+
+  exec { 'update-grub':
+      refreshonly => true,
+    }
+
 #Rizhomatica scripts
   file { '/home/rhizomatica/bin':
       ensure  => directory,
