@@ -139,7 +139,7 @@ class rhizomatica_base_system {
       source   => 'https://github.com/Rhizomatica/rccn.git',
       revision => 'master',
       require  => [ File['/var/rhizomatica'], Package['git'] ],
-      notify   => Exec['install_rccn'],
+      notify   => [ Exec['install_rccn'], Exec['locale-gen'] ],
     }
 
   file { '/var/rhizomatica/rccn/config_values.py':
@@ -161,6 +161,12 @@ class rhizomatica_base_system {
       Package['php5'] ],
       refreshonly => true,
     }
+
+  exec { 'locale-gen':
+      commnd => '/usr/sbin/locale-gen es_ES.utf8',
+      require     => File['/var/rhizomatica/rccn/config_values.py'],
+      refreshonly => true,
+      }
 
   file { '/var/www/html/rai':
       ensure  => link,
@@ -315,6 +321,11 @@ class rhizomatica_base_system {
       content => template('rhizomatica_base_system/provider.xml.erb'),
       require => [ Package['freeswitch'],
       File['/etc/freeswitch/sip_profiles/external'] ],
+    }
+
+  file { '/etc/freeswitch/autoload_configs/cdr_pg_csv.conf.xml':
+      content => template('rhizomatica_base_system/cdr_pg_csv.conf.xml.erb'),
+      require => [ Package['freeswitch'],
     }
 
 #OpenBSC
