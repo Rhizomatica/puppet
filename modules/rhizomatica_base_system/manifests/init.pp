@@ -88,6 +88,7 @@ class rhizomatica_base_system {
     }
 
   exec { 'update-grub':
+      command     => '/usr/sbin/update-grub',
       refreshonly => true,
     }
 
