@@ -171,7 +171,7 @@ class rhizomatica_base_system {
   file { '/var/www/html/rai':
       ensure  => link,
       target  => '/var/rhizomatica/rai',
-      require => Vcsrepo['/var/rhizomatica'],
+      require => [ Vcsrepo['/var/rhizomatica'], Package['apache2'] ],
     }
 
   file { '/var/www/html/rai/graphs':
