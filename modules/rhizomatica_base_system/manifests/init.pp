@@ -237,6 +237,10 @@ class rhizomatica_base_system {
       vmargs_template => 'rhizomatica_base_system/vm.args.erb',
     }
 
+  package { 'libffi-dev':
+      ensure => installed,
+    }
+
 #Python modules
   class { 'python':
       version => 'system',
@@ -246,6 +250,7 @@ class rhizomatica_base_system {
 
   python::pip { 'riak':
       ensure  => present,
+      require => Package['libffi-dev'],
     }
 
   file { '/usr/lib/python2.7/dist-packages':
