@@ -249,8 +249,8 @@ class rhizomatica_base_system {
     }
 
   python::pip { 'riak':
-      ensure  => present,
-      require => Package['libffi-dev'],
+      ensure  => '2.0.3',
+      pkgname => 'riak',
     }
 
   file { '/usr/lib/python2.7/dist-packages':
