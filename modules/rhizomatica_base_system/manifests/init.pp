@@ -163,10 +163,16 @@ class rhizomatica_base_system {
     }
 
   exec { 'locale-gen':
-      command     => '/usr/sbin/locale-gen es_ES.utf8',
-      require     => File['/var/rhizomatica/rccn/config_values.py'],
+      command     => '/usr/sbin/locale-gen',
+      require     => [ File['/var/rhizomatica/rccn/config_values.py'],
+      File['/var/lib/locales/supported.d/local'] ],
       refreshonly => true,
       }
+
+  file { '/var/lib/locales/supported.d/local':
+      ensure      => present,
+      source      => 'puppet:///modules/rhizomatica_base_system/var/lib/locales/supported.d/local',
+    }
 
   file { '/var/www/html/rai':
       ensure  => link,
