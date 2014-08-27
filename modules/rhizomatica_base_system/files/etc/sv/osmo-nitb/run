@@ -6,4 +6,4 @@ sleep 10
 ps aux|grep kannel
 /etc/init.d/kannel start
 exec 2>&1
-exec chrt 10 /usr/bin/osmo-nitb -P -m -c /etc/osmocom/osmo-nitb.cfg -l /var/lib/osmocom/hlr.sqlite3
+exec chrt 10 /usr/bin/osmo-nitb -C -P -m -c /etc/osmocom/osmo-nitb.cfg -l /var/lib/osmocom/hlr.sqlite3
