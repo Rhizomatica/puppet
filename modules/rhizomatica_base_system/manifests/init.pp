@@ -266,12 +266,12 @@ class rhizomatica_base_system {
       require => Class['python'],
     }
 
-#Apache2 + PHP
+#Apache2 + PHP + Python
   package { ['apache2','libapache2-mod-php5',
   'rrdtool', 'python-twisted-web', 'python-psycopg2',
   'python-pysqlite2', 'php5', 'php5-pgsql',
   'php5-curl', 'php5-cli', 'php5-gd', 'python-corepost',
-  'python-yaml', 'python-formencode']:
+  'python-yaml', 'python-formencode', 'python-unidecode']:
       ensure  => installed,
       require => Apt::Ppa['ppa:ondrej/php5'],
     }
