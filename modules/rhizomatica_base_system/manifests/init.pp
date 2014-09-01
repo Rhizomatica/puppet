@@ -244,7 +244,7 @@ class rhizomatica_base_system {
 
 #Riak server
   class { 'riak':
-      version         => '1.4.7-1',
+      version         => '1.4.10-1',
       template        => 'rhizomatica_base_system/app.config.erb',
       vmargs_template => 'rhizomatica_base_system/vm.args.erb',
     }
