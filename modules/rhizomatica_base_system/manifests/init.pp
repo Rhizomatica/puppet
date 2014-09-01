@@ -77,6 +77,9 @@ class rhizomatica_base_system {
   $reminder_msg   = hiera('rhizo::reminder_msg')
   $deactivate_msg = hiera('rhizo::deactivate_msg')
 
+  #Roaming welcome SMS
+  $sms_welcome_roaming = hiera('rhizo::sms_welcome_roaming')
+
   include ntp
   include kannel
 
