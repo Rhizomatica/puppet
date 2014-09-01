@@ -10,4 +10,4 @@ PYTHONPATH=$PYTHONPATH:/var/rhizomatica/rccn
 */5 *  *   *   *     root /var/rhizomatica/bin/platform_update_rrd.sh
 */5 *  *   *   *     root /var/rhizomatica/bin/network_update_rrd.sh
 */5 *  *   *   *     root /usr/bin/python /var/rhizomatica/rccn/rrc.py
-  0 3  *   *   *     root /usr/bin/python /var/rhizomatica/rccn/rip.py
+  0 4  *   *   *     root /usr/bin/python /var/rhizomatica/rccn/rip.py
