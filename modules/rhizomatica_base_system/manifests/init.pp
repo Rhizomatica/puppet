@@ -33,6 +33,8 @@ class rhizomatica_base_system {
   $pbxcode      = hiera('rhizo::pbxcode')
   # network name
   $network_name = hiera('rhizo::network_name')
+  $arfcn_1      = hiera('rhizo::arfcn_1')
+  $arfcn_2      = hiera('rhizo::arfcn_2')
 
   # VPN ip address
   $vpn_ip_address = hiera('rhizo::vpn_ip_address')
