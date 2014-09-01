@@ -346,7 +346,8 @@ class rhizomatica_base_system {
     }
 
 #OpenBSC
-  package { ['osmocom-nitb', 'osmocom-nitb-dbg']:
+  package { ['osmocom-nitb', 'osmocom-nitb-dbg',
+  'libdbd-sqlite3', 'libsmpp0']:
       ensure  => installed,
       require => Apt::Source['rhizomatica'],
     }
