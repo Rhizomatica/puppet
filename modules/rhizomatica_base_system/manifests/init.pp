@@ -133,25 +133,25 @@ class rhizomatica_base_system {
       ensure => present,
     }
 
-  vcsrepo { '/var/rhizomatica':
-      ensure   => latest,
-      provider => git,
-      source   => 'https://github.com/Rhizomatica/rccn.git',
-      revision => 'master',
-      require  => [ File['/var/rhizomatica'], Package['git'] ],
-      notify   => [ Exec['install_rccn'], Exec['locale-gen'] ],
-    }
+#  vcsrepo { '/var/rhizomatica':
+#      ensure   => latest,
+#      provider => git,
+#      source   => 'https://github.com/Rhizomatica/rccn.git',
+#      revision => 'master',
+#      require  => [ File['/var/rhizomatica'], Package['git'] ],
+#      notify   => [ Exec['install_rccn'], Exec['locale-gen'] ],
+#    }
 
   file { '/var/rhizomatica/rccn/config_values.py':
       ensure  => present,
       content => template('rhizomatica_base_system/config_values.py.erb'),
-      require => Vcsrepo['/var/rhizomatica'],
+#      require => Vcsrepo['/var/rhizomatica'],
     }
 
   file { '/var/rhizomatica/rai/include/database.php':
       ensure  => present,
       content => template('rhizomatica_base_system/database.php.erb'),
-      require => Vcsrepo['/var/rhizomatica'],
+#      require => Vcsrepo['/var/rhizomatica'],
     }
 
   exec { 'install_rccn':
@@ -177,13 +177,14 @@ class rhizomatica_base_system {
   file { '/var/www/html/rai':
       ensure  => link,
       target  => '/var/rhizomatica/rai',
-      require => [ Vcsrepo['/var/rhizomatica'], Package['apache2'] ],
+      require => Package['apache2'],
+#      [ Vcsrepo['/var/rhizomatica'], ],
     }
 
   file { '/var/www/html/rai/graphs':
       ensure  => link,
       target  => '/var/rhizomatica/rrd/graphs',
-      require => Vcsrepo['/var/rhizomatica'],
+#      require => Vcsrepo['/var/rhizomatica'],
     }
 
 #PostgreSQL server
