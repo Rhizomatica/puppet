@@ -65,7 +65,8 @@
 		{mapred_system, "pipe"},
 		{reduce_js_vm_count, 6},
 		{storage_backend, riak_kv_eleveldb_backend},
-		{vnode_vclocks, true}
+		{vnode_vclocks, true},
+		{anti_entropy, {on, []}},
 	]},
 	{riak_search, [
 		{enabled, false}
