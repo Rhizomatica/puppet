@@ -277,7 +277,8 @@ class rhizomatica_base_system {
   'rrdtool', 'python-twisted-web', 'python-psycopg2',
   'python-pysqlite2', 'php5', 'php5-pgsql',
   'php5-curl', 'php5-cli', 'php5-gd', 'python-corepost',
-  'python-yaml', 'python-formencode', 'python-unidecode']:
+  'python-yaml', 'python-formencode', 'python-unidecode',
+  'python-dateutil']:
       ensure  => installed,
       require => Apt::Ppa['ppa:ondrej/php5'],
     }
