@@ -81,6 +81,8 @@ class rhizomatica_base_system {
 
   #Roaming welcome SMS
   $sms_welcome_roaming = hiera('rhizo::sms_welcome_roaming')
+  #Emergency number
+  $emergency_contact   = hiera('rhizo::emergency_contact')
 
   include ntp
   include kannel
