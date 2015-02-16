@@ -38,13 +38,13 @@ class rhizomatica_base_system {
   $arfcn_A         = hiera('rhizo::arfcn_A')
   $arfcn_B         = hiera('rhizo::arfcn_B')
 
-  $bts2_ip_address = hiera('rhizo::bts2_ip_address', undef)
-  $arfcn_C         = hiera('rhizo::arfcn_C', undef)
-  $arfcn_D         = hiera('rhizo::arfcn_D', undef)
+  $bts2_ip_address = hiera('rhizo::bts2_ip_address', false)
+  $arfcn_C         = hiera('rhizo::arfcn_C', false)
+  $arfcn_D         = hiera('rhizo::arfcn_D', false)
 
-  $bts3_ip_address = hiera('rhizo::bts3_ip_address', undef)
-  $arfcn_E         = hiera('rhizo::arfcn_E', undef)
-  $arfcn_F         = hiera('rhizo::arfcn_F', undef)
+  $bts3_ip_address = hiera('rhizo::bts3_ip_address', false)
+  $arfcn_E         = hiera('rhizo::arfcn_E', false)
+  $arfcn_F         = hiera('rhizo::arfcn_F', false)
 
   # VPN ip address
   $vpn_ip_address = hiera('rhizo::vpn_ip_address')
