@@ -12,7 +12,6 @@
 #
 class rhizomatica_base_system {
 
-  $bts1_ip_address         = hiera('rhizo::bts1_ip_address')
   $mail_admins             = hiera('rhizo::mail_admins')
   $smsc_password           = hiera('rhizo::smsc_password')
   $kannel_admin_password   = hiera('rhizo::kannel_admin_password')
@@ -32,9 +31,20 @@ class rhizomatica_base_system {
   $postcode     = hiera('rhizo::postcode')
   $pbxcode      = hiera('rhizo::pbxcode')
   # network name
-  $network_name = hiera('rhizo::network_name')
-  $arfcn_A      = hiera('rhizo::arfcn_A')
-  $arfcn_B      = hiera('rhizo::arfcn_B')
+  $network_name    = hiera('rhizo::network_name')
+
+  #BTSs configuration
+  $bts1_ip_address = hiera('rhizo::bts1_ip_address')
+  $arfcn_A         = hiera('rhizo::arfcn_A')
+  $arfcn_B         = hiera('rhizo::arfcn_B')
+
+  $bts2_ip_address = hiera('rhizo::bts2_ip_address', undef)
+  $arfcn_C         = hiera('rhizo::arfcn_C', undef)
+  $arfcn_D         = hiera('rhizo::arfcn_D', undef)
+
+  $bts3_ip_address = hiera('rhizo::bts3_ip_address', undef)
+  $arfcn_E         = hiera('rhizo::arfcn_E', undef)
+  $arfcn_F         = hiera('rhizo::arfcn_F', undef)
 
   # VPN ip address
   $vpn_ip_address = hiera('rhizo::vpn_ip_address')
