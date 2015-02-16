@@ -32,6 +32,7 @@ class rhizomatica_base_system {
   $pbxcode      = hiera('rhizo::pbxcode')
   # network name
   $network_name    = hiera('rhizo::network_name')
+  $auth_policy     = hiera('rhizo::auth_policy')
 
   #BTSs configuration
   $bts1_ip_address = hiera('rhizo::bts1_ip_address')
