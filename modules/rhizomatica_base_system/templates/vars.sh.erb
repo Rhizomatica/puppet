@@ -1,3 +1,51 @@
 #!/bin/sh
+RHIZO_SCRIPT="/home/rhizomatica/bin"
+
+function logc() {
+    txt=$1
+    echo "[`date '+%d-%m-%Y %H:%M:%S'`] $txt" >> $LOGFILE
+}
+
+#BTSs IP addresses
+
+<% if @bts1_ip_address %>
 BTS1=<%= @bts1_ip_address %>
+<% end %>
+
+<% if @bts2_ip_address %>
+BTS2=<%= @bts2_ip_address %>
+<% end %>
+
+<% if @bts3_ip_address %>
+BTS3=<%= @bts3_ip_address %>
+<% end %>
+
+<% if @bts4_ip_address %>
+BTS4=<%= @bts4_ip_address %>
+<% end %>
+
+<% if @bts5_ip_address %>
+BTS5=<%= @bts5_ip_address %>
+<% end %>
+
+<% if @bts6_ip_address %>
+BTS6=<%= @bts6_ip_address %>
+<% end %>
+
+<% if @bts7_ip_address %>
+BTS7=<%= @bts7_ip_address %>
+<% end %>
+
+<% if @bts8_ip_address %>
+BTS8=<%= @bts8_ip_address %>
+<% end %>
+
+<% if @bts9_ip_address %>
+BTS9=<%= @bts9_ip_address %>
+<% end %>
+
+<% if @bts10_ip_address %>
+BTS10=<%= @bts10_ip_address %>
+<% end %>
+
 RECIPIENTS=<%= @mail_admins %>

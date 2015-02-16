@@ -1,16 +1,34 @@
 #Rhizomatica cron jobs
 PYTHONPATH=$PYTHONPATH:/var/rhizomatica/rccn
   
-# m h  dom mon dow   user command
-  0 8  1   *   *     root /usr/bin/python /var/rhizomatica/rccn/rsc.py notice
-  0 8  3   *   *     root /usr/bin/python /var/rhizomatica/rccn/rsc.py reminder
-  0 21 7   *   *     root /usr/bin/python /var/rhizomatica/rccn/rsc.py deactivate
-  0 */5  * *   *     root /var/rhizomatica/bin/check_account_balance.sh
-  0 3  *   *   *     root /var/rhizomatica/bin/sms_cleanup.sh
-*/5 *  *   *   *     root /var/rhizomatica/bin/platform_update_rrd.sh
-*/5 *  *   *   *     root /var/rhizomatica/bin/network_update_rrd.sh
-#  */10  * *   *   *  root /home/rhizomatica/bin/bind_check.sh
-*/10 *  *   *   *     root /usr/bin/python /var/rhizomatica/rccn/rrc.py && /usr/bin/python /var/rhizomatica/rccn/rhs.py
+# m  h    dom mon dow   user command
+
+#SMS reminders for users
+  0  8    1   *   *     root /usr/bin/python /var/rhizomatica/rccn/rsc.py notice
+  0  8    3   *   *     root /usr/bin/python /var/rhizomatica/rccn/rsc.py reminder
+  0  21   7   *   *     root /usr/bin/python /var/rhizomatica/rccn/rsc.py deactivate
+
+#SMS reminder for admin
+  0  */5  *   *   *     root /var/rhizomatica/bin/check_account_balance.sh
+
+#SMS cleanup
+  0  3    *   *   *     root /var/rhizomatica/bin/sms_cleanup.sh
+
+#RRDtools graphs
+*/5  *    *   *   *     root /var/rhizomatica/bin/platform_update_rrd.sh
+*/5  *    *   *   *     root /var/rhizomatica/bin/network_update_rrd.sh
+
+#Bind check between OpenBSC and Kannel (disabled)
+# */10    *   *   *  *  root /home/rhizomatica/bin/bind_check.sh
+
+#Roaming jobs
+*/10 *    *   *   *     root /usr/bin/python /var/rhizomatica/rccn/rrc.py && /usr/bin/python /var/rhizomatica/rccn/rhs.py > /dev/null 2>&1
+
+#Cleanup inactive users
+  0  5    *   *   *     root /usr/bin/python /var/rhizomatica/rccn/rip.py > /dev/null 2>&1
+
 # amplifier monitoring
-*/10 * *   *   *  root  /home/rhizomatica/bin/monitor_amp.sh
-*/10 * * *   *     root /var/rhizomatica/bin/monitor_rapi.sh > /dev/null
+*/10 *    *   *   *     root /home/rhizomatica/bin/monitor_amp.sh > /dev/null 2>&1
+
+# RAPI monitoring
+*/10 *    *   *   *     root /var/rhizomatica/bin/monitor_rapi.sh > /dev/null 2>&1

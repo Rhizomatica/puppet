@@ -1,34 +1,9 @@
 #!/bin/bash
+# Turn on AMP on all BTS, from BTS1 to BTS 10
 . ./vars.sh
+LOGFILE="/var/log/rhizomatica/monitor_amp.log"
 
-echo "Beginning amplifier procedure... brace yourself!"
-
-echo "turning off osmo-nitb and kannel"
-sv stop osmo-nitb
-/etc/init.d/kannel stop
-
-echo "Rebooting first BTS"
-ssh root@$BTS1 "/sbin/reboot"
-
-echo "sleeping 30 seconds..."
-sleep 30
-
-echo "turning off the second BTS"
-ssh root@$BTS1 "/usr/bin/sbts2050-util sbts2050-pwr-enable 1 0 0"
-
-echo "sleeping 10 seconds..."
-sleep 10
-
-echo "turning on the amplifier"
-ssh root@$BTS1 "/usr/bin/sbts2050-util sbts2050-pwr-enable 1 0 1"
-
-echo "sleeping 10 seconds..."
-sleep 10
-
-echo "turning back on the second BTS"
-ssh root@$BTS1 "/usr/bin/sbts2050-util sbts2050-pwr-enable 1 1 1"
-
-echo "turning on osmo-nitb and kannel"
-sv start osmo-nitb
-sleep 10
-/etc/init.d/kannel start
+for bts in $BTS1 $BTS2 $BTS3 $BTS4 $BTS5 $BTS6 $BTS7 $BTS7 $BTS8 $BTS9 $BTS10; do
+    logc "Turning on AMP on BTS $bts:"
+    ssh root@$bts "sbts2050-util sbts2050-pwr-enable 1 1 1";
+done
