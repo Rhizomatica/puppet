@@ -183,7 +183,7 @@ network
     timeslot 7
      phys_chan_config TCH/F
      hopping enabled 0
-<% if @bts2_ip_address %>
+<% if not @bts2_ip_address.nil? -%>
  bts 2
   type sysmobts
   band GSM850
@@ -288,8 +288,8 @@ network
     timeslot 7
      phys_chan_config TCH/F
      hopping enabled 0
-<% end %>
-<% if @bts3_ip_address %>
+<% end -%>
+<% if not @bts3_ip_address.nil? %>
  bts 4
   type sysmobts
   band GSM850
@@ -394,7 +394,7 @@ network
     timeslot 7
      phys_chan_config TCH/F
      hopping enabled 0
-<% end %>
+<% end -%>
 mncc-int
  default-codec tch-f fr
  default-codec tch-h hr
