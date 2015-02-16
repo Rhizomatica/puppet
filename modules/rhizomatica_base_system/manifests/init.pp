@@ -86,9 +86,10 @@ class rhizomatica_base_system {
   $voip_cli           = hiera('rhizo::voip_cli')
 
   # Subscription SMS notification
-  $notice_msg     = hiera('rhizo::notice_msg')
-  $reminder_msg   = hiera('rhizo::reminder_msg')
-  $deactivate_msg = hiera('rhizo::deactivate_msg')
+  $notice_msg       = hiera('rhizo::notice_msg')
+  $reminder_msg     = hiera('rhizo::reminder_msg')
+  $deactivate_msg   = hiera('rhizo::deactivate_msg')
+  $sms_credit_added = hiera('rhizo::sms_credit_added')
 
   #Roaming welcome SMS
   $sms_welcome_roaming = hiera('rhizo::sms_welcome_roaming')
