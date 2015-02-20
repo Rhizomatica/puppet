@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # Check for AMP status on each BTS, from BTS1 up to BTS3
 . ./vars.sh
 for bts in $BTS1 $BTS2 $BTS3; do
