@@ -32,3 +32,9 @@ PYTHONPATH=$PYTHONPATH:/var/rhizomatica/rccn
 
 # RAPI monitoring
 */10 *    *   *   *     root /var/rhizomatica/bin/monitor_rapi.sh > /dev/null 2>&1
+
+#Billing
+00 10     *   *   *     root [[ $(date +'%d') -eq $(cal | awk '!/^$/{ print $NF }' | grep -v '^ ' | tail -1) ]] && /var/rhizomatica/bin/active_subscribers.sh
+
+#Restart osmo-nitb every 6 hours
+00 */6    *   *   *     root /usr/bin/sv restart osmo-nitb 2&>1 /dev/null
