@@ -47,6 +47,8 @@ class rhizomatica_base_system {
   $arfcn_E         = hiera('rhizo::arfcn_E', false)
   $arfcn_F         = hiera('rhizo::arfcn_F', false)
 
+  $max_power_red   = hiera('rhizo::max_power_red')
+
   # VPN ip address
   $vpn_ip_address = hiera('rhizo::vpn_ip_address')
   $wan_ip_address = hiera('rhizo::wan_ip_address')
