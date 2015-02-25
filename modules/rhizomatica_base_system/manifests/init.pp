@@ -222,7 +222,7 @@ class rhizomatica_base_system {
     }
 
 #Various packages
-  package { ['openvpn', 'lm-sensors', 'runit']:
+  package { ['openvpn', 'lm-sensors', 'runit', 'sqlite3']:
       ensure  => installed,
     }
 
