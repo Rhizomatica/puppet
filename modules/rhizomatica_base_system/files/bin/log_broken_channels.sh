@@ -1,5 +1,6 @@
 #!/bin/bash
-. ./vars.sh
+RHIZO_SCRIPT="/home/rhizomatica/bin"
+. $RHIZO_SCRIPT/vars.sh
 
 while (true);
 do STR=`echo "show lchan" | nc localhost 4242 | grep BROKEN`;

@@ -1,5 +1,6 @@
 #!/bin/bash
-. ./vars.sh
+RHIZO_SCRIPT="/home/rhizomatica/bin"
+. $RHIZO_SCRIPT/vars.sh
 LOGFILE="/var/log/monitor_amp.log"
 
 $RHIZO_SCRIPT/check_amp_status.sh | grep -q OFF

@@ -1,6 +1,7 @@
 #!/bin/bash
 # Turn on AMP on all BTS, from BTS1 to BTS3
-. ./vars.sh
+RHIZO_SCRIPT="/home/rhizomatica/bin"
+. $RHIZO_SCRIPT/vars.sh
 LOGFILE="/var/log/monitor_amp.log"
 
 for bts in $BTS1 $BTS2 $BTS3; do
