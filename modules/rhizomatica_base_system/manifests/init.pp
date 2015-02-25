@@ -367,11 +367,18 @@ class rhizomatica_base_system {
   'libdbd-sqlite3', 'libsmpp0']:
       ensure  => installed,
       require => Apt::Source['rhizomatica'],
+      notify  => Exec['hlr_pragma_wal']
     }
 
   file { '/etc/osmocom/osmo-nitb.cfg':
       content => template('rhizomatica_base_system/osmo-nitb.cfg.erb'),
       require => Package['osmocom-nitb'],
+    }
+
+  exec { 'hlr_pragma_wal':
+      command     => '/usr/bin/sqlite3 /var/lib/osmocom/hlr.sqlite3 "PRAGMA journal_mode=wal;"',
+      require     => Package['sqlite3'],
+      refreshonly => true,
     }
 
 #LCR
