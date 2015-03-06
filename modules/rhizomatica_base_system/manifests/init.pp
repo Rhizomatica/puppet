@@ -101,6 +101,12 @@ class rhizomatica_base_system {
   include ntp
   include kannel
 
+#FSCK at boot
+  file { '/etc/default/rcS':
+      ensure  => present,
+      source  => 'puppet:///modules/rhizomatica_base_system/etc/default/rcS',
+    }
+
 #Grub fix
   file { '/etc/default/grub':
       ensure  => present,
