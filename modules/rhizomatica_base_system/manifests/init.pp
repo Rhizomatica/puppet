@@ -156,6 +156,22 @@ class rhizomatica_base_system {
       ensure  => directory,
     }
 
+  file { '/var/rhizo_backups':
+      ensure  => directory,
+    }
+
+  file { '/var/rhizo_backups/postgresql':
+      ensure  => directory,
+      owner   => 'postgres',
+      group   => 'postgres',
+      require => File['/var/rhizo_backups'],
+    }
+
+  file { '/var/rhizo_backups/sqlite':
+      ensure  => directory,
+      require => File['/var/rhizo_backups'],
+    }
+
   package { 'git':
       ensure => present,
     }

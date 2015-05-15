@@ -34,7 +34,11 @@ PYTHONPATH=$PYTHONPATH:/var/rhizomatica/rccn
 */5  *    *   *   *     root /var/rhizomatica/bin/monitor_rapi.sh > /dev/null 2>&1
 
 #Billing
-00 10     *   *   *     root [[ $(date +'%d') -eq $(cal | awk '!/^$/{ print $NF }' | grep -v '^ ' | tail -1) ]] && /var/rhizomatica/bin/active_subscribers.sh
+  0 10    *   *   *     root [[ $(date +'%d') -eq $(cal | awk '!/^$/{ print $NF }' | grep -v '^ ' | tail -1) ]] && /var/rhizomatica/bin/active_subscribers.sh
 
 #Restart osmo-nitb every 6 hours
-00 */6    *   *   *     root /usr/bin/sv restart osmo-nitb 2&>1 /dev/null
+  0 */6   *   *   *     root /usr/bin/sv restart osmo-nitb 2&>1 /dev/null
+
+#PostgreSQL backup
+  0  3    *   *   *     postgres /home/rhizomatica/bin/pg_backup_rotated.sh
+  0  4    *   *   *     root /home/rhizomatica/bin/sqlite_backup_rotated.sh
