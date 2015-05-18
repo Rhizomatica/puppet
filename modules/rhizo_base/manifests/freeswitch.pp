@@ -1,0 +1,75 @@
+# Class: rhizo_base::freeswitch
+#
+# This module manages the FreeSWITCH system
+#
+# Parameters: none
+#
+# Actions:
+#
+# Requires: see Modulefile
+#
+# Sample Usage:
+#
+class rhizo_base::freeswitch {
+#FreeSWITCH
+  package {
+    ['freeswitch', 'freeswitch-lang-en',
+    'freeswitch-mod-amr', 'freeswitch-mod-amrwb',
+    'freeswitch-mod-b64', 'freeswitch-mod-bv',
+    'freeswitch-mod-cdr-pg-csv', 'freeswitch-mod-cluechoo',
+    'freeswitch-mod-commands', 'freeswitch-mod-conference',
+    'freeswitch-mod-console', 'freeswitch-mod-db',
+    'freeswitch-mod-dialplan-asterisk', 'freeswitch-mod-dialplan-xml',
+    'freeswitch-mod-dptools', 'freeswitch-mod-enum',
+    'freeswitch-mod-esf', 'freeswitch-mod-event-socket',
+    'freeswitch-mod-expr', 'freeswitch-mod-fifo',
+    'freeswitch-mod-fsv', 'freeswitch-mod-g723-1',
+    'freeswitch-mod-h26x', 'freeswitch-mod-hash',
+    'freeswitch-mod-httapi', 'freeswitch-mod-local-stream',
+    'freeswitch-mod-logfile', 'freeswitch-mod-loopback',
+    'freeswitch-mod-lua', 'freeswitch-mod-native-file',
+    'freeswitch-mod-python', 'freeswitch-mod-say-en',
+    'freeswitch-mod-say-es', 'freeswitch-mod-sms',
+    'freeswitch-mod-sndfile', 'freeswitch-mod-sofia',
+    'freeswitch-mod-spandsp', 'freeswitch-mod-speex',
+    'freeswitch-mod-syslog', 'freeswitch-mod-tone-stream',
+    'freeswitch-mod-voicemail', 'freeswitch-mod-voicemail-ivr',
+    'freeswitch-mod-vp8', 'freeswitch-mod-xml-cdr',
+    'freeswitch-sysvinit', 'libfreeswitch1']:
+      ensure  => installed,
+      require => Class['rhizo_base::apt'],
+    }
+
+  file { '/usr/lib/freeswitch/mod/mod_g729.so':
+      source  => 'puppet:///modules/rhizo_base/mod_g729.so',
+      require => Package['freeswitch'],
+    }
+
+  file { '/etc/freeswitch':
+      ensure  => directory,
+      source  => 'puppet:///modules/rhizo_base/etc/freeswitch',
+      recurse => remote,
+      require => Package['freeswitch'],
+    }
+
+  file { '/etc/freeswitch/vars.xml':
+      content => template('rhizo_base/vars.xml.erb'),
+      require => Package['freeswitch'],
+    }
+
+  file {'/etc/freeswitch/sip_profiles/external':
+      ensure  => directory,
+    }
+
+  file { '/etc/freeswitch/sip_profiles/external/provider.xml':
+      content => template('rhizo_base/provider.xml.erb'),
+      require =>
+                [ Package['freeswitch'],
+                File['/etc/freeswitch/sip_profiles/external'] ],
+    }
+
+  file { '/etc/freeswitch/autoload_configs/cdr_pg_csv.conf.xml':
+      content => template('rhizo_base/cdr_pg_csv.conf.xml.erb'),
+      require => Package['freeswitch'],
+    }
+}
