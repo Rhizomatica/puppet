@@ -1,3 +1,3 @@
 node default {
-  include rhizomatica_base_system
+  include rhizo_base
   }
