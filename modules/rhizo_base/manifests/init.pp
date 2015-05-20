@@ -100,6 +100,7 @@ class rhizo_base {
 
   include ntp
   include kannel
+  include sshkeys
   include rhizo_base::fixes
   include rhizo_base::apt
   include rhizo_base::postgresql
