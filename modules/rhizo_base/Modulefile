@@ -1,4 +1,4 @@
-name    'rhizomatica_base_system'
+name    'rhizo_base'
 version '0.1.0'
 source ''
 author ''
