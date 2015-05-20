@@ -11,7 +11,7 @@
 # Sample Usage:
 #
 class rhizo_base::apt {
-  class { 'apt': }
+  class { '::apt': }
   apt::ppa { 'ppa:keithw/mosh': }
   apt::ppa { 'ppa:ondrej/php5': }
   file { '/etc/apt/apt.conf.d/90unsigned':
