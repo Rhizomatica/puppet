@@ -11,7 +11,12 @@
 # Sample Usage:
 #
 class rhizo_base::freeswitch {
-#FreeSWITCH
+
+  $pgsql_db   = $rhizo_base::pgsql_db   
+  $pgsql_user = $rhizo_base::pgsql_user  
+  $pgsql_pwd  = $rhizo_base::pgsql_pwd  
+  $pgsql_host = $rhizo_base::pgsql_host
+
   package {
     ['freeswitch', 'freeswitch-lang-en',
     'freeswitch-mod-amr', 'freeswitch-mod-amrwb',
