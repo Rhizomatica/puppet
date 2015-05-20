@@ -14,13 +14,13 @@ class rhizo_base::fixes {
 #FSCK at boot
   file { '/etc/default/rcS':
       ensure  => present,
-      source  => 'puppet:///modules/rhizomatica_base_system/etc/default/rcS',
+      source  => 'puppet:///modules/rhizo_base/etc/default/rcS',
     }
 
 #Grub fix
   file { '/etc/default/grub':
       ensure  => present,
-      source  => 'puppet:///modules/rhizomatica_base_system/etc/default/grub',
+      source  => 'puppet:///modules/rhizo_base/etc/default/grub',
       notify  => Exec['update-grub'],
     }
 
