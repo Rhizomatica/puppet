@@ -11,6 +11,12 @@
 # Sample Usage:
 #
 class rhizo_base::postgresql {
+
+  $pgsql_db   = $rhizo_base::pgsql_db
+  $pgsql_user = $rhizo_base::pgsql_user
+  $pgsql_pwd  = $rhizo_base::pgsql_pwd
+  $pgsql_host = $rhizo_base::pgsql_host
+
   class { 'postgresql::globals':
       manage_package_repo => true,
       version             => '9.3',
@@ -18,8 +24,8 @@ class rhizo_base::postgresql {
   class { 'postgresql::server':
     }
 
-  postgresql::server::db { 'rhizomatica':
-      user     => 'rhizomatica',
+  postgresql::server::db { "$pgsql_db":
+      user     => $pgsql_user,
       password => postgresql_password('rhizomatica', $pgsql_pwd),
     }
   }
