@@ -24,8 +24,8 @@ class rhizo_base::postgresql {
   class { 'postgresql::server':
     }
 
-  postgresql::server::db { "$pgsql_db":
+  postgresql::server::db { $pgsql_db:
       user     => $pgsql_user,
-      password => postgresql_password('rhizomatica', $pgsql_pwd),
+      password => postgresql_password($pgsql_user, $pgsql_pwd),
     }
   }
