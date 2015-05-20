@@ -8,7 +8,7 @@ USERNAME=postgres
 BACKUP_DIR=/var/rhizo_backups/postgresql/
 
 # Will produce a custom-format backup if set to "yes"
-ENABLE_CUSTOM_BACKUPS=yes
+ENABLE_CUSTOM_BACKUPS=no
 
 # Will produce a gzipped plain-format backup if set to "yes"
 ENABLE_PLAIN_BACKUPS=yes
