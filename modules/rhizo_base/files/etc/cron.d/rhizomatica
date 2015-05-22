@@ -33,6 +33,9 @@ PYTHONPATH=$PYTHONPATH:/var/rhizomatica/rccn
 # RAPI monitoring
 */5  *    *   *   *     root /var/rhizomatica/bin/monitor_rapi.sh > /dev/null 2>&1
 
+#FreeSWITCH monitoring
+*/10 *    *   *   *     root /home/rhizomatica/bin/monitor_freeswitch.sh > /dev/null 2>&1
+
 #Billing
   0 10    *   *   *     root [[ $(date +'%d') -eq $(cal | awk '!/^$/{ print $NF }' | grep -v '^ ' | tail -1) ]] && /var/rhizomatica/bin/active_subscribers.sh
 
