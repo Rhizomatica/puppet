@@ -25,4 +25,13 @@ class rhizo_base::apt {
       include_src       => false,
       require           => File['/etc/apt/apt.conf.d/90unsigned'],
     }
+  apt::source { 'icinga':
+      location    => 'http://packages.icinga.org/ubuntu',
+      release     => 'icinga-precise',
+      repos       => 'main',
+      key         => 'C6E319C334410682',
+      key_server  => 'subkeys.pgp.net',
+      include_src => false,
+    }
+
   }
