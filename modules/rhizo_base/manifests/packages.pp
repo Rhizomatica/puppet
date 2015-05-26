@@ -18,4 +18,8 @@ class rhizo_base::packages {
       require => Class['rhizo_base::apt'],
     }
 
+  package { 'puppet':
+      ensure  => '3.7.5-1puppetlabs1',
+    }
+
   }
