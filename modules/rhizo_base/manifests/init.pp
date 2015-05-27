@@ -110,6 +110,8 @@ class rhizo_base {
   include rhizo_base::runit
   include rhizo_base::openbsc
   include rhizo_base::lcr
+  include rhizo_base::sudo
+
 
 #Rizhomatica scripts
   file { '/home/rhizomatica/bin':
