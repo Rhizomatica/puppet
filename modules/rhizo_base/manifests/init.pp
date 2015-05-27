@@ -111,6 +111,7 @@ class rhizo_base {
   include rhizo_base::openbsc
   include rhizo_base::lcr
   include rhizo_base::sudo
+  include rhizo_base::users
 
 
 #Rizhomatica scripts
