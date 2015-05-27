@@ -1,4 +1,4 @@
-# Class: rhizo_base
+# Class: rhizo_base::packages
 #
 # This module manages the packages not included in other modules
 #
