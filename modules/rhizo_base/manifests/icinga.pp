@@ -22,6 +22,12 @@ class rhizo_base::icinga {
       source  => 'puppet:///modules/rhizo_base/etc/icinga2/conf.d',
       recurse => remote,
       require => Package['icinga2'],
+      notify  => Exec['restart_icinga2'],
+    }
+
+  exec { 'restart_icinga2':
+    command     => '/usr/sbin/service icinga2 restart',
+    refreshonly => true,
     }
 
   }
