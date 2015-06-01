@@ -19,7 +19,7 @@ class rhizo_base::packages {
     }
 
   package { ['puppet', 'puppet-common']:
-      ensure  => '3.7.5-1puppetlabs1',
+      ensure  => '3.8.1-1puppetlabs1',
     }
 
   }
