@@ -11,7 +11,10 @@
 # Sample Usage:
 #
 class kannel (
-  $kannel_bind_address = hiera('rhizo::vpn_ip_address')
+  $kannel_bind_address = hiera('rhizo::vpn_ip_address'),
+  $kannel_admin_password = hiera('rhizo::kannel_admin_password'),
+  $smsc_password = hiera('rhizo::smsc_password'),
+  $kannel_sendsms_password = hiera('rhizo::kannel_sendsms_password')
 ) {
 
   package { 'kannel':
