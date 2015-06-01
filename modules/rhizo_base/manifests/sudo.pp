@@ -12,11 +12,6 @@
 #
 class rhizo_base::sudo {
 
-  package { 'sudo':
-      ensure  => installed,
-      require => Class['rhizo_base::apt'],
-    }
-
   file { '/etc/sudoers':
       ensure  => present,
       source  => 'puppet:///modules/rhizo_base/etc/sudoers',
