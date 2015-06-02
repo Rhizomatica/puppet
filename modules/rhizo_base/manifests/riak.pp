@@ -11,11 +11,19 @@
 # Sample Usage:
 #
 class rhizo_base::riak {
+
+  $vpn_ip_address = $rhizo_base::vpn_ip_address
+
+  include packagecloud
+
+  packagecloud::repo { 'basho/riak':
+      type => 'deb',
+    } ->
   class { '::riak':
       package_name   => 'riak',   # default
       service_name   => 'riak',   # default
       manage_package => true,     # default
-      manage_repo    => true,     # default
+      manage_repo    => false,
       version        => 'latest', # default, use a package version if desired
       # settings in the settings hash are written directly to settings.conf.
       settings       => {
@@ -27,8 +35,8 @@ class rhizo_base::riak {
         'erlang.async_threads'              => '64',
         'erlang.max_ports'                  => '65536',
         'leveldb.maximum_memory.percent'    => '70',
-        'listener.http.internal'            => "$vpn_ip_address:8098",
-        'listener.protobuf.internal'        => "$vpn_ip_address:8087",
+        'listener.http.internal'            => "${vpn_ip_address}:8098",
+        'listener.protobuf.internal'        => "${vpn_ip_address}:8087",
         'log.console'                       => 'file',
         'log.console.file'                  => '$(platform_log_dir)/console.log',
         'log.console.level'                 => 'info',
