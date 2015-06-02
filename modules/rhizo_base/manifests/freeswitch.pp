@@ -12,10 +12,18 @@
 #
 class rhizo_base::freeswitch {
 
-  $pgsql_db   = $rhizo_base::pgsql_db
-  $pgsql_user = $rhizo_base::pgsql_user
-  $pgsql_pwd  = $rhizo_base::pgsql_pwd
-  $pgsql_host = $rhizo_base::pgsql_host
+  $pgsql_db       = $rhizo_base::pgsql_db
+  $pgsql_user     = $rhizo_base::pgsql_user
+  $pgsql_pwd      = $rhizo_base::pgsql_pwd
+  $pgsql_host     = $rhizo_base::pgsql_host
+
+  $vpn_ip_address = $rhizo_base::vpn_ip_address
+  $wan_ip_address = $rhizo_base::wan_ip_address
+
+  $voip_username  = $rhizo_base::voip_username
+  $voip_fromuser  = $rhizo_base::voip_fromuser
+  $voip_password  = $rhizo_base::voip_password
+  $voip_proxy     = $rhizo_base::voip_proxy
 
   package {
     ['freeswitch', 'freeswitch-lang-en',
