@@ -13,3 +13,6 @@
 [submodule "modules/postgresql"]
 	path = modules/postgresql
 	url = https://github.com/puppetlabs/puppetlabs-postgresql.git
+[submodule "modules/packagecloud"]
+	path = modules/packagecloud
+	url = https://github.com/computology/computology-packagecloud.git
