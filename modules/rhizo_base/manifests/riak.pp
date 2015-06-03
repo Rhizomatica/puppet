@@ -48,7 +48,7 @@ class rhizo_base::riak {
         'log.crash.size'                    => '10MB',
         'log.error.file'                    => '$(platform_log_dir)/error.log',
         'log.syslog'                        => 'off',
-        'nodename'                          => "riak@${::fqdn}",
+        'nodename'                          => "riak@${vpn_ip_address}",
         'object.format'                     => '1',
         'object.siblings.maximum'           => '100',
         'object.siblings.warning_threshold' => '25',
