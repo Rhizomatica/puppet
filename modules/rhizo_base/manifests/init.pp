@@ -15,6 +15,7 @@ class rhizo_base {
   $mail_admins             = hiera('rhizo::mail_admins')
   $smsc_password           = hiera('rhizo::smsc_password')
   $kannel_admin_password   = hiera('rhizo::kannel_admin_password')
+  $password_hash           = hiera('rhizo::password_hash')
 
   # Configuration settings
   $rhizomatica_dir = hiera('rhizo::rhizomatica_dir')
