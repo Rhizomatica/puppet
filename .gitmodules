@@ -16,3 +16,6 @@
 [submodule "modules/packagecloud"]
 	path = modules/packagecloud
 	url = https://github.com/computology/computology-packagecloud.git
+[submodule "modules/vcsrepo"]
+	path = modules/vcsrepo
+	url = https://github.com/puppetlabs/puppetlabs-vcsrepo.git
