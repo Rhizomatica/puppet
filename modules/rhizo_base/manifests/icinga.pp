@@ -13,7 +13,7 @@
 class rhizo_base::icinga {
 
   package { ['icinga2', 'icinga2-bin', 'icinga2-common', 'icinga2-doc']:
-      ensure  => '2.3.4~precise',
+      ensure  => latest,
       require => Class['rhizo_base::apt'],
     }
 
