@@ -1,0 +1,23 @@
+# Site specific info
+rhizo::bts1_ip_address:            "172.16.0.11"
+rhizo::site_name:                  "Site"
+rhizo::postcode:                   "12345"
+rhizo::pbxcode:                    "1"
+rhizo::network_name:               "NetworkName"
+rhizo::arfcn_A:                    "249"
+rhizo::arfcn_B:                    "251"
+rhizo::auth_policy:                "accept-all"
+rhizo::vpn_ip_address:             "10.66.0.0"
+rhizo::wan_ip_address:             "192.168.0.0"
+
+#Emergency call contact
+rhizo::emergency_contact:          "12345"
+
+# VoIP provider info
+rhizo::voip_provider_name:         "provider"
+rhizo::voip_username:              "1234567890"
+rhizo::voip_fromuser:              "1234567890"
+rhizo::voip_password:              "1234"
+rhizo::voip_proxy:                 "10.10.10.10"
+rhizo::voip_did:                   "12345678901"
+rhizo::voip_cli:                   "12345678901"

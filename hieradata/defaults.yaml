@@ -1,0 +1,64 @@
+#Admin config
+rhizo::mail_admins:                  "ciaby@rhizomatica.org tele@rhizomatica.org"
+rhizo::smsc_password:                "Password"
+rhizo::rhizomatica_dir:              "/var/rhizomatica"
+rhizo::sq_hlr_path:                  "/var/lib/osmocom/hlr.sqlite3"
+rhizo::password_hash:                "$6$FM010nsT$FhByUmcQNo4snzPVfbMuTVyVrwmuzwsnsJ/CyUkk7yu7NKNA2zzTCF/UwrK6U4ZDU6KmkSNjtM0UUNBpj4GMo1"
+
+#PostgreSQL config
+rhizo::pgsql_db:                     "rhizomatica"
+rhizo::pgsql_user:                   "rhizomatica"
+rhizo::pgsql_pwd:                    "rhizomatica"
+rhizo::pgsql_host:                   "localhost"
+
+#Call limits
+rhizo::limit_local_calls:            "1"
+rhizo::limit_local_minutes:          "5"
+rhizo::charge_local_calls:           "0"
+rhizo::charge_local_rate:            ""
+rhizo::charge_local_rate_type:       ""
+rhizo::charge_internal_calls:        "0"
+rhizo::charge_internal_rate:         ""
+rhizo::charge_internal_rate_type:    ""
+rhizo::charge_inbound_calls:         "0"
+rhizo::charge_inbound_rate:          ""
+rhizo::charge_inbound_rate_type:     ""
+
+#SMS config
+rhizo::smsc_shortcode:               "10000"
+rhizo::sms_sender_unauthorized:      "Tu usuario no está autorizado en esta red. Por favor registre su teléfono."
+rhizo::sms_destination_unauthorized: "Este usuario no se ha registrado. Él no va a recibir su mensaje."
+rhizo::sms_welcome_roaming:          "Bienvenido a la red de telefonia movil comunitaria de %s. Ya puedes realizar llamadas y enviar mensajes."
+rhizo::sms_credit_added:             "La cantidad de %s pesos fue abonado con exito a su cuenta. Su balance actual es %s pesos"
+
+#RAI user/password
+rhizo::rai_admin_user:               "admin"
+rhizo::rai_admin_pwd:                "password"
+
+#Kannel config
+rhizo::kannel_server:                "127.0.0.1"
+rhizo::kannel_port:                  "14002"
+rhizo::kannel_username:              "rhizomatica"
+rhizo::kannel_sendsms_password:      "123abcde"
+rhizo::kannel_admin_password:        "123abcde"
+
+#Monthly subscription messages
+rhizo::notice_msg:                   "Favor de pagar su cooperacion mensual de 40 pesos. Gracias."
+rhizo::reminder_msg:                 "Recuerda: su servicio sera desactivado si no paga su cuota antes del 7 de cada mes. Gracias."
+rhizo::deactivate_msg:               "Su servicio ha sido desactivado hasta que haga su cooperacion mensual."
+
+#OpenBSC config
+rhizo::max_power_red:                "0"
+
+#SSH keys
+sshkeys::keys:
+  test:
+    type: 'ssh-rsa'
+    key: 'PUT_YOUR_SSH_KEY_HERE'
+
+# SSH users
+sshkeys::users:
+  rhizomatica:
+    home: /home/rhizomatica
+    keys:
+      - test
