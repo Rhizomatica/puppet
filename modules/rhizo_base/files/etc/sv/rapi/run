@@ -1,4 +1,4 @@
 #!/bin/sh
 export PYTHONPATH=$PYTHONPATH:/var/rhizomatica/rccn
 #cd /var/rhizomatica/rccn ; python rapi.py debug
-python /var/rhizomatica/rccn/rapi.py debug
+exec python /var/rhizomatica/rccn/rapi.py debug
