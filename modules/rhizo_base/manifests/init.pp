@@ -150,12 +150,13 @@ class rhizo_base {
     }
 
   vcsrepo { '/var/rhizomatica':
-      ensure   => latest,
+      ensure   => present,
       provider => git,
       source   => 'https://github.com/Rhizomatica/rccn.git',
-      revision => 'master',
+      revision => '1.0.0',
       require  => [ File['/var/rhizomatica'], Package['git'] ],
-      notify   => [ Exec['install_rccn'], Exec['locale-gen'] ],
+      notify   => Exec['locale-gen'],
+      # [ Exec['install_rccn'],
     }
 
   file { '/var/rhizomatica/rccn/config_values.py':
@@ -173,7 +174,7 @@ class rhizo_base {
   exec { 'install_rccn':
       command     => '/usr/bin/python /var/rhizomatica/rccn/install.py',
       require     => [ File['/var/rhizomatica/rccn/config_values.py'],
-      Class['rhizo_base::postgresql'], Class['riak'],
+      Class['rhizo_base::postgresql'], Class['rhizo_base::riak'],
       Package['php5'] ],
       refreshonly => true,
     }
