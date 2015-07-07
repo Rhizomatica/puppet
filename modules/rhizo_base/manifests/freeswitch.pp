@@ -54,7 +54,6 @@ class rhizo_base::freeswitch {
     }
 
   service { 'freeswitch':
-      ensure  => stopped,
       enable  => false,
       require => Package['freeswitch']
     }

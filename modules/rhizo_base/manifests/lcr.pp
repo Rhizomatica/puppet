@@ -17,7 +17,6 @@ class rhizo_base::lcr {
     }
 
   service { 'lcr':
-      ensure  => stopped,
       enable  => false,
       require => Package['lcr']
     }
