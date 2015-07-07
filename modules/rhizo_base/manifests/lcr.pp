@@ -16,6 +16,12 @@ class rhizo_base::lcr {
       require => Class['rhizo_base::apt'],
     }
 
+  service { 'lcr':
+      ensure  => stopped,
+      enable  => false,
+      require => Package['lcr']
+    }
+
   file { '/usr/etc/lcr':
       ensure  => directory,
       source  => 'puppet:///modules/rhizo_base/usr/etc/lcr',

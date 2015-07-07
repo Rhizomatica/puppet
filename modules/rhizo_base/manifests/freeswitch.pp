@@ -53,6 +53,12 @@ class rhizo_base::freeswitch {
       require => Class['rhizo_base::apt'],
     }
 
+  service { 'freeswitch':
+      ensure  => stopped,
+      enable  => false,
+      require => Package['freeswitch']
+    }
+
   file { '/usr/lib/freeswitch/mod/mod_g729.so':
       source  => 'puppet:///modules/rhizo_base/mod_g729.so',
       require => Package['freeswitch'],

@@ -31,6 +31,12 @@ class rhizo_base::openbsc {
       notify  => Exec['hlr_pragma_wal'],
     }
 
+  service { 'osmocom-nitb':
+      ensure  => stopped,
+      enable  => false,
+      require => Package['osmocom-nitb']
+    }
+
   file { '/etc/osmocom/osmo-nitb.cfg':
       content => template('rhizo_base/osmo-nitb.cfg.erb'),
       require => Package['osmocom-nitb'],
