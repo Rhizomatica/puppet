@@ -153,10 +153,11 @@ class rhizo_base {
       ensure   => present,
       provider => git,
       source   => 'https://github.com/Rhizomatica/rccn.git',
-      revision => '1.0.0',
+      revision => '1.0.1',
       require  => [ File['/var/rhizomatica'], Package['git'] ],
-      notify   => Exec['locale-gen'],
-      # [ Exec['install_rccn'],
+      notify   => [ Exec['locale-gen'],
+                    Exec['restart-freeswitch'],
+                    Exec['restart-rapi'] ],
     }
 
   file { '/var/rhizomatica/rccn/config_values.py':
@@ -185,6 +186,16 @@ class rhizo_base {
       File['/var/lib/locales/supported.d/local'] ],
       refreshonly => true,
       }
+
+  exec { 'restart-freeswitch':
+      command     => '/usr/bin/sv restart freeswitch',
+      refreshonly => true,
+    }
+
+  exec { 'restart-rapi':
+      command     => '/usr/bin/sv restart rapi',
+      refreshonly => true,
+    }
 
   file { '/var/lib/locales/supported.d/local':
       ensure      => present,
