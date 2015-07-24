@@ -160,6 +160,13 @@ class rhizo_base {
                     Exec['restart-rapi'] ],
     }
 
+  file { '/var/rhizomatica/bin/get_account_balance.sh':
+      ensure  => present,
+      content => template('rhizo_base/get_account_balance.sh.erb'),
+      require => Vcsrepo['/var/rhizomatica'],
+    }
+
+
   file { '/var/rhizomatica/rccn/config_values.py':
       ensure  => present,
       content => template('rhizo_base/config_values.py.erb'),
