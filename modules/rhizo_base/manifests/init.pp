@@ -84,6 +84,7 @@ class rhizo_base {
   $voip_username      = hiera('rhizo::voip_username')
   $voip_fromuser      = hiera('rhizo::voip_fromuser')
   $voip_password      = hiera('rhizo::voip_password')
+  $voip_pin           = hiera('rhizo::voip_pin')
   $voip_proxy         = hiera('rhizo::voip_proxy')
   $voip_did           = hiera('rhizo::voip_did')
   $voip_cli           = hiera('rhizo::voip_cli')
