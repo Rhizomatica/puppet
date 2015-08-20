@@ -165,6 +165,7 @@ class rhizo_base {
       ensure  => present,
       content => template('rhizo_base/get_account_balance.sh.erb'),
       require => Vcsrepo['/var/rhizomatica'],
+      mode    => '0755',
     }
 
 
