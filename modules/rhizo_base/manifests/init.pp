@@ -181,6 +181,11 @@ class rhizo_base {
       require => Vcsrepo['/var/rhizomatica'],
     }
 
+  file { '/var/www/html/rai/js/localnet.json':
+      ensure  => present,
+      content => template('rhizo_base/localnet.json.erb'),
+    }
+
   exec { 'install_rccn':
       command     => '/usr/bin/python /var/rhizomatica/rccn/install.py',
       require     => [ File['/var/rhizomatica/rccn/config_values.py'],
