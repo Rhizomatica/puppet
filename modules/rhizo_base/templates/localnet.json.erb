@@ -1,20 +1,12 @@
 [
-  {
-    "type": "bsc",
-    "ip": "<%= @vpn_ip_address %>",
-    "geo": [
-      17.145365,
-      -96.229289
-    ]
-  },
   <% if @bts1_ip_address -%>
   {
     "type": "bts",
     "ip": "<%= @bts1_ip_address %>",
     "geo": [
-      "17.168711",
-      "-96.260853"
-    ]
+      <%= @bts1_geo_lat %>,
+      <%= @bts1_geo_lon %>
+    ]s
   },
   <% end -%>
   <% if @bts2_ip_address -%>
@@ -22,8 +14,8 @@
     "type": "bts",
     "ip": "<%= @bts2_ip_address %>",
     "geo": [
-      17.16915284960935,
-      -96.26445739621659
+      <%= @bts2_geo_lat %>,
+      <%= @bts2_geo_lon %>
     ]
   },
     <% end -%>
@@ -32,68 +24,8 @@
     "type": "bts",
     "ip": "<%= @bts3_ip_address %>",
     "geo": [
-      17.161211,
-      -96.209068
-    ]
-  },
-    <% end -%>
-    <% if @link2_ip_address -%>
-  {
-    "type": "link",
-    "ip": "<%= @link2_ip_address %>",
-    "geo": [
-      17.161211,
-      -96.209068
-    ]
-  },
-    <% end -%>
-    <% if @link3_ip_address -%>
-  {
-    "type": "link",
-    "ip": "<%= @link3_ip_address %>",
-    "geo": [
-      17.161211,
-      -96.209068
-    ]
-  },
-    <% end -%>
-    <% if @link4_ip_address -%>
-  {
-    "type": "link",
-    "ip": "<%= @link4_ip_address %>",
-    "geo": [
-      17.161211,
-      -96.209068
-    ]
-  },
-    <% end -%>    
-    <% if @link5_ip_address -%>
-  {
-    "type": "link",
-    "ip": "<%= @link5_ip_address %>",
-    "geo": [
-      17.161211,
-      -96.209068
-    ]
-  },
-    <% end -%>
-    <% if @link6_ip_address -%>
-  {
-    "type": "link",
-    "ip": "<%= @link6_ip_address %>",
-    "geo": [
-      17.161211,
-      -96.209068
-    ]
-  },
-    <% end -%>
-    <% if @link7_ip_address -%>
-  {
-    "type": "link",
-    "ip": "<%= @link7_ip_address %>",
-    "geo": [
-      17.161211,
-      -96.209068
+      <%= @bts3_geo_lat %>,
+      <%= @bts3_geo_lon %>
     ]
   },
     <% end -%>
@@ -102,9 +34,77 @@
     "type": "link",
     "ip": "<%= @link1_ip_address %>",
     "geo": [
-      17.161211,
-      -96.209068
+      <%= @link1_geo_lat %>,
+      <%= @link1_geo_lon %>
+    ]
+  },
+    <% end -%>
+    <% if @link2_ip_address -%>
+  {
+    "type": "link",
+    "ip": "<%= @link2_ip_address %>",
+    "geo": [
+      <%= @link2_geo_lat %>,
+      <%= @link2_geo_lon %>
+    ]
+  },
+    <% end -%>
+    <% if @link3_ip_address -%>
+  {
+    "type": "link",
+    "ip": "<%= @link3_ip_address %>",
+    "geo": [
+      <%= @link3_geo_lat %>,
+      <%= @link3_geo_lon %>
+    ]
+  },
+    <% end -%>
+    <% if @link4_ip_address -%>
+  {
+    "type": "link",
+    "ip": "<%= @link4_ip_address %>",
+    "geo": [
+      <%= @link4_geo_lat %>,
+      <%= @link4_geo_lon %>
+    ]
+  },
+    <% end -%>    
+    <% if @link5_ip_address -%>
+  {
+    "type": "link",
+    "ip": "<%= @link5_ip_address %>",
+    "geo": [
+      <%= @link5_geo_lat %>,
+      <%= @link5_geo_lon %>
+    ]
+  },
+    <% end -%>
+    <% if @link6_ip_address -%>
+  {
+    "type": "link",
+    "ip": "<%= @link6_ip_address %>",
+    "geo": [
+      <%= @link6_geo_lat %>,
+      <%= @link6_geo_lon %>
+    ]
+  },
+    <% end -%>
+    <% if @link7_ip_address -%>
+  {
+    "type": "link",
+    "ip": "<%= @link7_ip_address %>",
+    "geo": [
+      <%= @link7_geo_lat %>,
+      <%= @link7_geo_lon %>
+    ]
+  },
+    <% end -%>
+      {
+    "type": "bsc",
+    "ip": "<%= @vpn_ip_address %>",
+    "geo": [
+      <%= @bsc_geo_lat %>,
+      <%= @bsc_geo_lon %>
     ]
   }
-    <% end -%>
 ]
