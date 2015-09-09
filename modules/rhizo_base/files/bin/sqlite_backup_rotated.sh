@@ -13,7 +13,7 @@ BACKUP_DIR=/var/rhizo_backups/sqlite/
 DAY_OF_WEEK_TO_KEEP=6
 
 # Number of days to keep daily backups
-DAYS_TO_KEEP=7
+DAYS_TO_KEEP=14
 
 # How many weeks to keep weekly backups
 WEEKS_TO_KEEP=5
