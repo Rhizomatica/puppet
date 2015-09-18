@@ -12,8 +12,14 @@
 #
 class rhizo_base::lcr {
   package { 'lcr':
-      ensure  => installed,
+      ensure  => latest,
       require => Class['rhizo_base::apt'],
+      notify  => Exec['restart-lcr'],
+    }
+
+  exec { 'restart-lcr':
+      command     => '/usr/bin/sv restart lcr',
+      refreshonly => true,
     }
 
   service { 'lcr':
