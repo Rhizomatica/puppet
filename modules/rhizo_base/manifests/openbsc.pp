@@ -47,7 +47,7 @@ class rhizo_base::openbsc {
               'libosmocore-utils', 'libosmogb3',
               'libosmonetif2', 'libosmosim0',
               'libosmotrau0']:
-      ensure => absent,
+      ensure => purged,
   }
 
   service { 'osmocom-nitb':
