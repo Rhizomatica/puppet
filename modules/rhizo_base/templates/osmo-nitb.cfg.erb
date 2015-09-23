@@ -6,6 +6,7 @@ password foo
 log stderr
   logging filter all 1
   logging color 1
+  logging print category 0
   logging timestamp 0
   logging level all notice
   logging level rll notice
@@ -31,6 +32,7 @@ log stderr
   logging level nat notice
   logging level ctrl notice
   logging level smpp notice
+  logging level filter notice
   logging level lglobal notice
   logging level llapd notice
   logging level linp notice
@@ -38,6 +40,8 @@ log stderr
   logging level lmi notice
   logging level lmib notice
   logging level lsms notice
+  logging level lctrl notice
+  logging level lgtp notice
 !
 line vty
  no login
@@ -404,9 +408,13 @@ network
 mncc-int
  default-codec tch-f fr
  default-codec tch-h hr
+nitb
+ subscriber-create-on-demand
+ no assign-tmsi
 smpp
  local-tcp-port 2775
  policy closed
+ smpp-first
  esme OSMPP
   password <%= @smsc_password %>
   default-route

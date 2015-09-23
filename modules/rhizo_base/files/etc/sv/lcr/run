@@ -1,2 +1,2 @@
 #!/bin/sh
-/usr/sbin/lcr start
+exec /usr/sbin/lcr start
