@@ -13,6 +13,7 @@
 class rhizo_base::openbsc {
   $network_name    = $rhizo_base::network_name
   $auth_policy     = $rhizo_base::auth_policy
+  $lac             = $rhizo_base::lac
   $max_power_red   = $rhizo_base::max_power_red
   $arfcn_A         = $rhizo_base::arfcn_A
   $arfcn_B         = $rhizo_base::arfcn_B
