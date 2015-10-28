@@ -106,27 +106,33 @@ class rhizo_base {
 
   $bts1_geo_lat         = hiera('rhizo::bts1_geo_lat')
   $bts1_geo_lon         = hiera('rhizo::bts1_geo_lon')
-  $bts2_geo_lat         = hiera('rhizo::bts2_geo_lat')
-  $bts2_geo_lon         = hiera('rhizo::bts2_geo_lon')
-  $bts3_geo_lat         = hiera('rhizo::bts3_geo_lat')
-  $bts3_geo_lon         = hiera('rhizo::bts3_geo_lon')
 
-  $link1_ip_address     = hiera('rhizo::link1_ip_address')
-  $link2_ip_address     = hiera('rhizo::link2_ip_address')
-  $link3_ip_address     = hiera('rhizo::link3_ip_address')
-  $link4_ip_address     = hiera('rhizo::link4_ip_address')
-  $link5_ip_address     = hiera('rhizo::link5_ip_address')
+  $bts2_geo_lat         = hiera('rhizo::bts2_geo_lat', false)
+  $bts2_geo_lon         = hiera('rhizo::bts2_geo_lon', false)
 
-  $link1_geo_lat        = hiera('rhizo::link1_geo_lat')
-  $link1_geo_lon        = hiera('rhizo::link1_geo_lon')
-  $link2_geo_lat        = hiera('rhizo::link2_geo_lat')
-  $link2_geo_lon        = hiera('rhizo::link2_geo_lon')
-  $link3_geo_lat        = hiera('rhizo::link3_geo_lat')
-  $link3_geo_lon        = hiera('rhizo::link3_geo_lon')
-  $link4_geo_lat        = hiera('rhizo::link4_geo_lat')
-  $link4_geo_lon        = hiera('rhizo::link4_geo_lon')
-  $link5_geo_lat        = hiera('rhizo::link5_geo_lat')
-  $link5_geo_lon        = hiera('rhizo::link5_geo_lon')
+  $bts3_geo_lat         = hiera('rhizo::bts3_geo_lat', false)
+  $bts3_geo_lon         = hiera('rhizo::bts3_geo_lon', false)
+
+  $link1_ip_address     = hiera('rhizo::link1_ip_address', false)
+  $link2_ip_address     = hiera('rhizo::link2_ip_address', false)
+  $link3_ip_address     = hiera('rhizo::link3_ip_address', false)
+  $link4_ip_address     = hiera('rhizo::link4_ip_address', false)
+  $link5_ip_address     = hiera('rhizo::link5_ip_address', false)
+
+  $link1_geo_lat        = hiera('rhizo::link1_geo_lat', false)
+  $link1_geo_lon        = hiera('rhizo::link1_geo_lon', false)
+
+  $link2_geo_lat        = hiera('rhizo::link2_geo_lat', false)
+  $link2_geo_lon        = hiera('rhizo::link2_geo_lon', false)
+
+  $link3_geo_lat        = hiera('rhizo::link3_geo_lat', false)
+  $link3_geo_lon        = hiera('rhizo::link3_geo_lon', false)
+
+  $link4_geo_lat        = hiera('rhizo::link4_geo_lat', false)
+  $link4_geo_lon        = hiera('rhizo::link4_geo_lon', false)
+
+  $link5_geo_lat        = hiera('rhizo::link5_geo_lat', false)
+  $link5_geo_lon        = hiera('rhizo::link5_geo_lon', false)
 
   include ntp
   include kannel
