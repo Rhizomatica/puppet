@@ -91,9 +91,9 @@
     <param name="outbound-codec-prefs" value="$${global_codec_prefs}"/>
     <param name="rtp-timer-name" value="soft"/>
     <!-- ip address to use for rtp, DO NOT USE HOSTNAMES ONLY IP ADDRESSES -->
-    <param name="rtp-ip" value="127.0.0.1"/>
+    <param name="rtp-ip" value="172.16.0.1"/>
     <!-- ip address to bind to, DO NOT USE HOSTNAMES ONLY IP ADDRESSES -->
-    <param name="sip-ip" value="127.0.0.1"/>
+    <param name="sip-ip" value="172.16.0.1"/>
     <!--<param name="hold-music" value="$${hold_music}"/>-->
     <param name="apply-nat-acl" value="nat.auto"/>
 
@@ -272,8 +272,8 @@
          auto                  - Use guessed ip.
          auto-nat              - Use ip learned from NAT-PMP or UPNP
     -->
-    <param name="ext-rtp-ip" value="auto-nat"/>
-    <param name="ext-sip-ip" value="auto-nat"/>
+    <param name="ext-rtp-ip" value="172.16.0.1"/>
+    <param name="ext-sip-ip" value="172.16.0.1"/>
 
     <!-- rtp inactivity timeout -->
     <param name="rtp-timeout-sec" value="300"/>

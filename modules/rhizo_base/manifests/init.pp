@@ -34,6 +34,7 @@ class rhizo_base {
   # network name
   $network_name    = hiera('rhizo::network_name')
   $auth_policy     = hiera('rhizo::auth_policy')
+  $lac             = hiera('rhizo::lac')
 
   #BTSs configuration
   $bts1_ip_address = hiera('rhizo::bts1_ip_address')
@@ -189,6 +190,8 @@ class rhizo_base {
       provider => git,
       source   => 'https://github.com/Rhizomatica/rccn.git',
       revision => 'multilectical/localnetpage',
+# change back for production
+#      revision => '1.0.6',
       require  => [ File['/var/rhizomatica'], Package['git'] ],
       notify   => [ Exec['locale-gen'],
                     Exec['restart-freeswitch'],
