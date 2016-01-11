@@ -1,65 +1,119 @@
-#!/usr/bin/env python 
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 # Configuration settings
+
+# Paths
+# ==========================================
 rhizomatica_dir = '<%= @rhizomatica_dir %>'
 sq_hlr_path = '<%= @sq_hlr_path %>'
 
-# database
+# Database connection
+# ==========================================
 pgsql_db = '<%= @pgsql_db %>'
 pgsql_user = '<%= @pgsql_user %>'
 pgsql_pwd = '<%= @pgsql_pwd %>'
 pgsql_host = '<%= @pgsql_host %>'
 
-# SITE
-site_name = "<%= @site_name %>"
-postcode = "<%= @postcode %>"
-pbxcode = "<%= @pbxcode %>"
-# network name
-network_name = "<%= @network_name %>"
+# Web administration
+# ==========================================
+rai_admin_user = '<%= @rai_admin_user %>'
+rai_admin_pwd = '<%= @rai_admin_pwd %>'
 
-# VPN ip address
-vpn_ip_address = "<%= @vpn_ip_address %>"
-wan_ip_address = "<%= @wan_ip_address %>"
+# Kannel connection
+# ==========================================
+kannel_server = '<%= @kannel_server %>'
+kannel_port = '<%= @kannel_port %>'
+kannel_username = '<%= @kannel_username %>'
+kannel_password = '<%= @kannel_sendsms_password %>'
 
-# SITE settings
-# rate type can be "call" or "min"
-limit_local_calls = "<%= @limit_local_calls %>"
-limit_local_minutes = "<%= @limit_local_minutes %>"
-charge_local_calls = "<%= @charge_local_calls %>"
-charge_local_rate = "<%= @charge_local_rate %>"
-charge_local_rate_type = "<%= @charge_local_rate_type %>"
-charge_internal_calls = "<%= @charge_internal_calls %>"
-charge_internal_rate = "<%= @charge_internal_rate %>"
-charge_internal_rate_type = "<%= @charge_internal_rate_type %>"
-charge_inbound_calls = "<%= @charge_inbound_calls %>"
-charge_inbound_rate = "<%= @charge_inbound_rate %>"
-charge_inbound_rate_type = "<%= @charge_inbound_rate_type %>"
-smsc_shortcode = "<%= @smsc_shortcode %>"
+# Site information
+# ==========================================
+site_name = '<%= @site_name %>'
+postcode = '<%= @postcode %>'
+pbxcode = '<%= @pbxcode %>'
+network_name = '<%= @network_name %>'
+vpn_ip_address = '<%= @vpn_ip_address %>'
+wan_ip_address = '<%= @wan_ip_address %>'
+
+# Site settings
+# ==========================================
+# rate type can be 'call' or 'min'
+# charge can be 0 disabled, 1 active
+# limit local call 0 disabled, 1 active
+limit_local_calls = '<%= @limit_local_calls %>'
+# total duration for the call, call hangup when limit is reached
+limit_local_minutes = '<%= @limit_local_minutes %>'
+charge_local_calls = '<%= @charge_local_calls %>'
+charge_local_rate = '<%= @charge_local_rate %>'
+charge_local_rate_type = '<%= @charge_local_rate_type %>'
+charge_internal_calls = '<%= @charge_internal_calls %>'
+charge_internal_rate = '<%= @charge_internal_rate %>'
+charge_internal_rate_type = '<%= @charge_internal_rate_type %>'
+charge_inbound_calls = '<%= @charge_inbound_calls %>'
+charge_inbound_rate = '<%= @charge_inbound_rate %>'
+charge_inbound_rate_type = '<%= @charge_inbound_rate_type %>'
+smsc_shortcode = '<%= @smsc_shortcode %>'
 sms_sender_unauthorized = '<%= @sms_sender_unauthorized %>'
 sms_destination_unauthorized = '<%= @sms_destination_unauthorized %>'
 sms_welcome_roaming = '<%= @sms_welcome_roaming %>' % site_name
 sms_credit_added = '<%= @sms_credit_added %>'
 
-rai_admin_user = '<%= @rai_admin_user %>'
-rai_admin_pwd = '<%= @rai_admin_pwd %>'
-
-kannel_server = '<%= @kannel_server %>'
-kannel_port = <%= @kannel_port %>
-kannel_username = '<%= @kannel_username %>'
-kannel_password = '<%= @kannel_sendsms_password %>'
-
-# VOIP provider
-voip_provider_name = "<%= @voip_provider_name %>"
-voip_username = "<%= @voip_username %>"
-voip_fromuser = "<%= @voip_fromuser %>"
-voip_password = "<%= @voip_password %>"
-voip_proxy = "<%= @voip_proxy %>"
-voip_did = "<%= @voip_did %>"
-voip_cli = "<%= @voip_cli %>"
-
 # Subscription SMS notification
+# ==========================================
 notice_msg = '<%= @notice_msg %>'
 reminder_msg = '<%= @reminder_msg %>'
 deactivate_msg = '<%= @deactivate_msg %>'
+
+# VOIP provider settings
+# ==========================================
+voip_provider_name = '<%= @voip_provider_name %>'
+voip_username = '<%= @voip_username %>'
+voip_fromuser = '<%= @voip_fromuser %>'
+voip_password = '<%= @voip_password %>'
+voip_proxy = '<%= @voip_proxy %>'
+# the DID is the user of the URI in the INVITE coming from the provider
+# for incoming calls
+voip_did = '<%= @voip_did %>'
+voip_cli = '<%= @voip_cli %>'
+
+# Emergency number(s)
+# ==========================================
+# Input one or more numbers use as separator ','
+# if a list of numbers is defined RCCN will do parallel ringing to
+# those numbers
+# example:  emergency_contact = '12345'
+#           emergency_contact = '12345,54321'
 emergency_contact = '<%= @emergency_contact %>'
+
+# Resellers notification
+# ==========================================
+reseller_messages = {
+   'invalid_data': '<%= @rsl_invalid_data %>',
+   'to_subscriber_not_enough_funds': '<%= @rsl_to_subscriber_not_enough_funds %>',
+   'to_reseller_not_enough_funds': '<%= @rsl_to_reseller_not_enough_funds %>',
+   'to_subscriber_transfer_successful': '<%= @rsl_to_subscriber_transfer_successful %>',
+   'to_reseller_transfer_successful': '<%= @rsl_to_reseller_transfer_successful %>',
+   'general_error': '<%= rsl_general_error %>'
+}
+
+# Announcements
+# ==========================================
+# welcome announcement played back when calling the DID
+ann_welcome = '<%= @ann_welcome %>'
+# play this announcement when the user doesn't have enough credit to make an outbound call
+ann_not_enough_credit = '<%= @ann_not_enough_credit %>'
+# played back to the caller 1 minute before the credit is about to expire during an outbound call
+ann_credit_is_about_to_finish = '<%= @ann_credit_is_about_to_finish %>'
+# played back when the user has finished the credit during an outbound call
+ann_credit_finished = '<%= @ann_credit_finished %>'
+# played back when the user calls extension 888 in order to get the current balance
+ann_current_balance = '<%= @ann_current_balance %>'
+# announcement for wrong dialed number
+ann_wrong_number = '<%= @ann_wrong_number %>'
+# subscriber is not authorized to make calls
+ann_subscriber_not_authorized = '<%= @ann_subscriber_not_authorized %>'
+# destination number is not authorized to receive calls
+ann_destination_subscriber_not_authorized = '<%= @ann_subscriber_not_authorized %>'
+# general error (played back in case of database errors or if important information necessary to route the call failed)
+ann_general_error = '<%= @ann_general_error %>'
