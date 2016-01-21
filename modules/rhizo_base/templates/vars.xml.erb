@@ -47,7 +47,7 @@
       affect the sip authentication.  Please review conf/directory/default.xml for more
       information on this topic.
   -->
-  <X-PRE-PROCESS cmd="set" data="domain=${{local_ip_v4}}"/>
+  <X-PRE-PROCESS cmd="set" data="domain=$${local_ip_v4}"/>
   <X-PRE-PROCESS cmd="set" data="domain_name=$${domain}"/>
   <X-PRE-PROCESS cmd="set" data="hold_music=local_stream://moh"/>
   <X-PRE-PROCESS cmd="set" data="use_profile=internal"/>
@@ -170,7 +170,7 @@
        use different addresses where this variable appears.
        Used by: dingaling.conf.xml
   -->
-  <X-PRE-PROCESS cmd="set" data="bind_server_ip=${{local_ip_v4}}"/>
+  <X-PRE-PROCESS cmd="set" data="bind_server_ip=$${local_ip_v4}"/>
 
   <!-- NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE
        
@@ -188,7 +188,7 @@
        If unspecified, the bind_server_ip value is used.
        Used by: sofia.conf.xml dingaling.conf.xml
   -->
-  <X-PRE-PROCESS cmd="set" data="external_rtp_ip=${{external_ip}}"/>
+  <X-PRE-PROCESS cmd="set" data="external_rtp_ip=$${external_ip}"/>
 
   <!-- external_sip_ip
       Used as the public IP address for SDP.
@@ -201,7 +201,7 @@
        If unspecified, the bind_server_ip value is used.
        Used by: sofia.conf.xml dingaling.conf.xml
   -->
-  <X-PRE-PROCESS cmd="set" data="external_sip_ip=${{external_ip}}"/>
+  <X-PRE-PROCESS cmd="set" data="external_sip_ip=$${external_ip}"/>
 
   <!-- unroll-loops
        Used to turn on sip loopback unrolling.
