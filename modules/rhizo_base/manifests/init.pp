@@ -101,6 +101,25 @@ class rhizo_base {
   #Emergency number
   $emergency_contact   = hiera('rhizo::emergency_contact')
 
+  #Resellers notification
+  $rsl_invalid_data                         = hiera('rhizo::rsl_invalid_data')
+  $rsl_to_subscriber_not_enough_funds       = hiera('rhizo::rsl_to_subscriber_not_enough_funds')
+  $rsl_to_reseller_not_enough_funds         = hiera('rhizo::rsl_to_reseller_not_enough_funds')
+  $rsl_to_subscriber_transfer_successful    = hiera('rhizo::rsl_to_subscriber_transfer_successful')
+  $rsl_to_reseller_transfer_successful      = hiera('rhizo::rsl_to_reseller_transfer_successful')
+  $rsl_general_error                        = hiera('rhizo::rsl_general_error')
+
+#Announcements
+  $ann_welcome                                = hiera('rhizo::ann_welcome')
+  $ann_not_enough_credit                      = hiera('rhizo::ann_not_enough_credit')
+  $ann_credit_is_about_to_finish              = hiera('rhizo::ann_credit_is_about_to_finish')
+  $ann_credit_finished                        = hiera('rhizo::ann_credit_finished')
+  $ann_current_balance                        = hiera('rhizo::ann_current_balance')
+  $ann_wrong_number                           = hiera('rhizo::ann_wrong_number')
+  $ann_subscriber_not_authorized              = hiera('rhizo::ann_subscriber_not_authorized')
+  $ann_destination_subscriber_not_authorized  = hiera('rhizo::ann_destination_subscriber_not_authorized')
+  $ann_general_error                          = hiera('rhizo::ann_general_error')
+
   #Device Geo Info
   $bsc_geo_lat         = hiera('rhizo::bsc_geo_lat')
   $bsc_geo_lon         = hiera('rhizo::bsc_geo_lon')
@@ -189,7 +208,7 @@ class rhizo_base {
       ensure   => present,
       provider => git,
       source   => 'https://github.com/Rhizomatica/rccn.git',
-     revision => '1.0.7',
+      revision => '1.0.7',
       require  => [ File['/var/rhizomatica'], Package['git'] ],
       notify   => [ Exec['locale-gen'],
                     Exec['restart-freeswitch'],
