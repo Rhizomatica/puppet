@@ -33,5 +33,10 @@ class rhizo_base::apt {
       key_server  => 'subkeys.pgp.net',
       include_src => false,
     }
-
+  apt::source { 'nodesource':
+      location    => 'https://deb.nodesource.com/node_0.10',
+      release     => 'precise',
+      repos       => 'main',
+      key_source  => 'https://deb.nodesource.com/gpgkey/nodesource.gpg.key'
+    }
   }

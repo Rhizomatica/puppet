@@ -44,4 +44,10 @@ class rhizo_base::runit {
       require => [ File['/etc/sv'], Class['rhizo_base::lcr'] ],
     }
 
+  file { '/etc/service/kiwi':
+      ensure  => link,
+      target  => '/etc/sv/kiwi',
+      require => [ File['/etc/sv'], Class['rhizo_base::kiwi'] ],
+    }
+
   }
