@@ -1,2 +1,2 @@
 #!/bin/sh
-exec /usr/share/kiwiirc/kiwi start
+exec /usr/share/kiwiirc/kiwi -f
