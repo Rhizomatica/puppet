@@ -221,14 +221,6 @@ class rhizo_base {
       content => template('rhizo_base/localnet.json.erb'),
     }
 
-  exec { 'install_rccn':
-      command     => '/usr/bin/python /var/rhizomatica/rccn/install.py',
-      require     => [ File['/var/rhizomatica/rccn/config_values.py'],
-      Class['rhizo_base::postgresql'], Class['rhizo_base::riak'],
-      Package['php5'] ],
-      refreshonly => true,
-    }
-
   exec { 'locale-gen':
       command     => '/usr/sbin/locale-gen',
       require     => [ File['/var/rhizomatica/rccn/config_values.py'],
