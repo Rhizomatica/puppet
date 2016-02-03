@@ -150,6 +150,7 @@ class rhizo_base {
   include rhizo_base::sudo
   include rhizo_base::users
   include rhizo_base::icinga
+  include rhizo_base::kiwi
 
 
 #Rizhomatica scripts
