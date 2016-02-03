@@ -14,6 +14,12 @@ class rhizo_base::kiwi {
 
   $site_name     = $rhizo_base::site_name
 
+  package {
+    ['make', 'nodejs']:
+      ensure  => installed,
+      require => Class['rhizo_base::apt'],
+    }
+
   file { '/usr/share/kiwiirc':
       ensure  => directory,
     }
@@ -26,7 +32,7 @@ class rhizo_base::kiwi {
   exec { 'npm-install':
       cwd      => '/usr/share/kiwiirc',
       command  => '/usr/bin/npm install',
-      creates  => '/usr/local/share/kiwiirc/node_modules',
+      creates  => '/usr/share/kiwiirc/node_modules',
       require  => VcsRepo['/usr/share/kiwiirc']
     }
 
