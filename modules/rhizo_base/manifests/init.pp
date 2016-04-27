@@ -190,7 +190,11 @@ class rhizo_base {
       ensure   => present,
       provider => git,
       source   => 'https://github.com/Rhizomatica/rccn.git',
+<<<<<<< HEAD
      revision => '1.0.83',
+=======
+     revision => '1.0.82',
+>>>>>>> 4616dfa0a77da734aa897db484684d04fe5b711c
       require  => [ File['/var/rhizomatica'], Package['git'] ],
       notify   => [ Exec['locale-gen'],
                     Exec['restart-freeswitch'],
