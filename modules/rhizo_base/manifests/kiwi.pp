@@ -15,8 +15,14 @@ class rhizo_base::kiwi {
   $site_name     = $rhizo_base::site_name
 
   package {
-    ['make', 'nodejs']:
+    ['make']:
       ensure  => installed,
+      require => Class['rhizo_base::apt'],
+    }
+
+  package {
+    ['nodejs']:
+      ensure  => '0.10.44-1nodesource1~precise1',
       require => Class['rhizo_base::apt'],
     }
 
