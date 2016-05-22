@@ -271,7 +271,7 @@ class rhizo_base {
     }
 
   python::pip { 'gsm0338':
-      ensure  => '1.0a1',
+      ensure  => 'present',
       pkgname => 'gsm0338',
     }
 
