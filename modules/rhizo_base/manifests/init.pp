@@ -270,6 +270,11 @@ class rhizo_base {
       pkgname => 'riak',
     }
 
+  python::pip { 'gsm0338':
+      ensure  => '1.0a1',
+      pkgname => 'gsm0338',
+    }
+
   file { '/usr/lib/python2.7/dist-packages':
       ensure  => directory,
       source  => 'puppet:///modules/rhizo_base/usr/lib/python2.7/dist-packages',
