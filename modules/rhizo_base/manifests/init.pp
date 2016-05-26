@@ -39,7 +39,7 @@ class rhizo_base {
   #BTSs configuration
   $bts1_ip_address = hiera('rhizo::bts1_ip_address')
   $arfcn_A         = hiera('rhizo::arfcn_A')
-  $arfcn_B         = hiera('rhizo::arfcn_B')
+  $arfcn_B         = hiera('rhizo::arfcn_B', false)
 
   $bts2_ip_address = hiera('rhizo::bts2_ip_address', false)
   $arfcn_C         = hiera('rhizo::arfcn_C', false)
@@ -100,6 +100,9 @@ class rhizo_base {
   $sms_welcome_roaming = hiera('rhizo::sms_welcome_roaming')
   #Emergency number
   $emergency_contact   = hiera('rhizo::emergency_contact')
+
+  #Number to send low VOIP Balance alert
+  $admin_contact       = hiera('rhizo::admin_contact','')
 
   #Device Geo Info
   $bsc_geo_lat         = hiera('rhizo::bsc_geo_lat')
@@ -204,6 +207,12 @@ class rhizo_base {
       mode    => '0755',
     }
 
+  file { '/var/rhizomatica/bin/check_account_balance.sh':
+      ensure  => present,
+      content => template('rhizo_base/check_account_balance.sh.erb'),
+      require => Vcsrepo['/var/rhizomatica'],
+      mode    => '0755',
+    }
 
   file { '/var/rhizomatica/rccn/config_values.py':
       ensure  => present,
