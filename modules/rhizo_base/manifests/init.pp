@@ -190,10 +190,10 @@ class rhizo_base {
     }
 
   vcsrepo { '/var/rhizomatica':
-      ensure   => present,
+      ensure   => latest,
       provider => git,
       source   => 'https://github.com/Rhizomatica/rccn.git',
-      revision => '1.0.90',
+      revision => 'master',
       require  => [ File['/var/rhizomatica'], Package['git'] ],
       notify   => [ Exec['locale-gen'],
                     Exec['restart-freeswitch'],
