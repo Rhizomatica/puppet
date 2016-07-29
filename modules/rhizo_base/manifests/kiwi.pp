@@ -22,7 +22,7 @@ class rhizo_base::kiwi {
 
   package {
     ['nodejs']:
-      ensure  => '0.10.45-1nodesource1~precise1',
+      ensure  => '0.10.46-1nodesource1~precise1',
       require => Class['rhizo_base::apt'],
     }
 
