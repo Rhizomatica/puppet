@@ -54,6 +54,7 @@ class rhizo_base {
   # VPN ip address
   $vpn_ip_address = hiera('rhizo::vpn_ip_address')
   $wan_ip_address = hiera('rhizo::wan_ip_address')
+  $riak_ip_address = hiera('rhizo::riak_ip_address', $vpn_ip_address)
 
   # SITE settings
   # rate type can be "call" or "min"
