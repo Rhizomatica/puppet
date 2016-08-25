@@ -23,6 +23,7 @@ PYTHONPATH=$PYTHONPATH:/var/rhizomatica/rccn
 
 #Roaming jobs
 */30 *    *   *   *     root timeout 10m /usr/bin/python /var/rhizomatica/rccn/rrc.py > /dev/null 2>&1 ; timeout 15m /usr/bin/python /var/rhizomatica/rccn/rhs.py > /dev/null 2>&1
+10 */2    *   *   *     root /usr/bin/python /var/rhizomatica/rccn/push.py recent 1
 
 #Cleanup inactive users
   0  5    *   *   *     root /usr/bin/python /var/rhizomatica/rccn/rip.py > /dev/null 2>&1
