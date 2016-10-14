@@ -40,8 +40,8 @@ PYTHONPATH=$PYTHONPATH:/var/rhizomatica/rccn
 #Billing
   0 10    *   *   *     root [[ $(date +'%d') -eq $(cal | awk '!/^$/{ print $NF }' | grep -v '^ ' | tail -1) ]] && /var/rhizomatica/bin/active_subscribers.sh
 
-#Restart osmo-nitb every 6 hours
-  0 */6   *   *   *     root /usr/bin/sv restart osmo-nitb 2&>1 /dev/null
+#Restart osmo-nitb every 6 hours (This wasn't working anyway. If it is needed, do something more elegant!)
+#  0 */6   *   *   *     root /usr/bin/sv restart osmo-nitb 2>&1 > /dev/null
 
 #PostgreSQL backup
   0  3    *   *   *     postgres /home/rhizomatica/bin/pg_backup_rotated.sh
