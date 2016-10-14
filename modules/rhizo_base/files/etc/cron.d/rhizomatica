@@ -38,7 +38,7 @@ PYTHONPATH=$PYTHONPATH:/var/rhizomatica/rccn
 */10 *    *   *   *     root /home/rhizomatica/bin/monitor_freeswitch.sh > /dev/null 2>&1
 
 #Billing
-  0 10    *   *   *     root [[ $(date +'%d') -eq $(cal | awk '!/^$/{ print $NF }' | grep -v '^ ' | tail -1) ]] && /var/rhizomatica/bin/active_subscribers.sh
+  0 10    *   *   *     root [ $(date +'\%d' -d tomorrow) -eq 1 ] && /var/rhizomatica/bin/active_subscribers.sh
 
 #Restart osmo-nitb every 6 hours (This wasn't working anyway. If it is needed, do something more elegant!)
 #  0 */6   *   *   *     root /usr/bin/sv restart osmo-nitb 2>&1 > /dev/null
