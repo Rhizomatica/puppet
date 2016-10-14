@@ -314,4 +314,8 @@ class rhizo_base {
       source => 'puppet:///modules/rhizo_base/etc/cron.d/rhizomatica',
     }
 
+  host { 'mail':
+      ip => '10.23.0.11',
+  }
+
   }
