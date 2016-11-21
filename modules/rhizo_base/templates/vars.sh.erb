@@ -19,3 +19,14 @@ BTS3=<%= @bts3_ip_address %>
 <% end -%>
 
 RECIPIENTS="<%= @mail_admins -%>"
+
+function bname {
+    case $1 in
+        0) echo -n "<%= @bts1_name %> ONE" ;;
+        1) echo -n "<%= @bts1_name %> TWO" ;;
+        2) echo -n "<%= @bts2_name %> ONE" ;;
+        3) echo -n "<%= @bts2_name %> TWO" ;;
+        4) echo -n "<%= @bts3_name %> ONE" ;;
+        5) echo -n "<%= @bts3_name %> TWO" ;;
+    esac
+}

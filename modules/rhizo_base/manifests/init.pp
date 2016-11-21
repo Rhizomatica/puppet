@@ -40,14 +40,17 @@ class rhizo_base {
   $bts1_ip_address = hiera('rhizo::bts1_ip_address')
   $arfcn_A         = hiera('rhizo::arfcn_A')
   $arfcn_B         = hiera('rhizo::arfcn_B', false)
+  $bts1_name       = hiera('rhizo::bts1_name', "${site_name}_1")
 
   $bts2_ip_address = hiera('rhizo::bts2_ip_address', false)
   $arfcn_C         = hiera('rhizo::arfcn_C', false)
   $arfcn_D         = hiera('rhizo::arfcn_D', false)
+  $bts2_name       = hiera('rhizo::bts2_name', "${site_name}_2")
 
   $bts3_ip_address = hiera('rhizo::bts3_ip_address', false)
   $arfcn_E         = hiera('rhizo::arfcn_E', false)
   $arfcn_F         = hiera('rhizo::arfcn_F', false)
+  $bts3_name       = hiera('rhizo::bts3_name', "${site_name}_3")
 
   $max_power_red   = hiera('rhizo::max_power_red')
 
