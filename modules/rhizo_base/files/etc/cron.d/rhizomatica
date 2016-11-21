@@ -17,6 +17,7 @@ PYTHONPATH=$PYTHONPATH:/var/rhizomatica/rccn
 #RRDtools graphs
 */5  *    *   *   *     root /var/rhizomatica/bin/platform_update_rrd.sh
 */5  *    *   *   *     root /var/rhizomatica/bin/network_update_rrd.sh
+*/1  *    *   *   *     root /var/rhizomatica/bin/network_update60.sh
 
 #Bind check between OpenBSC and Kannel (disabled)
 # */10    *   *   *  *  root /home/rhizomatica/bin/bind_check.sh
