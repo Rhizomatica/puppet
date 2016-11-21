@@ -142,10 +142,11 @@ class rhizo_base {
   include ntp
   include kannel
   include sshkeys
-  include rhizo_base::fixes
+
+#  include rhizo_base::fixes
   include rhizo_base::apt
   include rhizo_base::postgresql
-  include rhizo_base::riak
+#  include rhizo_base::riak
   include rhizo_base::packages
   include rhizo_base::freeswitch
   include rhizo_base::runit
@@ -153,7 +154,7 @@ class rhizo_base {
   include rhizo_base::lcr
   include rhizo_base::sudo
   include rhizo_base::users
-  include rhizo_base::icinga
+#  include rhizo_base::icinga
   include rhizo_base::kiwi
 
 
@@ -232,15 +233,16 @@ class rhizo_base {
       content => template('rhizo_base/localnet.json.erb'),
     }
 
+
   exec { 'locale-gen':
       command     => '/usr/sbin/locale-gen',
       require     => [ File['/var/rhizomatica/rccn/config_values.py'],
-      File['/var/lib/locales/supported.d/local'] ],
+      File['/etc/locale.gen'] ],
       refreshonly => true,
       }
 
   exec { 'restart-freeswitch':
-      command     => '/usr/bin/sv restart freeswitch',
+      command     => '/bin/systemctl restart freeswitch',
       refreshonly => true,
     }
 
@@ -249,9 +251,9 @@ class rhizo_base {
       refreshonly => true,
     }
 
-  file { '/var/lib/locales/supported.d/local':
+  file { '/etc/locale.gen':
       ensure      => present,
-      source      => 'puppet:///modules/rhizo_base/var/lib/locales/supported.d/local',
+      source      => 'puppet:///modules/rhizo_base/etc/locale.gen',
     }
 
   file { '/var/www/html/rai':
@@ -274,7 +276,6 @@ class rhizo_base {
       dev     => true,
     }
 
-
   python::pip { 'riak':
       ensure  => '2.0.3',
       pkgname => 'riak',
@@ -285,6 +286,17 @@ class rhizo_base {
       pkgname => 'gsm0338',
     }
 
+  python::pip { 'twisted':
+      ensure  => '13.1.0',
+      pkgname => 'Twisted',
+    }
+
+  python::pip { 'corepost':
+      ensure  => 'present',
+      pkgname => 'CorePost',
+    }
+
+
   file { '/usr/lib/python2.7/dist-packages':
       ensure  => directory,
       source  => 'puppet:///modules/rhizo_base/usr/lib/python2.7/dist-packages',
@@ -294,14 +306,15 @@ class rhizo_base {
 
 #Apache2 + PHP + Python
   package { ['apache2','libapache2-mod-php5',
-  'rrdtool', 'python-twisted-web', 'python-psycopg2',
+  'rrdtool', 'python-psycopg2',
   'python-pysqlite2', 'php5', 'php5-pgsql',
-  'php5-curl', 'php5-cli', 'php5-gd', 'python-corepost',
+  'php5-curl', 'php5-cli', 'php5-gd',
   'python-yaml', 'python-formencode', 'python-unidecode',
   'python-dateutil']:
       ensure  => installed,
       require => Class['rhizo_base::apt'],
     }
+
 
   file { '/etc/php5/apache2/php.ini':
       ensure  => present,
@@ -317,5 +330,7 @@ class rhizo_base {
   host { 'mail':
       ip => '10.23.0.11',
   }
+
+
 
   }

@@ -19,7 +19,7 @@ class rhizo_base::postgresql {
 
   class { 'postgresql::globals':
       manage_package_repo => true,
-      version             => '9.3',
+      version             => '9.4',
     }->
   class { 'postgresql::server':
     }

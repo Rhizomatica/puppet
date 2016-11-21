@@ -25,31 +25,12 @@ class rhizo_base::openbsc {
   $bts3_ip_address = $rhizo_base::bts3_ip_address
   $smsc_password   = $rhizo_base::smsc_password
 
-  package { [ 'libosmoabis4', 'libosmocore6',
-              'libosmoctrl0', 'libosmogsm5',
-              'libosmovty1', 'osmocom-nitb',
-              'osmocom-nitb-dbg']:
+  package { [ 'osmocom-nitb']:
       ensure   => latest,
       require  => Class['rhizo_base::apt'],
       notify   => [ Exec['hlr_pragma_wal'],
                     Exec['restart-nitb'] ],
     }
-
-  package { [ 'libosmoabis3', 'libosmocore4',
-              'libosmogsm6', 'libosmovty0',
-              'libgtp', 'libgtp0',
-              'libgtp0-dev', 'openggsn',
-              'libosmo-abis', 'libosmo-abis-dbg',
-              'libosmo-abis-dev', 'libosmo-netif-dbg',
-              'libosmo-netif-dev', 'libosmo-sccp',
-              'libosmo-sccp-dbg', 'libosmo-sccp-dev',
-              'libosmocodec0', 'libosmocore',
-              'libosmocore-dbg', 'libosmocore-dev',
-              'libosmocore-utils', 'libosmogb3',
-              'libosmonetif2', 'libosmosim0',
-              'libosmotrau0']:
-      ensure => purged,
-  }
 
   service { 'osmocom-nitb':
       enable  => false,

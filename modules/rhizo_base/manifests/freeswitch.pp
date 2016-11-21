@@ -12,6 +12,8 @@
 #
 class rhizo_base::freeswitch {
 
+  include systemd
+
   $pgsql_db       = $rhizo_base::pgsql_db
   $pgsql_user     = $rhizo_base::pgsql_user
   $pgsql_pwd      = $rhizo_base::pgsql_pwd
@@ -29,7 +31,7 @@ class rhizo_base::freeswitch {
     ['freeswitch', 'freeswitch-lang-en',
     'freeswitch-mod-amr', 'freeswitch-mod-amrwb',
     'freeswitch-mod-b64', 'freeswitch-mod-bv',
-    'freeswitch-mod-cdr-pg-csv', 'freeswitch-mod-cluechoo',
+    'freeswitch-mod-cluechoo',
     'freeswitch-mod-commands', 'freeswitch-mod-conference',
     'freeswitch-mod-console', 'freeswitch-mod-db',
     'freeswitch-mod-dialplan-asterisk', 'freeswitch-mod-dialplan-xml',
@@ -44,10 +46,13 @@ class rhizo_base::freeswitch {
     'freeswitch-mod-python', 'freeswitch-mod-say-en',
     'freeswitch-mod-say-es', 'freeswitch-mod-sms',
     'freeswitch-mod-sndfile', 'freeswitch-mod-sofia',
-    'freeswitch-mod-spandsp', 'freeswitch-mod-speex',
+    'freeswitch-mod-spandsp', 
+    #'freeswitch-mod-speex',
     'freeswitch-mod-syslog', 'freeswitch-mod-tone-stream',
     'freeswitch-mod-voicemail', 'freeswitch-mod-voicemail-ivr',
-    'freeswitch-mod-vp8', 'freeswitch-mod-xml-cdr',
+    #'freeswitch-mod-vp8',
+    'freeswitch-mod-xml-cdr',
+    'freeswitch-mod-g729',
     'freeswitch-sysvinit', 'libfreeswitch1']:
       ensure  => installed,
       require => Class['rhizo_base::apt'],
@@ -58,10 +63,6 @@ class rhizo_base::freeswitch {
       require => Package['freeswitch']
     }
 
-  file { '/usr/lib/freeswitch/mod/mod_g729.so':
-      source  => 'puppet:///modules/rhizo_base/mod_g729.so',
-      require => Package['freeswitch'],
-    }
 
   file { '/etc/freeswitch':
       ensure  => directory,
@@ -90,4 +91,25 @@ class rhizo_base::freeswitch {
       content => template('rhizo_base/cdr_pg_csv.conf.xml.erb'),
       require => Package['freeswitch'],
     }
+
+  file { '/usr/lib/freeswitch/mod/mod_cdr_pg_csv.so':
+      source  => 'puppet:///modules/rhizo_base/usr/lib/freeswitch/mod/mod_cdr_pg_csv.so',
+      require => Package['freeswitch'],
+    }
+
+  file { '/etc/default/freeswitch':
+      source  => 'puppet:///modules/rhizo_base/etc/default/freeswitch',
+      require => Package['freeswitch'],
+    }
+
+  systemd::unit_file { 'freeswitch.service':
+    source => "puppet:///modules/rhizo_base/freeswitch.service",
+  }
+
+  systemd::tmpfile { 'freeswitch.tmpfile':
+    source => "puppet:///modules/rhizo_base/freeswitch.tmpfile",
+  }
+
 }
+
+
