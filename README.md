@@ -73,4 +73,4 @@ To have a fully configured system from scratch, these are the steps:
 
   **11** - You should now be running the complete Rhizomatica ecosystem. Principally, The Osmo Network-in-the-Box, Freeswitch, kannel, and all the glue inbetween. You should also see the web interface to administer your mobile network at `http://localhost/rai`
 
-  **12** Probably it doesn't quite work yet, because there are some minor configuration steps to be completed. See further (work in progress) documentation on the [Rhizomatica Wiki](https://wiki.rhizomatica.org/) or open an issue! 
+  **12** Probably it doesn't quite work yet, because there are some minor configuration steps to be completed. See further (work in progress) documentation on the [Rhizomatica Wiki](https://wiki.rhizomatica.org/index.php/Setting_up_the_BSC) or open an issue! 
