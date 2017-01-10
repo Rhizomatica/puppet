@@ -8,7 +8,7 @@ To do this, you need to:
 
   **1** - Choose an Operating System. Historically, we began with Ubuntu 12.04 LTS. Support for Ubuntu 12.04 ends in April 2017. 
 
-  Install `Ubuntu 12.04 or 14.04, 64-bit version`. There is a preseed file included in this git repo which can make it easier and faster `:)` Not tested on 14.04.
+  Install `Ubuntu 12.04, 14.04 or Debian 8, 64-bit version`. There is a preseed file included in this git repo which can make it easier and faster `:)` Not tested on 14.04.
 
   **2** - Create a new user, called `rhizomatica`. This is not needed if you have used the preseed file to do the install.
 
@@ -32,13 +32,18 @@ To have a working repo, you must also include all the submodules, so do:
 
 To have a fully configured system from scratch, these are the steps:
 
-  At the time of writing Ubuntu 12.04 LTS is the version supported here by the master branch, but only for existing installs. New installs will fail because of upstream changes. If you wish to install on Ubuntu 12.04, you will need to 
+  [ FIXME: At the time of writing Ubuntu 12.04 LTS is the version supported here by the master branch, but only for existing installs. New installs will fail because of upstream changes. ] If you wish to install on Ubuntu 12.04, you will need to 
 
 	cd /etc/puppet/environments/[ENVIRONMENT_NAME]
 	git checkout whyteks/ubuntu12
 
+  To install on Debian 8, do 
 
-  **5** - Edit `/etc/puppet/puppet.conf` and add the puppet server. The default puppet server is 'puppet' so if you are running puppet master and puppet agent on the same same, you can alternatively point 'puppet' to 127.0.0.1 in /etc/hosts:
+    git checkout whyteks/debian
+
+  [ FIXME: If you want to install on Ubuntu 14.04 you may have to fix some stuff manually. ]
+
+  **5** - Edit `/etc/puppet/puppet.conf` and add the puppet server. The default puppet server is 'puppet' so if you are running puppet master and puppet agent on the same box, you can alternatively point 'puppet' to 127.0.0.1 in /etc/hosts:
 
     127.0.0.1       puppet
 
@@ -65,3 +70,7 @@ To have a fully configured system from scratch, these are the steps:
     puppet agent --test
 
   **10** - Wait and observe, or not, as you wish. :) Depending on the speed of your internet connection some things might take some time. The puppet recipe is still not perfect and may fail due to dependencies on this second run. If this happens, goto step 9 until the puppet run completes cleanly.   
+
+  **11** - You should now be running the complete Rhizomatica ecosystem. Principally, The Osmo Network-in-the-Box, Freeswitch, kannel, and all the glue inbetween. You should also see the web interface to administer your mobile network at `http://localhost/rai`
+
+  **12** Probably it doesn't quite work yet, because there are some minor configuration steps to be completed. See further (work in progress) documentation on the [Rhizomatica Wiki](https://wiki.rhizomatica.org/) or open an issue! 
