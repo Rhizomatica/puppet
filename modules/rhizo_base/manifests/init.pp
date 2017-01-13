@@ -17,6 +17,7 @@ class rhizo_base {
   $kannel_admin_password   = hiera('rhizo::kannel_admin_password')
   $password_hash           = hiera('rhizo::password_hash')
 
+  $use_ups                 = hiera('rhizo::use_ups')
   # Configuration settings
   $rhizomatica_dir = hiera('rhizo::rhizomatica_dir')
   $sq_hlr_path     = hiera('rhizo::sq_hlr_path')
@@ -312,9 +313,20 @@ class rhizo_base {
       require => Package['libapache2-mod-php5'],
     }
 
+  file { '/etc/apcupsd/apcupsd.conf':
+      ensure  => present,
+      source  => 'puppet:///modules/rhizo_base/etc/apcupsd/apcupsd.conf',
+      require => Package['apcupsd'],
+    }
+
+  file { '/etc/default/apcupsd':
+      ensure => 'present',
+      content => template('rhizo_base/apcupsd.erb'),
+    }
 
   file { '/etc/cron.d/rhizomatica':
-      source => 'puppet:///modules/rhizo_base/etc/cron.d/rhizomatica',
+      ensure => 'present',
+      content => template('rhizo_base/rhizomatica.cron.erb'),
     }
 
   host { 'mail':
