@@ -38,6 +38,7 @@ class rhizo_base {
   $lac             = hiera('rhizo::lac')
 
   #BTSs configuration
+  $bts_type        = hiera('rhizo::bts_type')
   $bts1_ip_address = hiera('rhizo::bts1_ip_address')
   $arfcn_A         = hiera('rhizo::arfcn_A')
   $arfcn_B         = hiera('rhizo::arfcn_B', false)
