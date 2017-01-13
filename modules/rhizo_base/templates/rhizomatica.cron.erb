@@ -1,0 +1,53 @@
+#Rhizomatica cron jobs
+PYTHONPATH=$PYTHONPATH:/var/rhizomatica/rccn
+  
+# m  h    dom mon dow   user command
+
+#SMS reminders for users
+  0  8    1   *   *     root /usr/bin/python /var/rhizomatica/rccn/rsc.py notice
+  0  8    3   *   *     root /usr/bin/python /var/rhizomatica/rccn/rsc.py reminder
+  0  21   7   *   *     root /usr/bin/python /var/rhizomatica/rccn/rsc.py deactivate
+
+#SMS reminder for admin
+  0  */5  *   *   *     root /var/rhizomatica/bin/check_account_balance.sh
+
+#SMS cleanup
+  0  3    *   *   *     root /var/rhizomatica/bin/sms_cleanup.sh
+
+#RRDtools graphs
+*/5  *    *   *   *     root /var/rhizomatica/bin/platform_update_rrd.sh
+*/5  *    *   *   *     root /var/rhizomatica/bin/network_update_rrd.sh
+*/1  *    *   *   *     root /var/rhizomatica/bin/network_update60.sh
+
+#Bind check between OpenBSC and Kannel (disabled)
+# */10    *   *   *  *  root /home/rhizomatica/bin/bind_check.sh
+
+#Roaming jobs
+*/30 *    *   *   *     root timeout 10m /usr/bin/python /var/rhizomatica/rccn/rrc.py > /dev/null 2>&1 ; timeout 15m /usr/bin/python /var/rhizomatica/rccn/rhs.py > /dev/null 2>&1
+10 */2    *   *   *     root /usr/bin/python /var/rhizomatica/rccn/push.py recent 1
+
+#Cleanup inactive users
+  0  5    *   *   *     root /usr/bin/python /var/rhizomatica/rccn/rip.py > /dev/null 2>&1
+
+<% if @bts_type == 'litecel' -%>
+# amplifier monitoring
+*/5  *    *   *   *     root /home/rhizomatica/bin/monitor_amp.sh > /dev/null 2>&1
+<% end -%>
+
+# RAPI monitoring
+*/5  *    *   *   *     root /home/rhizomatica/bin/monitor_rapi.sh > /dev/null 2>&1
+
+#FreeSWITCH monitoring
+*/10 *    *   *   *     root /home/rhizomatica/bin/monitor_freeswitch.sh > /dev/null 2>&1
+
+#Billing
+  0 10    *   *   *     root [ $(date +'\%d' -d tomorrow) -eq 1 ] && /var/rhizomatica/bin/active_subscribers.sh
+
+#Restart osmo-nitb every 6 hours (This wasn't working anyway. If it is needed, do something more elegant!)
+#  0 */6   *   *   *     root /usr/bin/sv restart osmo-nitb 2>&1 > /dev/null
+
+#PostgreSQL backup
+  0  3    *   *   *     postgres /home/rhizomatica/bin/pg_backup_rotated.sh
+
+#SQLite backup
+  0  4    *   *   *     root /home/rhizomatica/bin/sqlite_backup_rotated.sh
