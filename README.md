@@ -13,8 +13,24 @@ To do this, you need to:
   **2** - Create a new user, called `rhizomatica`. This is not needed if you have used the preseed file to do the install.
 
   **3** - Install `openvpn`, `openssh-server` and `puppet`:
-       
-    sudo apt-get install openvpn openssh-server puppet
+
+We install puppet from the puppetlabs repo, so depending on your OS choice, do something like:
+
+	wget https://apt.puppetlabs.com/puppetlabs-release-precise.deb
+    OR
+	wget https://apt.puppetlabs.com/puppetlabs-release-jessie.deb
+
+Install the package you just downloaded. (This just installs the puppet labs repo)
+
+	sudo dpkg -i puppetlabs-release-[whatever].deb
+
+Now, update your apt repositories
+
+	sudo apt-get update
+
+Install:
+
+	sudo apt-get install openvpn openssh-server puppet
 
   **4** - Clone this repo into /etc/puppet/environments/[ENVIRONMENT_NAME]
 
@@ -73,4 +89,8 @@ To have a fully configured system from scratch, these are the steps:
 
   **11** - You should now be running the complete Rhizomatica ecosystem. Principally, The Osmo Network-in-the-Box, Freeswitch, kannel, and all the glue inbetween. You should also see the web interface to administer your mobile network at `http://localhost/rai`
 
-  **12** Probably it doesn't quite work yet, because there are some minor configuration steps to be completed. See further (work in progress) documentation on the [Rhizomatica Wiki](https://wiki.rhizomatica.org/index.php/Setting_up_the_BSC) or open an issue! 
+  **12** - It doesn't quite work yet, because there are some minor configuration steps to be completed. Namely, you need to run the script `/var/rhizomatica/rccn/install.py` to setup your database and a couple of other things. However, this will fail if puppet hasn't written the correct configuration because you haven't setup everything correctly in your hiera host file in step 6. 
+
+[ FIXME: The `install.py` is not very intelligent and certainly not very forgiving *and* it expects to be running on a clean system. Once you run it on a b0rked config, it may complete some tasks and then will most likely fail if you try to run it again. ] 
+
+!! Pull Requests are welcome!! See further (work in progress) documentation on the [Rhizomatica Wiki](https://wiki.rhizomatica.org/index.php/Setting_up_the_BSC) or open an issue! 
