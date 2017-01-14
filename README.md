@@ -12,7 +12,7 @@ To do this, you need to:
 
   **2** - Create a new user, called `rhizomatica`. This is not needed if you have used the preseed file to do the install.
 
-  **3** - Install `openvpn`, `openssh-server` and `puppet`:
+  **3** - Install  `openssh-server` and `puppet`:
 
 We install puppet from the puppetlabs repo, so depending on your OS choice, do something like:
 
@@ -30,7 +30,7 @@ Now, update your apt repositories
 
 Install:
 
-	sudo apt-get install openvpn openssh-server puppet
+	sudo apt-get install openssh-server puppet
 
 If you are going to run your own local puppet master:
 
