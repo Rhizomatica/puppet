@@ -271,14 +271,12 @@ class rhizo_base {
       require => Vcsrepo['/var/rhizomatica'],
     }
 
-
 #Python modules
   class { 'python':
       version => 'system',
       pip     => true,
       dev     => true,
     }
-
 
   python::pip { 'riak':
       ensure  => '2.0.3',
@@ -295,23 +293,6 @@ class rhizo_base {
       source  => 'puppet:///modules/rhizo_base/usr/lib/python2.7/dist-packages',
       recurse => remote,
       require => Class['python'],
-    }
-
-#Apache2 + PHP + Python
-  package { ['apache2','libapache2-mod-php5',
-  'rrdtool', 'python-twisted-web', 'python-psycopg2',
-  'python-pysqlite2', 'php5', 'php5-pgsql',
-  'php5-curl', 'php5-cli', 'php5-gd', 'python-corepost',
-  'python-yaml', 'python-formencode', 'python-unidecode',
-  'python-dateutil']:
-      ensure  => installed,
-      require => Class['rhizo_base::apt'],
-    }
-
-  file { '/etc/php5/apache2/php.ini':
-      ensure  => present,
-      source  => 'puppet:///modules/rhizo_base/etc/php5/apache2/php.ini',
-      require => Package['libapache2-mod-php5'],
     }
 
   file { '/etc/apcupsd/apcupsd.conf':
@@ -334,4 +315,4 @@ class rhizo_base {
       ip => '10.23.0.11',
   }
 
-  }
+}
