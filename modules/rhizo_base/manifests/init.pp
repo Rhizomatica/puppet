@@ -202,7 +202,7 @@ class rhizo_base {
       revision => 'master',
       require  => [ File['/var/rhizomatica'], Package['git'] ],
       notify   => [ Exec['locale-gen'],
-                    Exec['restart-freeswitch'],
+                    Exec['notify-freeswitch'],
                     Exec['restart-rapi'] ],
     }
 
@@ -243,6 +243,11 @@ class rhizo_base {
       File['/var/lib/locales/supported.d/local'] ],
       refreshonly => true,
       }
+
+  exec { 'notify-freeswitch':
+      command     => '/bin/echo 1 > /tmp/FS-dirty',
+      refreshonly => true,
+    }
 
   exec { 'restart-freeswitch':
       command     => '/usr/bin/sv restart freeswitch',
