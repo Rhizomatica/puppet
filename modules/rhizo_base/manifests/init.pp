@@ -17,10 +17,11 @@ class rhizo_base {
   $kannel_admin_password   = hiera('rhizo::kannel_admin_password')
   $password_hash           = hiera('rhizo::password_hash')
 
-  $use_ups                 = hiera('rhizo::use_ups')
   # Configuration settings
+  $use_ups         = hiera('rhizo::use_ups')
   $rhizomatica_dir = hiera('rhizo::rhizomatica_dir')
   $sq_hlr_path     = hiera('rhizo::sq_hlr_path')
+  $use_sip         = hiera('rhizo::use_sip')
 
   # database
   $pgsql_db   = hiera('rhizo::pgsql_db')
