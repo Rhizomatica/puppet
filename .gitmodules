@@ -19,3 +19,6 @@
 [submodule "modules/vcsrepo"]
 	path = modules/vcsrepo
 	url = https://github.com/puppetlabs/puppetlabs-vcsrepo.git
+[submodule "modules/systemd"]
+	path = modules/systemd
+	url = https://github.com/camptocamp/puppet-systemd
