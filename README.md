@@ -51,13 +51,6 @@ To have a working repo, you must also include all the submodules, so then do:
     git submodule init
     git submodule update
 
-
-
-  [ FIXME: At the time of writing Ubuntu 12.04 LTS is the version supported here by the master branch, but only for existing installs. New installs will fail because of upstream changes. ] If you wish to install on Ubuntu 12.04, you will need to 
-
-	cd /etc/puppet/environments/[ENVIRONMENT_NAME]
-	git checkout whyteks/ubuntu12
-
   To install on Debian 8, do 
 
     git checkout whyteks/debian
