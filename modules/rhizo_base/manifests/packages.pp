@@ -23,10 +23,10 @@ class rhizo_base::packages {
     }
 
 #Apache2 + PHP + Python
-  package { ['apache2','libapache2-mod-php5',
+  package { ['apache2','libapache2-mod-php5.6',
   'rrdtool', 'python-twisted-web', 'python-psycopg2',
-  'python-pysqlite2', 'php5', 'php5-pgsql',
-  'php5-curl', 'php5-cli', 'php5-gd', 'python-corepost',
+  'python-pysqlite2', 'php5.6', 'php5.6-pgsql',
+  'php5.6-curl', 'php5.6-cli', 'php5.6-gd', 'python-corepost',
   'python-yaml', 'python-formencode', 'python-unidecode',
   'python-dateutil']:
       ensure  => installed,
@@ -36,7 +36,7 @@ class rhizo_base::packages {
   file { '/etc/php5/apache2/php.ini':
       ensure  => present,
       source  => 'puppet:///modules/rhizo_base/etc/php5/apache2/php.ini',
-      require => Package['libapache2-mod-php5'],
+      require => Package['libapache2-mod-php5.6'],
     }
 
 }

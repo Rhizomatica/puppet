@@ -13,7 +13,9 @@
 class rhizo_base::apt {
   class { '::apt': }
   apt::ppa { 'ppa:keithw/mosh': }
-  apt::ppa { 'ppa:ondrej/php5': }
+  apt::ppa { 'ppa:ondrej/php': }
+  apt::ppa { 'ppa:ondrej/apache2': }
+
   file { '/etc/apt/apt.conf.d/90unsigned':
       ensure  => present,
       content => 'APT::Get::AllowUnauthenticated "true";',

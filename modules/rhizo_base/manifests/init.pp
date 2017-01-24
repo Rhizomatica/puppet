@@ -183,6 +183,10 @@ class rhizo_base {
       ensure  => directory,
     }
 
+  file { '/var/www/html':
+      ensure  => directory,
+    }
+
   file { '/var/rhizo_backups/postgresql':
       ensure  => directory,
       owner   => 'postgres',
