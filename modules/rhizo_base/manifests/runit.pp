@@ -25,12 +25,14 @@ class rhizo_base::runit {
         [ File['/etc/sv'], Class['rhizo_base::openbsc'] ],
     }
 
-  file { '/etc/service/freeswitch':
-      ensure  => link,
-      target  => '/etc/sv/freeswitch',
-      require =>
-        [ File['/etc/sv'], Class['rhizo_base::freeswitch'] ],
-    }
+  if $operatingsystem != 'Debian' {
+    file { '/etc/service/freeswitch':
+        ensure  => link,
+        target  => '/etc/sv/freeswitch',
+        require =>
+          [ File['/etc/sv'], Class['rhizo_base::freeswitch'] ],
+      }
+  }
 
   file { '/etc/service/rapi':
       ensure  => link,

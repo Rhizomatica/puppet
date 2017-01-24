@@ -22,7 +22,10 @@ class rhizo_base::kiwi {
 
   package {
     ['nodejs']:
-      ensure  => '0.10.48-1nodesource1~precise1',
+      ensure  => $operatingsystem ? { 
+      	"Ubuntu" => '0.10.48-1nodesource1~precise1',
+      	"Debian" => '0.10.48-1nodesource1~jessie1',
+      	},
       require => Class['rhizo_base::apt'],
     }
 

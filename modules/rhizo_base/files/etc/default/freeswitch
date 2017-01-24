@@ -1,0 +1,4 @@
+# /etc/default/freeswitch
+DAEMON_OPTS="-nonat"
+PYTHONPATH=$PYTHONPATH:/var/rhizomatica/rccn
+

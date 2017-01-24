@@ -10,7 +10,12 @@
 #
 # Sample Usage:
 #
+
 class rhizo_base::fixes {
+  include "rhizo_base::fixes::$operatingsystem"
+}
+
+class rhizo_base::fixes::ubuntu {
 #FSCK at boot
   file { '/etc/default/rcS':
       ensure  => present,
@@ -28,4 +33,8 @@ class rhizo_base::fixes {
       command     => '/usr/sbin/update-grub',
       refreshonly => true,
     }
-  }
+}
+
+class rhizo_base::fixes::debian {
+  # Nothing
+}

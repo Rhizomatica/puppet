@@ -14,7 +14,7 @@ class rhizo_base::sudo {
 
   file { '/etc/sudoers':
       ensure  => present,
-      source  => 'puppet:///modules/rhizo_base/etc/sudoers',
+      source  => "puppet:///modules/rhizo_base/etc/sudoers.$operatingsystem",
       owner   => 'root',
       group   => 'root',
       mode    => '0440',

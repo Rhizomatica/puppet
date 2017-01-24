@@ -11,6 +11,62 @@
 # Sample Usage:
 #
 class rhizo_base::freeswitch {
+  include "rhizo_base::freeswitch::$operatingsystem"
+}
+
+class rhizo_base::freeswitch::ubuntu inherits rhizo_base::freeswitch::common {
+
+  file { '/usr/lib/freeswitch/mod/mod_g729.so':
+      source  => 'puppet:///modules/rhizo_base/mod_g729.so',
+      require => Package['freeswitch'],
+    }
+
+  package {
+    ['freeswitch-mod-speex','freeswitch-mod-cdr-pg-csv',
+     'freeswitch-mod-vp8']:
+      ensure  => installed,
+      require => Class['rhizo_base::apt'],   
+  }
+
+  service { 'freeswitch':
+      enable  => false,  
+      require => Package['freeswitch']
+    }
+
+}
+
+class rhizo_base::freeswitch::debian inherits rhizo_base::freeswitch::common {
+
+  include systemd
+
+  package {
+    [ 'freeswitch-mod-g729' ]:
+      ensure  => installed,
+      require => Class['rhizo_base::apt'],   
+  }
+
+
+  file { '/usr/lib/freeswitch/mod/mod_cdr_pg_csv.so':
+      source  => 'puppet:///modules/rhizo_base/usr/lib/freeswitch/mod/mod_cdr_pg_csv.so',
+      require => Package['freeswitch'],
+    }
+
+  file { '/etc/default/freeswitch':
+      source  => 'puppet:///modules/rhizo_base/etc/default/freeswitch',
+      require => Package['freeswitch'],
+    }
+
+  systemd::unit_file { 'freeswitch.service':
+    source => "puppet:///modules/rhizo_base/freeswitch.service",
+  }
+   
+  systemd::tmpfile { 'freeswitch.tmpfile':
+    source => "puppet:///modules/rhizo_base/freeswitch.tmpfile",
+  }
+
+}
+
+class rhizo_base::freeswitch::common {
 
   $pgsql_db       = $rhizo_base::pgsql_db
   $pgsql_user     = $rhizo_base::pgsql_user
@@ -29,7 +85,7 @@ class rhizo_base::freeswitch {
     ['freeswitch', 'freeswitch-lang-en',
     'freeswitch-mod-amr', 'freeswitch-mod-amrwb',
     'freeswitch-mod-b64', 'freeswitch-mod-bv',
-    'freeswitch-mod-cdr-pg-csv', 'freeswitch-mod-cluechoo',
+    'freeswitch-mod-cluechoo',
     'freeswitch-mod-commands', 'freeswitch-mod-conference',
     'freeswitch-mod-console', 'freeswitch-mod-db',
     'freeswitch-mod-dialplan-asterisk', 'freeswitch-mod-dialplan-xml',
@@ -44,23 +100,13 @@ class rhizo_base::freeswitch {
     'freeswitch-mod-python', 'freeswitch-mod-say-en',
     'freeswitch-mod-say-es', 'freeswitch-mod-sms',
     'freeswitch-mod-sndfile', 'freeswitch-mod-sofia',
-    'freeswitch-mod-spandsp', 'freeswitch-mod-speex',
+    'freeswitch-mod-spandsp', 
     'freeswitch-mod-syslog', 'freeswitch-mod-tone-stream',
     'freeswitch-mod-voicemail', 'freeswitch-mod-voicemail-ivr',
-    'freeswitch-mod-vp8', 'freeswitch-mod-xml-cdr',
+    'freeswitch-mod-xml-cdr',
     'freeswitch-sysvinit', 'libfreeswitch1']:
       ensure  => installed,
       require => Class['rhizo_base::apt'],
-    }
-
-  service { 'freeswitch':
-      enable  => false,
-      require => Package['freeswitch']
-    }
-
-  file { '/usr/lib/freeswitch/mod/mod_g729.so':
-      source  => 'puppet:///modules/rhizo_base/mod_g729.so',
-      require => Package['freeswitch'],
     }
 
   file { '/etc/freeswitch':

@@ -150,7 +150,9 @@ class rhizo_base {
   include rhizo_base::fixes
   include rhizo_base::apt
   include rhizo_base::postgresql
-  include rhizo_base::riak
+  if $operatingsystem != 'Debian' {
+    include rhizo_base::riak
+  }
   include rhizo_base::packages
   include rhizo_base::freeswitch
   include rhizo_base::runit
@@ -158,7 +160,9 @@ class rhizo_base {
   include rhizo_base::lcr
   include rhizo_base::sudo
   include rhizo_base::users
-  include rhizo_base::icinga
+  if $operatingsystem != 'Debian' {
+    include rhizo_base::icinga
+  }
   include rhizo_base::kiwi
 
 
@@ -241,12 +245,23 @@ class rhizo_base {
       content => template('rhizo_base/localnet.json.erb'),
     }
 
-  exec { 'locale-gen':
-      command     => '/usr/sbin/locale-gen',
-      require     => [ File['/var/rhizomatica/rccn/config_values.py'],
-      File['/var/lib/locales/supported.d/local'] ],
-      refreshonly => true,
-      }
+  if $operatingsystem == 'Debian' {  
+    exec { 'locale-gen':
+        command     => '/usr/sbin/locale-gen',
+        require     => [ File['/var/rhizomatica/rccn/config_values.py'],
+        File['/etc/locale.gen'] ],
+        refreshonly => true,
+        }
+  }
+  
+  if $operatingsystem == 'Ubuntu' {  
+    exec { 'locale-gen':
+        command     => '/usr/sbin/locale-gen',
+        require     => [ File['/var/rhizomatica/rccn/config_values.py'],
+        File['/var/lib/locales/supported.d/local'] ],
+        refreshonly => true,
+        }
+  }  
 
   exec { 'notify-freeswitch':
       command     => '/bin/echo 1 > /tmp/FS-dirty',
@@ -262,12 +277,21 @@ class rhizo_base {
       command     => '/usr/bin/sv restart rapi',
       refreshonly => true,
     }
-
-  file { '/var/lib/locales/supported.d/local':
-      ensure      => present,
-      source      => 'puppet:///modules/rhizo_base/var/lib/locales/supported.d/local',
-    }
-
+  
+  if $operatingsystem == 'Ubuntu' {
+    file { '/var/lib/locales/supported.d/local':
+        ensure      => present,
+        source      => 'puppet:///modules/rhizo_base/var/lib/locales/supported.d/local',
+      }
+  }
+  
+  if $operatingsystem == 'Debian' {
+     file { '/etc/locale.gen':
+        ensure      => present,
+        source      => 'puppet:///modules/rhizo_base/etc/locale.gen',
+     }
+  }
+  
   file { '/var/www/html/rai':
       ensure  => link,
       target  => '/var/rhizomatica/rai',
@@ -286,6 +310,18 @@ class rhizo_base {
       pip     => true,
       dev     => true,
     }
+
+  if $operatingsystem == 'Debian' {
+    python::pip { 'twisted':
+        ensure  => '13.1.0',
+        pkgname => 'Twisted',
+      }
+  
+    python::pip { 'corepost':
+        ensure  => 'present',
+        pkgname => 'CorePost',
+      }
+  }
 
   python::pip { 'riak':
       ensure  => '2.0.3',
