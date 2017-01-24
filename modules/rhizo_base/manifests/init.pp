@@ -333,6 +333,11 @@ class rhizo_base {
       pkgname => 'gsm0338',
     }
 
+  python::pip { 'python-ESL':
+      ensure  => 'present',
+      pkgname => 'python-ESL',
+    }
+
   file { '/usr/lib/python2.7/dist-packages':
       ensure  => directory,
       source  => 'puppet:///modules/rhizo_base/usr/lib/python2.7/dist-packages',
