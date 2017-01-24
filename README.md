@@ -51,11 +51,8 @@ To have a working repo, you must also include all the submodules, so then do:
     git submodule init
     git submodule update
 
-  To install on Debian 8, do 
 
-    git checkout whyteks/debian
-
-  [ FIXME: If you want to install on Ubuntu 14.04 you may have to fix some stuff manually. ]
+  [ FIXME: If you want to install on Ubuntu 14.04 or later you may have to fix some stuff manually. ]
 
   **5** - ON CLIENT: Edit `/etc/puppet/puppet.conf` and add the puppet server. The default puppet server is 'puppet' so if you are running puppet master and puppet agent on the same box, you can alternatively point 'puppet' to 127.0.0.1 in /etc/hosts:
 
