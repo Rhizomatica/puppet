@@ -18,7 +18,7 @@ class rhizo_base::packages {
 class rhizo_base::packages::common {
 
   package { ['mosh', 'git', 'openvpn', 'lm-sensors', 'runit', 'sqlite3',
-            'libffi-dev', 'apcupsd', 'expect', 'gawk', 'swig' 'g++' ]:
+            'libffi-dev', 'apcupsd', 'expect', 'gawk', 'swig', 'g++' ]:
       ensure  => installed,
       require => Class['rhizo_base::apt'],
     }
