@@ -45,6 +45,7 @@
     <!-- <load module="mod_skinny"/> -->
     <!-- <load module="mod_khomp"/>   -->
     <!-- <load module="mod_rtmp"/>   -->
+    <load module="mod_sms"/>
 
     <!-- Applications -->
     <load module="mod_commands"/>
