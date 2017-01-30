@@ -17,7 +17,9 @@ class rhizo_base::apt {
 
 class rhizo_base::apt::common {
 
-  class { '::apt': }
+  class { '::apt':
+     always_apt_update    => true,
+  }
 
   file { '/etc/apt/apt.conf.d/90unsigned':
       ensure  => present,

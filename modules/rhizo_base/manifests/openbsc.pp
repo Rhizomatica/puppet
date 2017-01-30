@@ -25,11 +25,16 @@ class rhizo_base::openbsc {
   $bts3_ip_address = $rhizo_base::bts3_ip_address
   $smsc_password   = $rhizo_base::smsc_password
 
-  package { [ 'libosmoabis4', 'libosmocore6',
+  package { [ 'libosmoabis5', 'libosmocore7',
               'libosmoctrl0', 'libosmogsm5',
-              'libosmovty1', 'osmocom-nitb',
-              'osmocom-nitb-dbg']:
+              'libosmovty3' ]:
       ensure   => latest,
+      require  => Class['rhizo_base::apt'],
+      notify   => [ Exec['restart-nitb'] ],
+    }
+
+  package {  [ 'osmocom-nitb' ]:
+      ensure   => '0.15.1-0rhizo3',
       require  => Class['rhizo_base::apt'],
       notify   => [ Exec['hlr_pragma_wal'],
                     Exec['restart-nitb'] ],
