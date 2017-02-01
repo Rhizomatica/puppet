@@ -22,6 +22,7 @@ class rhizo_base {
   $rhizomatica_dir = hiera('rhizo::rhizomatica_dir')
   $sq_hlr_path     = hiera('rhizo::sq_hlr_path')
   $use_sip         = hiera('rhizo::use_sip')
+  $advice_email    = hiera('rhizo::advice_email')
 
   # database
   $pgsql_db   = hiera('rhizo::pgsql_db')
