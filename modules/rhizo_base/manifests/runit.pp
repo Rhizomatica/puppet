@@ -40,6 +40,12 @@ class rhizo_base::runit {
       require => File['/etc/sv'],
     }
 
+  file { '/etc/service/smpp':
+      ensure  => link,
+      target  => '/etc/sv/smpp',
+      require => [ File['/etc/sv'] ],
+    }
+
   file { '/etc/service/lcr':
       ensure  => link,
       target  => '/etc/sv/lcr',
