@@ -293,6 +293,12 @@ class rhizo_base {
         source      => 'puppet:///modules/rhizo_base/etc/locale.gen',
      }
   }
+
+  file { '/var/log/rccn':
+      ensure  => link,
+      target  => '/var/rhizomatica/rccn/log',
+      require => [ Vcsrepo['/var/rhizomatica'] ],
+    }
   
   file { '/var/www/html/rai':
       ensure  => link,
