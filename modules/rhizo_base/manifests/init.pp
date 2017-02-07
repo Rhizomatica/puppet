@@ -213,7 +213,8 @@ class rhizo_base {
       require  => [ File['/var/rhizomatica'], Package['git'] ],
       notify   => [ Exec['locale-gen'],
                     Exec['notify-freeswitch'],
-                    Exec['restart-rapi'] ],
+                    Exec['restart-rapi'],
+                    Exec['restart-smpp'] ],
     }
 
   file { '/var/rhizomatica/bin/get_account_balance.sh':
@@ -277,6 +278,11 @@ class rhizo_base {
 
   exec { 'restart-rapi':
       command     => '/usr/bin/sv restart rapi',
+      refreshonly => true,
+    }
+
+  exec { 'restart-smpp':
+      command     => '/usr/bin/sv restart smpp',
       refreshonly => true,
     }
   
