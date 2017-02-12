@@ -12,7 +12,7 @@ To do this, you need to:
 
   **2** - Create a new user, called `rhizomatica`. This is not needed if you have used the preseed file to do the install.
 
-  **3** - Install  `openssh-server` and `puppet`:
+  **3** - Install  `openssh-server`, `git` and `puppet`:
 
 We install puppet from the puppetlabs repo, so depending on your OS choice, do something like:
 
@@ -30,35 +30,49 @@ Now, update your apt repositories
 
 Install:
 
-	sudo apt-get install openssh-server puppet
+	sudo apt-get install openssh-server git puppet
 
 If you are going to run your own local puppet master:
 
 	sudo apt-get install puppetmaster
 
-  **4** - ON MASTER: Clone this repo into /etc/puppet/environments/[ENVIRONMENT_NAME]
+  **4** - ON MASTER: We'll put this recipe in its own enviroment, so do the following:
 
- The default environment name in puppet is 'production'. It is suggested to use it, therefore *on the Puppet server*, do:
+    cd /etc/puppet
+    mkdir environments
+    mkdir hieradata
+
+ Then you need to add the following lines to the [main] section of your /etc/puppet/puppet.conf:
+
+    environmentpath=$confdir/environments
+    modulepath=/etc/puppet/environments/$environment/modules:/etc/puppet/modules
+
+  Clone this repo into /etc/puppet/environments/[ENVIRONMENT_NAME]
+
+  The default environment name in puppet is 'production'. It is suggested to use it, therefore *on the Puppet server*, do:
 	
 	cd /etc/puppet/environments
 	git clone https://github.com/Rhizomatica/puppet.git production
 
+
   This repo contains all the modules which we are currently using in the Rhizomatica infrastructure. Some of them are directly pulled from [PuppetForge](https://forge.puppetlabs.com) or [github](https://github.com). A bunch are included as submodules, others are directly imported in the repository.
 
-To have a working repo, you must also include all the submodules, so then do:
+To have a working puppet recipe, you must also include all the submodules, so then do:
 
 	cd production
     git submodule init
     git submodule update
 
 
-  [ FIXME: If you want to install on Ubuntu 14.04 or later you may have to fix some stuff manually. ]
-
-  **5** - ON CLIENT: Edit `/etc/puppet/puppet.conf` and add the puppet server. The default puppet server is 'puppet' so if you are running puppet master and puppet agent on the same box, you can alternatively point 'puppet' to 127.0.0.1 in /etc/hosts:
+  **5** - ON CLIENT: Edit `/etc/puppet/puppet.conf` and add the puppet server. The default puppet server name is 'puppet' so if you are running puppet master and puppet agent on the same box, you can alternatively point 'puppet' to 127.0.0.1 in /etc/hosts:
 
     127.0.0.1       puppet
 
-  **6** - ON MASTER: Personalize the hiera file which is going to describe your installation by copying over the template file `hieradata/site_template.yaml` to `<hostname>.yaml` in `/etc/puppet/hieradata`, where `hostname` is the name for the host you are currently configuring.
+  **6** - ON MASTER: Copy the file `hiera.yaml` from `/etc/puppet/environments/production/` to `/etc/puppet/hiera.yaml`. 
+
+  Copy the defaults from `/etc/puppet/environments/production/hieradata/*` to `/etc/puppet/hieradata/`. 
+
+  Personalize the hiera file which is going to describe your installation by copying over the template file `site_template.yaml` to `<hostname>.yaml` in `/etc/puppet/hieradata`, where `hostname` is the name for the host you are currently configuring. 
 
 
   **7** - ON CLIENT: Run puppet for the first time:
@@ -80,7 +94,7 @@ To have a working repo, you must also include all the submodules, so then do:
 
     puppet agent --test
 
-  **10** - Wait and observe, or not, as you wish. :) Depending on the speed of your internet connection some things might take some time. The puppet recipe is still not perfect and may fail due to dependencies on this second run. If this happens, goto step 9 until the puppet run completes cleanly.   
+  **10** - Wait and observe, or not, as you wish. :) Depending on the speed of your internet connection some things might take some time. The puppet recipe is far from perfect and some things will fail due to dependencies on this run. When this happens, goto step 9 until the puppet run completes cleanly, without any errors in red text.
 
   **11** - You should now be running the complete Rhizomatica ecosystem. Principally, The Osmo Network-in-the-Box, Freeswitch, kannel, and all the glue inbetween. You should also see the web interface to administer your mobile network at `http://localhost/rai`
 
