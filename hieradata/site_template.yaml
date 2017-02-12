@@ -23,3 +23,14 @@ rhizo::voip_pin:                   "1234"
 rhizo::voip_proxy:                 "10.10.10.10"
 rhizo::voip_did:                   "12345678901"
 rhizo::voip_cli:                   "12345678901"
+
+#Device Info
+rhizo::bsc_geo_lat:                "0.0"
+rhizo::bsc_geo_lon:                "0.0"
+
+rhizo::bts1_geo_lat:               "0.0"
+rhizo::bts1_geo_lon:               "0.0"
+
+rhizo::link1_ip_address:           "127.0.0.1"
+rhizo::link1_geo_lat:              "0.0"
+rhizo::link1_geo_lon:              "0.0"

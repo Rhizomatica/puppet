@@ -49,6 +49,13 @@ rhizo::deactivate_msg:               "Su servicio ha sido desactivado hasta que 
 
 #OpenBSC config
 rhizo::max_power_red:                "0"
+rhizo::bts_type:                     "litecel"
+
+#Misc
+rhizo::use_ups:                      "no"
+rhizo::use_sip:                      "no"
+rhizo::advice_email:                 "[ 'your@email.address' ]
+
 
 #SSH keys
 sshkeys::keys:
