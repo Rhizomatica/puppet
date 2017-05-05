@@ -25,6 +25,7 @@ class rhizo_base::openbsc {
   $bts3_ip_address = $rhizo_base::bts3_ip_address
   $smsc_password   = $rhizo_base::smsc_password
 
+/*
   package { [ 'libosmoabis5', 'libosmocore7',
               'libosmoctrl0', 'libosmogsm5',
               'libosmovty3' ]:
@@ -60,10 +61,11 @@ class rhizo_base::openbsc {
       enable  => false,
       require => Package['osmocom-nitb'],
     }
+*/
 
   file { '/etc/osmocom/osmo-nitb.cfg':
       content => template('rhizo_base/osmo-nitb.cfg.erb'),
-      require => Package['osmocom-nitb'],
+      #require => Package['osmocom-nitb'],
       notify  => Exec['restart-nitb'],
     }
 

@@ -18,7 +18,7 @@ class rhizo_base::apt {
 class rhizo_base::apt::common {
 
   class { '::apt':
-     always_apt_update    => true,
+     always_apt_update    => false,
   }
 
   file { '/etc/apt/apt.conf.d/90unsigned':
@@ -48,17 +48,9 @@ class rhizo_base::apt::ubuntu inherits rhizo_base::apt::common {
   apt::ppa { 'ppa:ondrej/php': }
   apt::ppa { 'ppa:ondrej/apache2': }
 
-  apt::source { 'icinga':
-      location    => 'https://packages.icinga.org/ubuntu',
-      release     => 'icinga-precise',
-      repos       => 'main',
-      key_source  => 'https://packages.icinga.org/icinga.key',
-      include_src => false,
-    }
-
   apt::source { 'nodesource':
       location    => 'https://deb.nodesource.com/node_0.10',
-      release     => 'precise',
+      release     => 'trusty',
       repos       => 'main',
       key_source  => 'https://deb.nodesource.com/gpgkey/nodesource.gpg.key'
     }

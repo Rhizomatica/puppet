@@ -18,10 +18,10 @@ class rhizo_base::packages {
 class rhizo_base::packages::common {
 
   package { ['mosh', 'git', 'openvpn', 'lm-sensors', 'runit', 'sqlite3',
-            'libffi-dev', 'apcupsd', 'expect', 'gawk', 'swig', 'g++',
-            'python-python-smpplib', 'libcdk5' ]:
+            'libffi-dev', 'apcupsd', 'expect', 'gawk',
+            'python-python-smpplib', 'python-python-esl', 'libcdk5' ]:
       ensure  => installed,
-      require => Class['rhizo_base::apt'],
+      #require => Class['rhizo_base::apt'],
     }
 
 }
@@ -29,7 +29,7 @@ class rhizo_base::packages::common {
 class rhizo_base::packages::ubuntu inherits rhizo_base::packages::common {
 
   package { ['puppet', 'puppet-common']:
-      ensure  => '3.8.1-1puppetlabs1',
+      ensure  => '3.8.7-1puppetlabs1',
     }
 
 #Apache2 + PHP + Python

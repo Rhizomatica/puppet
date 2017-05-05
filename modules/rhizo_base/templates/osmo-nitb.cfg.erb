@@ -42,9 +42,6 @@ log stderr
   logging level lsms debug
   logging level lctrl notice
   logging level lgtp notice
-  logging level lstats notice
-  logging level lgsup notice
-  logging level loap notice
 !
 line vty
  no login
@@ -103,7 +100,7 @@ network
   channel-descrption bs-pa-mfrms 5
   channel-descrption bs-ag-blks-res 1
   rach emergency call allowed 1
-  ip.access unit_id 1000 0
+  ip.access unit_id 1801 0
   oml ip.access stream_id 255 line 0
   neighbor-list mode automatic
   codec-support fr
@@ -112,11 +109,11 @@ network
   trx 0
    rf_locked 0
    arfcn <%= @arfcn_A %>
-   nominal power 37
+   nominal power 35
    max_power_red <%= @max_power_red %>
    rsl e1 tei 0
     timeslot 0
-     phys_chan_config CCCH
+     phys_chan_config CCCH+SDCCH4
      hopping enabled 0
     timeslot 1
      phys_chan_config SDCCH8
@@ -140,41 +137,17 @@ network
      phys_chan_config TCH/F
      hopping enabled 0
 <% if @arfcn_B -%>
- bts 1
-  type sysmobts
-  band GSM850
-  cell_identity 1
-  location_area_code <%= @lac %>
-  base_station_id_code 63
-  ms max power 33
-  cell reselection hysteresis 14
-  rxlev access min 0
-  periodic location update 30
-  channel allocator ascending
-  rach tx integer 9
-  rach max transmission 7
-  channel-descrption attach 1
-  channel-descrption bs-pa-mfrms 5
-  channel-descrption bs-ag-blks-res 1
-  rach emergency call allowed 1
-  ip.access unit_id 1000 1
-  oml ip.access stream_id 255 line 0
-  neighbor-list mode automatic
-  codec-support fr
-  gprs mode none
-  no force-combined-si
-  depends-on-bts 0
-  trx 0
+  trx 1
    rf_locked 0
    arfcn <%= @arfcn_B %>
-   nominal power 37
+   nominal power 35
    max_power_red <%= @max_power_red %>
    rsl e1 tei 0
     timeslot 0
-     phys_chan_config CCCH
+     phys_chan_config TCH/F
      hopping enabled 0
     timeslot 1
-     phys_chan_config SDCCH8
+     phys_chan_config TCH/F
      hopping enabled 0
     timeslot 2
      phys_chan_config TCH/F
@@ -414,11 +387,9 @@ network
      hopping enabled 0
 <% end -%>
 mncc-int
- default-codec tch-f fr
- default-codec tch-h hr
+  meas-feed destination 127.0.0.1 8888
 nitb
  subscriber-create-on-demand
- no assign-tmsi
 smpp
  local-tcp-port 2775
  policy closed

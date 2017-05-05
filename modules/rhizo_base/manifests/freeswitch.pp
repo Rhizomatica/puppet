@@ -16,6 +16,8 @@ class rhizo_base::freeswitch {
 
 class rhizo_base::freeswitch::ubuntu inherits rhizo_base::freeswitch::common {
 
+/*
+
   file { '/usr/lib/freeswitch/mod/mod_g729.so':
       source  => 'puppet:///modules/rhizo_base/mod_g729.so',
       require => Package['freeswitch'],
@@ -32,11 +34,14 @@ class rhizo_base::freeswitch::ubuntu inherits rhizo_base::freeswitch::common {
       enable  => false,  
       require => Package['freeswitch']
     }
+*/
 
 }
 
 class rhizo_base::freeswitch::debian inherits rhizo_base::freeswitch::common {
 
+
+/*
   include systemd
 
   package {
@@ -64,6 +69,8 @@ class rhizo_base::freeswitch::debian inherits rhizo_base::freeswitch::common {
     source => "puppet:///modules/rhizo_base/freeswitch.tmpfile",
   }
 
+*/
+
 }
 
 class rhizo_base::freeswitch::common {
@@ -80,6 +87,8 @@ class rhizo_base::freeswitch::common {
   $voip_fromuser  = $rhizo_base::voip_fromuser
   $voip_password  = $rhizo_base::voip_password
   $voip_proxy     = $rhizo_base::voip_proxy
+  
+/*
 
   package {
     ['freeswitch', 'freeswitch-lang-en',
@@ -109,16 +118,36 @@ class rhizo_base::freeswitch::common {
       require => Class['rhizo_base::apt'],
     }
 
-  file { '/etc/freeswitch':
-      ensure  => directory,
-      source  => 'puppet:///modules/rhizo_base/etc/freeswitch',
-      recurse => remote,
-      require => Package['freeswitch'],
+*/
+
+  file { '/etc/freeswitch/sip_profiles/internalvpn.xml':
+      source  => 'puppet:///modules/rhizo_base/etc/freeswitch/sip_profiles/internalvpn.xml'
     }
+
+  file { '/etc/freeswitch/autoload_configs/switch.conf.xml':
+      source  => 'puppet:///modules/rhizo_base/etc/freeswitch/autoload_configs/switch.conf.xml'
+    }
+
+  file { '/etc/freeswitch/autoload_configs/modules.conf.xml':
+      source  => 'puppet:///modules/rhizo_base/etc/freeswitch/autoload_configs/modules.conf.xml'
+    }
+
+  file { '/etc/freeswitch/dialplan':
+        ensure  => directory,
+        source  => 'puppet:///modules/rhizo_base/etc/freeswitch/dialplan',
+	recurse => remote
+      }
+
+  file { '/etc/freeswitch/chatplan':
+        ensure  => directory,
+        source  => 'puppet:///modules/rhizo_base/etc/freeswitch/chatplan',
+	recurse => remote
+      }
+
 
   file { '/etc/freeswitch/vars.xml':
       content => template('rhizo_base/vars.xml.erb'),
-      require => Package['freeswitch'],
+      #require => Package['freeswitch'],
     }
 
   file {'/etc/freeswitch/sip_profiles/external':
@@ -128,12 +157,12 @@ class rhizo_base::freeswitch::common {
   file { '/etc/freeswitch/sip_profiles/external/provider.xml':
       content => template('rhizo_base/provider.xml.erb'),
       require =>
-                [ Package['freeswitch'],
-                File['/etc/freeswitch/sip_profiles/external'] ],
+      #          [ Package['freeswitch'],
+                File['/etc/freeswitch/sip_profiles/external']
     }
 
   file { '/etc/freeswitch/autoload_configs/cdr_pg_csv.conf.xml':
       content => template('rhizo_base/cdr_pg_csv.conf.xml.erb'),
-      require => Package['freeswitch'],
+      #require => Package['freeswitch'],
     }
 }

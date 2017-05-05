@@ -18,22 +18,6 @@ class rhizo_base::runit {
       require => Class['rhizo_base::packages'],
     }
 
-  file { '/etc/service/osmo-nitb':
-      ensure  => link,
-      target  => '/etc/sv/osmo-nitb',
-      require =>
-        [ File['/etc/sv'], Class['rhizo_base::openbsc'] ],
-    }
-
-  if $operatingsystem != 'Debian' {
-    file { '/etc/service/freeswitch':
-        ensure  => link,
-        target  => '/etc/sv/freeswitch',
-        require =>
-          [ File['/etc/sv'], Class['rhizo_base::freeswitch'] ],
-      }
-  }
-
   file { '/etc/service/rapi':
       ensure  => link,
       target  => '/etc/sv/rapi',
@@ -44,12 +28,6 @@ class rhizo_base::runit {
       ensure  => link,
       target  => '/etc/sv/smpp',
       require => [ File['/etc/sv'] ],
-    }
-
-  file { '/etc/service/lcr':
-      ensure  => link,
-      target  => '/etc/sv/lcr',
-      require => [ File['/etc/sv'], Class['rhizo_base::lcr'] ],
     }
 
   file { '/etc/service/kiwi':

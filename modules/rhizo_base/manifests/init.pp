@@ -62,6 +62,7 @@ class rhizo_base {
   $vpn_ip_address = hiera('rhizo::vpn_ip_address')
   $wan_ip_address = hiera('rhizo::wan_ip_address')
   $riak_ip_address = hiera('rhizo::riak_ip_address', $vpn_ip_address)
+  $mncc_ip_address = hiera('rhizo::mncc_ip_address', "172.16.0.1")
 
   # SITE settings
   # rate type can be "call" or "min"
@@ -146,25 +147,25 @@ class rhizo_base {
   $link5_geo_lat        = hiera('rhizo::link5_geo_lat', false)
   $link5_geo_lon        = hiera('rhizo::link5_geo_lon', false)
 
-  include ntp
+#  include ntp
   include kannel
   include sshkeys
-  include rhizo_base::fixes
+#  include rhizo_base::fixes
   include rhizo_base::apt
   include rhizo_base::postgresql
-  if $operatingsystem != 'Debian' {
-    include rhizo_base::riak
-  }
+#  if $operatingsystem != 'Debian' {
+#    include rhizo_base::riak
+#  }
   include rhizo_base::packages
   include rhizo_base::freeswitch
   include rhizo_base::runit
   include rhizo_base::openbsc
-  include rhizo_base::lcr
-  include rhizo_base::sudo
-  include rhizo_base::users
-  if $operatingsystem != 'Debian' {
-    include rhizo_base::icinga
-  }
+#  include rhizo_base::lcr
+#  include rhizo_base::sudo
+#  include rhizo_base::users
+#  if $operatingsystem != 'Debian' {
+#    include rhizo_base::icinga
+#  }
   include rhizo_base::kiwi
 
 
@@ -347,10 +348,10 @@ class rhizo_base {
       pkgname => 'gsm0338',
     }
 
-  python::pip { 'python-ESL':
-      ensure  => 'present',
-      pkgname => 'python-ESL',
-    }
+#  python::pip { 'python-ESL':
+#      ensure  => 'present',
+#      pkgname => 'python-ESL',
+#    }
 
   file { '/usr/lib/python2.7/dist-packages':
       ensure  => directory,
