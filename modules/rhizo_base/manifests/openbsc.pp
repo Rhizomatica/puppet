@@ -64,13 +64,18 @@ class rhizo_base::openbsc {
   file { '/etc/osmocom/osmo-nitb.cfg':
       content => template('rhizo_base/osmo-nitb.cfg.erb'),
       require => Package['osmocom-nitb'],
-      notify  => Exec['restart-nitb'],
+      notify  => Exec['notify-nitb'],
     }
 
   exec { 'hlr_pragma_wal':
       command     =>
         '/usr/bin/sqlite3 /var/lib/osmocom/hlr.sqlite3 "PRAGMA journal_mode=wal;"',
       require     => Class['rhizo_base::packages'],
+      refreshonly => true,
+    }
+
+  exec { 'notify-nitb':
+      command     => '/bin/echo 1 > /tmp/OSMO-dirty',
       refreshonly => true,
     }
 
