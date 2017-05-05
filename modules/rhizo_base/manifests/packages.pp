@@ -36,7 +36,7 @@ class rhizo_base::packages::ubuntu inherits rhizo_base::packages::common {
   package { ['apache2','libapache2-mod-php5.6',
   'rrdtool', 'python-twisted-web', 'python-psycopg2',
   'python-pysqlite2', 'php5.6', 'php5.6-pgsql',
-  'php5.6-curl', 'php5.6-cli', 'php5.6-gd', 'python-corepost',
+  'php5.6-curl', 'php5.6-cli', 'php5.6-gd', 'python-corepost', 'php5.6-xml',
   'python-yaml', 'python-formencode', 'python-unidecode',
   'python-dateutil']:
       ensure  => installed,
