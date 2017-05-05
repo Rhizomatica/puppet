@@ -71,22 +71,6 @@ class rhizo_base::riak {
       }
     }
 
-  if $vpn_ip_address == $riak_ip_address {
-    file { '/etc/init.d/riak':
-        ensure  => file,
-        owner   => 'root',
-        group   => 'root',
-        mode    => '0755',
-        source  => 'puppet:///modules/rhizo_base/etc/init.d/riak',
-        require => Class['::riak'],
-        notify  => Exec['insserv'],
-      }
-  } else {
-      file { '/etc/init.d/riak':
-        ensure  => absent,
-      }
-  }
-
   exec { 'insserv':
       command     => '/usr/lib/insserv/insserv',
       refreshonly => true,

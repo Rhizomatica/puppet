@@ -153,9 +153,6 @@ class rhizo_base {
   include rhizo_base::fixes
   include rhizo_base::apt
   include rhizo_base::postgresql
-  if $operatingsystem != 'Debian' {
-    include rhizo_base::riak
-  }
   include rhizo_base::packages
   include rhizo_base::freeswitch
   include rhizo_base::runit
@@ -168,6 +165,24 @@ class rhizo_base {
   }
   include rhizo_base::kiwi
 
+  if $vpn_ip_address == $riak_ip_address {
+    if $operatingsystem != 'Debian' {
+      file { '/etc/init.d/riak':
+          ensure  => file,
+          owner   => 'root',
+          group   => 'root',
+          mode    => '0755',
+          source  => 'puppet:///modules/rhizo_base/etc/init.d/riak',
+          require => Class['::riak'],
+          notify  => Exec['insserv'],
+        }
+        include rhizo_base::riak
+    }
+  } else {
+      file { '/etc/init.d/riak':
+        ensure  => absent,
+      }
+  }
 
 #Rizhomatica scripts
   file { '/home/rhizomatica/bin':
@@ -180,6 +195,11 @@ class rhizo_base {
   file { '/home/rhizomatica/bin/vars.sh':
       ensure  => present,
       content => template('rhizo_base/vars.sh.erb'),
+    }
+
+  file { "/etc/profile.d/rccn-functions.sh":
+      ensure  => present,
+      content  => template('rhizo_base/rccn-functions.sh.erb'),
     }
 
   file { '/var/rhizomatica':
