@@ -23,6 +23,7 @@ class rhizo_base {
   $sq_hlr_path     = hiera('rhizo::sq_hlr_path')
   $use_sip         = hiera('rhizo::use_sip')
   $advice_email    = hiera('rhizo::advice_email')
+  $charge_scheme   = hiera('rhizo::charge_scheme', 'normal')
 
   # database
   $pgsql_db   = hiera('rhizo::pgsql_db')
