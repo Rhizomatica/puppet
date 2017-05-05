@@ -46,6 +46,10 @@ If you are going to run your own local puppet master:
 
     environmentpath=$confdir/environments
     modulepath=/etc/puppet/environments/$environment/modules:/etc/puppet/modules
+ 
+ In order to support the syntax of some submodules we use, you also need to add this line to the [master] section of /etc/puppet/puppet.conf:
+
+    parser=future
 
   Clone this repo into /etc/puppet/environments/[ENVIRONMENT_NAME]
 
