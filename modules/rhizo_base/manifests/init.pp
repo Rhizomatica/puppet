@@ -218,7 +218,7 @@ class rhizo_base {
       ensure  => directory,
       owner   => 'postgres',
       group   => 'postgres',
-      require => File['/var/rhizo_backups'],
+      require => [ File['/var/rhizo_backups'], Class['rhizo_base::postgresql'] ],
     }
 
   file { '/var/rhizo_backups/sqlite':
