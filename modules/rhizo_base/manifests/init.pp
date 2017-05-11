@@ -212,6 +212,7 @@ class rhizo_base {
 
   file { '/var/www/html':
       ensure  => directory,
+      require => Package['apache2'],
     }
 
   file { '/var/rhizo_backups/postgresql':
