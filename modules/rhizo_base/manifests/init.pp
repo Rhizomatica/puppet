@@ -373,6 +373,11 @@ class rhizo_base {
       pkgname => 'python-ESL',
     }
 
+  python::pip { 'csvkit':
+      ensure  => 'present',
+      pkgname => 'csvkit',
+    }
+
   file { '/usr/lib/python2.7/dist-packages':
       ensure  => directory,
       source  => 'puppet:///modules/rhizo_base/usr/lib/python2.7/dist-packages',
