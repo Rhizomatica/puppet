@@ -64,7 +64,7 @@ PYTHONPATH=$PYTHONPATH:/var/rhizomatica/rccn
   30  3  *   *   *      root /home/rhizomatica/bin/check_dirty.sh
 
 #PostgreSQL backup
-  0  3    *   *   *     postgres /home/rhizomatica/bin/pg_backup_rotated.sh
+  0  3    *   *   *     postgres /home/rhizomatica/bin/pg_backup_rotated.sh > /dev/null 2>&1
 
 #SQLite backup
-  0  4    *   *   *     root /home/rhizomatica/bin/sqlite_backup_rotated.sh
+  0  4    *   *   *     root /home/rhizomatica/bin/sqlite_backup_rotated.sh > /dev/null 2>&1
