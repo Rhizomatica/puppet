@@ -1,0 +1,59 @@
+# 
+# Shell Functions for Rhizomatica Community Celular Network
+#
+
+OSMO_HLR="<%= @sq_hlr_path %>"
+DID="<%= @voip_did %>"
+
+waitfor0calls () {
+  while (( $((`fs_cli -x "show calls count" | awk  '$1{print $1}'`)) > 0 ))
+  do
+    sleep  1
+  done 
+}
+
+chans () {
+  while [ 1 == 1 ]
+  do
+    _output=`fs_cli -x 'show channels' | csvcut -c 3,2,6,8,10,11,13,15,18 | csvlook -I`
+    clear
+    echo  "$_output"
+    sleep 1
+  done 
+}
+
+topcalls () {
+  while [ 1 == 1 ] 
+  do 
+    clear
+    fs_cli -x "show calls" \
+    | gawk -F, '!/uuid/ && !/^$/ && !/total/ { printf $8 "("$28") calls "$10"("$30") for %02d:%02d:%02d \t Call State: "$6"/"$13"/"$33 "\n",(systime()-$4)/60/60%24,(systime()-$4)/60%60,(systime()-$4)%60 }' \
+    | sed "s/$DID/DID/g" \
+    | sort -r -k5
+    echo "show lchan " | nc -q1 localhost 4242 | awk 'BEGIN { RS = "BTS"; FS = "\n" } /TCH/ {print $7"\t\t\t\t BTS"$1} '  
+    sleep $1
+  done
+}
+
+nitb() {
+  /usr/bin/expect -c 'spawn telnet localhost 4242;send "enable\r";send "logging enable\r";send "logging level all everything\r";send "logging print category 1\r";send "logging level smpp fatal\r"; send "logging filter all 1\r"; interact'
+}
+
+hlr() {
+  sudo /usr/bin/sqlite3 -column -header $OSMO_HLR
+}
+
+rk_ext() {
+  IMSI=$(curl -X GET http://10.23.0.3:8098/buckets/hlr/index/msisdn_bin/$1 2>/dev/null| sed -e 's/[^0-9]//g')
+  echo $IMSI
+  rk_imsi $IMSI
+}
+
+rk_imsi() {
+  JSON=$(curl -X GET http://10.23.0.3:8098/buckets/hlr/keys/$1 2>/dev/null)
+  echo $JSON
+  echo -n "That's a Last Update of: "
+  echo $JSON | cut -d\  -f6 | gawk '{print strftime("%c", $0, 1)}'
+  echo 
+}
+
