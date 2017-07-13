@@ -132,6 +132,11 @@ class rhizo_base::freeswitch::common {
       source  => 'puppet:///modules/rhizo_base/etc/freeswitch/autoload_configs/modules.conf.xml'
     }
 
+  file { '/etc/freeswitch/autoload_configs/acl.conf.xml':
+      source  => 'puppet:///modules/rhizo_base/etc/freeswitch/autoload_configs/acl.conf.xml'
+    }
+
+
   file { '/etc/freeswitch/dialplan':
         ensure  => directory,
         source  => 'puppet:///modules/rhizo_base/etc/freeswitch/dialplan',
