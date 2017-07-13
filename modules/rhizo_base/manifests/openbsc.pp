@@ -15,6 +15,7 @@ class rhizo_base::openbsc {
   $auth_policy     = $rhizo_base::auth_policy
   $lac             = $rhizo_base::lac
   $max_power_red   = $rhizo_base::max_power_red
+  $band            = $rhizo_base::band
   $arfcn_A         = $rhizo_base::arfcn_A
   $arfcn_B         = $rhizo_base::arfcn_B
   $arfcn_C         = $rhizo_base::arfcn_C

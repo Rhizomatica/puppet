@@ -44,6 +44,7 @@ class rhizo_base {
   $bts1_ip_address = hiera('rhizo::bts1_ip_address')
   $arfcn_A         = hiera('rhizo::arfcn_A')
   $arfcn_B         = hiera('rhizo::arfcn_B', false)
+  $band            = hiera('rhizo::band')
   $bts1_name       = hiera('rhizo::bts1_name', "${site_name}_1")
 
   $bts2_ip_address = hiera('rhizo::bts2_ip_address', false)
@@ -63,6 +64,7 @@ class rhizo_base {
   $wan_ip_address = hiera('rhizo::wan_ip_address')
   $riak_ip_address = hiera('rhizo::riak_ip_address', $vpn_ip_address)
   $mncc_ip_address = hiera('rhizo::mncc_ip_address', "172.16.0.1")
+  $sip_central_ip_address = hiera('rhizo::sip_central_ip_address')
 
   # SITE settings
   # rate type can be "call" or "min"
