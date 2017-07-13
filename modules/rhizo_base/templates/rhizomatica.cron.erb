@@ -60,11 +60,14 @@ PYTHONPATH=$PYTHONPATH:/var/rhizomatica/rccn
 #Restart osmo-nitb every 6 hours (This wasn't working anyway. If it is needed, do something more elegant!)
 #  0 */6   *   *   *     root /usr/bin/sv restart osmo-nitb 2>&1 > /dev/null
 
+# It's a new day....
+  30  5  *   *   *      root /home/rhizomatica/bin/check_broken.sh
+
 # Check if FS or NTIB needs restart
   30  3  *   *   *      root /home/rhizomatica/bin/check_dirty.sh
 
 #PostgreSQL backup
-  0  3    *   *   *     postgres /home/rhizomatica/bin/pg_backup_rotated.sh
+  0  3    *   *   *     postgres /home/rhizomatica/bin/pg_backup_rotated.sh > /dev/null 2>&1
 
 #SQLite backup
-  0  4    *   *   *     root /home/rhizomatica/bin/sqlite_backup_rotated.sh
+  0  4    *   *   *     root /home/rhizomatica/bin/sqlite_backup_rotated.sh > /dev/null 2>&1
