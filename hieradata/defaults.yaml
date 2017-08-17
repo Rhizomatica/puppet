@@ -54,7 +54,8 @@ rhizo::bts_type:                     "litecel"
 #Misc
 rhizo::use_ups:                      "no"
 rhizo::use_sip:                      "no"
-rhizo::advice_email:                 "[ 'your@email.address' ]
+rhizo::advice_email:                 "[ 'your@email.address' ]"
+rhizo::sip_central_ip_address:       "127.0.0.1"
 
 
 #SSH keys
