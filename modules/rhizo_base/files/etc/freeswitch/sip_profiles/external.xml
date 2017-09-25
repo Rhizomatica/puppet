@@ -54,7 +54,7 @@
 
     <param name="aggressive-nat-detection" value="true"/>
     <param name="nat-options-ping" value="true"/>
-    <param name="inbound-codec-negotiation" value="generous"/>
+    <param name="inbound-codec-negotiation" value="greedy"/>
     <param name="nonce-ttl" value="60"/>
     <param name="auth-calls" value="false"/>
     <param name="inbound-late-negotiation" value="true"/>
@@ -66,7 +66,7 @@
     <param name="sip-ip" value="$${external_ip}"/>
     <param name="ext-rtp-ip" value="$${external_ip}"/>
     <param name="ext-sip-ip" value="$${external_ip}"/>
-    <param name="rtp-timeout-sec" value="30"/>
+    <param name="rtp-timeout-sec" value="90"/>
     <param name="rtp-hold-timeout-sec" value="1800"/>
     <!--<param name="enable-3pcc" value="true"/>-->
 
