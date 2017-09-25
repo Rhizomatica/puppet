@@ -80,6 +80,7 @@ class rhizo_base::freeswitch::common {
   $voip_fromuser  = $rhizo_base::voip_fromuser
   $voip_password  = $rhizo_base::voip_password
   $voip_proxy     = $rhizo_base::voip_proxy
+  $sip_central_ip_address = $rhizo_base::sip_central_ip_address
 
   package {
     ['freeswitch', 'freeswitch-lang-en',
@@ -132,8 +133,46 @@ class rhizo_base::freeswitch::common {
                 File['/etc/freeswitch/sip_profiles/external'] ],
     }
 
+  file {'/etc/freeswitch/sip_profiles/outgoing':
+      ensure  => directory,
+    }
+
+  file { '/etc/freeswitch/sip_profiles/outgoing/rhizomatica.xml':
+      content => template('rhizo_base/rhizomatica.xml.erb'),
+      require =>
+                [ Package['freeswitch'],
+                File['/etc/freeswitch/sip_profiles/outgoing'] ],
+    }
+
   file { '/etc/freeswitch/autoload_configs/cdr_pg_csv.conf.xml':
       content => template('rhizo_base/cdr_pg_csv.conf.xml.erb'),
       require => Package['freeswitch'],
     }
+
+  # SSH Deploy key and config for gitlab
+  file { '/root/.ssh/bsc_dev':
+      ensure  => present,
+      mode    => '0600',
+      content => hiera('rhizo::bsc_dev_deploy_key'),
+  }
+
+  file { '/root/.ssh/config':
+      ensure => present,
+      source => 'puppet:///modules/rhizo_base/ssh/config',
+  }
+
+  sshkey { 'dev_host_key':
+      name   => 'dev.rhizomatica.org',
+      ensure => present,
+      key    => hiera('rhizo::dev_host_key'),
+      type   => 'ssh-rsa',
+  }
+
+  vcsrepo { '/usr/share/freeswitch/sounds/rccn':
+    ensure    => latest,
+    provider  => git,
+    source    => 'git@dev.rhizomatica.org:rhizomatica/ticac_sounds.git',
+    require   => File['/root/.ssh/bsc_dev'],
+  }
+
 }
