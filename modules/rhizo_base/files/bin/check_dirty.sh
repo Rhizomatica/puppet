@@ -9,7 +9,7 @@ if [ -a /tmp/FS-dirty -o -a /tmp/OSMO-dirty ]; then
         waitfor0calls
         if [ -a /tmp/FS-dirty ] ; then
           logc "Freeswitch is tagged for restart due to RCCN update"
-          sv restart freeswitch
+          /usr/bin/fs_cli -x "fsctl shutdown asap"
           rm /tmp/FS-dirty
           logc "freeswitch restarted"
         fi
