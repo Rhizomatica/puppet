@@ -1,4 +1,6 @@
 # Site specific info
+# For value with IP address, you should configure
+# a valid IP address for your system.
 rhizo::bts1_ip_address:            "172.16.0.11"
 rhizo::site_name:                  "Site"
 rhizo::postcode:                   "12345"
