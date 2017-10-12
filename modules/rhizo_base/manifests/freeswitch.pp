@@ -86,7 +86,6 @@ class rhizo_base::freeswitch::common {
     ['freeswitch', 'freeswitch-lang-en',
     'freeswitch-mod-amr', 'freeswitch-mod-amrwb',
     'freeswitch-mod-b64', 'freeswitch-mod-bv',
-    'freeswitch-mod-cluechoo',
     'freeswitch-mod-commands', 'freeswitch-mod-conference',
     'freeswitch-mod-console', 'freeswitch-mod-db',
     'freeswitch-mod-dialplan-asterisk', 'freeswitch-mod-dialplan-xml',
