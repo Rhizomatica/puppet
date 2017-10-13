@@ -45,7 +45,6 @@ class rhizo_base::freeswitch::debian inherits rhizo_base::freeswitch::common {
       require => Class['rhizo_base::apt'],   
   }
 
-
   file { '/usr/lib/freeswitch/mod/mod_cdr_pg_csv.so':
       source  => 'puppet:///modules/rhizo_base/usr/lib/freeswitch/mod/mod_cdr_pg_csv.so',
       require => Package['freeswitch'],
@@ -54,6 +53,12 @@ class rhizo_base::freeswitch::debian inherits rhizo_base::freeswitch::common {
   file { '/etc/default/freeswitch':
       source  => 'puppet:///modules/rhizo_base/etc/default/freeswitch',
       require => Package['freeswitch'],
+    }
+
+  file { '/var/run/freeswitch':
+      ensure => directory,
+      owner   => 'freeswitch',
+      group   => 'freeswitch',
     }
 
   systemd::unit_file { 'freeswitch.service':
