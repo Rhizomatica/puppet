@@ -340,6 +340,10 @@ class rhizo_base {
       require => Vcsrepo['/var/rhizomatica'],
     }
 
+  file { '/root/.ssh':
+      ensure => directory
+    }
+
 #Python modules
   class { 'python':
       version => 'system',
