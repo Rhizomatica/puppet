@@ -39,7 +39,8 @@ class rhizo_base {
   $network_name    = hiera('rhizo::network_name')
   $auth_policy     = hiera('rhizo::auth_policy')
   $lac             = hiera('rhizo::lac')
-
+  $gprs             = hiera('rhizo::gprs')
+  
   #BTSs configuration
   $bts_type        = hiera('rhizo::bts_type')
   $bts1_ip_address = hiera('rhizo::bts1_ip_address')
@@ -174,10 +175,10 @@ class rhizo_base {
           group   => 'root',
           mode    => '0755',
           source  => 'puppet:///modules/rhizo_base/etc/init.d/riak',
-          require => Class['::riak'],
-          notify  => Exec['insserv'],
+          #require => Class['::riak'],
+          #notify  => Exec['insserv'],
         }
-        include rhizo_base::riak
+        #include rhizo_base::riak
     }
   } else {
       file { '/etc/init.d/riak':

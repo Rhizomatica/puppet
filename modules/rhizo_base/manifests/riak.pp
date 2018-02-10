@@ -23,7 +23,7 @@ class rhizo_base::riak {
   class { '::riak':
       package_name   => 'riak',   # default
       service_name   => 'riak',   # default
-      manage_package => true,     # default
+      manage_package => false,     # default
       manage_repo    => false,
       version        => 'latest', # default, use a package version if desired
       # settings in the settings hash are written directly to settings.conf.

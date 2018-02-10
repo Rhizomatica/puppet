@@ -24,6 +24,7 @@ class rhizo_base::openbsc {
   $bts2_ip_address = $rhizo_base::bts2_ip_address
   $bts3_ip_address = $rhizo_base::bts3_ip_address
   $smsc_password   = $rhizo_base::smsc_password
+  $gprs            = $rhizo_base::gprs
 
   package { [ 'libosmoabis5', 'libosmocore8',
               'libosmoctrl0', 'libosmogsm7',
