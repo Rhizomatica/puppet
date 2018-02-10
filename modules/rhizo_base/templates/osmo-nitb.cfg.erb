@@ -1,5 +1,5 @@
 !
-! OpenBSC (0.13.0) configuration saved from vty
+! OpenBSC (0.15.1-dirty) configuration saved from vty
 !!
 password foo
 !
@@ -33,6 +33,9 @@ log stderr
   logging level ctrl notice
   logging level smpp fatal
   logging level filter notice
+  logging level ranap debug
+  logging level sua debug
+  logging level pcu debug
   logging level lglobal notice
   logging level llapd notice
   logging level linp notice
@@ -45,6 +48,13 @@ log stderr
   logging level lstats notice
   logging level lgsup notice
   logging level loap notice
+  logging level lss7 notice
+  logging level lsccp notice
+  logging level lsua notice
+  logging level lm3ua notice
+  logging level lmgcp notice
+!
+stats interval 5
 !
 line vty
  no login
@@ -58,7 +68,8 @@ network
  mobile network code 7
  short name <%= @network_name %>
  long name <%= @network_name %>
- auth policy <%= @auth_policy %>
+ auth policy closed
+ authorized-regexp .*
  location updating reject cause 13
  encryption a5 0
  neci 1
@@ -72,22 +83,21 @@ network
  handover power budget interval 6
  handover power budget hysteresis 3
  handover maximum distance 9999
- timer t3101 10
  timer t3109 4
- timer t3113 60
- timer t3122 10
- dtx-used 0
+ dyn_ts_allow_tch_f 0
  subscriber-keep-in-ram 0
  bts 0
   type sysmobts
+  description MasterBTS
   band GSM850
   cell_identity 0
   location_area_code <%= @lac %>
   base_station_id_code 63
-  ms max power 33
+  ms max power 5
   cell reselection hysteresis 14
   rxlev access min 0
   periodic location update 30
+  radio-link-timeout 32
   channel allocator ascending
   rach tx integer 9
   rach max transmission 7
@@ -95,42 +105,79 @@ network
   channel-descrption bs-pa-mfrms 5
   channel-descrption bs-ag-blks-res 1
   rach emergency call allowed 1
+  early-classmark-sending forbidden
   ip.access unit_id 1000 0
   oml ip.access stream_id 255 line 0
   neighbor-list mode automatic
-  codec-support fr
+  codec-support fr amr
+  amr tch-f modes 3
+  amr tch-f start-mode auto
+  amr tch-h modes 3
+  amr tch-h start-mode auto
   gprs mode none
+  gprs mode gprs
+  gprs 11bit_rach_support_for_egprs 0
+  gprs routing area 0
+  gprs network-control-order nc0
+  gprs cell bvci 2
+  gprs cell timer blocking-timer 3
+  gprs cell timer blocking-retries 3
+  gprs cell timer unblocking-retries 3
+  gprs cell timer reset-timer 3
+  gprs cell timer reset-retries 3
+  gprs cell timer suspend-timer 10
+  gprs cell timer suspend-retries 3
+  gprs cell timer resume-timer 10  
+  gprs cell timer resume-retries 3 
+  gprs cell timer capability-update-timer 10
+  gprs cell timer capability-update-retries 3
+  gprs nsei 951
+  gprs ns timer tns-block 3
+  gprs ns timer tns-block-retries 3
+  gprs ns timer tns-reset 3
+  gprs ns timer tns-reset-retries 3
+  gprs ns timer tns-test 30
+  gprs ns timer tns-alive 3
+  gprs ns timer tns-alive-retries 10
+  gprs nsvc 0 nsvci 951
+  gprs nsvc 0 local udp port 23000
+  gprs nsvc 0 remote udp port 23001
+  gprs nsvc 0 remote ip 127.0.0.1  
+  gprs nsvc 1 nsvci 0
+  gprs nsvc 1 local udp port 0
+  gprs nsvc 1 remote udp port 0
+  gprs nsvc 1 remote ip 0.0.0.0
   no force-combined-si
   trx 0
    rf_locked 0
    arfcn <%= @arfcn_A %>
    nominal power 37
-   max_power_red <%= @max_power_red %>
+   max_power_red 24
    rsl e1 tei 0
-    timeslot 0
-     phys_chan_config CCCH
-     hopping enabled 0
-    timeslot 1
-     phys_chan_config SDCCH8
-     hopping enabled 0
-    timeslot 2
-     phys_chan_config TCH/F
-     hopping enabled 0
-    timeslot 3
-     phys_chan_config TCH/F
-     hopping enabled 0
-    timeslot 4
-     phys_chan_config TCH/F
-     hopping enabled 0
-    timeslot 5
-     phys_chan_config TCH/F
-     hopping enabled 0
-    timeslot 6
-     phys_chan_config TCH/F
-     hopping enabled 0
-    timeslot 7
-     phys_chan_config TCH/F
-     hopping enabled 0
+   timeslot 0
+    phys_chan_config CCCH
+    hopping enabled 0
+   timeslot 1
+    phys_chan_config SDCCH8
+    hopping enabled 0
+   timeslot 2
+    phys_chan_config TCH/F
+    hopping enabled 0
+   timeslot 3
+    phys_chan_config TCH/F
+    hopping enabled 0
+   timeslot 4
+    phys_chan_config TCH/F
+    hopping enabled 0
+   timeslot 5
+    phys_chan_config TCH/F
+    hopping enabled 0
+   timeslot 6
+    phys_chan_config PDCH
+    hopping enabled 0
+   timeslot 7
+    phys_chan_config PDCH
+    hopping enabled 0
 <% if @arfcn_B -%>
  bts 1
   type sysmobts
@@ -142,6 +189,7 @@ network
   cell reselection hysteresis 14
   rxlev access min 0
   periodic location update 30
+  radio-link-timeout 32
   channel allocator ascending
   rach tx integer 9
   rach max transmission 7
@@ -149,6 +197,7 @@ network
   channel-descrption bs-pa-mfrms 5
   channel-descrption bs-ag-blks-res 1
   rach emergency call allowed 1
+  early-classmark-sending forbidden
   ip.access unit_id 1000 1
   oml ip.access stream_id 255 line 0
   neighbor-list mode automatic
@@ -160,254 +209,36 @@ network
    rf_locked 0
    arfcn <%= @arfcn_B %>
    nominal power 37
-   max_power_red <%= @max_power_red %>
+   max_power_red 24
    rsl e1 tei 0
-    timeslot 0
-     phys_chan_config CCCH
-     hopping enabled 0
-    timeslot 1
-     phys_chan_config SDCCH8
-     hopping enabled 0
-    timeslot 2
-     phys_chan_config TCH/F
-     hopping enabled 0
-    timeslot 3
-     phys_chan_config TCH/F
-     hopping enabled 0
-    timeslot 4
-     phys_chan_config TCH/F
-     hopping enabled 0
-    timeslot 5
-     phys_chan_config TCH/F
-     hopping enabled 0
-    timeslot 6
-     phys_chan_config TCH/F
-     hopping enabled 0
-    timeslot 7
-     phys_chan_config TCH/F
-     hopping enabled 0
-<% end -%>
-<% if @bts2_ip_address -%>
- bts 2
-  type sysmobts
-  band GSM850
-  cell_identity 2
-  location_area_code <%= @lac %>
-  base_station_id_code 63
-  ms max power 33
-  cell reselection hysteresis 14
-  rxlev access min 0
-  periodic location update 30
-  channel allocator ascending
-  rach tx integer 9
-  rach max transmission 7
-  channel-descrption attach 1
-  channel-descrption bs-pa-mfrms 5
-  channel-descrption bs-ag-blks-res 1
-  rach emergency call allowed 1
-  ip.access unit_id 1000 2
-  oml ip.access stream_id 255 line 0
-  neighbor-list mode automatic
-  codec-support fr
-  gprs mode none
-  no force-combined-si
-  trx 0
-   rf_locked 0
-   arfcn <%= @arfcn_C %>
-   nominal power 37
-   max_power_red <%= @max_power_red %>
-   rsl e1 tei 0
-    timeslot 0
-     phys_chan_config CCCH
-     hopping enabled 0
-    timeslot 1
-     phys_chan_config SDCCH8
-     hopping enabled 0
-    timeslot 2
-     phys_chan_config TCH/F
-     hopping enabled 0
-    timeslot 3
-     phys_chan_config TCH/F
-     hopping enabled 0
-    timeslot 4
-     phys_chan_config TCH/F
-     hopping enabled 0
-    timeslot 5
-     phys_chan_config TCH/F
-     hopping enabled 0
-    timeslot 6
-     phys_chan_config TCH/F
-     hopping enabled 0
-    timeslot 7
-     phys_chan_config TCH/F
-     hopping enabled 0
- bts 3
-  type sysmobts
-  band GSM850
-  cell_identity 3
-  location_area_code <%= @lac %>
-  base_station_id_code 63
-  ms max power 33
-  cell reselection hysteresis 14
-  rxlev access min 0
-  periodic location update 30
-  channel allocator ascending
-  rach tx integer 9
-  rach max transmission 7
-  channel-descrption attach 1
-  channel-descrption bs-pa-mfrms 5
-  channel-descrption bs-ag-blks-res 1
-  rach emergency call allowed 1
-  ip.access unit_id 1000 3
-  oml ip.access stream_id 255 line 0
-  neighbor-list mode automatic
-  codec-support fr
-  gprs mode none
-  no force-combined-si
-  depends-on-bts 2
-  trx 0
-   rf_locked 0
-   arfcn <%= @arfcn_D %>
-   nominal power 37
-   max_power_red <%= @max_power_red %>
-   rsl e1 tei 0
-    timeslot 0
-     phys_chan_config CCCH
-     hopping enabled 0
-    timeslot 1
-     phys_chan_config SDCCH8
-     hopping enabled 0
-    timeslot 2
-     phys_chan_config TCH/F
-     hopping enabled 0
-    timeslot 3
-     phys_chan_config TCH/F
-     hopping enabled 0
-    timeslot 4
-     phys_chan_config TCH/F
-     hopping enabled 0
-    timeslot 5
-     phys_chan_config TCH/F
-     hopping enabled 0
-    timeslot 6
-     phys_chan_config TCH/F
-     hopping enabled 0
-    timeslot 7
-     phys_chan_config TCH/F
-     hopping enabled 0
-<% end -%>
-<% if @bts3_ip_address -%>
- bts 4
-  type sysmobts
-  band GSM850
-  cell_identity 4
-  location_area_code <%= @lac %>
-  base_station_id_code 63
-  ms max power 33
-  cell reselection hysteresis 14
-  rxlev access min 0
-  periodic location update 30
-  channel allocator ascending
-  rach tx integer 9
-  rach max transmission 7
-  channel-descrption attach 1
-  channel-descrption bs-pa-mfrms 5
-  channel-descrption bs-ag-blks-res 1
-  rach emergency call allowed 1
-  ip.access unit_id 1000 4
-  oml ip.access stream_id 255 line 0
-  neighbor-list mode automatic
-  codec-support fr
-  gprs mode none
-  no force-combined-si
-  trx 0
-   rf_locked 0
-   arfcn <%= @arfcn_E %>
-   nominal power 37
-   max_power_red <%= @max_power_red %>
-   rsl e1 tei 0
-    timeslot 0
-     phys_chan_config CCCH
-     hopping enabled 0
-    timeslot 1
-     phys_chan_config SDCCH8
-     hopping enabled 0
-    timeslot 2
-     phys_chan_config TCH/F
-     hopping enabled 0
-    timeslot 3
-     phys_chan_config TCH/F
-     hopping enabled 0
-    timeslot 4
-     phys_chan_config TCH/F
-     hopping enabled 0
-    timeslot 5
-     phys_chan_config TCH/F
-     hopping enabled 0
-    timeslot 6
-     phys_chan_config TCH/F
-     hopping enabled 0
-    timeslot 7
-     phys_chan_config TCH/F
-     hopping enabled 0
- bts 5
-  type sysmobts
-  band GSM850
-  cell_identity 5
-  location_area_code <%= @lac %>
-  base_station_id_code 63
-  ms max power 33
-  cell reselection hysteresis 14
-  rxlev access min 0
-  periodic location update 30
-  channel allocator ascending
-  rach tx integer 9
-  rach max transmission 7
-  channel-descrption attach 1
-  channel-descrption bs-pa-mfrms 5
-  channel-descrption bs-ag-blks-res 1
-  rach emergency call allowed 1
-  ip.access unit_id 1000 5
-  oml ip.access stream_id 255 line 0
-  neighbor-list mode automatic
-  codec-support fr
-  gprs mode none
-  no force-combined-si
-  depends-on-bts 4
-  trx 0
-   rf_locked 0
-   arfcn <%= @arfcn_F %>
-   nominal power 37
-   max_power_red <%= @max_power_red %>
-   rsl e1 tei 0
-    timeslot 0
-     phys_chan_config CCCH
-     hopping enabled 0
-    timeslot 1
-     phys_chan_config SDCCH8
-     hopping enabled 0
-    timeslot 2
-     phys_chan_config TCH/F
-     hopping enabled 0
-    timeslot 3
-     phys_chan_config TCH/F
-     hopping enabled 0
-    timeslot 4
-     phys_chan_config TCH/F
-     hopping enabled 0
-    timeslot 5
-     phys_chan_config TCH/F
-     hopping enabled 0
-    timeslot 6
-     phys_chan_config TCH/F
-     hopping enabled 0
-    timeslot 7
-     phys_chan_config TCH/F
-     hopping enabled 0
+   timeslot 0
+    phys_chan_config CCCH
+    hopping enabled 0
+   timeslot 1
+    phys_chan_config SDCCH8
+    hopping enabled 0
+   timeslot 2
+    phys_chan_config TCH/F
+    hopping enabled 0
+   timeslot 3
+    phys_chan_config TCH/F
+    hopping enabled 0
+   timeslot 4
+    phys_chan_config TCH/F
+    hopping enabled 0
+   timeslot 5
+    phys_chan_config TCH/F
+    hopping enabled 0
+   timeslot 6
+    phys_chan_config TCH/F
+    hopping enabled 0
+   timeslot 7
+    phys_chan_config TCH/F
+    hopping enabled 0
 <% end -%>
 mncc-int
  default-codec tch-f fr
- default-codec tch-h hr
+ default-codec tch-h amr
 nitb
  subscriber-create-on-demand
  no assign-tmsi
@@ -416,14 +247,9 @@ smpp
  policy closed
  smpp-first
  esme OSMPP
-  password <%= @smsc_password %>
+  password Password
   default-route
  esme NOTIFY
   password Password
-  no deliver-src-imsi
- esme NOT_BOUND
+ esme ISMPP
   password na
-  route prefix international isdn 52
-  route prefix unknown isdn 0
-  route prefix unknown isdn 55
-  route prefix unknown isdn 95
