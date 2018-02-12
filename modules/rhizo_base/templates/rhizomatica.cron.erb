@@ -11,7 +11,7 @@ PYTHONPATH=$PYTHONPATH:/var/rhizomatica/rccn
 <% end -%>
 
 #SMS reminder for admin
-  0  */5  *   *   *     root /var/rhizomatica/bin/check_account_balance.sh
+#  0  */5  *   *   *     root /var/rhizomatica/bin/check_account_balance.sh
 
 #SMS cleanup
 #  0  3    *   *   *     root /var/rhizomatica/bin/sms_cleanup.sh
@@ -27,6 +27,8 @@ PYTHONPATH=$PYTHONPATH:/var/rhizomatica/rccn
 #Roaming jobs
 */10 *    *   *   *     root timeout 10m /usr/bin/python /var/rhizomatica/rccn/rrc.py -c -f > /dev/null 2>&1 ; timeout 10m /usr/bin/python /var/rhizomatica/rccn/rhs.py -c > /dev/null 2>&1
 #*/15 *    *   *   *     root /usr/bin/python /var/rhizomatica/rccn/rhs.py > /dev/null 2>&1
+
+*/10 *    *   *   *     root timeout 5m /usr/bin/python /var/rhizomatica/rccn/sqs.py > /dev/null 2>&1
 
 # Push Subscribers created in the last hour, every 30 mins
 */30 *    *   *   *     root /usr/bin/python /var/rhizomatica/rccn/push.py -c -r1 > /dev/null 2>&1
