@@ -185,6 +185,11 @@ class rhizo_base {
       }
   }
 
+  sysctl { 'net.ipv4.ip_forward':
+      value => '1'
+  }
+
+
 #Rhizomatica scripts
   file { '/home/rhizomatica/bin':
       ensure  => directory,
