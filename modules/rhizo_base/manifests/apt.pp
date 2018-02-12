@@ -39,13 +39,7 @@ class rhizo_base::apt::common {
       include_src       => false,
       require           => File['/etc/apt/apt.conf.d/90unsigned'],
     }
-  apt::source { 'rhizo-jessie':
-      location          => 'http://repo.rhizomatica.org/debian/',
-      release           => 'jessie',
-      repos             => 'main',
-      include_src       => false,
-      require           => File['/etc/apt/apt.conf.d/90unsigned'],
-    }
+
 }
 
 class rhizo_base::apt::ubuntu inherits rhizo_base::apt::common {
@@ -91,7 +85,22 @@ class rhizo_base::apt::debian inherits rhizo_base::apt::common {
       location    => 'http://packages.irontec.com/debian',
       release     => 'jessie',
       repos       => 'main',
-      key_source  => 'https://packages.irontec.com/public.key'
+      key_source  => 'http://packages.irontec.com/public.key'
     }
 
+  apt::source { 'rhizo-jessie':
+      location          => 'http://repo.rhizomatica.org/debian/',
+      release           => 'jessie',
+      repos             => 'main',
+      include_src       => false,
+      require           => File['/etc/apt/apt.conf.d/90unsigned'],
+    }    
+
+  apt::source { 'osmocom-nightly':
+      location          => 'http://download.opensuse.org/repositories/network:/osmocom:/nightly/Debian_8.0/',
+      release           => './',
+      repos             => '',
+      include_src       => false,
+      key_source        => 'http://download.opensuse.org/repositories/network:/osmocom:/nightly/Debian_8.0/Release.key'
+    }
 }
