@@ -18,17 +18,17 @@ class kannel (
 ) {
 
   package { 'kannel':
-      ensure  => present,
+      ensure  => purged,
   }
 
   file { '/etc/kannel/kannel.conf':
-      ensure  => present,
+      ensure  => absent,
       content => template('kannel/kannel.conf.erb'),
       require => Package['kannel'],
   }
 
   file { '/etc/default/kannel':
-      ensure  => present,
+      ensure  => absent,
       source  => ['puppet:///modules/kannel/kannel-default'],
   }
 
