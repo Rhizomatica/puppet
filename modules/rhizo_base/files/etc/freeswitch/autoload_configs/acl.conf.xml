@@ -24,7 +24,7 @@
     <list name="domains" default="deny">
       <!-- domain= is special it scans the domain from the directory to build the ACL -->
       <!--<node type="allow" domain="$${domain}"/> -->
-      <node type="allow" cidr="10.66.0.0/24"/>
+      <node type="allow" cidr="192.168.0.0/24"/>
       <node type="allow" cidr="10.23.0.0/16"/>
       <node type="allow" cidr="172.16.0.0/16"/>
       <node type="allow" cidr="127.0.0.1/32"/>
