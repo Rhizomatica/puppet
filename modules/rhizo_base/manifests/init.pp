@@ -185,7 +185,7 @@ class rhizo_base {
       }
   }
 
-#Rizhomatica scripts
+#Rhizomatica scripts
   file { '/home/rhizomatica/bin':
       ensure  => directory,
       source  => 'puppet:///modules/rhizo_base/bin',
@@ -230,13 +230,14 @@ class rhizo_base {
   vcsrepo { '/var/rhizomatica':
       ensure   => latest,
       provider => git,
-      source   => 'https://github.com/Rhizomatica/rccn.git',
-      revision => 'master',
+      source   => 'git@dev.rhizomatica.org:rhizomatica/rccn.git',
+      revision => 'whyteks/testing',
       require  => [ File['/var/rhizomatica'], Package['git'] ],
       notify   => [ Exec['locale-gen'],
                     Exec['notify-freeswitch'],
                     Exec['restart-rapi'],
-                    Exec['restart-smpp'] ],
+                    Exec['restart-smpp'],
+                    Exec['restart-esme'] ],
     }
 
   file { '/var/rhizomatica/bin/get_account_balance.sh':
@@ -307,7 +308,12 @@ class rhizo_base {
       command     => '/usr/bin/sv restart smpp',
       refreshonly => true,
     }
-  
+
+  exec { 'restart-esme':
+      command     => '/usr/bin/sv restart esme',
+      refreshonly => true,
+    }
+
   if $operatingsystem == 'Ubuntu' {
     file { '/var/lib/locales/supported.d/local':
         ensure      => present,
