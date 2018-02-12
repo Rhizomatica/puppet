@@ -46,6 +46,12 @@ class rhizo_base::runit {
       require => [ File['/etc/sv'] ],
     }
 
+  file { '/etc/service/esme':
+      ensure  => link,
+      target  => '/etc/sv/esme',
+      require => [ File['/etc/sv'] ],
+    }
+
   file { '/etc/service/lcr':
       ensure  => link,
       target  => '/etc/sv/lcr',
