@@ -12,7 +12,7 @@
 #
 class rhizo_base::lcr {
   package { 'lcr':
-      ensure  => latest,
+      ensure  => '1.3.6-6rhizo1',
       require => Class['rhizo_base::apt'],
       notify  => Exec['restart-lcr'],
     }
@@ -27,7 +27,7 @@ class rhizo_base::lcr {
       require => Package['lcr']
     }
 
-  file { '/usr/etc/lcr':
+  file { '/etc/lcr':
       ensure  => directory,
       source  => 'puppet:///modules/rhizo_base/usr/etc/lcr',
       recurse => remote,
