@@ -25,3 +25,6 @@
 [submodule "modules/ntp"]
 	path = modules/ntp
 	url = https://github.com/puppetlabs/puppetlabs-ntp.git
+[submodule "modules/sysctl"]
+	path = modules/sysctl
+	url = https://github.com/thias/puppet-sysctl.git
