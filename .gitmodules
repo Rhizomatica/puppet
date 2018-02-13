@@ -1,6 +1,3 @@
-[submodule "modules/riak"]
-	path = modules/riak
-	url = https://github.com/basho/puppet-riak
 [submodule "modules/python"]
 	path = modules/python
 	url = https://github.com/stankevich/puppet-python.git
@@ -13,9 +10,6 @@
 [submodule "modules/postgresql"]
 	path = modules/postgresql
 	url = https://github.com/puppetlabs/puppetlabs-postgresql.git
-[submodule "modules/packagecloud"]
-	path = modules/packagecloud
-	url = https://github.com/computology/computology-packagecloud.git
 [submodule "modules/vcsrepo"]
 	path = modules/vcsrepo
 	url = https://github.com/puppetlabs/puppetlabs-vcsrepo.git
@@ -28,3 +22,9 @@
 [submodule "modules/sysctl"]
 	path = modules/sysctl
 	url = https://github.com/thias/puppet-sysctl.git
+[submodule "modules/stdlib"]
+	path = modules/stdlib
+	url = https://github.com/puppetlabs/puppetlabs-stdlib.git
+[submodule "modules/concat"]
+	path = modules/concat
+	url = https://github.com/puppetlabs/puppetlabs-concat.git
