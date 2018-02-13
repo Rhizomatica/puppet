@@ -44,7 +44,7 @@ class rhizo_base::postgresql::debian inherits rhizo_base::postgresql::common {
 
   class { 'postgresql::globals':
       manage_package_repo => true,
-      version             => '9.4',
+      version             => '9.6',
     }-> 
   class { 'postgresql::server':
     }

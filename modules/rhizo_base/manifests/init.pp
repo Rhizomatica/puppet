@@ -14,7 +14,6 @@ class rhizo_base {
 
   $mail_admins             = hiera('rhizo::mail_admins')
   $smsc_password           = hiera('rhizo::smsc_password')
-  $kannel_admin_password   = hiera('rhizo::kannel_admin_password')
   $password_hash           = hiera('rhizo::password_hash')
 
   # Configuration settings
@@ -85,11 +84,6 @@ class rhizo_base {
   $rai_admin_user  = hiera('rhizo::rai_admin_user')
   $rai_admin_pwd   = hiera('rhizo::rai_admin_pwd')
 
-  $kannel_server           = hiera('rhizo::kannel_server')
-  $kannel_port             = hiera('rhizo::kannel_port')
-  $kannel_username         = hiera('rhizo::kannel_username')
-  $kannel_sendsms_password = hiera('rhizo::kannel_sendsms_password')
-
   # VOIP provider
   $voip_provider_name = hiera('rhizo::voip_provider_name')
   $voip_username      = hiera('rhizo::voip_username')
@@ -149,7 +143,6 @@ class rhizo_base {
   $link5_geo_lon        = hiera('rhizo::link5_geo_lon', false)
 
   include ntp
-  include kannel
   include sshkeys
   include rhizo_base::fixes
   include rhizo_base::apt
@@ -161,6 +154,7 @@ class rhizo_base {
   include rhizo_base::lcr
   include rhizo_base::sudo
   include rhizo_base::users
+
   if $operatingsystem != 'Debian' {
     include rhizo_base::icinga
   }

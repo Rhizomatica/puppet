@@ -18,25 +18,35 @@ class rhizo_base::apt {
 class rhizo_base::apt::common {
 
   class { '::apt':
-     always_apt_update    => false,
+     update => {
+       frequency => 'daily',
+     },
   }
 
   file { '/etc/apt/apt.conf.d/90unsigned':
       ensure  => present,
       content => 'APT::Get::AllowUnauthenticated "true";',
     }
+
   apt::source { 'rhizomatica':
       location          => 'http://dev.rhizomatica.org/ubuntu/',
       release           => 'precise',
       repos             => 'main',
-      include_src       => false,
+      include  => {
+        'src' => false,
+        'deb' => true,
+      },
       require           => File['/etc/apt/apt.conf.d/90unsigned'],
     }
+
   apt::source { 'rhizo':
       location          => 'http://repo.rhizomatica.org/ubuntu/',
       release           => 'precise',
       repos             => 'main',
-      include_src       => false,
+      include  => {
+        'src' => false,
+        'deb' => true,
+      },
       require           => File['/etc/apt/apt.conf.d/90unsigned'],
     }
 
@@ -48,19 +58,14 @@ class rhizo_base::apt::ubuntu inherits rhizo_base::apt::common {
   apt::ppa { 'ppa:ondrej/php': }
   apt::ppa { 'ppa:ondrej/apache2': }
 
-  apt::source { 'icinga':
-      location    => 'https://packages.icinga.org/ubuntu',
-      release     => 'icinga-precise',
-      repos       => 'main',
-      key_source  => 'https://packages.icinga.org/icinga.key',
-      include_src => false,
-    }
-
   apt::source { 'nodesource':
       location    => 'https://deb.nodesource.com/node_0.10',
       release     => 'precise',
       repos       => 'main',
-      key_source  => 'https://deb.nodesource.com/gpgkey/nodesource.gpg.key'
+      key         => {
+        'id'      => '68576280',
+        'source'  => 'https://deb.nodesource.com/gpgkey/nodesource.gpg.key'
+       } 
     }
 }
 
@@ -70,29 +75,36 @@ class rhizo_base::apt::debian inherits rhizo_base::apt::common {
       location          => 'http://files.freeswitch.org/repo/deb/freeswitch-1.6/',
       release           => 'jessie',
       repos             => 'main',
-      include_src       => false,
-      key_source        => 'http://files.freeswitch.org/repo/deb/debian/freeswitch_archive_g0.pub'
+      key               => {
+         'id'           => '25E010CF',
+         'source'       => 'http://files.freeswitch.org/repo/deb/debian/freeswitch_archive_g0.pub'
+       }
     }
     
   apt::source { 'nodesource':
       location    => 'https://deb.nodesource.com/node_0.10',
       release     => 'jessie',
       repos       => 'main',
-      key_source  => 'https://deb.nodesource.com/gpgkey/nodesource.gpg.key'
+      key         => {
+        'id'      => '68576280',
+        'source'  => 'https://deb.nodesource.com/gpgkey/nodesource.gpg.key'
+        }
     }
 
   apt::source { 'irontec':
       location    => 'http://packages.irontec.com/debian',
       release     => 'jessie',
       repos       => 'main',
-      key_source  => 'http://packages.irontec.com/public.key'
+      key         => {
+        'id'      => 'D8C20040',
+        'source'  => 'http://packages.irontec.com/public.key'
+         }
     }
 
   apt::source { 'rhizo-jessie':
       location          => 'http://repo.rhizomatica.org/debian/',
       release           => 'jessie',
       repos             => 'main',
-      include_src       => false,
       require           => File['/etc/apt/apt.conf.d/90unsigned'],
     }    
 
@@ -100,7 +112,9 @@ class rhizo_base::apt::debian inherits rhizo_base::apt::common {
       location          => 'http://download.opensuse.org/repositories/network:/osmocom:/nightly/Debian_8.0/',
       release           => './',
       repos             => '',
-      include_src       => false,
-      key_source        => 'http://download.opensuse.org/repositories/network:/osmocom:/nightly/Debian_8.0/Release.key'
+      key               => {
+        'id'            => '17280DDF',
+        'source'        => 'http://download.opensuse.org/repositories/network:/osmocom:/nightly/Debian_8.0/Release.key'
+      }
     }
 }
