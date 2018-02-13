@@ -1,9 +1,10 @@
 ---
 :backends:
   - yaml
+
 :hierarchy:
   - "%{clientcert}"
   - defaults
 
 :yaml:
-  :datadir: /etc/puppet/hieradata
+  :datadir: /etc/puppet/code/hiera
