@@ -1,0 +1,3 @@
+#!/bin/sh
+exec 2>&1
+exec /usr/bin/websocketd --staticdir=/var/www/meas --port=8080 /usr/bin/stdbuf -oL /usr/local/bin/meas_json

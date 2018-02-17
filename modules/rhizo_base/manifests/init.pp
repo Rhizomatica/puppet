@@ -240,6 +240,16 @@ class rhizo_base {
                     Exec['restart-smpp'] ],
     }
 
+  vcsrepo { '/var/meas_web':
+      ensure   => latest,
+      provider => git,
+      source   => 'https://github.com/whyteks/meas_web.git',
+      revision => 'master',
+      require  => [ Package['git'] ],
+      notify   => [ Exec['restart-meas'] ],
+    }
+
+
   file { '/var/rhizomatica/bin/get_account_balance.sh':
       ensure  => present,
       content => template('rhizo_base/get_account_balance.sh.erb'),
@@ -308,6 +318,12 @@ class rhizo_base {
       command     => '/usr/bin/sv restart smpp',
       refreshonly => true,
     }
+
+  exec { 'restart-meas':
+      command     => '/usr/bin/sv restart meas-web',
+      refreshonly => true,
+    }
+
   
   if $operatingsystem == 'Ubuntu' {
     file { '/var/lib/locales/supported.d/local':
@@ -329,6 +345,12 @@ class rhizo_base {
       require => [ Vcsrepo['/var/rhizomatica'] ],
     }
   
+  file { '/var/www/meas':
+      ensure  => link,
+      target  => '/var/meas_web/usr/share/fairwaves-meas-web/',
+      require => [ Vcsrepo['/var/meas_web'] ],
+    }
+
   file { '/var/www/html/rai':
       ensure  => link,
       target  => '/var/rhizomatica/rai',

@@ -19,7 +19,7 @@ class rhizo_base::packages::common {
 
   package { ['mosh', 'git', 'openvpn', 'lm-sensors', 'runit', 'sqlite3',
             'libffi-dev', 'apcupsd', 'expect', 'gawk', 'swig', 'g++',
-            'python-python-smpplib', 'libcdk5' ]:
+            'python-python-smpplib', 'libcdk5', 'websocketd', 'osmo-meas' ]:
       ensure  => installed,
       require => Class['rhizo_base::apt'],
     }
