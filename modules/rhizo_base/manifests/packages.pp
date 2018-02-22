@@ -56,17 +56,16 @@ class rhizo_base::packages::ubuntu inherits rhizo_base::packages::common {
 
 class rhizo_base::packages::debian inherits rhizo_base::packages::common {
 
-  package { ['apache2','libapache2-mod-php5', 'php5', 'php5-pgsql',
-  'php5-curl', 'php5-cli', 'php5-gd', 
+  package { ['apache2','libapache2-mod-php', 'php', 'php-pgsql',
+  'php-curl', 'php-cli', 'php-gd',
   'sudo', 'apt-transport-https']:
       ensure  => installed,
       require => Class['rhizo_base::apt'],
     }
 
-  file { '/etc/php5/apache2/php.ini':
+  file { '/etc/php/7.0/apache2/php.ini':
       ensure  => present,
-      source  => "puppet:///modules/rhizo_base/etc/php5/apache2/php.ini.$operatingsystem"
+      source  => "puppet:///modules/rhizo_base/php.ini"
     }
-
 
 }
