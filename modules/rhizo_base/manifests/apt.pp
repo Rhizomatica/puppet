@@ -109,12 +109,12 @@ class rhizo_base::apt::debian inherits rhizo_base::apt::common {
     }    
 
   apt::source { 'osmocom-nightly':
-      location          => 'http://download.opensuse.org/repositories/network:/osmocom:/nightly/Debian_8.0/',
+      location          => 'http://download.opensuse.org/repositories/network:/osmocom:/nightly/Debian_9.0/',
       release           => './',
       repos             => '',
       key               => {
         'id'            => '17280DDF',
-        'source'        => 'http://download.opensuse.org/repositories/network:/osmocom:/nightly/Debian_8.0/Release.key'
+        'source'        => 'http://download.opensuse.org/repositories/network:/osmocom:/nightly/Debian_9.0/Release.key'
       }
     }
 }
