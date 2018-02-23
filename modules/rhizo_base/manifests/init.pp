@@ -38,6 +38,7 @@ class rhizo_base {
   $network_name    = hiera('rhizo::network_name')
   $auth_policy     = hiera('rhizo::auth_policy')
   $lac             = hiera('rhizo::lac')
+  $gsm_band        = hiera('rhizo::gsm_band', "GSM850")
 
   #BTSs configuration
   $bts_type        = hiera('rhizo::bts_type')

@@ -89,7 +89,7 @@ network
  bts 0
   type sysmobts
   description MasterBTS
-  band GSM850
+  band <%= @gsm_band %>
   cell_identity 0
   location_area_code <%= @lac %>
   base_station_id_code 63
@@ -181,7 +181,7 @@ network
 <% if @arfcn_B -%>
  bts 1
   type sysmobts
-  band GSM850
+  band <%= @gsm_band %>
   cell_identity 1
   location_area_code <%= @lac %>
   base_station_id_code 63
