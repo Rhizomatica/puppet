@@ -146,19 +146,19 @@ class rhizo_base {
   include sshkeys
   include rhizo_base::fixes
   include rhizo_base::apt
-  include rhizo_base::postgresql
+  include rhizo_base::users
   include rhizo_base::packages
+  include rhizo_base::postgresql
   include rhizo_base::freeswitch
   include rhizo_base::runit
   include rhizo_base::openbsc
   include rhizo_base::lcr
   include rhizo_base::sudo
-  include rhizo_base::users
+  include rhizo_base::kiwi
 
   if $operatingsystem != 'Debian' {
     include rhizo_base::icinga
   }
-  include rhizo_base::kiwi
 
   if $vpn_ip_address == $riak_ip_address {
     if $operatingsystem != 'Debian' {
@@ -182,7 +182,6 @@ class rhizo_base {
   sysctl { 'net.ipv4.ip_forward':
       value => '1'
   }
-
 
 #Rhizomatica scripts
   file { '/home/rhizomatica/bin':
@@ -224,7 +223,9 @@ class rhizo_base {
       ensure  => directory,
       owner   => 'postgres',
       group   => 'postgres',
-      require => File['/var/rhizo_backups'],
+      require => [ File['/var/rhizo_backups'],
+                   Class['rhizo_base::postgresql']
+     ]
     }
 
   file { '/var/rhizo_backups/sqlite':

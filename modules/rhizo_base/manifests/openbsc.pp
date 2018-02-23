@@ -25,12 +25,6 @@ class rhizo_base::openbsc {
   $bts3_ip_address = $rhizo_base::bts3_ip_address
   $smsc_password   = $rhizo_base::smsc_password
 
-  package { [ 'libsmpp0', ]:
-      ensure   => latest,
-      require  => Class['rhizo_base::apt'],
-      notify   => [ Exec['notify-nitb'] ],
-    }
-
   package {  [ 'osmocom-nitb' ]:
       ensure   => 'latest',
       require  => Class['rhizo_base::apt'],
@@ -38,7 +32,7 @@ class rhizo_base::openbsc {
                     Exec['notify-nitb'] ],
     }
 
-  package { [ 'libosmoabis3',
+  package { [ 'libsmpp34-0', 'libosmoabis3',
               'libosmoctrl0',
               'libosmogsm6', 'libosmogsm7',
               'libosmovty3',
@@ -50,6 +44,7 @@ class rhizo_base::openbsc {
               'libosmo-sccp-dbg', 'libosmo-sccp-dev',
               'libosmocodec0', 'libosmocore',
               'libosmocore-dbg', 'libosmocore-dev',
+              'libosmocore6', 'libosmogsm5',
               'libosmocore-utils', 'libosmogb3',
               'libosmonetif2', 'libosmosim0',
               'libosmotrau0']:

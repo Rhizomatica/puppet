@@ -19,7 +19,7 @@ class rhizo_base::apt::common {
 
   class { '::apt':
      update => {
-       frequency => 'daily',
+       frequency => 'weekly',
      },
   }
 
@@ -72,12 +72,13 @@ class rhizo_base::apt::ubuntu inherits rhizo_base::apt::common {
 class rhizo_base::apt::debian inherits rhizo_base::apt::common {
 
   apt::source { 'freeswitch':
-      location          => 'http://files.freeswitch.org/repo/deb/freeswitch-1.6/',
-      release           => 'jessie',
-      repos             => 'main',
-      key               => {
-         'id'           => '25E010CF',
-         'source'       => 'http://files.freeswitch.org/repo/deb/debian/freeswitch_archive_g0.pub'
+      location    => 'http://files.freeswitch.org/repo/deb/freeswitch-1.6/',
+      release     => 'jessie',
+      repos       => 'main',
+      notify      => Exec['apt_update'],
+      key         => {
+         'id'     => '20B06EE621AB150D40F6079FD76EDC7725E010CF',
+         'source' => 'http://files.freeswitch.org/repo/deb/debian/freeswitch_archive_g0.pub'
        }
     }
     
@@ -86,9 +87,9 @@ class rhizo_base::apt::debian inherits rhizo_base::apt::common {
       release     => 'jessie',
       repos       => 'main',
       key         => {
-        'id'      => '68576280',
+        'id'      => '9FD3B784BC1C6FC31A8A0A1C1655A0AB68576280',
         'source'  => 'https://deb.nodesource.com/gpgkey/nodesource.gpg.key'
-        }
+       }
     }
 
   apt::source { 'irontec':
@@ -96,25 +97,26 @@ class rhizo_base::apt::debian inherits rhizo_base::apt::common {
       release     => 'jessie',
       repos       => 'main',
       key         => {
-        'id'      => 'D8C20040',
+        'id'      => '4FF7139B43073A436D8C2C4F90D20F5ED8C20040',
         'source'  => 'http://packages.irontec.com/public.key'
-         }
+       }
     }
 
   apt::source { 'rhizo-jessie':
-      location          => 'http://repo.rhizomatica.org/debian/',
-      release           => 'jessie',
-      repos             => 'main',
-      require           => File['/etc/apt/apt.conf.d/90unsigned'],
+      location    => 'http://repo.rhizomatica.org/debian/',
+      release     => 'jessie',
+      repos       => 'main',
+      require     => File['/etc/apt/apt.conf.d/90unsigned'],
     }    
 
   apt::source { 'osmocom-nightly':
-      location          => 'http://download.opensuse.org/repositories/network:/osmocom:/nightly/Debian_9.0/',
-      release           => './',
-      repos             => '',
-      key               => {
-        'id'            => '17280DDF',
-        'source'        => 'http://download.opensuse.org/repositories/network:/osmocom:/nightly/Debian_9.0/Release.key'
-      }
+      location    => 'http://download.opensuse.org/repositories/network:/osmocom:/nightly/Debian_9.0/',
+      release     => './',
+      repos       => '',
+      notify      => Exec['apt_update'],
+      key         => {
+        'id'      => '0080689BE757A876CB7DC26962EB1A0917280DDF',
+        'source'  => 'http://download.opensuse.org/repositories/network:/osmocom:/nightly/Debian_9.0/Release.key'
+       }
     }
 }
