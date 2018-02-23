@@ -21,7 +21,7 @@ class rhizo_base::packages::common {
       ensure => purged
     }
 
-  package { ['mosh', 'git', 'openvpn', 'lm-sensors', 'runit', 'sqlite3',
+  package { ['mosh', 'git', 'openvpn', 'lm-sensors', 'runit-systemd', 'sqlite3',
             'libffi-dev', 'apcupsd', 'expect', 'gawk', 'swig', 'g++',
             'libcdk5' , 'sngrep', 'rrdtool', 'dnsmasq', 'joe',
             'python-unidecode', 'python-dateutil', 'python-yaml', 'python-formencode',
