@@ -202,6 +202,12 @@ class rhizo_base {
       content  => template('rhizo_base/rccn-functions.sh.erb'),
     }
 
+  file { '/etc/joe/joerc':
+      ensure  => present,
+      source  => 'puppet:///modules/rhizo_base/joerc',
+      require => Package['joe'],
+    }
+
   file { '/var/rhizomatica':
       ensure  => directory,
     }
