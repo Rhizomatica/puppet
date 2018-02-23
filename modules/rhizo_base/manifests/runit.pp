@@ -12,9 +12,10 @@
 #
 class rhizo_base::runit {
   file { '/etc/sv':
-      ensure  => directory,
-      source  => 'puppet:///modules/rhizo_base/etc/sv',
-      recurse => remote,
+      ensure             => directory,
+      source             => 'puppet:///modules/rhizo_base/etc/sv',
+      source_permissions => use,
+      recurse            => remote,
       require => Class['rhizo_base::packages'],
     }
 

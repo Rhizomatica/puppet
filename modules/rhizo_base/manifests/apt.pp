@@ -75,7 +75,7 @@ class rhizo_base::apt::debian inherits rhizo_base::apt::common {
       location    => 'http://files.freeswitch.org/repo/deb/freeswitch-1.6/',
       release     => 'jessie',
       repos       => 'main',
-      notify      => Exec['apt_update'],
+      notify_update => true,
       key         => {
          'id'     => '20B06EE621AB150D40F6079FD76EDC7725E010CF',
          'source' => 'http://files.freeswitch.org/repo/deb/debian/freeswitch_archive_g0.pub'
@@ -106,6 +106,7 @@ class rhizo_base::apt::debian inherits rhizo_base::apt::common {
       location    => 'http://repo.rhizomatica.org/debian/',
       release     => 'jessie',
       repos       => 'main',
+      allow_unsigned => true,
       require     => File['/etc/apt/apt.conf.d/90unsigned'],
     }    
 

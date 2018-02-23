@@ -187,7 +187,8 @@ class rhizo_base {
   file { '/home/rhizomatica/bin':
       ensure  => directory,
       source  => 'puppet:///modules/rhizo_base/bin',
-      recurse => true,
+      source_permissions => use,
+      recurse => remote,
       purge   => false,
     }
 
@@ -243,7 +244,8 @@ class rhizo_base {
                     Exec['notify-freeswitch'],
                     Exec['restart-rapi'],
                     Exec['restart-smpp'],
-                    Exec['restart-esme'] ],
+                    Exec['restart-esme'],
+                    Exec['restart-apache'] ],
     }
 
   file { '/var/rhizomatica/bin/get_account_balance.sh':
@@ -317,6 +319,11 @@ class rhizo_base {
 
   exec { 'restart-esme':
       command     => '/usr/bin/sv restart esme',
+      refreshonly => true,
+    }
+
+  exec { 'restart-apache':
+      command     => '/usr/sbin/service apache2 restart',
       refreshonly => true,
     }
 
