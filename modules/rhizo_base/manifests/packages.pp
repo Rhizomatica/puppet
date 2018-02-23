@@ -14,12 +14,7 @@ class rhizo_base::packages {
   include "rhizo_base::packages::$operatingsystem"
 }
 
-
 class rhizo_base::packages::common {
-
-  package { [ 'python-python-smpplib' ]:
-      ensure => purged
-    }
 
   package { ['mosh', 'git', 'openvpn', 'lm-sensors', 'runit-systemd', 'sqlite3',
             'libffi-dev', 'apcupsd', 'expect', 'gawk', 'swig', 'g++',
@@ -29,7 +24,6 @@ class rhizo_base::packages::common {
       ensure  => installed,
       require => Class['rhizo_base::apt'],
     }
-
 }
 
 class rhizo_base::packages::ubuntu inherits rhizo_base::packages::common {

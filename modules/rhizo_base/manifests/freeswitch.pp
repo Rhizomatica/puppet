@@ -39,16 +39,16 @@ class rhizo_base::freeswitch::debian inherits rhizo_base::freeswitch::common {
 
   include systemd
 
+  file { '/usr/lib/freeswitch/mod/mod_g729.so':
+      source  => 'puppet:///modules/rhizo_base/mod_g729.so',
+      require => Package['freeswitch'],
+    }
+
   package {
     [ 'freeswitch-mod-g729' ]:
       ensure  => purged,
       require => Class['rhizo_base::apt'],   
   }
-
-  file { '/usr/lib/freeswitch/mod/mod_cdr_pg_csv.so':
-      source  => 'puppet:///modules/rhizo_base/usr/lib/freeswitch/mod/mod_cdr_pg_csv.so',
-      require => Package['freeswitch'],
-    }
 
   file { '/etc/default/freeswitch':
       source  => 'puppet:///modules/rhizo_base/etc/default/freeswitch',
@@ -93,7 +93,7 @@ class rhizo_base::freeswitch::common {
     'freeswitch-mod-b64', 'freeswitch-mod-bv',
     'freeswitch-mod-commands', 'freeswitch-mod-conference',
     'freeswitch-mod-console', 'freeswitch-mod-db',
-    'freeswitch-mod-dialplan-asterisk', 'freeswitch-mod-dialplan-xml',
+    'freeswitch-mod-dialplan-xml',
     'freeswitch-mod-dptools', 'freeswitch-mod-enum',
     'freeswitch-mod-esf', 'freeswitch-mod-event-socket',
     'freeswitch-mod-expr', 'freeswitch-mod-fifo',
