@@ -1,3 +1,5 @@
+Include ~/.ssh/config2
+
 Host dev.rhizomatica.org
   Hostname dev.rhizomatica.org
   IdentityFile ~/.ssh/bsc_dev
