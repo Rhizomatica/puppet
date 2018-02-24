@@ -70,3 +70,6 @@ sshkeys::users:
     home: /home/rhizomatica
     keys:
       - test
+
+rhizo::dev_host_key: "NULL"
+rhizo::bsc_dev_deploy_key: "NULL"

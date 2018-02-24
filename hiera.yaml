@@ -4,7 +4,8 @@
 
 :hierarchy:
   - "%{clientcert}"
-  - defaults
+  - "osfamily/%{::osfamily}"
+  - common
 
 :yaml:
   :datadir: /etc/puppet/code/hiera
