@@ -1,5 +1,5 @@
 #Admin config
-rhizo::mail_admins:                  "ciaby@rhizomatica.org tele@rhizomatica.org"
+rhizo::mail_admins:                  "postmaster@rhizomatica.org"
 rhizo::smsc_password:                "Password"
 rhizo::rhizomatica_dir:              "/var/rhizomatica"
 rhizo::sq_hlr_path:                  "/var/lib/osmocom/hlr.sqlite3"
