@@ -18,7 +18,7 @@ class rhizo_base::packages::common {
 
   package { ['mosh', 'git', 'openvpn', 'lm-sensors', 'runit-systemd', 'sqlite3',
             'libffi-dev', 'apcupsd', 'expect', 'gawk', 'swig', 'g++',
-            'libcdk5' , 'sngrep', 'rrdtool', 'dnsmasq', 'joe',
+            'libcdk5' , 'sngrep', 'rrdtool', 'dnsmasq', 'joe', 'curl', 'htop',
             'python-unidecode', 'python-dateutil', 'python-yaml', 'python-formencode',
             'python-smpplib', 'python-psycopg2', 'python-pysqlite2' ]:
       ensure  => installed,
