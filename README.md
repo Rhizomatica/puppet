@@ -30,6 +30,8 @@ Install Debian 9 (stretch) amd64 from
 
 `root@host:/etc/puppet/code# mkdir hiera`
 
+`root@host:/etc/puppet/code# cd environments`
+
 `root@host:/etc/puppet/code/environments# git clone https://github.com/Rhizomatica/puppet.git production`
 
 `root@host:/etc/puppet/code/environments# cd prodution`
@@ -39,8 +41,6 @@ Install Debian 9 (stretch) amd64 from
 `root@host:/etc/puppet/code/environments/production# git submodule init`
 
 `root@host:/etc/puppet/code/environments/production# git submodule update`
-
-`root@host:/etc/puppet/code/environments/production# cd /etc/puppet/code/hiera`
 
 `root@host:/etc/puppet/code/environments/production# cp hiera.yaml /etc/puppet`
 
