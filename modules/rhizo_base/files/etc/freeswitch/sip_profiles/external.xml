@@ -17,6 +17,7 @@
   </domains>
 
   <settings>
+    <param name="NDLB-allow-bad-iananame" value="true"/>
     <param name="debug" value="0"/>
     <!-- If you want FreeSWITCH to shutdown if this profile fails to load, uncomment the next line. -->
     <!-- <param name="shutdown-on-fail" value="true"/> -->
