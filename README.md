@@ -76,7 +76,8 @@ Some package installations will fail, so when it is finished you need to do it o
 
 `root@host:~# puppet agent --test`
 
-Done! Now you can run the final RCCN setup step:
+Done! Now you can run the final RCCN setup step, but before you do this,
+take a quick look at CAVEATS below.:
 
 `root@host:~# cd /var/rhizomatica/rccn`
 
@@ -96,6 +97,14 @@ Now reboot your system and [file a bug report](https://github.com/Rhizomatica/pu
 Because you don't have the key to our private repo, you will not have any sounds in `/usr/share/freeswitch/sounds/rccn/`.
 TIC is not publically distributing the sound files used on the TIC network. Someone needs to make some generic sounds.
 
+You might want to do `systemctl restart osmo-nitb` before running the
+install.py, as if the NITB has never run, the sqlite HLR database will not
+exist yet. 
+
+After install and reboot, considering add the user rhizomatica to the sudo group: `usermod -aG sudo rhizomatica`
+
+After install, you do not really need the puppet master service running, so
+consider disabling it. 
 
 There is one persistant error from puppet, but it doesn't seem to affect us:
 ```
