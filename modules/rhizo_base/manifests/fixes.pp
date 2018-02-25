@@ -36,5 +36,8 @@ class rhizo_base::fixes::ubuntu {
 }
 
 class rhizo_base::fixes::debian {
-  # Nothing
+  file { '/root/.bashrc':
+      ensure  => present,
+      source  => 'puppet:///modules/rhizo_base/bashrc'
+    }
 }
