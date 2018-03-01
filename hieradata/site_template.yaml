@@ -12,6 +12,8 @@ rhizo::auth_policy:                "accept-all"
 rhizo::vpn_ip_address:             "10.66.0.0"
 rhizo::wan_ip_address:             "192.168.0.0"
 rhizo::lac:                        "1"
+rhizo::mcc:                        "001"
+rhizo::mnc:                        "001"
 
 #Emergency call contact
 rhizo::emergency_contact:          "12345"
@@ -25,6 +27,8 @@ rhizo::voip_pin:                   "1234"
 rhizo::voip_proxy:                 "10.10.10.10"
 rhizo::voip_did:                   "12345678901"
 rhizo::voip_cli:                   "12345678901"
+rhizo::use_sip:                    "yes"
+rhizo::reg_provider:               "false"
 
 #Device Info
 rhizo::bsc_geo_lat:                "0.0"
