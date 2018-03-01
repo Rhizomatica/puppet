@@ -86,6 +86,7 @@ class rhizo_base::freeswitch::common {
   $voip_password  = $rhizo_base::voip_password
   $voip_proxy     = $rhizo_base::voip_proxy
   $sip_central_ip_address = $rhizo_base::sip_central_ip_address
+  $reg_provider   = $rhizo_base::reg_provider
 
   package {
     ['freeswitch', 'freeswitch-lang-en',
