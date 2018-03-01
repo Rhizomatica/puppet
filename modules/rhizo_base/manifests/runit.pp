@@ -65,4 +65,10 @@ class rhizo_base::runit {
       require => [ File['/etc/sv'], Class['rhizo_base::kiwi'] ],
     }
 
+  file { '/etc/service/meas-web':
+       ensure  => link,
+       target  => '/etc/sv/meas-web',
+       require => [ File['/etc/sv'], Package['websocketd'] ],
+    }
+
   }
