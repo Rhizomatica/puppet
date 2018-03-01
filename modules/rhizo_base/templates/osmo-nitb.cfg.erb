@@ -1,5 +1,5 @@
 !
-! OpenBSC (0.15.1-dirty) configuration saved from vty
+! OpenBSC (UNKNOWN) configuration saved from vty
 !!
 password foo
 !
@@ -8,6 +8,7 @@ log stderr
   logging color 0
   logging print category 1
   logging timestamp 0
+  logging print file 1
   logging level all everything
   logging level rll notice
   logging level cc info
@@ -64,8 +65,8 @@ e1_input
  e1_line 0 port 0
  no e1_line 0 keepalive
 network
- network country code 334
- mobile network code 7
+ network country code <%= @mcc %>
+ mobile network code <%= @mnc %>
  short name <%= @network_name %>
  long name <%= @network_name %>
  auth policy closed
@@ -106,6 +107,7 @@ network
   channel-descrption bs-ag-blks-res 1
   rach emergency call allowed 1
   early-classmark-sending forbidden
+  early-classmark-sending-3g allowed
   ip.access unit_id 1000 0
   oml ip.access stream_id 255 line 0
   neighbor-list mode automatic
@@ -114,7 +116,6 @@ network
   amr tch-f start-mode auto
   amr tch-h modes 3
   amr tch-h start-mode auto
-  gprs mode none
   gprs mode gprs
   gprs 11bit_rach_support_for_egprs 0
   gprs routing area 0
@@ -127,8 +128,8 @@ network
   gprs cell timer reset-retries 3
   gprs cell timer suspend-timer 10
   gprs cell timer suspend-retries 3
-  gprs cell timer resume-timer 10  
-  gprs cell timer resume-retries 3 
+  gprs cell timer resume-timer 10
+  gprs cell timer resume-retries 3
   gprs cell timer capability-update-timer 10
   gprs cell timer capability-update-retries 3
   gprs nsei 951
@@ -142,7 +143,7 @@ network
   gprs nsvc 0 nsvci 951
   gprs nsvc 0 local udp port 23000
   gprs nsvc 0 remote udp port 23001
-  gprs nsvc 0 remote ip 127.0.0.1  
+  gprs nsvc 0 remote ip 127.0.0.1
   gprs nsvc 1 nsvci 0
   gprs nsvc 1 local udp port 0
   gprs nsvc 1 remote udp port 0

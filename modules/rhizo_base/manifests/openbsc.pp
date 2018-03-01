@@ -16,6 +16,8 @@ class rhizo_base::openbsc {
   $lac             = $rhizo_base::lac
   $max_power_red   = $rhizo_base::max_power_red
   $gsm_band        = $rhizo_base::gsm_band
+  $mcc             = $rhizo_base::mcc
+  $mnc             = $rhizo_base::mnc
   $arfcn_A         = $rhizo_base::arfcn_A
   $arfcn_B         = $rhizo_base::arfcn_B
   $arfcn_C         = $rhizo_base::arfcn_C
