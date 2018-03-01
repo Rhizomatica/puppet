@@ -39,6 +39,8 @@ class rhizo_base {
   $auth_policy     = hiera('rhizo::auth_policy')
   $lac             = hiera('rhizo::lac')
   $gsm_band        = hiera('rhizo::gsm_band', "GSM850")
+  $mcc             = hiera('rhizo::mcc', '334')
+  $mnc             = hiera('rhizo::mnc', '7')
 
   #BTSs configuration
   $bts_type        = hiera('rhizo::bts_type')
@@ -94,6 +96,7 @@ class rhizo_base {
   $voip_proxy         = hiera('rhizo::voip_proxy')
   $voip_did           = hiera('rhizo::voip_did')
   $voip_cli           = hiera('rhizo::voip_cli')
+  $reg_provider       = hiera('rhizo::reg_provider', 'true')
 
   # Subscription SMS notification
   $notice_msg       = hiera('rhizo::notice_msg')
