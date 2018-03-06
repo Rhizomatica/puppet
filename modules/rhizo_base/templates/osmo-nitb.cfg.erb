@@ -72,11 +72,8 @@ network
  handover power budget interval 6
  handover power budget hysteresis 3
  handover maximum distance 9999
- timer t3101 10
  timer t3109 4
- timer t3113 60
- timer t3122 10
- dtx-used 0
+ dyn_ts_allow_tch_f 1
  subscriber-keep-in-ram 0
  bts 0
   type sysmobts
@@ -88,6 +85,7 @@ network
   cell reselection hysteresis 14
   rxlev access min 0
   periodic location update 30
+  radio-link-timeout 32
   channel allocator ascending
   rach tx integer 9
   rach max transmission 7
@@ -95,6 +93,7 @@ network
   channel-descrption bs-pa-mfrms 5
   channel-descrption bs-ag-blks-res 1
   rach emergency call allowed 1
+  early-classmark-sending forbidden
   ip.access unit_id 1000 0
   oml ip.access stream_id 255 line 0
   neighbor-list mode automatic
