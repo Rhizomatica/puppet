@@ -44,7 +44,7 @@ Install Debian 9 (stretch) amd64 from
 
 `root@host:/etc/puppet/code/environments/production# cp hiera.yaml /etc/puppet`
 
-`root@host:/etc/puppet/code/environments/production# cp hieradata/* /etc/puppet/code/hiera# `
+`root@host:/etc/puppet/code/environments/production# cp hieradata/* /etc/puppet/code/hiera`
 
 `root@host:/etc/puppet/code/environments/production# cd /etc/puppet/code/hiera`
 
