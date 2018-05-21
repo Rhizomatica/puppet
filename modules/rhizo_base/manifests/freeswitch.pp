@@ -109,7 +109,7 @@ class rhizo_base::freeswitch::common {
     'freeswitch-mod-spandsp', 
     'freeswitch-mod-syslog', 'freeswitch-mod-tone-stream',
     'freeswitch-mod-voicemail', 'freeswitch-mod-voicemail-ivr',
-    'freeswitch-mod-xml-cdr',
+    'freeswitch-mod-xml-cdr', 'freeswitch-mod-cdr-pg-csv'
     'freeswitch-sysvinit', 'libfreeswitch1']:
       ensure  => installed,
       require => Class['rhizo_base::apt'],
