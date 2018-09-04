@@ -15,7 +15,7 @@ waitfor0calls () {
 chans () {
   while [ 1 == 1 ]
   do
-    _output=`fs_cli -x 'show channels' | csvcut -c 3,2,6,8,10,11,13,15,18 | csvlook -I`
+    _output=`fs_cli -x 'show channels' | head -n -3 | sed -E 's/\{([^,]*),([^}]*)}/{\1\2}/' | csvcut -c 3,2,6,8,10,11,13,15,18 | csvlook -I`
     clear
     echo  "$_output"
     sleep 1
