@@ -11,20 +11,12 @@
 # Sample Usage:
 #
 class rhizo_base::openbsc {
-  $network_name    = $rhizo_base::network_name
-  $auth_policy     = $rhizo_base::auth_policy
-  $lac             = $rhizo_base::lac
-  $max_power_red   = $rhizo_base::max_power_red
-  $arfcn_A         = $rhizo_base::arfcn_A
-  $arfcn_B         = $rhizo_base::arfcn_B
-  $arfcn_C         = $rhizo_base::arfcn_C
-  $arfcn_D         = $rhizo_base::arfcn_D
-  $arfcn_E         = $rhizo_base::arfcn_E
-  $arfcn_F         = $rhizo_base::arfcn_F
-  $bts2_ip_address = $rhizo_base::bts2_ip_address
-  $bts3_ip_address = $rhizo_base::bts3_ip_address
-  $smsc_password   = $rhizo_base::smsc_password
-  $gprs            = $rhizo_base::gprs
+
+  include "rhizo_base::openbsc::$operatingsystem"
+
+}
+
+class rhizo_base::openbsc::ubuntu inherits rhizo_base::openbsc::common {
 
   package { [ 'libosmoabis5', 'libosmocore8',
               'libosmoctrl0', 'libosmogsm7',
@@ -57,6 +49,36 @@ class rhizo_base::openbsc {
       ensure => purged,
   }
 
+}
+
+class rhizo_base::openbsc::debian inherits rhizo_base::openbsc::common {
+
+  package {  [ 'osmocom-nitb' ]:
+      ensure   => '1.0.0',
+      require  => Class['rhizo_base::apt'],
+      notify   => [ Exec['hlr_pragma_wal'],
+                    Exec['notify-nitb'] ],
+  }
+
+}
+
+class rhizo_base::openbsc::common {
+
+  $network_name    = $rhizo_base::network_name
+  $auth_policy     = $rhizo_base::auth_policy
+  $lac             = $rhizo_base::lac
+  $max_power_red   = $rhizo_base::max_power_red
+  $arfcn_A         = $rhizo_base::arfcn_A
+  $arfcn_B         = $rhizo_base::arfcn_B
+  $arfcn_C         = $rhizo_base::arfcn_C
+  $arfcn_D         = $rhizo_base::arfcn_D
+  $arfcn_E         = $rhizo_base::arfcn_E
+  $arfcn_F         = $rhizo_base::arfcn_F
+  $bts2_ip_address = $rhizo_base::bts2_ip_address
+  $bts3_ip_address = $rhizo_base::bts3_ip_address
+  $smsc_password   = $rhizo_base::smsc_password
+  $gprs            = $rhizo_base::gprs
+
   service { 'osmocom-nitb':
       enable  => false,
       require => Package['osmocom-nitb'],
@@ -86,4 +108,4 @@ class rhizo_base::openbsc {
       refreshonly => true,
     }
 
-  }
+}
