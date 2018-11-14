@@ -41,7 +41,7 @@ class rhizo_base::freeswitch::debian inherits rhizo_base::freeswitch::common {
 
   package {
     [ 'freeswitch-mod-g729' ]:
-      ensure  => installed,
+      ensure  => purged,
       require => Class['rhizo_base::apt'],   
   }
 
