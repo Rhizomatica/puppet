@@ -87,11 +87,13 @@ class rhizo_base::openbsc::common {
       require => Package['osmocom-nitb'],
     }
 
-  file { '/etc/osmocom/osmo-nitb.cfg':
-      content => template('rhizo_base/osmo-nitb.cfg.erb'),
-      require => Package['osmocom-nitb'],
-      notify  => Exec['notify-nitb'],
-    }
+  unless hiera('rhizo::local_bsc_cfg') == "1" {
+    file { '/etc/osmocom/osmo-nitb.cfg':
+        content => template('rhizo_base/osmo-nitb.cfg.erb'),
+        require => Package['osmocom-nitb'],
+        notify  => Exec['notify-nitb'],
+      }
+  }
 
   exec { 'hlr_pragma_wal':
       command     =>
