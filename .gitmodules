@@ -22,3 +22,6 @@
 [submodule "modules/systemd"]
 	path = modules/systemd
 	url = https://github.com/camptocamp/puppet-systemd
+[submodule "modules/stdlib"]
+	path = modules/stdlib
+	url = https://github.com/puppetlabs/puppetlabs-stdlib.git
