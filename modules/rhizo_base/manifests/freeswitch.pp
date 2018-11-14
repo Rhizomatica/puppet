@@ -174,6 +174,7 @@ class rhizo_base::freeswitch::common {
 
   vcsrepo { '/usr/share/freeswitch/sounds/rccn':
     ensure    => latest,
+    revision  => 'master',
     provider  => git,
     source    => 'git@dev.rhizomatica.org:rhizomatica/ticac_sounds.git',
     require   => File['/root/.ssh/bsc_dev'],
