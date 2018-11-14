@@ -23,7 +23,7 @@ class rhizo_base::freeswitch::ubuntu inherits rhizo_base::freeswitch::common {
 
   package {
     ['freeswitch-mod-speex','freeswitch-mod-cdr-pg-csv',
-     'freeswitch-mod-vp8']:
+     'freeswitch-mod-vp8', 'freeswitch-sounds-es-mx-maria']:
       ensure  => installed,
       require => Class['rhizo_base::apt'],   
   }
