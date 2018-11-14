@@ -19,15 +19,14 @@ class rhizo_base::openbsc {
 class rhizo_base::openbsc::ubuntu inherits rhizo_base::openbsc::common {
 
   package { [ 'libosmoabis5', 'libosmocore8',
-              'libosmoctrl0', 'libosmogsm7',
-              'libosmovty3' ]:
+              'libosmogsm7', 'libosmovty3' ]:
       ensure   => latest,
       require  => Class['rhizo_base::apt'],
       notify   => [ Exec['notify-nitb'] ],
     }
 
   package {  [ 'osmocom-nitb' ]:
-      ensure   => '0.15.1-0rhizo5',
+      ensure   => 'latest',
       require  => Class['rhizo_base::apt'],
       notify   => [ Exec['hlr_pragma_wal'],
                     Exec['notify-nitb'] ],
@@ -54,10 +53,14 @@ class rhizo_base::openbsc::ubuntu inherits rhizo_base::openbsc::common {
 class rhizo_base::openbsc::debian inherits rhizo_base::openbsc::common {
 
   package {  [ 'osmocom-nitb' ]:
-      ensure   => '1.0.0',
+      ensure   => '1.1.0',
       require  => Class['rhizo_base::apt'],
       notify   => [ Exec['hlr_pragma_wal'],
                     Exec['notify-nitb'] ],
+  }
+
+  package { [ 'libosmocore-utils' ]:
+      ensure   => installed,
   }
 
 }
