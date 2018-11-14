@@ -58,7 +58,8 @@ class rhizo_base::packages::debian inherits rhizo_base::packages::common {
   'python-pysqlite2', 'php5', 'php5-pgsql',
   'php5-curl', 'php5-cli', 'php5-gd',
   'python-yaml', 'python-formencode', 'python-unidecode',
-  'python-dateutil', 'sudo', 'apt-transport-https']:
+  'python-dateutil', 'sudo', 'apt-transport-https',
+  'sngrep' ]:
       ensure  => installed,
       require => Class['rhizo_base::apt'],
     }
