@@ -80,4 +80,33 @@ class rhizo_base::apt::debian inherits rhizo_base::apt::common {
       repos       => 'main',
       key_source  => 'https://deb.nodesource.com/gpgkey/nodesource.gpg.key'
     }
+
+  apt::source { 'irontec':
+      location    => 'http://packages.irontec.com/debian',
+      release     => 'jessie',
+      repos       => 'main',
+      key_source  => 'https://packages.irontec.com/public.key'
+    }
+
+  apt::source { 'rhizo-jessie':
+      location          => 'http://repo.rhizomatica.org/debian/',
+      release           => 'jessie',
+      repos             => 'main',
+      include_src       => false,
+      require           => File['/etc/apt/apt.conf.d/90unsigned'],
+    }
+
+  apt::source { 'osmocom-latest':
+      location    => 'http://download.opensuse.org/repositories/network:/osmocom:/latest/Debian_8.0/',
+      release     => './',
+      repos       => '',
+      key_source  => 'http://download.opensuse.org/repositories/network:/osmocom:/latest/Debian_8.0/Release.key'
+    }
+
+  apt::source { 'osmocom-nightly':
+      location    => 'http://download.opensuse.org/repositories/network:/osmocom:/nightly/Debian_8.0/',
+      release     => './',
+      repos       => '',
+      key_source  => 'http://download.opensuse.org/repositories/network:/osmocom:/nightly/Debian_8.0/Release.key'
+    }
 }
