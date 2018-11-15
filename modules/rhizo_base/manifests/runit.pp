@@ -18,6 +18,30 @@ class rhizo_base::runit {
       require => Class['rhizo_base::packages'],
     }
 
+  if $use_kannel == 'yes' {
+
+    file { '/etc/sv/osmo-nitb/run':
+        ensure  => present,
+        source  => 'puppet:///modules/rhizo_base/osmo-nitb.run.kannel',
+        require => File['/etc/sv'],
+      }
+  }
+
+  if $use_kannel == 'no' {
+
+    file { '/etc/sv/osmo-nitb/run':
+        ensure  => present,
+        source  => 'puppet:///modules/rhizo_base/osmo-nitb.run',
+        require => File['/etc/sv'],
+      }
+
+    file { '/etc/service/esme':
+        ensure  => link,
+        target  => '/etc/sv/esme',
+        require => File['/etc/sv'],
+      }
+  }
+
   file { '/etc/service/osmo-nitb':
       ensure  => link,
       target  => '/etc/sv/osmo-nitb',
