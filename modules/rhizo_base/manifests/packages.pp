@@ -17,9 +17,14 @@ class rhizo_base::packages {
 
 class rhizo_base::packages::common {
 
+  package { ['python-python-smpplib']:
+      ensure  => purged,
+      require => Class['rhizo_base::apt'],
+    }
+
   package { ['mosh', 'git', 'openvpn', 'lm-sensors', 'runit', 'sqlite3',
             'libffi-dev', 'apcupsd', 'expect', 'gawk', 'swig', 'g++',
-            'python-python-smpplib', 'libcdk5', 'websocketd', 'osmo-meas' ]:
+            'python-smpplib', 'libcdk5', 'websocketd', 'osmo-meas' ]:
       ensure  => installed,
       require => Class['rhizo_base::apt'],
     }
