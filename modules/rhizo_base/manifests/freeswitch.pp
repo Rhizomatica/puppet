@@ -23,6 +23,11 @@ class rhizo_base::freeswitch::ubuntu inherits rhizo_base::freeswitch::common {
       require => Package['freeswitch'],
     }
 
+  file { '/usr/lib/freeswitch/mod/mod_opencore_amr.so':
+      source  => 'puppet:///modules/rhizo_base/mod_opencore_amr.so',
+      require => Package['freeswitch'],
+    }
+
   package {
     ['freeswitch-mod-speex','freeswitch-mod-cdr-pg-csv',
      'freeswitch-mod-vp8', 'freeswitch-sounds-es-mx-maria']:
