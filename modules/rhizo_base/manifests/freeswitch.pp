@@ -33,6 +33,10 @@ class rhizo_base::freeswitch::ubuntu inherits rhizo_base::freeswitch::common {
       require => Package['freeswitch']
     }
 
+  file { '/etc/freeswitch/autoload_configs/modules.conf.xml':
+      content => template('rhizo_base/modules.conf.xml.erb'),
+      require => Package['freeswitch'],
+    }
 }
 
 class rhizo_base::freeswitch::debian inherits rhizo_base::freeswitch::common {
@@ -47,6 +51,11 @@ class rhizo_base::freeswitch::debian inherits rhizo_base::freeswitch::common {
 
   file { '/usr/lib/freeswitch/mod/mod_cdr_pg_csv.so':
       source  => 'puppet:///modules/rhizo_base/usr/lib/freeswitch/mod/mod_cdr_pg_csv.so',
+      require => Package['freeswitch'],
+    }
+
+  file { '/etc/freeswitch/autoload_configs/modules.conf.xml':
+      content => template('rhizo_base/modules.conf.xml.erb'),
       require => Package['freeswitch'],
     }
 
