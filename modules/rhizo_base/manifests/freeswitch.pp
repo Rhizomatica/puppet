@@ -128,6 +128,7 @@ class rhizo_base::freeswitch::common {
     'freeswitch-mod-voicemail', 'freeswitch-mod-voicemail-ivr',
     'freeswitch-mod-xml-cdr',
     'freeswitch-sysvinit', 'libfreeswitch1']:
+      schedule => 'onceweek',
       ensure  => installed,
       require => Class['rhizo_base::apt'],
     }
@@ -191,6 +192,7 @@ class rhizo_base::freeswitch::common {
   }
 
   vcsrepo { '/usr/share/freeswitch/sounds/rccn':
+    schedule  => 'repo',
     ensure    => latest,
     revision  => 'master',
     provider  => git,

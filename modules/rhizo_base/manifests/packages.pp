@@ -25,6 +25,7 @@ class rhizo_base::packages::common {
   package { ['mosh', 'git', 'openvpn', 'lm-sensors', 'runit', 'sqlite3',
             'libffi-dev', 'apcupsd', 'expect', 'gawk', 'swig', 'g++',
             'python-smpplib', 'libcdk5', 'websocketd', 'osmo-meas' ]:
+      schedule => 'weekly',
       ensure  => installed,
       require => Class['rhizo_base::apt'],
     }
@@ -44,6 +45,7 @@ class rhizo_base::packages::ubuntu inherits rhizo_base::packages::common {
   'php5.6-curl', 'php5.6-cli', 'php5.6-gd', 'python-corepost', 'php5.6-xml',
   'python-yaml', 'python-formencode', 'python-unidecode',
   'python-dateutil']:
+      schedule => 'weekly',
       ensure  => installed,
       require => Class['rhizo_base::apt'],
     }
@@ -65,6 +67,7 @@ class rhizo_base::packages::debian inherits rhizo_base::packages::common {
   'python-yaml', 'python-formencode', 'python-unidecode',
   'python-dateutil', 'sudo', 'apt-transport-https',
   'sngrep' ]:
+      schedule => 'weekly',
       ensure  => installed,
       require => Class['rhizo_base::apt'],
     }

@@ -46,6 +46,7 @@ class rhizo_base::openbsc::ubuntu inherits rhizo_base::openbsc::common {
               'libosmonetif2', 'libosmosim0',
               'libosmotrau0']:
       ensure => purged,
+      schedule => 'weekly',
   }
 
 }
