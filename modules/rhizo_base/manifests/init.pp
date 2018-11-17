@@ -86,6 +86,8 @@ class rhizo_base {
   $rai_admin_user  = hiera('rhizo::rai_admin_user')
   $rai_admin_pwd   = hiera('rhizo::rai_admin_pwd')
 
+  $default_log_level = hiera('rhizo::default_log_level', 'INFO')
+
   $kannel_server           = hiera('rhizo::kannel_server')
   $kannel_port             = hiera('rhizo::kannel_port')
   $kannel_username         = hiera('rhizo::kannel_username')
