@@ -43,6 +43,14 @@ hlr() {
   sudo /usr/bin/sqlite3 -column -header $OSMO_HLR
 }
 
+tl() {
+  if [ "$1" == "" ] ; then
+    tail -f /var/log/rccn/*log
+  else
+    tail -f /var/log/rccn/$1.log
+  fi
+}
+
 rk_ext() {
   IMSI=$(curl -X GET http://10.23.0.3:8098/buckets/hlr/index/msisdn_bin/$1 2>/dev/null| sed -e 's/[^0-9]//g')
   echo $IMSI
