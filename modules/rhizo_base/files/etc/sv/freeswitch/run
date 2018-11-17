@@ -5,4 +5,4 @@
 #exec 2>&1
 export PYTHONPATH=$PYTHONPATH:/var/rhizomatica/rccn
 #exec /usr/local/freeswitch/bin/freeswitch
-exec /usr/bin/freeswitch
+exec /usr/bin/freeswitch -nonat
