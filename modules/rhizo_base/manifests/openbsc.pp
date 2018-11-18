@@ -82,6 +82,7 @@ class rhizo_base::openbsc::common {
   $bts3_ip_address = $rhizo_base::bts3_ip_address
   $smsc_password   = $rhizo_base::smsc_password
   $gprs            = $rhizo_base::gprs
+  $smpp_password   = $rhizo_base::smpp_password
 
   service { 'osmocom-nitb':
       enable  => false,
