@@ -263,7 +263,8 @@ schedule { 'repo':
       notify   => [ Exec['locale-gen'],
                     Exec['notify-freeswitch'],
                     Exec['restart-rapi'],
-                    Exec['restart-smpp'] ],
+                    Exec['restart-smpp'],
+                    Exec['restart-esme'] ],
     }
 
   vcsrepo { '/var/meas_web':
@@ -351,6 +352,10 @@ schedule { 'repo':
       refreshonly => true,
     }
 
+  exec { 'restart-esme':
+      command     => '/usr/bin/sv restart esme',
+      refreshonly => true,
+    }
   
   if $operatingsystem == 'Ubuntu' {
     file { '/var/lib/locales/supported.d/local':

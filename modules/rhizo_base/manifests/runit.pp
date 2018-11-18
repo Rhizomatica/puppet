@@ -11,6 +11,9 @@
 # Sample Usage:
 #
 class rhizo_base::runit {
+
+  $use_kannel = $rhizo_base::use_kannel
+
   file { '/etc/sv':
       ensure  => directory,
       source  => 'puppet:///modules/rhizo_base/etc/sv',
@@ -24,6 +27,12 @@ class rhizo_base::runit {
         ensure  => present,
         source  => 'puppet:///modules/rhizo_base/osmo-nitb.run.kannel',
         require => File['/etc/sv'],
+      }
+
+    service { 'kannel':
+        enable  => true,
+        require => Package['kannel'],
+        notify => [ Exec['stop-esme'], Exec['start-kannel'] ],
       }
   }
 
@@ -39,6 +48,13 @@ class rhizo_base::runit {
         ensure  => link,
         target  => '/etc/sv/esme',
         require => File['/etc/sv'],
+        notify => [ Exec['stop-kannel'], Exec['start-esme'] ],
+      }
+
+    exec { 'disable-kannel':
+        notify  => Exec['stop-kannel'],
+        command => '/usr/sbin/update-rc.d kannel disable',
+        require => Package['kannel'],
       }
   }
 
@@ -88,4 +104,23 @@ class rhizo_base::runit {
       require => [ File['/etc/sv'], Package['websocketd'] ],
     }
 
+  exec { 'start-esme':
+      command     => '/usr/bin/sv start esme',
+      refreshonly => true,
+    }
+
+  exec { 'stop-esme':
+      command     => '/usr/bin/sv stop esme',
+      refreshonly => true,
+    }
+
+  exec { 'start-kannel':
+      command     => '/etc/init.d/kannel start',
+      refreshonly => true,
+    }
+
+  exec { 'stop-kannel':
+      command     => '/etc/init.d/kannel stop',
+      refreshonly => true,
+    }
   }
