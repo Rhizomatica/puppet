@@ -23,6 +23,7 @@ class rhizo_base::packages::common {
     }
 
   package { ['mosh', 'git', 'openvpn', 'lm-sensors', 'runit', 'sqlite3',
+            'htop', 'fping', 'sngrep',
             'libffi-dev', 'apcupsd', 'expect', 'gawk', 'swig', 'g++',
             'python-smpplib', 'libcdk5', 'websocketd', 'osmo-meas' ]:
       schedule => 'weekly',
@@ -65,8 +66,7 @@ class rhizo_base::packages::debian inherits rhizo_base::packages::common {
   'python-pysqlite2', 'php5', 'php5-pgsql',
   'php5-curl', 'php5-cli', 'php5-gd',
   'python-yaml', 'python-formencode', 'python-unidecode',
-  'python-dateutil', 'sudo', 'apt-transport-https',
-  'sngrep' ]:
+  'python-dateutil', 'sudo', 'apt-transport-https' ]:
       schedule => 'weekly',
       ensure  => installed,
       require => Class['rhizo_base::apt'],

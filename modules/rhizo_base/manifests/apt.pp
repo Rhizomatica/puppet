@@ -62,6 +62,13 @@ class rhizo_base::apt::ubuntu inherits rhizo_base::apt::common {
       repos       => 'main',
       key_source  => 'https://deb.nodesource.com/gpgkey/nodesource.gpg.key'
     }
+
+  apt::source { 'irontec':
+      location    => 'http://packages.irontec.com/ubuntu',
+      release     => 'precise',
+      repos       => 'main',
+      key_source  => 'https://packages.irontec.com/public.key'
+    }
 }
 
 class rhizo_base::apt::debian inherits rhizo_base::apt::common {
