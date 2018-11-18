@@ -67,6 +67,9 @@ class rhizo_base {
   $sip_central_ip_address = hiera('rhizo::sip_central_ip_address')
   $latency_check_address = hiera('rhizo::latency_check_address','1.1.1.1')
 
+  $stats_disk = hiera('rhizo::stats_disk','')
+  $stats_if = hiera('rhizo::stats_if','eth0')
+
   # SITE settings
   # rate type can be "call" or "min"
   $limit_local_calls            = hiera('rhizo::limit_local_calls')
