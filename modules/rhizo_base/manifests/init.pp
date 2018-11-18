@@ -189,6 +189,11 @@ class rhizo_base {
       }
   }
 
+schedule { 'always':
+  period => hourly,
+  repeat => 2,
+}
+
 schedule { 'onceday':
   period => daily,
   repeat => 1,
