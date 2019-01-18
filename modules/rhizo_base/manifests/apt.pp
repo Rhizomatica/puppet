@@ -48,13 +48,17 @@ class rhizo_base::apt::ubuntu inherits rhizo_base::apt::common {
   apt::ppa { 'ppa:ondrej/php': }
   apt::ppa { 'ppa:ondrej/apache2': }
 
-  apt::source { 'icinga':
-      location    => 'https://packages.icinga.org/ubuntu',
-      release     => 'icinga-precise',
-      repos       => 'main',
-      key_source  => 'https://packages.icinga.org/icinga.key',
-      include_src => false,
-    }
+#  apt::source { 'icinga':
+#      location    => 'https://packages.icinga.org/ubuntu',
+#      release     => 'icinga-precise',
+#      repos       => 'main',
+#      key_source  => 'https://packages.icinga.org/icinga.key',
+#      include_src => false,
+#    }
+
+file { '/etc/apt/sources.list.d/icinga.list':
+       ensure  => absent,
+}
 
   apt::source { 'nodesource':
       location    => 'https://deb.nodesource.com/node_0.10',
