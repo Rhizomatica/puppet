@@ -101,7 +101,7 @@
     <!-- extended info parsing -->
     <!-- <param name="extended-info-parsing" value="true"/> -->
 
-    <param name="aggressive-nat-detection" value="true"/>
+    <param name="aggressive-nat-detection" value="false"/>
     <!--
         There are known issues (asserts and segfaults) when 100rel is enabled.
         It is not recommended to enable 100rel at this time.
@@ -126,6 +126,7 @@
     -->
     <param name="local-network-acl" value="localnet.auto"/>
     <param name="apply-register-acl" value="domains"/>
+    <param name="apply-candidate-acl" value="domains"/>
     <!--<param name="dtmf-type" value="info"/>-->
 
 
@@ -224,7 +225,7 @@
     <!--<param name="inbound-proxy-media" value="true"/>-->
 
     <!-- Let calls hit the dialplan before selecting codec for the a-leg -->
-    <param name="inbound-late-negotiation" value="true"/>
+    <param name="inbound-late-negotiation" value="false"/>
 
     <!-- Allow ZRTP clients to negotiate end-to-end security associations (also enables late negotiation) -->
     <param name="inbound-zrtp-passthru" value="true"/>
