@@ -38,6 +38,7 @@ class rhizo_base {
   $network_name    = hiera('rhizo::network_name')
   $auth_policy     = hiera('rhizo::auth_policy')
   $lac             = hiera('rhizo::lac')
+  $gprs            = hiera('rhizo::gprs')
   $gsm_band        = hiera('rhizo::gsm_band', "GSM850")
   $mcc             = hiera('rhizo::mcc', '334')
   $mnc             = hiera('rhizo::mnc', '7')
@@ -66,6 +67,7 @@ class rhizo_base {
   $wan_ip_address = hiera('rhizo::wan_ip_address')
   $riak_ip_address = hiera('rhizo::riak_ip_address', $vpn_ip_address)
   $sip_central_ip_address = hiera('rhizo::sip_central_ip_address')
+  $latency_check_address = hiera('rhizo::latency_check_address','1.1.1.1')
 
   # SITE settings
   # rate type can be "call" or "min"
@@ -86,6 +88,8 @@ class rhizo_base {
 
   $rai_admin_user  = hiera('rhizo::rai_admin_user')
   $rai_admin_pwd   = hiera('rhizo::rai_admin_pwd')
+
+  $default_log_level = hiera('rhizo::default_log_level', 'INFO')
 
   # VOIP provider
   $voip_provider_name = hiera('rhizo::voip_provider_name')
@@ -111,6 +115,7 @@ class rhizo_base {
 
   #Number to send low VOIP Balance alert
   $admin_contact       = hiera('rhizo::admin_contact','')
+  $support_contact     = hiera('rhizo::support_contact','')
 
   #Device Geo Info
   $bsc_geo_lat         = hiera('rhizo::bsc_geo_lat')
