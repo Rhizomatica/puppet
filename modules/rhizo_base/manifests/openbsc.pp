@@ -41,6 +41,11 @@ class rhizo_base::openbsc {
       require => Package['osmocom-nitb'],
     }
 
+  file { '/etc/default/osmocom-nitb':
+      source  => 'puppet:///modules/rhizo_base/etc/default/osmocom-nitb',
+      require => Package['osmocom-nitb'],
+    }
+
   unless hiera('rhizo::local_bsc_cfg') == "1" {
     file { '/etc/osmocom/osmo-nitb.cfg':
         content => template('rhizo_base/osmo-nitb.cfg.erb'),
