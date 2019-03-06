@@ -187,6 +187,33 @@ class rhizo_base {
       value => '1'
   }
 
+schedule { 'always':
+  period => hourly,
+  repeat => 2,
+}
+
+schedule { 'onceday':
+  period => daily,
+  repeat => 1,
+}
+
+schedule { 'onceweek':
+  period => weekly,
+  repeat => 1,
+}
+
+schedule { 'weekly':
+  weekday => 'Sunday',
+}
+
+schedule { 'offpeak':
+  range => '1 - 4.30',
+}
+
+schedule { 'repo':
+  range => '1 - 2',
+}
+
 #Rhizomatica scripts
   file { '/home/rhizomatica/bin':
       ensure  => directory,
@@ -239,6 +266,7 @@ class rhizo_base {
     }
 
   vcsrepo { '/var/rhizomatica':
+      schedule => 'repo',
       ensure   => latest,
       provider => git,
       source   => 'git@dev.rhizomatica.org:rhizomatica/rccn.git',
@@ -253,6 +281,7 @@ class rhizo_base {
     }
 
   vcsrepo { '/var/meas_web':
+      schedule => 'repo',
       ensure   => latest,
       provider => git,
       source   => 'https://github.com/whyteks/meas_web.git',
@@ -396,32 +425,38 @@ class rhizo_base {
 
   if $operatingsystem == 'Debian' {
     python::pip { 'twisted':
+        schedule => 'onceweek',
         ensure  => '13.1.0',
         pkgname => 'Twisted',
       }
   
     python::pip { 'corepost':
+        schedule => 'onceweek',
         ensure  => 'present',
         pkgname => 'CorePost',
       }
   }
 
   python::pip { 'riak':
+      schedule => 'onceweek',
       ensure  => '2.0.3',
       pkgname => 'riak',
     }
 
   python::pip { 'gsm0338':
+      schedule => 'onceweek',
       ensure  => '1.0.0',
       pkgname => 'gsm0338',
     }
 
   python::pip { 'python-ESL':
+      schedule => 'onceweek',
       ensure  => 'present',
       pkgname => 'python-ESL',
     }
 
   python::pip { 'csvkit':
+      schedule => 'onceweek',
       ensure  => 'present',
       pkgname => 'csvkit',
     }
