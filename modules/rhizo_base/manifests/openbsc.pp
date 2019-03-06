@@ -35,25 +35,6 @@ class rhizo_base::openbsc {
                     Exec['notify-nitb'] ],
     }
 
-  package { [ 'libsmpp34-0', 'libosmoabis3',
-              'libosmoctrl0',
-              'libosmogsm6', 'libosmogsm7',
-              'libosmovty3',
-              'libgtp', 'libgtp0',
-              'libgtp0-dev', 'openggsn',
-              'libosmo-abis', 'libosmo-abis-dbg',
-              'libosmo-abis-dev', 'libosmo-netif-dbg',
-              'libosmo-netif-dev', 'libosmo-sccp',
-              'libosmo-sccp-dbg', 'libosmo-sccp-dev',
-              'libosmocodec0', 'libosmocore',
-              'libosmocore-dbg', 'libosmocore-dev',
-              'libosmocore6', 'libosmogsm5',
-              'libosmocore-utils', 'libosmogb3',
-              'libosmonetif2', 'libosmosim0',
-              'libosmotrau0']:
-      ensure => purged,
-  }
-
   service { 'osmocom-nitb':
       enable  => false,
       require => Package['osmocom-nitb'],
