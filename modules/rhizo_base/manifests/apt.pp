@@ -94,7 +94,7 @@ class rhizo_base::apt::debian inherits rhizo_base::apt::common {
 
   apt::source { 'irontec':
       location    => 'http://packages.irontec.com/debian',
-      release     => 'jessie',
+      release     => 'stretch',
       repos       => 'main',
       key         => {
         'id'      => '4FF7139B43073A436D8C2C4F90D20F5ED8C20040',
