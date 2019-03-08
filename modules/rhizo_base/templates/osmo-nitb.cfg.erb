@@ -514,9 +514,11 @@ smpp
  policy closed
  smpp-first
  esme OSMPP
+  no alert-notifications
   password <%= @smsc_password %>
   default-route
  esme ISMPP
+  no alert-notifications
   password <%= @smsc_password %>
  esme NOTIFY
   password <%= @smpp_password %>
