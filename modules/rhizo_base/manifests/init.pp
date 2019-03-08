@@ -158,9 +158,14 @@ class rhizo_base {
   $link5_geo_lat        = hiera('rhizo::link5_geo_lat', false)
   $link5_geo_lon        = hiera('rhizo::link5_geo_lon', false)
 
-  include ntp
-  include kannel
-  include sshkeys
+
+  class { '::ntp':
+    servers => hiera('rhizo::ntp_servers')
+    }
+
+  include ::ntp
+  include ::kannel
+  include ::sshkeys
   include rhizo_base::fixes
   include rhizo_base::apt
   include rhizo_base::postgresql
