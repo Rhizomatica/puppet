@@ -283,6 +283,17 @@ schedule { 'repo':
                     Exec['restart-esme'] ],
     }
 
+  file { '/var/rhizomatica/rccn/config_values.py':
+      ensure  => present,
+      content => template('rhizo_base/config_values.py.erb'),
+      require => Vcsrepo['/var/rhizomatica'],
+      notify   => [ Exec['locale-gen'],
+                    Exec['notify-freeswitch'],
+                    Exec['restart-rapi'],
+                    Exec['restart-smpp'],
+                    Exec['restart-esme'], ],
+    }
+
   vcsrepo { '/var/meas_web':
       schedule => 'repo',
       ensure   => latest,
@@ -308,11 +319,6 @@ schedule { 'repo':
       mode    => '0755',
     }
 
-  file { '/var/rhizomatica/rccn/config_values.py':
-      ensure  => present,
-      content => template('rhizo_base/config_values.py.erb'),
-      require => Vcsrepo['/var/rhizomatica'],
-    }
 
   file { '/var/rhizomatica/rai/include/database.php':
       ensure  => present,
