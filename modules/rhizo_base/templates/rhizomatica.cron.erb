@@ -25,8 +25,20 @@ PYTHONPATH=$PYTHONPATH:/var/rhizomatica/rccn
 # */10    *   *   *  *  root /home/rhizomatica/bin/bind_check.sh
 
 #Roaming jobs
-*/10 *    *   *   *     root timeout 10m /usr/bin/python /var/rhizomatica/rccn/rrc.py -c -f > /dev/null 2>&1 ; timeout 10m /usr/bin/python /var/rhizomatica/rccn/rhs.py -c > /dev/null 2>&1
-#*/15 *    *   *   *     root /usr/bin/python /var/rhizomatica/rccn/rhs.py > /dev/null 2>&1
+# Look for connected IMSIs known in the dHLR.
+*/10 *    *   *   *     root timeout 10m /usr/bin/python /var/rhizomatica/rccn/rrc.py -c -f > /dev/null 2>&1
+
+# The last run time gets behind and then this job hangs and never completes, perpetuating this
+# so just sync the last 15 mins every 10
+*/10 *    *   *   *     root timeout 10m /usr/bin/python /var/rhizomatica/rccn/rhs.py -c -m 15 > /dev/null 2>&1
+
+# Clean up the HLRs
+45 4    *   *   0     root timeout 10m /usr/bin/python /var/rhizomatica/rccn/rhs.py -de
+
+# When phones are least likely to be physically moving about, reset the locations based on recent local LUR
+35  3    *   *   *     root timeout 10m /usr/bin/python /var/rhizomatica/rccn/rrc.py -o -l > /dev/null 2>&1
+
+#*/15 *   *   *   *     root /usr/bin/python /var/rhizomatica/rccn/rhs.py > /dev/null 2>&1
 
 */10 *    *   *   *     root timeout 5m /usr/bin/python /var/rhizomatica/rccn/sqs.py > /dev/null 2>&1
 
