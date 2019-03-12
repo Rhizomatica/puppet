@@ -174,7 +174,7 @@
     <!-- Can be 'true' or 'contact' -->
     <!--<param name="multiple-registrations" value="contact"/>-->
     <!--set to 'greedy' if you want your codec list to take precedence -->
-    <param name="inbound-codec-negotiation" value="generous"/>
+    <param name="inbound-codec-negotiation" value="greedy"/>
     <!-- if you want to send any special bind params of your own -->
     <!--<param name="bind-params" value="transport=udp"/>-->
     <!--<param name="unregister-on-options-fail" value="true"/>-->
