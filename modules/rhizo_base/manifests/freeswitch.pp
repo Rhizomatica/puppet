@@ -111,7 +111,7 @@ class rhizo_base::freeswitch::common {
     'freeswitch-mod-python', 'freeswitch-mod-say-en',
     'freeswitch-mod-say-es', 'freeswitch-mod-sms',
     'freeswitch-mod-sndfile', 'freeswitch-mod-sofia',
-    'freeswitch-mod-spandsp', 
+    'freeswitch-mod-spandsp', 'freeswitch-mod-shout',
     'freeswitch-mod-syslog', 'freeswitch-mod-tone-stream',
     'freeswitch-mod-voicemail', 'freeswitch-mod-voicemail-ivr',
     'freeswitch-mod-xml-cdr', 'freeswitch-mod-cdr-pg-csv',

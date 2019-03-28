@@ -23,6 +23,7 @@ class rhizo_base {
   $use_sip         = hiera('rhizo::use_sip')
   $advice_email    = hiera('rhizo::advice_email')
   $charge_scheme   = hiera('rhizo::charge_scheme', 'normal')
+  $test_playback   = hiera('rhizo::test_playback', 'tone_stream://%(4000,250,440);loops=-1')
 
   # database
   $pgsql_db   = hiera('rhizo::pgsql_db')
