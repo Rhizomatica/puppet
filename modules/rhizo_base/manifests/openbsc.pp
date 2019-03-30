@@ -14,6 +14,7 @@ class rhizo_base::openbsc {
   $network_name    = $rhizo_base::network_name
   $auth_policy     = $rhizo_base::auth_policy
   $lac             = $rhizo_base::lac
+  $ms_max_power    = $rhizo_base::ms_max_power
   $max_power_red   = $rhizo_base::max_power_red
   $gsm_band        = $rhizo_base::gsm_band
   $mcc             = $rhizo_base::mcc

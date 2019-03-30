@@ -61,7 +61,8 @@ class rhizo_base {
   $arfcn_F         = hiera('rhizo::arfcn_F', false)
   $bts3_name       = hiera('rhizo::bts3_name', "${site_name}_3")
 
-  $max_power_red   = hiera('rhizo::max_power_red')
+  $ms_max_power    = hiera('rhizo::ms_max_power', '5')
+  $max_power_red   = hiera('rhizo::max_power_red', '24')
   $mncc_codec      = hiera('rhizo::mncc_codec', 'GSM')
   $inter_codec     = hiera('rhizo::inter_codec', 'G729')
 
