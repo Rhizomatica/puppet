@@ -1,7 +1,7 @@
 #!/bin/bash
 RHIZO_SCRIPT="/home/rhizomatica/bin"
 . $RHIZO_SCRIPT/vars.sh
-. $RHIZO_SCRIPT/rccn-functions
+. /etc/profile.d/rccn-functions.sh
 
 NACK=`echo "show lchan" | nc -q1 localhost 4242 | grep "BROKEN UNUSABLE Error reason: NACK on activation" | wc -l`
 
