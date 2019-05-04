@@ -104,6 +104,7 @@ class rhizo_base::freeswitch::common {
   $voip_password  = $rhizo_base::voip_password
   $voip_proxy     = $rhizo_base::voip_proxy
   $sip_central_ip_address = $rhizo_base::sip_central_ip_address
+  $mncc_ip_address = $rhizo_base::mncc_ip_address
 
   package {
     ['freeswitch', 'freeswitch-lang-en',

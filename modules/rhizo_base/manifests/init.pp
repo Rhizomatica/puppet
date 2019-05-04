@@ -64,6 +64,7 @@ class rhizo_base {
   $inter_codec     = hiera('rhizo::inter_codec', 'G729')
 
   # IP address
+  $mncc_ip_address = hiera('rhizo::mncc_ip_address', '172.16.0.1')
   $vpn_ip_address = hiera('rhizo::vpn_ip_address')
   $wan_ip_address = hiera('rhizo::wan_ip_address')
   $riak_ip_address = hiera('rhizo::riak_ip_address', $vpn_ip_address)
