@@ -1,8 +1,5 @@
 #!/bin/sh
-#restarting postgres to make sure that RCCN connects to it, sleeping just to be sure that it's up :)
-#/etc/init.d/postgresql restart
-#/bin/sleep 10
-#exec 2>&1
+
 export PYTHONPATH=$PYTHONPATH:/var/rhizomatica/rccn
-#exec /usr/local/freeswitch/bin/freeswitch
+exec 2>&1
 exec /usr/bin/freeswitch -nonat
