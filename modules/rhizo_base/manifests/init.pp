@@ -24,6 +24,7 @@ class rhizo_base {
   $use_sip         = hiera('rhizo::use_sip')
   $advice_email    = hiera('rhizo::advice_email')
   $charge_scheme   = hiera('rhizo::charge_scheme', 'normal')
+  $test_playback   = hiera('rhizo::test_playback', 'tone_stream://%(4000,250,440);loops=-1')
 
   # database
   $pgsql_db   = hiera('rhizo::pgsql_db')
@@ -59,6 +60,8 @@ class rhizo_base {
   $bts3_name       = hiera('rhizo::bts3_name', "${site_name}_3")
 
   $max_power_red   = hiera('rhizo::max_power_red')
+  $mncc_codec      = hiera('rhizo::mncc_codec', 'GSM')
+  $inter_codec     = hiera('rhizo::inter_codec', 'G729')
 
   # IP address
   $vpn_ip_address = hiera('rhizo::vpn_ip_address')
@@ -108,6 +111,8 @@ class rhizo_base {
   $voip_proxy         = hiera('rhizo::voip_proxy')
   $voip_did           = hiera('rhizo::voip_did')
   $voip_cli           = hiera('rhizo::voip_cli')
+  $voip_chans_max     = hiera('rhizo::voip_chans_max', '200')
+  $voip_mod           = hiera('rhizo::voip_mod')
 
   # Subscription SMS notification
   $notice_msg       = hiera('rhizo::notice_msg')
