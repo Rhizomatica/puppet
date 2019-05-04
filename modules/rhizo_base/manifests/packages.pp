@@ -25,7 +25,7 @@ class rhizo_base::packages::common {
   package { ['mosh', 'git', 'openvpn', 'lm-sensors', 'runit', 'sqlite3',
             'htop', 'fping', 'sngrep', 'curl',
             'libffi-dev', 'apcupsd', 'expect', 'gawk', 'swig', 'g++',
-            'python-smpplib', 'libcdk5', 'websocketd', 'osmo-meas' ]:
+            'python-smpplib', 'libcdk5', 'websocketd' ]:
       schedule => 'weekly',
       ensure  => installed,
       require => Class['rhizo_base::apt'],
@@ -36,14 +36,14 @@ class rhizo_base::packages::common {
 class rhizo_base::packages::ubuntu inherits rhizo_base::packages::common {
 
   package { ['puppet', 'puppet-common']:
-      ensure  => '3.8.1-1puppetlabs1',
+      ensure  => '3.8.7-1puppetlabs1',
     }
 
 #Apache2 + PHP + Python
-  package { ['apache2','libapache2-mod-php5.6',
+  package { ['apache2','libapache2-mod-php5',
   'rrdtool', 'python-twisted-web', 'python-psycopg2',
-  'python-pysqlite2', 'php5.6', 'php5.6-pgsql',
-  'php5.6-curl', 'php5.6-cli', 'php5.6-gd', 'python-corepost', 'php5.6-xml',
+  'python-pysqlite2', 'php5', 'php5-pgsql',
+  'php5-curl', 'php5-cli', 'php5-gd', 'python-corepost', 
   'python-yaml', 'python-formencode', 'python-unidecode',
   'python-dateutil']:
       schedule => 'weekly',

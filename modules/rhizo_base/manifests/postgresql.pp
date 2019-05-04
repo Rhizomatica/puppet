@@ -33,7 +33,7 @@ class rhizo_base::postgresql::ubuntu inherits rhizo_base::postgresql::common {
 
   class { 'postgresql::globals':
       manage_package_repo => true,
-      version             => '9.3',
+      version             => '9.5',
     }->
   class { 'postgresql::server':
     }

@@ -18,31 +18,31 @@ class rhizo_base::openbsc {
 
 class rhizo_base::openbsc::ubuntu inherits rhizo_base::openbsc::common {
 
-  package { [ 'libosmo-abis', 'libosmocore',
-              'libosmocore-utils' ]:
-      ensure   => latest,
-      require  => Class['rhizo_base::apt'],
-      notify   => [ Exec['notify-nitb'] ],
-    }
-
-  package {  [ 'osmocom-nitb', 'osmo-meas' ]:
+#  package { [ 'libosmo-abis', 'libosmocore',
+#              'libosmocore-utils' ]:
+#      ensure   => latest,
+#      require  => Class['rhizo_base::apt'],
+#      notify   => [ Exec['notify-nitb'] ],
+#    }
+#
+ package {  [ 'osmocom-nitb' ]:
       ensure   => 'latest',
       require  => Class['rhizo_base::apt'],
       notify   => [ Exec['hlr_pragma_wal'],
                     Exec['notify-nitb'] ],
     }
-
-  package { [ 'libosmoabis3', 'libosmocore8',
-              'libosmogsm7', 'libosmovty3',
-              'libgtp', 'libgtp0',
-              'libgtp0-dev', 'openggsn',
-              'libsmpp0',
-              'libosmo-abis-dev',
-              'libosmo-netif-dbg', 'libosmo-netif-dev' ]:
-      ensure => purged,
-      schedule => 'weekly',
-  }
-
+#
+# package { [ 'libosmoabis3', 'libosmocore8',
+#              'libosmogsm7', 'libosmovty3',
+#              'libgtp', 'libgtp0',
+#              'libgtp0-dev', 'openggsn',
+#              'libsmpp0',
+#              'libosmo-abis-dev',
+#              'libosmo-netif-dbg', 'libosmo-netif-dev' ]:
+#      ensure => purged,
+#      schedule => 'weekly',
+#  }
+#
 }
 
 class rhizo_base::openbsc::debian inherits rhizo_base::openbsc::common {

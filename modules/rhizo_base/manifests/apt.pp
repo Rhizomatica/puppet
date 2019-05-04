@@ -34,7 +34,7 @@ class rhizo_base::apt::common {
     }
   apt::source { 'rhizo':
       location          => 'http://repo.rhizomatica.org/ubuntu/',
-      release           => 'precise',
+      release           => 'trusty',
       repos             => 'main',
       include_src       => false,
       require           => File['/etc/apt/apt.conf.d/90unsigned'],
@@ -62,14 +62,14 @@ file { '/etc/apt/sources.list.d/icinga.list':
 
   apt::source { 'nodesource':
       location    => 'https://deb.nodesource.com/node_0.10',
-      release     => 'precise',
+      release     => 'trusty',
       repos       => 'main',
       key_source  => 'https://deb.nodesource.com/gpgkey/nodesource.gpg.key'
     }
 
   apt::source { 'irontec':
       location    => 'http://packages.irontec.com/ubuntu',
-      release     => 'precise',
+      release     => 'trusty',
       repos       => 'main',
       key_source  => 'http://packages.irontec.com/public.key'
     }
