@@ -10,7 +10,7 @@ LOGFILE="/var/log/monitor_fs.log"
 IFS=
 FS_STATUS="$(fs_cli -x 'sofia status')"
 
-if !(echo $FS_STATUS | egrep -q "internal.*172.16.0.1"); then
+if !(echo $FS_STATUS | egrep -q "internal.*127.0.0.1"); then
 	logc "Missing internal profile! Restarting Profile";
 	fs_cli -x "sofia profile internal stop"
 	sleep 10

@@ -51,7 +51,7 @@ class rhizo_base::packages::ubuntu inherits rhizo_base::packages::common {
       require => Class['rhizo_base::apt'],
     }
 
-  file { '/etc/php/5.6/apache2/php.ini':
+  file { '/etc/php5/apache2/php.ini':
       ensure  => present,
       source  => "puppet:///modules/rhizo_base/etc/php5/apache2/php.ini.$operatingsystem"
     }

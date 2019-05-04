@@ -3,4 +3,4 @@
 #
 # RUNLCR: If set to anything other that 'yes', the lcr init.d script
 #              will not run. The default is 'yes'.
-RUNLCR=yes
+RUNLCR=no

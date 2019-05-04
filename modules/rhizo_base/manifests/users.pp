@@ -19,7 +19,7 @@ class rhizo_base::users {
       gid      => 'rhizomatica',
       home     => '/home/rhizomatica',
       password => $rhizo::password_hash,
-      uid      => '1000',
+      uid      => '1011',
       purge_ssh_keys => true
       }
   }
