@@ -91,9 +91,9 @@
     <param name="outbound-codec-prefs" value="$${global_codec_prefs}"/>
     <param name="rtp-timer-name" value="soft"/>
     <!-- ip address to use for rtp, DO NOT USE HOSTNAMES ONLY IP ADDRESSES -->
-    <param name="rtp-ip" value="172.16.0.1"/>
+    <param name="rtp-ip" value="127.0.0.1"/>
     <!-- ip address to bind to, DO NOT USE HOSTNAMES ONLY IP ADDRESSES -->
-    <param name="sip-ip" value="172.16.0.1"/>
+    <param name="sip-ip" value="127.0.0.1"/>
     <!--<param name="hold-music" value="$${hold_music}"/>-->
     <param name="apply-nat-acl" value="nat.auto"/>
 
@@ -104,7 +104,7 @@
     <!-- extended info parsing -->
     <!-- <param name="extended-info-parsing" value="true"/> -->
 
-    <param name="aggressive-nat-detection" value="true"/>
+    <param name="aggressive-nat-detection" value="false"/>
     <!--
         There are known issues (asserts and segfaults) when 100rel is enabled.
         It is not recommended to enable 100rel at this time.
@@ -272,8 +272,8 @@
          auto                  - Use guessed ip.
          auto-nat              - Use ip learned from NAT-PMP or UPNP
     -->
-    <param name="ext-rtp-ip" value="172.16.0.1"/>
-    <param name="ext-sip-ip" value="172.16.0.1"/>
+    <param name="ext-rtp-ip" value="127.0.0.1"/>
+    <param name="ext-sip-ip" value="127.0.0.1"/>
 
     <!-- rtp inactivity timeout -->
     <param name="rtp-timeout-sec" value="300"/>

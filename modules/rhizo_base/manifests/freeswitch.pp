@@ -143,6 +143,12 @@ class rhizo_base::freeswitch::common {
 	recurse => remote
       }
 
+  file { '/etc/freeswitch/sip_profiles':
+        ensure  => directory,
+        source  => 'puppet:///modules/rhizo_base/etc/freeswitch/sip_profiles',
+	recurse => remote
+      }
+
   file { '/etc/freeswitch/chatplan':
         ensure  => directory,
         source  => 'puppet:///modules/rhizo_base/etc/freeswitch/chatplan',
@@ -170,4 +176,31 @@ class rhizo_base::freeswitch::common {
       content => template('rhizo_base/cdr_pg_csv.conf.xml.erb'),
       #require => Package['freeswitch'],
     }
+ 
+  # SSH Deploy key and config for gitlab
+  file { '/root/.ssh/bsc_dev':
+      ensure  => present,
+      mode    => '0600',
+      content => hiera('rhizo::bsc_dev_deploy_key'),
+  }
+
+  file { '/root/.ssh/config':
+      ensure => present,
+      source => 'puppet:///modules/rhizo_base/ssh/config',
+  }
+
+  sshkey { 'dev_host_key':
+      name   => 'dev.rhizomatica.org',
+      ensure => present,
+      key    => hiera('rhizo::dev_host_key'),
+      type   => 'ssh-rsa',
+  }
+
+  vcsrepo { '/usr/share/freeswitch/sounds/rccn':
+    ensure    => latest,
+    provider  => git,
+    source    => 'git@dev.rhizomatica.org:rhizomatica/ticac_sounds.git',
+    require   => File['/root/.ssh/bsc_dev'],
+  }
+        
 }

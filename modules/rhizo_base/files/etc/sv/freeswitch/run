@@ -1,0 +1,5 @@
+#!/bin/sh
+export PYTHONPATH=$PYTHONPATH:/var/rhizomatica/rccn
+exec 2>&1
+exec freeswitch
+

@@ -14,6 +14,7 @@ pgsql_db = '<%= @pgsql_db %>'
 pgsql_user = '<%= @pgsql_user %>'
 pgsql_pwd = '<%= @pgsql_pwd %>'
 pgsql_host = '<%= @pgsql_host %>'
+db_revision = '12'
 
 # SITE
 site_name = "<%= @site_name %>"
@@ -27,7 +28,7 @@ vpn_ip_address = "<%= @vpn_ip_address %>"
 wan_ip_address = "<%= @wan_ip_address %>"
 riak_ip_address = "<%= @riak_ip_address %>"
 mncc_ip_address = "<%= @mncc_ip_address %>"
-sip_central_ip_address = "<%= @sip_central_ip_address %>"
+sip_central_ip_address = <%= @sip_central_ip_address %>
 
 # SITE settings
 # rate type can be "call" or "min"

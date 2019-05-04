@@ -38,7 +38,7 @@
 
   <X-PRE-PROCESS cmd="set" data="local_ip_v4=<%= @vpn_ip_address %>"/>
   <X-PRE-PROCESS cmd="set" data="external_ip=<%= @wan_ip_address %>"/>
-  <X-PRE-PROCESS cmd="set" data="sound_prefix=$${sounds_dir}/en/us/callie"/>
+  <X-PRE-PROCESS cmd="set" data="sound_prefix=$${sounds_dir}/rccn"/>
 
   <!--
       This setting is what sets the default domain FreeSWITCH will use if all else fails.
@@ -146,8 +146,8 @@
        127 - BV32
 
   -->
-  <X-PRE-PROCESS cmd="set" data="global_codec_prefs=G729,PCMA,GSM"/>
-  <X-PRE-PROCESS cmd="set" data="outbound_codec_prefs=G729,PCMA,GSM"/>
+  <X-PRE-PROCESS cmd="set" data="global_codec_prefs=G729,PCMA,GSM,AMR"/>
+  <X-PRE-PROCESS cmd="set" data="outbound_codec_prefs=G729,PCMA,GSM,AMR"/>
 
   <!--
       xmpp_client_profile and xmpp_server_profile
