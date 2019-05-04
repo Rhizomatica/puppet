@@ -9,4 +9,10 @@
       </macros>
     </phrases>
   </language>
+  <language name="es_MX" say-module="es" sound-prefix="$${sounds_dir}/rccn/saldo" tts-engine="cepstral" tts-voice="marta">
+    <phrases>
+      <macros>
+      </macros>
+    </phrases>
+  </language>
 </include>
