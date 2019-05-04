@@ -71,7 +71,7 @@ file { '/etc/apt/sources.list.d/icinga.list':
       location    => 'http://packages.irontec.com/ubuntu',
       release     => 'precise',
       repos       => 'main',
-      key_source  => 'https://packages.irontec.com/public.key'
+      key_source  => 'http://packages.irontec.com/public.key'
     }
 }
 
