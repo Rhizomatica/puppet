@@ -78,7 +78,7 @@ PYTHONPATH=$PYTHONPATH:/var/rhizomatica/rccn
   30  5  *   *   *      root /home/rhizomatica/bin/check_broken.sh
 
 # Check if FS or NTIB needs restart
-  30  3  *   *   *      root /home/rhizomatica/bin/check_dirty.sh
+  30  2-5  *   *   *      root /home/rhizomatica/bin/check_dirty.sh
 
 #PostgreSQL backup
   0  3    *   *   *     postgres /home/rhizomatica/bin/pg_backup_rotated.sh > /dev/null 2>&1
