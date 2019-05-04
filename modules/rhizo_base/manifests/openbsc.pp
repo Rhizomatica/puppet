@@ -32,19 +32,13 @@ class rhizo_base::openbsc::ubuntu inherits rhizo_base::openbsc::common {
                     Exec['notify-nitb'] ],
     }
 
-  package { [ 'libosmoabis3', 'libosmocore4',
-              'libosmogsm6', 'libosmovty0',
+  package { [ 'libosmoabis3', 'libosmocore8',
+              'libosmogsm7', 'libosmovty3',
               'libgtp', 'libgtp0',
               'libgtp0-dev', 'openggsn',
-              'libosmo-abis', 'libosmo-abis-dbg',
-              'libosmo-abis-dev', 'libosmo-netif-dbg',
-              'libosmo-netif-dev', 'libosmo-sccp',
-              'libosmo-sccp-dbg', 'libosmo-sccp-dev',
-              'libosmocodec0', 'libosmocore',
-              'libosmocore-dbg', 'libosmocore-dev',
-              'libosmocore-utils', 'libosmogb3',
-              'libosmonetif2', 'libosmosim0',
-              'libosmotrau0']:
+              'libsmpp0',
+              'libosmo-abis-dev',
+              'libosmo-netif-dbg', 'libosmo-netif-dev' ]:
       ensure => purged,
       schedule => 'weekly',
   }
