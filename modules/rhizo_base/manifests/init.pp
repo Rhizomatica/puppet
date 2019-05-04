@@ -182,9 +182,9 @@ class rhizo_base {
   include rhizo_base::lcr
   include rhizo_base::sudo
   include rhizo_base::users
-  if $operatingsystem != 'Debian' {
-    include rhizo_base::icinga
-  }
+#  if $operatingsystem != 'Debian' {
+#    include rhizo_base::icinga
+#  }
   include rhizo_base::kiwi
 
   if $vpn_ip_address == $riak_ip_address {

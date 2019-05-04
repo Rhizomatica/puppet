@@ -18,10 +18,10 @@ class rhizo_base::freeswitch::ubuntu inherits rhizo_base::freeswitch::common {
 
   $amr_module = "mod_opencore_amr"
 
-  file { '/usr/lib/freeswitch/mod/mod_g729.so':
-      source  => 'puppet:///modules/rhizo_base/mod_g729.so',
-      require => Package['freeswitch'],
-    }
+#  file { '/usr/lib/freeswitch/mod/mod_g729.so':
+#      source  => 'puppet:///modules/rhizo_base/mod_g729.so',
+#      require => Package['freeswitch'],
+#    }
 
   file { '/usr/lib/freeswitch/mod/mod_opencore_amr.so':
       source  => 'puppet:///modules/rhizo_base/mod_opencore_amr.so',

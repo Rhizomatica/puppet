@@ -45,8 +45,8 @@ class rhizo_base::apt::common {
 class rhizo_base::apt::ubuntu inherits rhizo_base::apt::common {
 
   apt::ppa { 'ppa:keithw/mosh': }
-  apt::ppa { 'ppa:ondrej/php': }
-  apt::ppa { 'ppa:ondrej/apache2': }
+#  apt::ppa { 'ppa:ondrej/php': }
+#  apt::ppa { 'ppa:ondrej/apache2': }
 
 #  apt::source { 'icinga':
 #      location    => 'https://packages.icinga.org/ubuntu',

@@ -17,17 +17,17 @@ class rhizo_base::fixes {
 
 class rhizo_base::fixes::ubuntu {
 #FSCK at boot
-  file { '/etc/default/rcS':
-      ensure  => present,
-      source  => 'puppet:///modules/rhizo_base/etc/default/rcS',
-    }
+#  file { '/etc/default/rcS':
+#      ensure  => present,
+#      source  => 'puppet:///modules/rhizo_base/etc/default/rcS',
+#    }
 
 #Grub fix
-  file { '/etc/default/grub':
-      ensure  => present,
-      source  => 'puppet:///modules/rhizo_base/etc/default/grub',
-      notify  => Exec['update-grub'],
-    }
+#  file { '/etc/default/grub':
+#      ensure  => present,
+#      source  => 'puppet:///modules/rhizo_base/etc/default/grub',
+#      notify  => Exec['update-grub'],
+#    }
 
   exec { 'update-grub':
       command     => '/usr/sbin/update-grub',
