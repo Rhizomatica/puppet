@@ -14,7 +14,7 @@
   <!--<param name="extension" value="cluecon"/>-->
   <!--/// proxy host: *optional* same as realm, if blank ///-->
   <!--<param name="proxy" value="66.33.146.52"/>-->
-  <param name="proxy" value="<%= @sip_central_ip_address %>"/>
+  <param name="proxy" value="<%= @sip_central_ip_address[0] %>"/>
   <!--/// send register to this proxy: *optional* same as proxy, if blank ///-->
   <!--<param name="register-proxy" value="mysbc.com"/>-->
   <!--/// expire in seconds: *optional* 3600, if blank ///-->
