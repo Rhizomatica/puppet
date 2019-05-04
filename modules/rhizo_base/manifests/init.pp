@@ -285,7 +285,9 @@ schedule { 'repo':
                     Exec['notify-freeswitch'],
                     Exec['restart-rapi'],
                     Exec['restart-smpp'],
-                    Exec['restart-esme'] ],
+                    Exec['restart-esme'],
+                    Exec['rrd-p-create'],
+                    Exec['rrd-n-create'], ],
     }
 
   file { '/var/rhizomatica/rccn/config_values.py':
@@ -383,6 +385,17 @@ schedule { 'repo':
       command     => '/usr/bin/sv restart esme',
       refreshonly => true,
     }
+
+  exec { 'rrd-p-create':
+      command     => '/var/rhizomatica/bin/platform_create_rrd.sh',
+      refreshonly => true,
+    }
+
+  exec { 'rrd-n-create':
+      command     => '/var/rhizomatica/bin/network_create_rrd.sh',
+      refreshonly => true,
+    }
+
   
   if $operatingsystem == 'Ubuntu' {
     file { '/var/lib/locales/supported.d/local':
