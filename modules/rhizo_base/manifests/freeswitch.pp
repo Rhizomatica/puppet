@@ -160,6 +160,10 @@ class rhizo_base::freeswitch::common {
       ensure  => directory,
     }
 
+  file { '/etc/freeswitch/sip_profiles/internal.xml':
+      content => template('rhizo_base/internal.xml.erb'),
+    }
+
   file { '/etc/freeswitch/sip_profiles/outgoing/rhizomatica.xml':
       content => template('rhizo_base/rhizomatica.xml.erb'),
       require =>
