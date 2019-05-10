@@ -31,6 +31,7 @@ class rhizo_base {
   $pgsql_user = hiera('rhizo::pgsql_user')
   $pgsql_pwd  = hiera('rhizo::pgsql_pwd')
   $pgsql_host = hiera('rhizo::pgsql_host')
+  $pgsql_version = hiera('rhizo::pgsql_version','9.3')
 
   # SITE
   $site_name    = hiera('rhizo::site_name')
