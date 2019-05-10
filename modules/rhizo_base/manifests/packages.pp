@@ -17,15 +17,15 @@ class rhizo_base::packages {
 
 class rhizo_base::packages::common {
 
-  package { ['python-python-smpplib']:
+  package { ['python-python-smpplib', 'osmocom-meas-utils' ]:
       ensure  => purged,
       require => Class['rhizo_base::apt'],
     }
 
   package { ['mosh', 'git', 'openvpn', 'lm-sensors', 'runit', 'sqlite3',
             'htop', 'fping', 'sngrep', 'curl',
-            'libffi-dev', 'apcupsd', 'expect', 'gawk', 'swig', 'g++',
-            'python-smpplib', 'libcdk5', 'websocketd' ]:
+            'libffi-dev', 'expect', 'gawk', 'swig', 'g++',
+            'python-smpplib', 'libcdk5', 'websocketd', 'osmo-meas' ]:
       schedule => 'weekly',
       ensure  => installed,
       require => Class['rhizo_base::apt'],
