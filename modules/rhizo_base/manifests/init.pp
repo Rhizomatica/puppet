@@ -100,7 +100,7 @@ class rhizo_base {
   $kannel_port             = hiera('rhizo::kannel_port')
   $kannel_username         = hiera('rhizo::kannel_username')
   $kannel_sendsms_password = hiera('rhizo::kannel_sendsms_password')
-  $use_kannel              = hiera('rhizo::use_kannel', 'yes')
+  $use_kannel              = hiera('rhizo::use_kannel', 'no')
   $smpp_password           = hiera('rhizo::smpp_password', 'Password')
 
   # VOIP provider
