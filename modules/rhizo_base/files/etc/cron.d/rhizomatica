@@ -30,7 +30,7 @@ PYTHONPATH=$PYTHONPATH:/var/rhizomatica/rccn
   0  5    *   *   *     root /usr/bin/python /var/rhizomatica/rccn/rip.py > /dev/null 2>&1
 
 # amplifier monitoring
-*/5  *    *   *   *     root /home/rhizomatica/bin/monitor_amp.sh > /dev/null 2>&1
+#*/5  *    *   *   *     root /home/rhizomatica/bin/monitor_amp.sh > /dev/null 2>&1
 
 # RAPI monitoring
 */5  *    *   *   *     root /home/rhizomatica/bin/monitor_rapi.sh > /dev/null 2>&1
