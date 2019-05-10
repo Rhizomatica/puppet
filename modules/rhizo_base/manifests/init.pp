@@ -492,17 +492,6 @@ schedule { 'repo':
       require => Class['python'],
     }
 
-  file { '/etc/apcupsd/apcupsd.conf':
-      ensure  => present,
-      source  => 'puppet:///modules/rhizo_base/etc/apcupsd/apcupsd.conf',
-      require => Package['apcupsd'],
-    }
-
-  file { '/etc/default/apcupsd':
-      ensure => 'present',
-      content => template('rhizo_base/apcupsd.erb'),
-    }
-
   file { '/etc/cron.d/rhizomatica':
       ensure => 'present',
       content => template('rhizo_base/rhizomatica.cron.erb'),
