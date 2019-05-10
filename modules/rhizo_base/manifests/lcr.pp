@@ -22,11 +22,6 @@ class rhizo_base::lcr {
       refreshonly => true,
     }
 
-  service { 'lcr':
-      enable  => false,
-      require => Package['lcr']
-    }
-
   file { '/usr/etc/lcr':
       ensure  => directory,
       source  => 'puppet:///modules/rhizo_base/usr/etc/lcr',
