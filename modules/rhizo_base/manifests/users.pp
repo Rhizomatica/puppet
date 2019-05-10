@@ -18,8 +18,16 @@ class rhizo_base::users {
       ensure   => present,
       gid      => 'rhizomatica',
       home     => '/home/rhizomatica',
+      shell    => '/bin/bash',
       password => $rhizo::password_hash,
       uid      => '1011',
       purge_ssh_keys => true
+      }
+
+  user { 'fairwaves':
+      ensure   => present,
+      gid      => 'fairwaves',
+      home     => '/home/fairwaves',
+      purge_ssh_keys => false
       }
   }
