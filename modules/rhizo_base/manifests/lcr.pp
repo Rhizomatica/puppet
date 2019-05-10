@@ -12,7 +12,7 @@
 #
 class rhizo_base::lcr {
   package { 'lcr':
-      ensure  => '1.3.6-4',
+      ensure  => '1.3.6-6',
       require => Class['rhizo_base::apt'],
       notify  => Exec['restart-lcr'],
     }
