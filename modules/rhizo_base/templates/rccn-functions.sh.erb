@@ -55,6 +55,10 @@ r() {
   sudo -i bash -c "cd /var/rhizomatica/rccn; exec bash --login"
 }
 
+o() {
+  sudo -i bash -c "cd /etc/osmocom; exec bash --login"
+}
+
 rk_ext() {
   IMSI=$(curl -X GET http://10.23.0.3:8098/buckets/hlr/index/msisdn_bin/$1 2>/dev/null| python -c "import sys, json; print json.load(sys.stdin)['keys'][0]")
   echo $IMSI
