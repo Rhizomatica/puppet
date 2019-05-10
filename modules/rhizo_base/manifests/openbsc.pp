@@ -31,6 +31,12 @@ class rhizo_base::openbsc::ubuntu inherits rhizo_base::openbsc::common {
       notify   => [ Exec['hlr_pragma_wal'],
                     Exec['notify-nitb'] ],
     }
+
+ package {  [ 'osmo-trx', 'osmo-bts-trx' ]:
+      ensure   => 'latest',
+      require  => Class['rhizo_base::apt'],
+    }
+
 #
 # package { [ 'libosmoabis3', 'libosmocore8',
 #              'libosmogsm7', 'libosmovty3',
