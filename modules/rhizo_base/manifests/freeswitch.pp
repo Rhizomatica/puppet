@@ -25,7 +25,7 @@ class rhizo_base::freeswitch::ubuntu inherits rhizo_base::freeswitch::common {
 
   file { '/usr/lib/freeswitch/mod/mod_opencore_amr.so':
       source  => 'puppet:///modules/rhizo_base/mod_opencore_amr.so',
-      require => Package['freeswitch'],
+      require => Package['freeswitch-all'],
     }
 
   package {
@@ -38,13 +38,13 @@ class rhizo_base::freeswitch::ubuntu inherits rhizo_base::freeswitch::common {
   }
 
   service { 'freeswitch':
-      enable  => false,  
-      require => Package['freeswitch']
+      enable  => false,
+      require => Package['freeswitch-all']
     }
 
   file { '/etc/freeswitch/autoload_configs/modules.conf.xml':
       content => template('rhizo_base/modules.conf.xml.erb'),
-      require => Package['freeswitch'],
+      require => Package['freeswitch-all'],
     }
 }
 
@@ -110,45 +110,22 @@ class rhizo_base::freeswitch::common {
 
 
   package {
-    ['freeswitch']:
-#      'freeswitch-lang-en', 
-#    'freeswitch-mod-amr', 'freeswitch-mod-amrwb',
-#    'freeswitch-mod-b64', 'freeswitch-mod-bv',
-#    'freeswitch-mod-commands', 'freeswitch-mod-conference',
-#    'freeswitch-mod-console', 'freeswitch-mod-db',
-#    'freeswitch-mod-dialplan-asterisk', 'freeswitch-mod-dialplan-xml',
-#    'freeswitch-mod-dptools', 'freeswitch-mod-enum',
-#    'freeswitch-mod-esf', 'freeswitch-mod-event-socket',
-#    'freeswitch-mod-expr', 'freeswitch-mod-fifo',
-#    'freeswitch-mod-fsv', 'freeswitch-mod-g723-1',
-#    'freeswitch-mod-h26x', 'freeswitch-mod-hash',
-#    'freeswitch-mod-httapi', 'freeswitch-mod-local-stream',
-#    'freeswitch-mod-logfile', 'freeswitch-mod-loopback',
-#    'freeswitch-mod-lua', 'freeswitch-mod-native-file',
-#    'freeswitch-mod-python', 'freeswitch-mod-say-en',
-#    'freeswitch-mod-say-es', 'freeswitch-mod-sms',
-#    'freeswitch-mod-sndfile', 'freeswitch-mod-sofia',
-#    'freeswitch-mod-spandsp', 'freeswitch-mod-shout',
-#    'freeswitch-mod-syslog', 'freeswitch-mod-tone-stream',
-#    'freeswitch-mod-voicemail', 'freeswitch-mod-voicemail-ivr',
-#    'freeswitch-mod-xml-cdr',
-#    'freeswitch-sysvinit', 'libfreeswitch1']:
+    ['freeswitch-all']:
       schedule => 'onceweek',
-      ensure  => installed,
+      ensure  => 'latest',
       require => Class['rhizo_base::apt'],
     }
-
 
   file { '/etc/freeswitch':
       ensure  => directory,
       source  => 'puppet:///modules/rhizo_base/etc/freeswitch',
       recurse => remote,
-      require => Package['freeswitch'],
+      require => Package['freeswitch-all'],
     }
 
   file { '/etc/freeswitch/vars.xml':
       content => template('rhizo_base/vars.xml.erb'),
-      require => Package['freeswitch'],
+      require => Package['freeswitch-all'],
     }
 
   file {'/etc/freeswitch/sip_profiles/external':
@@ -158,7 +135,7 @@ class rhizo_base::freeswitch::common {
   file { '/etc/freeswitch/sip_profiles/external/provider.xml':
       content => template('rhizo_base/provider.xml.erb'),
       require =>
-                [ Package['freeswitch'],
+                [ Package['freeswitch-all'],
                 File['/etc/freeswitch/sip_profiles/external'] ],
     }
 
@@ -173,13 +150,13 @@ class rhizo_base::freeswitch::common {
   file { '/etc/freeswitch/sip_profiles/outgoing/rhizomatica.xml':
       content => template('rhizo_base/rhizomatica.xml.erb'),
       require =>
-                [ Package['freeswitch'],
+                [ Package['freeswitch-all'],
                 File['/etc/freeswitch/sip_profiles/outgoing'] ],
     }
 
   file { '/etc/freeswitch/autoload_configs/cdr_pg_csv.conf.xml':
       content => template('rhizo_base/cdr_pg_csv.conf.xml.erb'),
-      require => Package['freeswitch'],
+      require => Package['freeswitch-all'],
     }
 
   # SSH Deploy key and config for gitlab
