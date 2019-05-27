@@ -77,6 +77,14 @@ class rhizo_base::openbsc::common {
   $smsc_password   = $rhizo_base::smsc_password
   $gprs            = $rhizo_base::gprs
   $smpp_password   = $rhizo_base::smpp_password
+  $mncc_codec      = $rhizo_base::mncc_codec
+
+
+  if $mncc_codec == "AMR" {
+       $phys_chan = "TCH/H"
+  } else {
+       $phys_chan = "TCH/F"
+  }
 
   service { 'osmocom-nitb':
       enable  => false,

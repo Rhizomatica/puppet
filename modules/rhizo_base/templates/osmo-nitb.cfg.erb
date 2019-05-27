@@ -97,8 +97,12 @@ network
   ip.access unit_id 1000 0
   oml ip.access stream_id 255 line 0
   neighbor-list mode automatic
-  codec-support fr
-  <% if @gprs == 'active' -%>gprs mode gprs
+  <% if @mncc_codec == 'AMR' -%>codec-support fr amr
+  amr tch-h modes 4 5
+  amr tch-h start-mode 4
+<% else -%>codec-support fr
+<% end -%>
+<% if @gprs == 'active' -%>  gprs mode gprs
   gprs 11bit_rach_support_for_egprs 0
   gprs routing area 0
   gprs network-control-order nc0
@@ -126,7 +130,7 @@ network
   gprs nsvc 0 local udp port 23000
   gprs nsvc 0 remote udp port 23001
   gprs nsvc 0 remote ip 127.0.0.1
-  <% else -%>gprs mode none
+<% else -%>  gprs mode none
   <% end -%>no force-combined-si
   trx 0
    rf_locked 0
@@ -161,22 +165,22 @@ network
      hopping enabled 0
 <% else -%>
    timeslot 2
-     phys_chan_config TCH/F
+     phys_chan_config <%= @phys_chan %>
      hopping enabled 0
    timeslot 3
-     phys_chan_config TCH/F
+     phys_chan_config <%= @phys_chan %>
      hopping enabled 0
    timeslot 4
-     phys_chan_config TCH/F
+     phys_chan_config <%= @phys_chan %>
      hopping enabled 0
    timeslot 5
-     phys_chan_config TCH/F
+     phys_chan_config <%= @phys_chan %>
      hopping enabled 0
    timeslot 6
-     phys_chan_config TCH/F
+     phys_chan_config <%= @phys_chan %>
      hopping enabled 0
    timeslot 7
-     phys_chan_config TCH/F
+     phys_chan_config <%= @phys_chan %>
      hopping enabled 0
 <% end -%>
 <% if @arfcn_B -%>
@@ -200,8 +204,12 @@ network
   ip.access unit_id 1000 1
   oml ip.access stream_id 255 line 0
   neighbor-list mode automatic
-  codec-support fr
-  <% if @gprs == 'active' -%>gprs mode gprs
+  <% if @mncc_codec == 'AMR' -%>codec-support fr amr
+  amr tch-h modes 4 5
+  amr tch-h start-mode 4
+<% else -%>codec-support fr
+<% end -%>
+<% if @gprs == 'active' -%>  gprs mode gprs
   gprs 11bit_rach_support_for_egprs 0
   gprs routing area 0
   gprs network-control-order nc0
@@ -229,7 +237,7 @@ network
   gprs nsvc 0 local udp port 23000
   gprs nsvc 0 remote udp port 23001
   gprs nsvc 0 remote ip 172.16.0.11
-  <% else -%>gprs mode none
+<% else -%>  gprs mode none
   <% end -%>no force-combined-si
   depends-on-bts 0
   trx 0
@@ -265,22 +273,22 @@ network
      hopping enabled 0
 <% else -%>
    timeslot 2
-     phys_chan_config TCH/F
+     phys_chan_config <%= @phys_chan %>
      hopping enabled 0
    timeslot 3
-     phys_chan_config TCH/F
+     phys_chan_config <%= @phys_chan %>
      hopping enabled 0
    timeslot 4
-     phys_chan_config TCH/F
+     phys_chan_config <%= @phys_chan %>
      hopping enabled 0
    timeslot 5
-     phys_chan_config TCH/F
+     phys_chan_config <%= @phys_chan %>
      hopping enabled 0
    timeslot 6
-     phys_chan_config TCH/F
+     phys_chan_config <%= @phys_chan %>
      hopping enabled 0
    timeslot 7
-     phys_chan_config TCH/F
+     phys_chan_config <%= @phys_chan %>
      hopping enabled 0
 <% end -%>
 <% end -%>
@@ -321,22 +329,22 @@ network
      phys_chan_config SDCCH8
      hopping enabled 0
    timeslot 2
-     phys_chan_config TCH/F
+     phys_chan_config <%= @phys_chan %>
      hopping enabled 0
    timeslot 3
-     phys_chan_config TCH/F
+     phys_chan_config <%= @phys_chan %>
      hopping enabled 0
    timeslot 4
-     phys_chan_config TCH/F
+     phys_chan_config <%= @phys_chan %>
      hopping enabled 0
    timeslot 5
-     phys_chan_config TCH/F
+     phys_chan_config <%= @phys_chan %>
      hopping enabled 0
    timeslot 6
-     phys_chan_config TCH/F
+     phys_chan_config <%= @phys_chan %>
      hopping enabled 0
    timeslot 7
-     phys_chan_config TCH/F
+     phys_chan_config <%= @phys_chan %>
      hopping enabled 0
  bts 3
   type sysmobts
@@ -375,22 +383,22 @@ network
      phys_chan_config SDCCH8
      hopping enabled 0
    timeslot 2
-     phys_chan_config TCH/F
+     phys_chan_config <%= @phys_chan %>
      hopping enabled 0
    timeslot 3
-     phys_chan_config TCH/F
+     phys_chan_config <%= @phys_chan %>
      hopping enabled 0
    timeslot 4
-     phys_chan_config TCH/F
+     phys_chan_config <%= @phys_chan %>
      hopping enabled 0
    timeslot 5
-     phys_chan_config TCH/F
+     phys_chan_config <%= @phys_chan %>
      hopping enabled 0
    timeslot 6
-     phys_chan_config TCH/F
+     phys_chan_config <%= @phys_chan %>
      hopping enabled 0
    timeslot 7
-     phys_chan_config TCH/F
+     phys_chan_config <%= @phys_chan %>
      hopping enabled 0
 <% end -%>
 <% if @bts3_ip_address -%>
@@ -430,22 +438,22 @@ network
      phys_chan_config SDCCH8
      hopping enabled 0
    timeslot 2
-     phys_chan_config TCH/F
+     phys_chan_config <%= @phys_chan %>
      hopping enabled 0
    timeslot 3
-     phys_chan_config TCH/F
+     phys_chan_config <%= @phys_chan %>
      hopping enabled 0
    timeslot 4
-     phys_chan_config TCH/F
+     phys_chan_config <%= @phys_chan %>
      hopping enabled 0
    timeslot 5
-     phys_chan_config TCH/F
+     phys_chan_config <%= @phys_chan %>
      hopping enabled 0
    timeslot 6
-     phys_chan_config TCH/F
+     phys_chan_config <%= @phys_chan %>
      hopping enabled 0
    timeslot 7
-     phys_chan_config TCH/F
+     phys_chan_config <%= @phys_chan %>
      hopping enabled 0
  bts 5
   type sysmobts
@@ -484,27 +492,27 @@ network
      phys_chan_config SDCCH8
      hopping enabled 0
    timeslot 2
-     phys_chan_config TCH/F
+     phys_chan_config <%= @phys_chan %>
      hopping enabled 0
    timeslot 3
-     phys_chan_config TCH/F
+     phys_chan_config <%= @phys_chan %>
      hopping enabled 0
    timeslot 4
-     phys_chan_config TCH/F
+     phys_chan_config <%= @phys_chan %>
      hopping enabled 0
    timeslot 5
-     phys_chan_config TCH/F
+     phys_chan_config <%= @phys_chan %>
      hopping enabled 0
    timeslot 6
-     phys_chan_config TCH/F
+     phys_chan_config <%= @phys_chan %>
      hopping enabled 0
    timeslot 7
-     phys_chan_config TCH/F
+     phys_chan_config <%= @phys_chan %>
      hopping enabled 0
 <% end -%>
 mncc-int
  default-codec tch-f fr
- default-codec tch-h hr
+ default-codec tch-h amr
  meas-feed destination 127.0.0.1 8888
 nitb
  subscriber-create-on-demand
