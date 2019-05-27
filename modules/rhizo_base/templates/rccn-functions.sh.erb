@@ -59,6 +59,10 @@ o() {
   sudo -i bash -c "cd /etc/osmocom; exec bash --login"
 }
 
+f() {
+  tmux new-session -n SIP "sudo sngrep -d any" \; splitw -p 60 "fs_cli -r" \; select-window -t SIP \;
+}
+
 rk_ext() {
   IMSI=$(curl -X GET http://10.23.0.3:8098/buckets/hlr/index/msisdn_bin/$1 2>/dev/null| python -c "import sys, json; print json.load(sys.stdin)['keys'][0]")
   echo $IMSI
@@ -73,3 +77,6 @@ rk_imsi() {
   echo 
 }
 
+check_trx() {
+  echo "show trx" | nc -q1 localhost 4242 | awk 'BEGIN { RS="TRX"; } /OK/ { print "BTS"$4" TRX"$1": OK";  }'
+}
