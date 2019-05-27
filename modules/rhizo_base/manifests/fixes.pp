@@ -13,6 +13,12 @@
 
 class rhizo_base::fixes {
   include "rhizo_base::fixes::$operatingsystem"
+
+  file { '/etc/tmux.conf':
+      ensure  => present,
+      source  => 'puppet:///modules/rhizo_base/tmux.conf',
+  }
+
 }
 
 class rhizo_base::fixes::ubuntu {
