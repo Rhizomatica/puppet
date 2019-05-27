@@ -37,6 +37,10 @@ class rhizo_base::openbsc {
                     Exec['notify-nitb'] ],
     }
 
+  package { [ 'osmo-bsc-meas-utils' ]:
+      ensure   => 'installed'
+    }
+
   service { 'osmocom-nitb':
       enable  => false,
       require => Package['osmocom-nitb'],
