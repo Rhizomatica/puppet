@@ -47,8 +47,13 @@ class rhizo_base::openbsc::ubuntu inherits rhizo_base::openbsc::common {
 
 class rhizo_base::openbsc::debian inherits rhizo_base::openbsc::common {
 
+  package { [ 'libosmocore' ]:
+      ensure   => '1.1.0',
+      schedule => 'weekly',
+  }
+
   package {  [ 'osmocom-nitb' ]:
-      ensure   => '1.2.0',
+      ensure   => 'installed',
       require  => Class['rhizo_base::apt'],
       notify   => [ Exec['hlr_pragma_wal'],
                     Exec['notify-nitb'] ],
