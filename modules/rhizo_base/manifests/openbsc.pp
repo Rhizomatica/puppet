@@ -57,10 +57,12 @@ class rhizo_base::openbsc::debian inherits rhizo_base::openbsc::common {
       require  => Class['rhizo_base::apt'],
       notify   => [ Exec['hlr_pragma_wal'],
                     Exec['notify-nitb'] ],
+      schedule => 'weekly',
   }
 
   package { [ 'libosmocore-utils' ]:
       ensure   => installed,
+      schedule => 'weekly',
   }
 
 }

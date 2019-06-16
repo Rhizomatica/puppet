@@ -52,6 +52,7 @@ class rhizo_base::runit {
       }
 
     exec { 'disable-kannel':
+        schedule => 'repo',
         notify  => Exec['stop-kannel'],
         command => '/usr/sbin/update-rc.d kannel disable',
         require => Package['kannel'],
