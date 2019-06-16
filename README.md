@@ -2,10 +2,6 @@
 
 This is a puppet recipe to install and prepare an installation of RCCN on a Debian 9 system.
 
-This is earmarked to be the future default install. For now it probably does not work for you.
-
-Please also see the README in the master branch of this repo.
-
 **INSTALLATION:** 
 
 Install Debian 9 (stretch) amd64 from 
