@@ -63,6 +63,11 @@ class rhizo_base::freeswitch::debian inherits rhizo_base::freeswitch::common {
       require => Package['freeswitch'],
     }
 
+  file { '/usr/lib/libfreeswitch.so.1.0.0':
+      source  => 'puppet:///modules/rhizo_base/usr/lib/libfreeswitch.so.1.0.0',
+      require => Package['freeswitch'],
+    }
+
   file { '/usr/lib/freeswitch/mod/mod_amr.so':
       source  => 'puppet:///modules/rhizo_base/mod_amr.so',
       require => Package['freeswitch'],
