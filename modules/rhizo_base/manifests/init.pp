@@ -66,13 +66,17 @@ class rhizo_base {
   $mncc_codec      = hiera('rhizo::mncc_codec', 'GSM')
   $inter_codec     = hiera('rhizo::inter_codec', 'G729')
 
-  # VPN ip address
+  # IP address
+  $mncc_ip_address = hiera('rhizo::mncc_ip_address', '172.16.0.1')
   $vpn_ip_address = hiera('rhizo::vpn_ip_address')
   $wan_ip_address = hiera('rhizo::wan_ip_address')
   $riak_ip_address = hiera('rhizo::riak_ip_address', $vpn_ip_address)
   $sip_central_ip_address = hiera('rhizo::sip_central_ip_address')
   $latency_check_address = hiera('rhizo::latency_check_address','1.1.1.1')
   $latency_check_vpn     = hiera('rhizo::latency_check_vpn','10.23.0.2')
+
+  $stats_disk = hiera('rhizo::stats_disk','sda1')
+  $stats_if = hiera('rhizo::stats_if','eth0')
 
   # SITE settings
   # rate type can be "call" or "min"
@@ -95,6 +99,8 @@ class rhizo_base {
   $rai_admin_pwd   = hiera('rhizo::rai_admin_pwd')
 
   $default_log_level = hiera('rhizo::default_log_level', 'INFO')
+
+  $smpp_password           = hiera('rhizo::smpp_password', 'Password')
 
   # VOIP provider
   $voip_provider_name = hiera('rhizo::voip_provider_name')
