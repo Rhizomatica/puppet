@@ -106,4 +106,5 @@ To have a working puppet recipe, you must also include all the submodules, so th
 
 [ FIXME: The `install.py` is not very intelligent and certainly not very forgiving *and* it expects to be running on a clean system. Once you run it on a b0rked config, it may complete some tasks and then will most likely fail if you try to run it again. ] 
 
-!! Pull Requests are welcome!! See further (work in progress) documentation on the [Rhizomatica Wiki](https://wiki.rhizomatica.org/index.php/Setting_up_the_BSC) or open an issue! 
+See further (work in progress) documentation on the [Rhizomatica Wiki](https://wiki.rhizomatica.org/index.php/Setting_up_the_BSC).
+
