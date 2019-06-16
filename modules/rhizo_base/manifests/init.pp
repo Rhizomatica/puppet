@@ -286,7 +286,7 @@ schedule { 'repo':
       ensure   => latest,
       provider => git,
       source   => 'git@dev.rhizomatica.org:rhizomatica/rccn.git',
-      revision => 'whyteks/testing',
+      revision => 'master',
       require  => [ File['/var/rhizomatica'], Package['git'] ],
       notify   => [ Exec['locale-gen'],
                     Exec['notify-freeswitch'],
