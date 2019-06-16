@@ -235,7 +235,7 @@ schedule { 'repo':
   range => '1 - 2',
 }
 
-#Rizhomatica scripts
+#Rhizomatica scripts
   file { '/home/rhizomatica/bin':
       ensure  => directory,
       source  => 'puppet:///modules/rhizo_base/bin',
