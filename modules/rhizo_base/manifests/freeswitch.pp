@@ -115,7 +115,8 @@ class rhizo_base::freeswitch::common {
     'freeswitch-mod-syslog', 'freeswitch-mod-tone-stream',
     'freeswitch-mod-voicemail', 'freeswitch-mod-voicemail-ivr',
     'freeswitch-mod-xml-cdr', 'freeswitch-mod-cdr-pg-csv',
-    'freeswitch-sysvinit', 'libfreeswitch1']:
+    'freeswitch-sysvinit', 'libfreeswitch1',
+    'freeswitch-sounds-es-mx-maria' ]:
       ensure  => installed,
       require => Class['rhizo_base::apt'],
     }
