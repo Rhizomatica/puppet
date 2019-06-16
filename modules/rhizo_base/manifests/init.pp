@@ -70,6 +70,7 @@ class rhizo_base {
   $riak_ip_address = hiera('rhizo::riak_ip_address', $vpn_ip_address)
   $sip_central_ip_address = hiera('rhizo::sip_central_ip_address')
   $latency_check_address = hiera('rhizo::latency_check_address','1.1.1.1')
+  $latency_check_vpn     = hiera('rhizo::latency_check_vpn','10.23.0.2')
 
   $stats_disk = hiera('rhizo::stats_disk','')
   $stats_if = hiera('rhizo::stats_if','eth0')
