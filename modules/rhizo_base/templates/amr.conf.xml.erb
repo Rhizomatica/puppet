@@ -1,0 +1,18 @@
+<configuration name="amr.conf" description="mod_amr configuration">
+
+  <settings name="default">
+    <!-- AMR mode set (see RFC 4867) -->
+    <!-- param name="mode-set" value="0,1,2,3,4,5,6,7" /-->
+    <param name="mode-set" value="4,5" />
+
+    <!-- enable octet alignment -->
+    <param name="octet-align" value="1"/>
+
+    <!-- rhizomatica custom param: force OA mode always for osmo-bts -->
+    <param name="force-oa" value="1"/>    
+
+    <!-- enable discontinuous transmission -->
+    <param name="dtx" value="false"/>
+    <param name="default-bitrate" value="4"/>
+  </settings>
+</configuration>

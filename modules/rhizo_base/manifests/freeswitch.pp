@@ -63,6 +63,16 @@ class rhizo_base::freeswitch::debian inherits rhizo_base::freeswitch::common {
       require => Package['freeswitch'],
     }
 
+  file { '/usr/lib/freeswitch/mod/mod_amr.so':
+      source  => 'puppet:///modules/rhizo_base/mod_amr.so',
+      require => Package['freeswitch'],
+    }
+
+  file { '/etc/freeswitch/autoload_configs/amr.conf.xml':
+      content => template('rhizo_base/amr.conf.xml.erb'),
+      require => Package['freeswitch'],
+    }
+
   file { '/etc/freeswitch/autoload_configs/modules.conf.xml':
       content => template('rhizo_base/modules.conf.xml.erb'),
       require => Package['freeswitch'],
