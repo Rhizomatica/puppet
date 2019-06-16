@@ -31,7 +31,7 @@ class rhizo_base::openbsc {
   $gprs            = $rhizo_base::gprs
 
   package {  [ 'osmocom-nitb' ]:
-      ensure   => 'latest',
+      ensure   => '1.2.0',
       require  => Class['rhizo_base::apt'],
       notify   => [ Exec['hlr_pragma_wal'],
                     Exec['notify-nitb'] ],
