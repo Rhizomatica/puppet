@@ -18,8 +18,8 @@ BTS2=<%= @bts2_ip_address %>
 BTS3=<%= @bts3_ip_address %>
 <% end -%>
 
-LATENCY_HOST=1.1.1.1
-LATENCY_TINC=10.23.0.14
+LATENCY_HOST=<%= @latency_check_address %>
+LATENCY_TINC=<%= @latency_check_vpn %>
 STAT_DISK=sda1
 STAT_IF=enp0s3
 
