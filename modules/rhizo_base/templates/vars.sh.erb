@@ -20,9 +20,8 @@ BTS3=<%= @bts3_ip_address %>
 
 LATENCY_HOST=<%= @latency_check_address %>
 LATENCY_TINC=<%= @latency_check_vpn %>
-STAT_DISK=sda1
-STAT_IF=enp0s3
-
+STAT_DISK=<%= @stats_disk %>
+STAT_IF=<%= @stats_if %>
 
 RECIPIENTS="<%= @mail_admins -%>"
 
