@@ -221,8 +221,13 @@ schedule { 'offpeak':
   range => '1 - 4.30',
 }
 
-schedule { 'repo':
+schedule { 'repod':
   range => '1 - 2',
+}
+
+schedule { 'repo':
+  period => monthly,
+  repeat => 1,
 }
 
 #Rhizomatica scripts
@@ -277,7 +282,7 @@ schedule { 'repo':
     }
 
   vcsrepo { '/var/rhizomatica':
-      schedule => 'repo',
+      schedule => 'always',
       ensure   => latest,
       provider => git,
       source   => 'git@dev.rhizomatica.org:rhizomatica/rccn.git',
@@ -292,7 +297,7 @@ schedule { 'repo':
     }
 
   vcsrepo { '/var/meas_web':
-      schedule => 'repo',
+      schedule => 'always',
       ensure   => latest,
       provider => git,
       source   => 'https://github.com/whyteks/meas_web.git',
