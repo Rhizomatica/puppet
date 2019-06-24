@@ -1,0 +1,44 @@
+#!/bin/bash
+cat << EOF
+!
+! Osmocom SGSN configuration
+!
+!
+log stderr
+ logging level set-all fatal
+ logging print category 1
+ logging print file basename last
+ logging print level 1
+ logging print extended-timestamp 1
+ logging level gprs error
+ logging level mm error
+ logging level llc error
+line vty
+ no login
+!
+sgsn
+ gtp local-ip <%= @vpn_ip_address %>
+ ggsn 0 remote-ip <%= @ggsn_ip_address %>
+ ggsn 0 gtp-version 1
+ ggsn 0 echo-interval 60
+ auth-policy acl-only
+EOF
+echo "SELECT imsi from subscriber where authorized=1 ORDER BY imsi;" | sudo /usr/bin/sqlite3 /var/lib/osmocom/hlr.sqlite3 | grep "^[0-9].*" | sed 's/\(.*\)/ imsi-acl add \1/'
+cat << EOF
+ gsup remote-ip 127.0.0.1
+ gsup remote-port 4222
+!
+ns
+ timer tns-block 3
+ timer tns-block-retries 3
+ timer tns-reset 3
+ timer tns-reset-retries 3
+ timer tns-test 30
+ timer tns-alive 3
+ timer tns-alive-retries 10
+ encapsulation udp local-port 23000
+ encapsulation framerelay-gre enabled 0
+!
+bssgp
+!
+EOF

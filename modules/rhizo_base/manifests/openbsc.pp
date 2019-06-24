@@ -31,6 +31,8 @@ class rhizo_base::openbsc {
   $smpp_password   = $rhizo_base::smpp_password
   $mncc_codec      = $rhizo_base::mncc_codec
   $gprs            = $rhizo_base::gprs
+  $vpn_ip_address  = hiera('rhizo::vpn_ip_address')
+  $ggsn_ip_address = hiera('rhizo::ggsn_ip_address')
 
   package {  [ 'osmocom-nitb' ]:
       ensure   => '1.2.0',
@@ -42,6 +44,7 @@ class rhizo_base::openbsc {
   package { [ 'osmo-bsc-meas-utils' ]:
       ensure   => 'installed'
     }
+
   if $mncc_codec == "AMR" {
        $phys_chan = "TCH/H"
   } else {
@@ -63,6 +66,17 @@ class rhizo_base::openbsc {
         content => template('rhizo_base/osmo-nitb.cfg.erb'),
         require => Package['osmocom-nitb'],
         notify  => Exec['notify-nitb'],
+      }
+  }
+
+  if ($gprs == "active") {
+    file { '/etc/osmocom/make_sgsn_acl_config':
+         content => template('rhizo_base/make_sgsn_acl_config.erb'),
+         mode => "0750",
+      }
+    package {  [ 'osmo-sgsn' ]:
+        ensure   => 'installed',
+        require  => Class['rhizo_base::apt'],
       }
   }
 
