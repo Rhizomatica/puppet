@@ -61,7 +61,6 @@ class rhizo_base::packages::debian inherits rhizo_base::packages::common {
   file { '/etc/php/7.0/apache2/php.ini':
       ensure  => present,
       source  => "puppet:///modules/rhizo_base/php.ini",
-      notify  => Exec['restart-apache']
     }
 
 }
