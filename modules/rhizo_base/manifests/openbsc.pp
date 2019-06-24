@@ -28,6 +28,8 @@ class rhizo_base::openbsc {
   $bts2_ip_address = $rhizo_base::bts2_ip_address
   $bts3_ip_address = $rhizo_base::bts3_ip_address
   $smsc_password   = $rhizo_base::smsc_password
+  $smpp_password   = $rhizo_base::smpp_password
+  $mncc_codec      = $rhizo_base::mncc_codec
   $gprs            = $rhizo_base::gprs
 
   package {  [ 'osmocom-nitb' ]:
@@ -40,6 +42,11 @@ class rhizo_base::openbsc {
   package { [ 'osmo-bsc-meas-utils' ]:
       ensure   => 'installed'
     }
+  if $mncc_codec == "AMR" {
+       $phys_chan = "TCH/H"
+  } else {
+       $phys_chan = "TCH/F"
+  }
 
   service { 'osmocom-nitb':
       enable  => false,
