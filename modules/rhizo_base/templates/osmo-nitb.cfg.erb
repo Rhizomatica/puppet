@@ -142,7 +142,7 @@ network
   gprs nsvc 0 remote udp port 23001
   gprs nsvc 0 remote ip 127.0.0.1
 <% else -%>  gprs mode none
-  <% end -%>no force-combined-si
+<% end -%>  no force-combined-si
   trx 0
    rf_locked 0
    arfcn <%= @arfcn_A %>
@@ -157,19 +157,19 @@ network
      hopping enabled 0
 <% if @gprs == 'active' -%>
    timeslot 2
-     phys_chan_config TCH/F_PDCH
+     phys_chan_config TCH/F
      hopping enabled 0
    timeslot 3
-     phys_chan_config TCH/F_PDCH
+     phys_chan_config TCH/F
      hopping enabled 0
    timeslot 4
-     phys_chan_config TCH/F_PDCH
+     phys_chan_config TCH/F
      hopping enabled 0
    timeslot 5
-     phys_chan_config TCH/F_PDCH
+     phys_chan_config TCH/F
      hopping enabled 0
    timeslot 6
-     phys_chan_config TCH/F_PDCH
+     phys_chan_config TCH/F
      hopping enabled 0
    timeslot 7
      phys_chan_config PDCH
@@ -250,7 +250,7 @@ network
   gprs nsvc 0 remote udp port 23001
   gprs nsvc 0 remote ip 172.16.0.11
 <% else -%>  gprs mode none
-  <% end -%>no force-combined-si
+<% end -%>  no force-combined-si
   depends-on-bts 0
   trx 0
    rf_locked 0
@@ -266,19 +266,19 @@ network
      hopping enabled 0
 <% if @gprs == 'active' -%>
    timeslot 2
-     phys_chan_config TCH/F_PDCH
+     phys_chan_config TCH/F
      hopping enabled 0
    timeslot 3
-     phys_chan_config TCH/F_PDCH
+     phys_chan_config TCH/F
      hopping enabled 0
    timeslot 4
-     phys_chan_config TCH/F_PDCH
+     phys_chan_config TCH/F
      hopping enabled 0
    timeslot 5
-     phys_chan_config TCH/F_PDCH
+     phys_chan_config TCH/F
      hopping enabled 0
    timeslot 6
-     phys_chan_config TCH/F_PDCH
+     phys_chan_config TCH/F
      hopping enabled 0
    timeslot 7
      phys_chan_config PDCH
