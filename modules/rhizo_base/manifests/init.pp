@@ -164,8 +164,13 @@ class rhizo_base {
   $link5_geo_lat        = hiera('rhizo::link5_geo_lat', false)
   $link5_geo_lon        = hiera('rhizo::link5_geo_lon', false)
 
-  include ntp
-  include sshkeys
+
+  class { '::ntp':
+    servers => hiera('rhizo::ntp_servers')
+    }
+
+  include ::ntp
+  include ::sshkeys
   include rhizo_base::fixes
   include rhizo_base::apt
   include rhizo_base::users
@@ -300,7 +305,19 @@ schedule { 'repo':
                     Exec['restart-rapi'],
                     Exec['restart-smpp'],
                     Exec['restart-esme'],
-                    Exec['restart-apache'] ],
+                    Exec['rrd-p-create'],
+                    Exec['rrd-n-create'], ],
+    }
+
+  file { '/var/rhizomatica/rccn/config_values.py':
+      ensure  => present,
+      content => template('rhizo_base/config_values.py.erb'),
+      require => Vcsrepo['/var/rhizomatica'],
+      notify   => [ Exec['locale-gen'],
+                    Exec['notify-freeswitch'],
+                    Exec['restart-rapi'],
+                    Exec['restart-smpp'],
+                    Exec['restart-esme'], ],
     }
 
   vcsrepo { '/var/meas_web':
@@ -327,11 +344,6 @@ schedule { 'repo':
       mode    => '0755',
     }
 
-  file { '/var/rhizomatica/rccn/config_values.py':
-      ensure  => present,
-      content => template('rhizo_base/config_values.py.erb'),
-      require => Vcsrepo['/var/rhizomatica'],
-    }
 
   file { '/var/rhizomatica/rai/include/database.php':
       ensure  => present,
@@ -382,18 +394,23 @@ schedule { 'repo':
       refreshonly => true,
     }
 
+  exec { 'restart-meas':
+      command     => '/usr/bin/sv restart meas-web',
+      refreshonly => true,
+    }
+
   exec { 'restart-esme':
       command     => '/usr/bin/sv restart esme',
       refreshonly => true,
     }
 
-  exec { 'restart-apache':
-      command     => '/usr/sbin/service apache2 restart',
+  exec { 'rrd-p-create':
+      command     => '/var/rhizomatica/bin/platform_create_rrd.sh',
       refreshonly => true,
     }
 
-  exec { 'restart-meas':
-      command     => '/usr/bin/sv restart meas-web',
+  exec { 'rrd-n-create':
+      command     => '/var/rhizomatica/bin/network_create_rrd.sh',
       refreshonly => true,
     }
 
