@@ -64,13 +64,15 @@ rm libssl1.0.0-dbg_1.0.1t-1+deb8u11_amd64.deb
 ```
 
 Now we can install :-)
+We use ignoreschedules here to make sure that everything happens on these
+initial runs, you should not need it afterwards. 
 
-`root@host:~# puppet agent --test`
+`root@host:~# puppet agent --test --ignoreschedules`
 
 This may take a while, it has to fetch all the packages and install them,
 Some package installations will fail, so when it is finished you need to do it once more:
 
-`root@host:~# puppet agent --test`
+`root@host:~# puppet agent --test --ignoreschedules`
 
 Done! Now you can run the final RCCN setup step, but before you do this,
 take a quick look at CAVEATS below.:
