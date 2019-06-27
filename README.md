@@ -77,7 +77,7 @@ take a quick look at CAVEATS below.:
 
 `root@host:~# cd /var/rhizomatica/rccn`
 
-`root@host:/var/rhizomatica/rccn# python ./install.py`
+`root@host:/var/rhizomatica/rccn# python ./install.py -f`
 
 Now reboot your system and [file a bug report](https://github.com/Rhizomatica/puppet/issues/new) about whatever is still not working.
 
