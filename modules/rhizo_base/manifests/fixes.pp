@@ -46,4 +46,9 @@ class rhizo_base::fixes::debian {
       ensure  => present,
       source  => 'puppet:///modules/rhizo_base/bashrc'
     }
+
+  file { '/var/lib/puppet/state':
+      ensure  => link,
+      target  => '/var/cache/puppet/state/'
+    }
 }
