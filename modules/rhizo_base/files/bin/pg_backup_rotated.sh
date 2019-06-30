@@ -28,6 +28,11 @@ function perform_backups()
     SUFFIX=$1
     FINAL_BACKUP_DIR=$BACKUP_DIR"`date +\%Y-\%m-\%d`$SUFFIX/"
 
+    EX_TABLES = ""
+    if [ $SUFFIX = "-daily" ] ; then
+        EX_TABLES=" -T cdr -T sms -T prefix_mexico -T rates "
+    fi
+
     echo "Making backup directory in $FINAL_BACKUP_DIR"
 
     if ! mkdir -p $FINAL_BACKUP_DIR; then
