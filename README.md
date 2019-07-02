@@ -32,8 +32,6 @@ Install Debian 9 (stretch) amd64 from
 
 `root@host:/etc/puppet/code/environments# cd prodution`
 
-`root@host:/etc/puppet/code/environments/production# git checkout whyteks/puppet4-debian`
-
 `root@host:/etc/puppet/code/environments/production# git submodule init`
 
 `root@host:/etc/puppet/code/environments/production# git submodule update`
