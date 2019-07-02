@@ -275,7 +275,8 @@ schedule { 'repo':
       ensure  => directory,
     }
 
-  file { '/var/www/html':
+  file { [ '/var/www',
+           '/var/www/html', ]:
       ensure  => directory,
     }
 
