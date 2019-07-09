@@ -299,7 +299,7 @@ schedule { 'repo':
       schedule => 'always',
       ensure   => latest,
       provider => git,
-      source   => 'git@dev.rhizomatica.org:rhizomatica/rccn.git',
+      source   => 'https://github.com/Rhizomatica/rccn.git',
       revision => 'master',
       require  => [ File['/var/rhizomatica'], Package['git'] ],
       notify   => [ Exec['locale-gen'],
