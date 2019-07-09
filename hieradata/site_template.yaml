@@ -16,6 +16,7 @@ rhizo::lac:                        "1"
 rhizo::mcc:                        "001"
 rhizo::mnc:                        "001"
 rhizo::gprs:                       "none"
+rhizo::local_bsc_cfg:              "0"
 
 #Emergency call contact
 rhizo::emergency_contact:          "12345"
