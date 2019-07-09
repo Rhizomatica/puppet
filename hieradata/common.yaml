@@ -56,7 +56,7 @@ rhizo::use_ups:                      "no"
 rhizo::use_sip:                      "no"
 rhizo::advice_email:                 "[ 'your@email.address' ]"
 rhizo::sip_central_ip_address:       "127.0.0.1"
-
+rhizo::ntp_servers:                  ['mx.pool.ntp.org', 'pool.ntp.org']
 
 #SSH keys
 sshkeys::keys:
