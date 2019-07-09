@@ -15,6 +15,7 @@ rhizo::ggsn_ip_address:            "127.0.0.1"
 rhizo::lac:                        "1"
 rhizo::mcc:                        "001"
 rhizo::mnc:                        "001"
+rhizo::gprs:                       "none"
 
 #Emergency call contact
 rhizo::emergency_contact:          "12345"
