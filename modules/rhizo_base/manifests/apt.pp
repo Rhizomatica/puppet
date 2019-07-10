@@ -65,7 +65,7 @@ class rhizo_base::apt::ubuntu inherits rhizo_base::apt::common {
       key         => {
         'id'      => '68576280',
         'source'  => 'https://deb.nodesource.com/gpgkey/nodesource.gpg.key'
-       } 
+       }
     }
 }
 
@@ -81,7 +81,7 @@ class rhizo_base::apt::debian inherits rhizo_base::apt::common {
          'source' => 'http://files.freeswitch.org/repo/deb/debian/freeswitch_archive_g0.pub'
        }
     }
-    
+
   apt::source { 'nodesource':
       location    => 'https://deb.nodesource.com/node_0.10',
       release     => 'jessie',
@@ -108,7 +108,7 @@ class rhizo_base::apt::debian inherits rhizo_base::apt::common {
       repos       => 'main',
       allow_unsigned => true,
       require     => File['/etc/apt/apt.conf.d/90unsigned'],
-    }    
+    }
 
   apt::source { 'osmocom-latest':
       location    => 'http://download.opensuse.org/repositories/network:/osmocom:/latest/Debian_9.0/',
