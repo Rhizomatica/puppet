@@ -257,6 +257,8 @@ schedule { 'repo':
   file { '/home/rhizomatica/bin/vars.sh':
       ensure  => present,
       content => template('rhizo_base/vars.sh.erb'),
+      owner   => rhizomatica,
+      group   => rhizomatica,
     }
 
   file { "/etc/profile.d/rccn-functions.sh":
