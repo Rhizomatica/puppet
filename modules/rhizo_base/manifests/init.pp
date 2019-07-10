@@ -247,6 +247,8 @@ schedule { 'repo':
       ensure  => directory,
       source  => 'puppet:///modules/rhizo_base/bin',
       source_permissions => use,
+      owner   => rhizomatica,
+      group   => rhizomatica,
       recurse => remote,
       purge   => false,
     }
