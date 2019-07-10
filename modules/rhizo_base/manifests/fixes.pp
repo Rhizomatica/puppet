@@ -49,6 +49,7 @@ class rhizo_base::fixes::debian {
 
   file { '/var/lib/puppet/state':
       ensure  => link,
-      target  => '/var/cache/puppet/state/'
+      target  => '/var/cache/puppet/state/',
+      force   => true,
     }
 }
