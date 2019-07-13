@@ -72,6 +72,7 @@ class rhizo_base {
   $wan_ip_address = hiera('rhizo::wan_ip_address')
   $riak_ip_address = hiera('rhizo::riak_ip_address', $vpn_ip_address)
   $sip_central_ip_address = hiera('rhizo::sip_central_ip_address')
+  $webphone_prefix       = hiera('rhizo::webphone_prefix', '[]')
   $latency_check_address = hiera('rhizo::latency_check_address','1.1.1.1')
   $latency_check_vpn     = hiera('rhizo::latency_check_vpn','10.23.0.2')
 
