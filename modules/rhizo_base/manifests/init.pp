@@ -398,26 +398,31 @@ schedule { 'repo':
 
   exec { 'restart-freeswitch':
       command     => '/usr/bin/sv restart freeswitch',
+      require     => Class['rhizo_base::runit'],
       refreshonly => true,
     }
 
   exec { 'restart-rapi':
       command     => '/usr/bin/sv restart rapi',
+      require     => Class['rhizo_base::runit'],
       refreshonly => true,
     }
 
   exec { 'restart-smpp':
       command     => '/usr/bin/sv restart smpp',
+      require     => Class['rhizo_base::runit'],
       refreshonly => true,
     }
 
   exec { 'restart-meas':
       command     => '/usr/bin/sv restart meas-web',
+      require     => Class['rhizo_base::runit'],
       refreshonly => true,
     }
 
   exec { 'restart-esme':
       command     => '/usr/bin/sv restart esme',
+      require     => Class['rhizo_base::runit'],
       refreshonly => true,
     }
 
