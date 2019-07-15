@@ -70,6 +70,7 @@ class rhizo_base::freeswitch::debian inherits rhizo_base::freeswitch::common {
       ensure => directory,
       owner   => 'freeswitch',
       group   => 'freeswitch',
+      require => Package['freeswitch'],
     }
 
   systemd::unit_file { 'freeswitch.service':
