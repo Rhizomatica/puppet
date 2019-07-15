@@ -504,6 +504,7 @@ schedule { 'repo':
       schedule => 'onceweek',
       ensure  => 'present',
       pkgname => 'python-ESL',
+      require => Class['rhizo_base::packages']
     }
 
   python::pip { 'csvkit':
