@@ -58,7 +58,7 @@ class rhizo_base::runit {
   file { '/etc/service/lcr':
       ensure  => link,
       target  => '/etc/sv/lcr',
-      require => [ File['/etc/sv'], Class['rhizo_base::lcr'] ],
+      require => [ File['/etc/sv'] ],
     }
 
   file { '/etc/service/kiwi':
