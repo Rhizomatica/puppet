@@ -25,11 +25,11 @@ class rhizo_base::freeswitch::ubuntu inherits rhizo_base::freeswitch::common {
     ['freeswitch-mod-speex','freeswitch-mod-cdr-pg-csv',
      'freeswitch-mod-vp8']:
       ensure  => installed,
-      require => Class['rhizo_base::apt'],   
+      require => Class['rhizo_base::apt'],
   }
 
   service { 'freeswitch':
-      enable  => false,  
+      enable  => false,
       require => Package['freeswitch']
     }
 
@@ -52,8 +52,8 @@ class rhizo_base::freeswitch::debian inherits rhizo_base::freeswitch::common {
   package {
     [ 'freeswitch-mod-g729' ]:
       ensure  => purged,
-      require => Class['rhizo_base::apt'],   
-  }
+      require => Class['rhizo_base::apt'],
+    }
 
   file { '/etc/default/freeswitch':
       source  => 'puppet:///modules/rhizo_base/etc/default/freeswitch',
@@ -68,11 +68,11 @@ class rhizo_base::freeswitch::debian inherits rhizo_base::freeswitch::common {
 
   systemd::unit_file { 'freeswitch.service':
     source => "puppet:///modules/rhizo_base/freeswitch.service",
-  }
-   
+    }
+
   systemd::tmpfile { 'freeswitch.tmpfile':
     source => "puppet:///modules/rhizo_base/freeswitch.tmpfile",
-  }
+    }
 
 }
 
