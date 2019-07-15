@@ -59,7 +59,7 @@ class rhizo_base::packages::debian inherits rhizo_base::packages::common {
 
   package { ['apache2','libapache2-mod-php', 'php', 'php-pgsql',
   'php-curl', 'php-cli', 'php-gd', 'php-intl', 'php-gettext',
-  'sudo', 'apt-transport-https']:
+  'sudo']:
       ensure  => installed,
       require => Class['rhizo_base::apt'],
     }

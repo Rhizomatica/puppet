@@ -86,6 +86,10 @@ class rhizo_base::apt::ubuntu inherits rhizo_base::apt::common {
 
 class rhizo_base::apt::debian inherits rhizo_base::apt::common {
 
+  package {'apt-transport-https':
+      ensure  => installed,
+    }
+
   apt::source { 'freeswitch':
       location    => 'http://files.freeswitch.org/repo/deb/freeswitch-1.6/',
       release     => 'jessie',
@@ -103,7 +107,8 @@ class rhizo_base::apt::debian inherits rhizo_base::apt::common {
       key         => {
         'id'      => '9FD3B784BC1C6FC31A8A0A1C1655A0AB68576280',
         'source'  => 'https://deb.nodesource.com/gpgkey/nodesource.gpg.key'
-       }
+      },
+      require     => Package['apt-transport-https'],
     }
 
   apt::source { 'irontec':
