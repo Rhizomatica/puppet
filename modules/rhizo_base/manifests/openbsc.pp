@@ -42,7 +42,8 @@ class rhizo_base::openbsc {
     }
 
   package { [ 'osmo-bsc-meas-utils' ]:
-      ensure   => 'installed'
+      ensure   => 'installed',
+      require  => Class['rhizo_base::apt'],
     }
 
   if $mncc_codec == "AMR" {
