@@ -11,7 +11,13 @@
 # Sample Usage:
 #
 class rhizo_base::packages {
+  # TODO Switch to "contains" once legacy puppet3 support is no longer required.
   include "rhizo_base::packages::$operatingsystem"
+
+  # Verbose anchor pattern used for legacy puppet support only.
+  anchor { 'rhizo_base::packages::first': } ->
+  Class["rhizo_base::packages::$operatingsystem"] ->
+  anchor { 'rhizo_base::packages::last': }
 }
 
 class rhizo_base::packages::common {

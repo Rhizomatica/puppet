@@ -11,7 +11,13 @@
 # Sample Usage:
 #
 class rhizo_base::freeswitch {
+  # TODO Switch to "contains" once puppet3 support is no longer required.
   include "rhizo_base::freeswitch::$operatingsystem"
+
+  # Verbose anchor pattern used for legacy puppet support only.
+  anchor { 'rhizo_base::freeswitch::first': } ->
+  Class["rhizo_base::freeswitch::$operatingsystem"] ->
+  anchor { 'rhizo_base::freeswitch::last': }
 }
 
 class rhizo_base::freeswitch::ubuntu inherits rhizo_base::freeswitch::common {

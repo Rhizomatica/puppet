@@ -12,7 +12,13 @@
 #
 
 class rhizo_base::apt {
+  # TODO Switch to "contains" once puppet3 support is no longer required.
   include "rhizo_base::apt::$operatingsystem"
+
+  # Verbose anchor pattern used for legacy puppet support only.
+  anchor { 'rhizo_base::apt::first': } ->
+  Class["rhizo_base::apt::$operatingsystem"] ->
+  anchor { 'rhizo_base::apt::last': }
 }
 
 class rhizo_base::apt::common {
