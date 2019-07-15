@@ -1,12 +1,12 @@
 # Class: rhizo_base::ircd
 #
-# This module manages Irc Chat Support 
+# This module manages Irc Chat Support
 #
 # Parameters: none
 #
 # Actions:
 #
-# Requires: 
+# Requires:
 #
 # Sample Usage:
 #

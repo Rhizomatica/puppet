@@ -362,7 +362,7 @@ schedule { 'repo':
       content => template('rhizo_base/localnet.json.erb'),
     }
 
-  if $operatingsystem == 'Debian' {  
+  if $operatingsystem == 'Debian' {
     exec { 'locale-gen':
         command     => '/usr/sbin/locale-gen',
         require     => [ File['/var/rhizomatica/rccn/config_values.py'],
@@ -370,15 +370,15 @@ schedule { 'repo':
         refreshonly => true,
         }
   }
-  
-  if $operatingsystem == 'Ubuntu' {  
+
+  if $operatingsystem == 'Ubuntu' {
     exec { 'locale-gen':
         command     => '/usr/sbin/locale-gen',
         require     => [ File['/var/rhizomatica/rccn/config_values.py'],
         File['/var/lib/locales/supported.d/local'] ],
         refreshonly => true,
         }
-  }  
+  }
 
   exec { 'notify-freeswitch':
       command     => '/bin/echo 1 > /tmp/FS-dirty',
@@ -431,7 +431,7 @@ schedule { 'repo':
         source      => 'puppet:///modules/rhizo_base/var/lib/locales/supported.d/local',
       }
   }
-  
+
   if $operatingsystem == 'Debian' {
      file { '/etc/locale.gen':
         ensure      => present,
@@ -480,7 +480,7 @@ schedule { 'repo':
         ensure  => '13.1.0',
         pkgname => 'Twisted',
       }
-  
+
     python::pip { 'corepost':
         schedule => 'onceweek',
         ensure  => 'present',
