@@ -19,6 +19,7 @@ class rhizo_base::lcr {
 
   exec { 'restart-lcr':
       command     => '/usr/bin/sv restart lcr',
+      require => Class['rhizo_base::runit'],
       refreshonly => true,
     }
 
