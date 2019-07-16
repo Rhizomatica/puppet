@@ -407,7 +407,10 @@ schedule { 'repo':
 
   exec { 'restart-meas':
       command     => '/usr/bin/sv restart meas-web',
-      require     => Class['rhizo_base::runit'],
+      require     => [Class['rhizo_base::runit'],
+                      Class['rhizo_base::openbsc'],
+                      File['/var/www/meas'],
+                      ],
       refreshonly => true,
     }
 
