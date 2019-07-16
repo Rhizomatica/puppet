@@ -399,7 +399,9 @@ schedule { 'repo':
 
   exec { 'restart-smpp':
       command     => '/usr/bin/sv restart smpp',
-      require     => Class['rhizo_base::runit'],
+      require     => [Class['rhizo_base::runit'],
+                      Class['rhizo_base::openbsc'],
+                      ],
       refreshonly => true,
     }
 
