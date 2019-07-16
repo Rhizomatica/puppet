@@ -385,12 +385,6 @@ schedule { 'repo':
       refreshonly => true,
     }
 
-  exec { 'restart-freeswitch':
-      command     => '/usr/bin/sv restart freeswitch',
-      require     => Class['rhizo_base::runit'],
-      refreshonly => true,
-    }
-
   exec { 'restart-rapi':
       command     => '/usr/bin/sv restart rapi',
       require     => Class['rhizo_base::runit'],

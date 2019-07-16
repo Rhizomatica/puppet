@@ -94,10 +94,4 @@ class rhizo_base::openbsc {
       refreshonly => true,
     }
 
-  exec { 'restart-nitb':
-      command     => '/usr/bin/sv restart osmo-nitb',
-      require     => Class['rhizo_base::packages'],
-      refreshonly => true,
-    }
-
   }
