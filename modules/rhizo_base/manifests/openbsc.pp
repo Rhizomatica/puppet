@@ -53,7 +53,8 @@ class rhizo_base::openbsc {
   }
 
   service { 'osmocom-nitb':
-      enable  => false,
+      ensure => 'running',
+      enable => true,
       require => Package['osmocom-nitb'],
     }
 
