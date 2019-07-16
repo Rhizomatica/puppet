@@ -12,15 +12,38 @@
 #
 class rhizo_base::freeswitch {
   # TODO Switch to "contains" once puppet3 support is no longer required.
-  include "rhizo_base::freeswitch::$operatingsystem"
+  include "rhizo_base::freeswitch_install::$operatingsystem"
+  include "rhizo_base::freeswitch_service::$operatingsystem"
 
   # Verbose anchor pattern used for legacy puppet support only.
   anchor { 'rhizo_base::freeswitch::first': } ->
-  Class["rhizo_base::freeswitch::$operatingsystem"] ->
+  Class["rhizo_base::freeswitch_install::$operatingsystem"] ->
+  Class["rhizo_base::freeswitch_service::$operatingsystem"] ->
   anchor { 'rhizo_base::freeswitch::last': }
 }
 
-class rhizo_base::freeswitch::ubuntu inherits rhizo_base::freeswitch::common {
+class rhizo_base::freeswitch_service::ubuntu {
+  service { 'freeswitch':
+      enable  => false,
+      require => Package['freeswitch']
+    }
+
+}
+
+class rhizo_base::freeswitch_service::debian {
+  include systemd
+
+  systemd::unit_file { 'freeswitch.service':
+      source  => "puppet:///modules/rhizo_base/freeswitch.service",
+    } ~>
+  service { 'freeswitch':
+      ensure => 'running',
+      enable => true,
+    }
+
+}
+
+class rhizo_base::freeswitch_install::ubuntu inherits rhizo_base::freeswitch_install::common {
 
   file { '/usr/lib/freeswitch/mod/mod_g729.so':
       source  => 'puppet:///modules/rhizo_base/mod_g729.so',
@@ -34,14 +57,9 @@ class rhizo_base::freeswitch::ubuntu inherits rhizo_base::freeswitch::common {
       require => Class['rhizo_base::apt'],
   }
 
-  service { 'freeswitch':
-      enable  => false,
-      require => Package['freeswitch']
-    }
-
 }
 
-class rhizo_base::freeswitch::debian inherits rhizo_base::freeswitch::common {
+class rhizo_base::freeswitch_install::debian inherits rhizo_base::freeswitch_install::common {
 
   include systemd
 
@@ -73,17 +91,13 @@ class rhizo_base::freeswitch::debian inherits rhizo_base::freeswitch::common {
       require => Package['freeswitch'],
     }
 
-  systemd::unit_file { 'freeswitch.service':
-    source => "puppet:///modules/rhizo_base/freeswitch.service",
-    }
-
   systemd::tmpfile { 'freeswitch.tmpfile':
     source => "puppet:///modules/rhizo_base/freeswitch.tmpfile",
     }
 
 }
 
-class rhizo_base::freeswitch::common {
+class rhizo_base::freeswitch_install::common {
 
   $pgsql_db       = $rhizo_base::pgsql_db
   $pgsql_user     = $rhizo_base::pgsql_user
