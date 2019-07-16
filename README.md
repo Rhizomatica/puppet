@@ -93,12 +93,6 @@ Now reboot your system and [file a bug report](https://github.com/Rhizomatica/pu
 - Because you don't have the key to our private repo, you will not have any sounds in `/usr/share/freeswitch/sounds/rccn/`.
 TIC is not publically distributing the sound files used on the TIC network. Someone needs to make some generic sounds.
 
-- You might want to do `systemctl restart osmo-nitb` before running the
-install.py, as if the NITB has never run, the sqlite HLR database will not
-exist yet. - What's more, systemd is not starting the NITB on reboot. You
-need to do `systemctl start osmo-nitb` manually. :-/
-Same goes for freeswitch. FIXES??
-
 - After install and reboot, considering add the user rhizomatica to the sudo group: `usermod -aG sudo rhizomatica`
 
 - After install, you do not really need the puppet master service running, so
