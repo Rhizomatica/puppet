@@ -35,7 +35,7 @@ class rhizo_base::openbsc {
   $ggsn_ip_address = hiera('rhizo::ggsn_ip_address')
 
   package {  [ 'osmocom-nitb' ]:
-      ensure   => '1.2.0',
+      ensure   => '1.3.0',
       require  => Class['rhizo_base::apt'],
       notify   => [ Exec['hlr_pragma_wal'],
                     Exec['notify-nitb'] ],
