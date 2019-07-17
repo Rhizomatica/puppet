@@ -102,13 +102,7 @@ Same goes for freeswitch. FIXES??
 - After install and reboot, considering add the user rhizomatica to the sudo group: `usermod -aG sudo rhizomatica`
 
 - After install, you do not really need the puppet master service running, so
-consider disabling it. 
-
-- There is one persistant error from puppet, but it doesn't seem to affect us:
-```
-Error: /Stage[main]/Postgresql::Server::Config/Concat[/etc/postgresql/9.6/main/pg_hba.conf]/Concat_file[/etc/postgresql/9.6/main/pg_hba.conf]: Failed to generate additional resources using 'eval_generate': comparison of Array with Array failed
-```
-
+consider disabling it.
 
 ----------
 
