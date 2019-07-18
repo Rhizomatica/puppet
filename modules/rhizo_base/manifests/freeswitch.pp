@@ -11,7 +11,7 @@
 # Sample Usage:
 #
 class rhizo_base::freeswitch {
-  include "rhizo_base::freeswitch::$operatingsystem"
+  contain "rhizo_base::freeswitch::$operatingsystem"
 }
 
 class rhizo_base::freeswitch::ubuntu inherits rhizo_base::freeswitch::common {

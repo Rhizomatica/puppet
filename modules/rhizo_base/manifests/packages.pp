@@ -11,7 +11,7 @@
 # Sample Usage:
 #
 class rhizo_base::packages {
-  include "rhizo_base::packages::$operatingsystem"
+  contain "rhizo_base::packages::$operatingsystem"
 }
 
 class rhizo_base::packages::common {
