@@ -12,7 +12,7 @@
 #
 
 class rhizo_base::postgresql {
-  include "rhizo_base::postgresql::$operatingsystem"
+  contain "rhizo_base::postgresql::$operatingsystem"
 }
 
 class rhizo_base::postgresql::common {

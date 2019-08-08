@@ -12,7 +12,7 @@
 #
 
 class rhizo_base::apt {
-  include "rhizo_base::apt::$operatingsystem"
+  contain "rhizo_base::apt::$operatingsystem"
 }
 
 class rhizo_base::apt::common {

@@ -12,7 +12,7 @@
 #
 
 class rhizo_base::fixes {
-  include "rhizo_base::fixes::$operatingsystem"
+  contain "rhizo_base::fixes::$operatingsystem"
 
   file { '/etc/tmux.conf':
       ensure  => present,
