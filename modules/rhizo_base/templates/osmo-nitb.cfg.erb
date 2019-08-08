@@ -110,7 +110,7 @@ network
   neighbor-list mode automatic
   <% if @mncc_codec == 'AMR' -%>codec-support fr amr
   amr tch-h modes 4 5
-  amr tch-h start-mode 4
+  amr tch-h start-mode 1
 <% else -%>codec-support fr
 <% end -%>
 <% if @gprs == 'active' -%>  gprs mode gprs
@@ -218,7 +218,7 @@ network
   neighbor-list mode automatic
   <% if @mncc_codec == 'AMR' -%>codec-support fr amr
   amr tch-h modes 4 5
-  amr tch-h start-mode 4
+  amr tch-h start-mode 1
 <% else -%>codec-support fr
 <% end -%>
 <% if @gprs == 'active' -%>  gprs mode gprs
