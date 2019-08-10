@@ -252,6 +252,11 @@ schedule { 'repo':
       purge   => false,
     }
 
+  file { '/home/rhizomatica/bin/monitor_freeswitch.sh':
+      ensure  => present,
+      content => template('rhizo_base/monitor_freeswitch.sh.erb'),
+    }
+
   file { '/home/rhizomatica/bin/vars.sh':
       ensure  => present,
       content => template('rhizo_base/vars.sh.erb'),

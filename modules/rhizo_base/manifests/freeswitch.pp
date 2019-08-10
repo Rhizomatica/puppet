@@ -92,6 +92,7 @@ class rhizo_base::freeswitch::common {
   $voip_proxy     = $rhizo_base::voip_proxy
   $sip_central_ip_address = $rhizo_base::sip_central_ip_address
   $reg_provider   = $rhizo_base::reg_provider
+  $mncc_ip_address = $rhizo_base::mncc_ip_address
 
   package {
     ['freeswitch', 'freeswitch-lang-en',
@@ -149,6 +150,10 @@ class rhizo_base::freeswitch::common {
                 File['/etc/freeswitch/sip_profiles/external'] ],
     }
 
+  file { '/etc/freeswitch/sip_profiles/internal.xml':
+      content => template('rhizo_base/internal.xml.erb'),
+    }
+
   file {'/etc/freeswitch/sip_profiles/outgoing':
       ensure  => directory,
     }
@@ -158,6 +163,11 @@ class rhizo_base::freeswitch::common {
       require =>
                 [ Package['freeswitch'],
                 File['/etc/freeswitch/sip_profiles/outgoing'] ],
+    }
+
+  file { '/etc/freeswitch/autoload_configs/acl.conf.xml':
+      content => template('rhizo_base/acl.conf.xml.erb'),
+      require => Package['freeswitch'],
     }
 
   file { '/etc/freeswitch/autoload_configs/cdr_pg_csv.conf.xml':
