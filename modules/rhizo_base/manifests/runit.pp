@@ -54,9 +54,15 @@ class rhizo_base::runit {
     }
 
   file { '/etc/service/lcr':
-      ensure  => link,
+      ensure  => false,
       target  => '/etc/sv/lcr',
       require => [ File['/etc/sv'], Class['rhizo_base::lcr'] ],
+    }
+
+  file { '/etc/service/osmo-sip-connector':
+      ensure  => link,
+      target  => '/etc/sv/osmo-sip-connector',
+      require => [ File['/etc/sv'] ],
     }
 
   file { '/etc/service/kiwi':

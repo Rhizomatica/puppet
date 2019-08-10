@@ -31,6 +31,7 @@ class rhizo_base::openbsc {
   $smpp_password   = $rhizo_base::smpp_password
   $mncc_codec      = $rhizo_base::mncc_codec
   $gprs            = $rhizo_base::gprs
+  $mncc_ip_address = $rhizo_base::mncc_ip_address
   $vpn_ip_address  = hiera('rhizo::vpn_ip_address')
   $ggsn_ip_address = hiera('rhizo::ggsn_ip_address')
 
@@ -41,7 +42,7 @@ class rhizo_base::openbsc {
                     Exec['notify-nitb'] ],
     }
 
-  package { [ 'osmo-bsc-meas-utils' ]:
+  package { [ 'osmo-bsc-meas-utils', 'osmo-sip-connector' ]:
       ensure   => 'installed'
     }
 
@@ -56,6 +57,13 @@ class rhizo_base::openbsc {
       require => Package['osmocom-nitb'],
     }
 
+  service { 'osmo-sip-connector':
+      enable  => false,
+      ensure  => stopped,
+      require => Package['osmo-sip-connector'],
+    }
+
+
   file { '/etc/default/osmocom-nitb':
       source  => 'puppet:///modules/rhizo_base/etc/default/osmocom-nitb',
       require => Package['osmocom-nitb'],
@@ -68,6 +76,11 @@ class rhizo_base::openbsc {
         notify  => Exec['notify-nitb'],
       }
   }
+
+  file { '/etc/osmocom/osmo-sip-connector.cfg':
+      content => template('rhizo_base/osmo-sip-connector.cfg.erb'),
+      require => Package['osmo-sip-connector'],
+    }
 
   if ($gprs == "active") {
     file { '/etc/osmocom/make_sgsn_acl_config':
