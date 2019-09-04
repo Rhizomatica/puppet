@@ -345,6 +345,15 @@ schedule { 'repo':
       mode    => '0755',
     }
 
+  vcsrepo { '/var/rates':
+    schedule  => 'always',
+    ensure    => latest,
+    revision  => 'master',
+    provider  => git,
+    source    => 'git@dev.rhizomatica.org:rhizomatica/rates.git',
+    require   => File['/root/.ssh/bsc_dev'],
+  }
+
   file { '/var/rhizomatica/bin/check_account_balance.sh':
       ensure  => present,
       content => template('rhizo_base/check_account_balance.sh.erb'),
