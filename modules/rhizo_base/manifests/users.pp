@@ -21,5 +21,13 @@ class rhizo_base::users {
       password => $rhizo::password_hash,
       uid      => '1000',
       purge_ssh_keys => true
-      }
   }
+
+  file { '/home/rhizomatica/.ssh/config':
+      content  => template('rhizo_base/ssh_user_config.erb'),
+      owner    => 'rhizomatica',
+      group    => 'rhizomatica',
+      mode     => '0600'
+  }
+
+}
