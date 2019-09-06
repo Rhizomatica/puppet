@@ -52,7 +52,7 @@ PYTHONPATH=$PYTHONPATH:/var/rhizomatica/rccn
 <%= scope.function_fqdn_rand([59]) %> 3    10   *   *     root /usr/bin/python /var/rhizomatica/rccn/push.py -n
 
 # Purge Inactive Roaming Subscribers
-<%= scope.function_fqdn_rand([59]) %> 4    4   *   *     root /usr/bin/python /var/rhizomatica/rccn/rrc.py -p
+<%= scope.function_fqdn_rand([59]) %> 4    8   */4   *     root /usr/bin/python /var/rhizomatica/rccn/rrc.py -p
 
 #Cleanup inactive users
 #  0  5    *   *   *     root /usr/bin/python /var/rhizomatica/rccn/rip.py > /dev/null 2>&1
