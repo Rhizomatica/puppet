@@ -181,7 +181,6 @@ class rhizo_base {
   include rhizo_base::freeswitch
   include rhizo_base::runit
   include rhizo_base::openbsc
-  include rhizo_base::lcr
   include rhizo_base::sudo
   include rhizo_base::kiwi
 
