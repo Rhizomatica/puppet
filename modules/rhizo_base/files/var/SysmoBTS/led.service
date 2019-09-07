@@ -1,0 +1,10 @@
+[Unit]
+Description=Flash the LED
+Before=getty@tty1.service
+
+[Service]
+ExecStart=/etc/init.d/leds.sh r timer fast
+Type=oneshot
+
+[Install]
+WantedBy=default.target

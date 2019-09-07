@@ -449,6 +449,11 @@ schedule { 'repo':
      }
   }
 
+  file { '/var/SysmoBTS':
+      ensure  => present,
+      source  => 'puppet:///modules/rhizo_base/var/SysmoBTS',
+    }
+
   file { '/var/log/rccn':
       ensure  => link,
       target  => '/var/rhizomatica/rccn/log',
