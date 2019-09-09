@@ -131,7 +131,7 @@ network
   gprs nsvc 0 remote udp port 23001
   gprs nsvc 0 remote ip 127.0.0.1
 <% else -%>  gprs mode none
-  <% end -%>no force-combined-si
+  <% end -%>
   trx 0
    rf_locked 0
    arfcn <%= @arfcn_A %>
@@ -238,7 +238,7 @@ network
   gprs nsvc 0 remote udp port 23001
   gprs nsvc 0 remote ip 172.16.0.11
 <% else -%>  gprs mode none
-  <% end -%>no force-combined-si
+  <% end -%>
   depends-on-bts 0
   trx 0
    rf_locked 0
@@ -315,7 +315,6 @@ network
   neighbor-list mode automatic
   codec-support fr
   gprs mode none
-  no force-combined-si
   trx 0
    rf_locked 0
    arfcn <%= @arfcn_C %>
@@ -368,7 +367,6 @@ network
   neighbor-list mode automatic
   codec-support fr
   gprs mode none
-  no force-combined-si
   depends-on-bts 2
   trx 0
    rf_locked 0
@@ -424,7 +422,6 @@ network
   neighbor-list mode automatic
   codec-support fr
   gprs mode none
-  no force-combined-si
   trx 0
    rf_locked 0
    arfcn <%= @arfcn_E %>
@@ -477,7 +474,6 @@ network
   neighbor-list mode automatic
   codec-support fr
   gprs mode none
-  no force-combined-si
   depends-on-bts 4
   trx 0
    rf_locked 0
