@@ -52,7 +52,7 @@ class rhizo_base::openbsc::debian inherits rhizo_base::openbsc::common {
       schedule => 'weekly',
   }
 
-  package {  [ 'osmocom-nitb' ]:
+  package {  [ 'osmocom-nitb', 'osmo-sip-connector' ]:
       ensure   => 'installed',
       require  => Class['rhizo_base::apt'],
       notify   => [ Exec['hlr_pragma_wal'],
