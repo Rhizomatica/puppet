@@ -27,7 +27,7 @@ class rhizo_base::openbsc::ubuntu inherits rhizo_base::openbsc::common {
 
   package {  [ 'osmocom-nitb', 'osmo-meas' ]:
       ensure   => 'latest',
-      require  => Class['rhizo_base::apt'],
+      require  => [ Class['rhizo_base::apt'], Class['apt::update'] ],
       notify   => [ Exec['hlr_pragma_wal'],
                     Exec['notify-nitb'] ],
     }
