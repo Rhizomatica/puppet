@@ -4,7 +4,7 @@
 # Configuration settings
 reload_on_call = 0
 default_log_level = '<%= @default_log_level %>'
-lcls = '<%= @lcls %>'
+lcls = <%= @lcls %>
 
 rhizomatica_dir = '<%= @rhizomatica_dir %>'
 sq_hlr_path = '<%= @sq_hlr_path %>'
@@ -49,7 +49,7 @@ charge_inbound_calls = "<%= @charge_inbound_calls %>"
 charge_inbound_rate = "<%= @charge_inbound_rate %>"
 charge_inbound_rate_type = "<%= @charge_inbound_rate_type %>"
 smsc_shortcode = "<%= @smsc_shortcode %>"
-sms_sender_unauthorized = "<%= @sms_sender_unauthorized %>"
+sms_sender_unauthorized = '<%= @sms_sender_unauthorized %>'
 sms_destination_unauthorized = '<%= @sms_destination_unauthorized %>'
 sms_welcome_roaming = '<%= @sms_welcome_roaming %>' % site_name
 sms_credit_added = '<%= @sms_credit_added %>'
@@ -58,7 +58,7 @@ rai_admin_user = '<%= @rai_admin_user %>'
 rai_admin_pwd = '<%= @rai_admin_pwd %>'
 
 kannel_server = '<%= @kannel_server %>'
-kannel_port = <%= @kannel_port %>
+kannel_port = '<%= @kannel_port %>'
 kannel_username = '<%= @kannel_username %>'
 kannel_password = '<%= @kannel_sendsms_password %>'
 use_kannel = '<%= @use_kannel %>'
@@ -76,9 +76,8 @@ voip_chans_max = <%= @voip_chans_max %>
 voip_mod = <%= @voip_mod %>
 
 # Subscription SMS notification
-notice_msg = "<%= @notice_msg %>"
-reminder_msg = "<%= @reminder_msg %>"
-deactivate_msg = "<%= @deactivate_msg %>"
-
+notice_msg = '<%= @notice_msg %>'
+reminder_msg = '<%= @reminder_msg %>'
+deactivate_msg = '<%= @deactivate_msg %>'
 emergency_contact = '<%= @emergency_contact %>'
 support_contact = '<%= @support_contact %>'
