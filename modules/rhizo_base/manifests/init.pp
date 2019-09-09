@@ -315,6 +315,14 @@ schedule { 'repo':
       notify   => [ Exec['restart-meas'] ],
     }
 
+  vcsrepo { '/var/rates':
+    schedule  => 'always',
+    ensure    => latest,
+    revision  => 'master',
+    provider  => git,
+    source    => 'git@dev.rhizomatica.org:rhizomatica/rates.git',
+    require   => File['/root/.ssh/bsc_dev'],
+  }
 
   file { '/var/rhizomatica/bin/get_account_balance.sh':
       ensure  => present,
