@@ -67,11 +67,18 @@ class rhizo_base::runit {
     }
 
   if $operatingsystem != 'Debian' {
+
     file { '/etc/service/freeswitch':
         ensure  => link,
         target  => '/etc/sv/freeswitch',
         require =>
           [ File['/etc/sv'], Class['rhizo_base::freeswitch'] ],
+      }
+
+    file { '/etc/service/lcr':
+        ensure  => link,
+        target  => '/etc/sv/lcr',
+        require => [ File['/etc/sv'], Class['rhizo_base::lcr'] ],
       }
   }
 
@@ -87,11 +94,6 @@ class rhizo_base::runit {
       require => [ File['/etc/sv'] ],
     }
 
-  file { '/etc/service/lcr':
-      ensure  => link,
-      target  => '/etc/sv/lcr',
-      require => [ File['/etc/sv'], Class['rhizo_base::lcr'] ],
-    }
 
   file { '/etc/service/kiwi':
       ensure  => link,
