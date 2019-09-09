@@ -1,5 +1,7 @@
 # Deprecated Rhizomatica Puppet repository
 
+## !! 9th September 2019 - EOL. This branch will receive no more public updates.
+
 Here you will find the puppet recipe that we used to configure and maintain all our nodes in the Oaxaca Network run by TIC A.C. until 2019.
 
 We use one internal puppet master server for our cluster of nodes, but one can alternatively install on a single machine by configuring and running the puppet master and then letting the puppet agent set everything up for you, all on the same machine. If you are using one machine, simply ignore the instructions below where you are directed to change from client to puppet master.
