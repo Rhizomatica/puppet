@@ -108,13 +108,6 @@ class rhizo_base::apt::debian inherits rhizo_base::apt::common {
       require           => File['/etc/apt/apt.conf.d/90unsigned'],
     }
 
-  apt::source { 'osmocom-latest':
-      location    => 'http://download.opensuse.org/repositories/network:/osmocom:/latest/Debian_8.0/',
-      release     => './',
-      repos       => '',
-      key_source  => 'http://download.opensuse.org/repositories/network:/osmocom:/latest/Debian_8.0/Release.key'
-    }
-
   apt::source { 'osmocom-nightly':
       location    => 'http://download.opensuse.org/repositories/network:/osmocom:/nightly/Debian_8.0/',
       release     => './',
