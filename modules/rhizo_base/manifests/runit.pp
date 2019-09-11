@@ -11,6 +11,12 @@
 # Sample Usage:
 #
 class rhizo_base::runit {
+
+  file { '/lib/systemd/system/runit.service':
+      ensure   => present,
+      source   => 'puppet:///modules/rhizo_base/systemd/runit.service',
+    }
+
   file { '/etc/sv':
       ensure             => directory,
       source             => 'puppet:///modules/rhizo_base/etc/sv',

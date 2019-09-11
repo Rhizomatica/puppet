@@ -1,0 +1,14 @@
+[Unit]
+Description=Runit service supervision
+Documentation=http://smarden.org/runit/
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+ExecStart=/etc/runit/2
+KillSignal=SIGHUP
+KillMode=process
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
