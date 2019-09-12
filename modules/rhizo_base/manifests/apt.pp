@@ -17,6 +17,8 @@ class rhizo_base::apt {
 
 class rhizo_base::apt::common {
 
+  $osmo_repo = hiera('rhizo::osmo_repo', 'latest')
+
   class { '::apt':
      update => {
        frequency => 'weekly',
@@ -114,14 +116,19 @@ class rhizo_base::apt::debian inherits rhizo_base::apt::common {
       require     => File['/etc/apt/apt.conf.d/90unsigned'],
     }
 
-  apt::source { 'osmocom-latest':
-      location    => 'http://download.opensuse.org/repositories/network:/osmocom:/latest/Debian_9.0/',
+  apt::source { 'osmocom':
+      location    => "http://download.opensuse.org/repositories/network:/osmocom:/${osmo_repo}/Debian_9.0/",
       release     => './',
       repos       => '',
       notify      => Exec['apt_update'],
       key         => {
         'id'      => '0080689BE757A876CB7DC26962EB1A0917280DDF',
-        'source'  => 'http://download.opensuse.org/repositories/network:/osmocom:/latest/Debian_9.0/Release.key'
+        'source'  => "http://download.opensuse.org/repositories/network:/osmocom:/${osmo_repo}/Debian_9.0/Release.key"
        }
+    }
+
+   file { [ '/etc/apt/sources.list.d/osmocom-latest.list',
+            '/etc/apt/sources.list.d/osmocom-nightly.list' ]:
+      ensure     => absent,
     }
 }
