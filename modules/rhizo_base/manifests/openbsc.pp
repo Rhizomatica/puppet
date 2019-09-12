@@ -34,9 +34,16 @@ class rhizo_base::openbsc {
   $mncc_ip_address = $rhizo_base::mncc_ip_address
   $vpn_ip_address  = hiera('rhizo::vpn_ip_address')
   $ggsn_ip_address = hiera('rhizo::ggsn_ip_address')
+  $repo            = hiera('rhizo::osmo_repo', 'latest')
+
+  $nitb_version = $repo ? {
+    'latest'    => '1.3.1',
+    'nightly'   => 'latest',
+    default     => '1.3.0',
+  }
 
   package {  [ 'osmocom-nitb' ]:
-      ensure   => '1.3.1',
+      ensure   => $nitb_version,
       require  => Class['rhizo_base::apt'],
       notify   => [ Exec['hlr_pragma_wal'],
                     Exec['notify-nitb'] ],
