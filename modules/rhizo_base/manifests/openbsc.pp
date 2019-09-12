@@ -33,6 +33,7 @@ class rhizo_base::openbsc {
   $gprs            = $rhizo_base::gprs
   $mncc_ip_address = $rhizo_base::mncc_ip_address
   $vpn_ip_address  = hiera('rhizo::vpn_ip_address')
+  $sgsn_ip_address = hiera('rhizo::sgsn_ip_address')
   $ggsn_ip_address = hiera('rhizo::ggsn_ip_address')
   $repo            = hiera('rhizo::osmo_repo', 'latest')
 

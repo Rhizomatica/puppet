@@ -140,7 +140,7 @@ network
   gprs nsvc 0 nsvci <%= @lac %>0
   gprs nsvc 0 local udp port 23<%= @lac %>
   gprs nsvc 0 remote udp port 23001
-  gprs nsvc 0 remote ip <%= @ggsn_ip_address %>
+  gprs nsvc 0 remote ip <%= @sgsn_ip_address %>
 <% else -%>  gprs mode none
 <% end -%>  no force-combined-si
   trx 0
@@ -248,7 +248,7 @@ network
   gprs nsvc 0 nsvci <%= @lac %>1
   gprs nsvc 0 local udp port 23<%= @lac %>
   gprs nsvc 0 remote udp port 23001
-  gprs nsvc 0 remote ip <%= @ggsn_ip_address %>
+  gprs nsvc 0 remote ip <%= @sgsn_ip_address %>
 <% else -%>  gprs mode none
 <% end -%>  no force-combined-si
   depends-on-bts 0
