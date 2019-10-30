@@ -56,9 +56,9 @@ You are now ready to run the puppet agent to prepare and configure your system.
 **CAVEAT:** FreeSwitch 1.6 is not fully supported yet on Debian 9, but the only problem is a dependency on libssl1.0.0, which is not packaged for Debian 9, so you only need to do the following by hand first: Don't forget, or freeswitch will not install.
 
 ```
-wget http://security-cdn.debian.org/debian-security/pool/updates/main/o/openssl/libssl1.0.0-dbg_1.0.1t-1+deb8u11_amd64.deb
-dpkg -i libssl1.0.0-dbg_1.0.1t-1+deb8u11_amd64.deb
-rm libssl1.0.0-dbg_1.0.1t-1+deb8u11_amd64.deb
+wget http://security-cdn.debian.org/debian-security/pool/updates/main/o/openssl/libssl1.0.0-dbg_1.0.1t-1+deb8u12_amd64.deb
+dpkg -i libssl1.0.0-dbg_1.0.1t-1+deb8u12_amd64.deb
+rm libssl1.0.0-dbg_1.0.1t-1+deb8u12_amd64.deb
 ```
 
 Now we can install :-)
