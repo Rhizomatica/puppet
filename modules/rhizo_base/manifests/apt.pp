@@ -34,6 +34,7 @@ class rhizo_base::apt::common {
       location          => 'http://dev.rhizomatica.org/ubuntu/',
       release           => 'precise',
       repos             => 'main',
+      allow_unsigned => true,
       include  => {
         'src' => false,
         'deb' => true,
@@ -45,6 +46,7 @@ class rhizo_base::apt::common {
       location          => 'http://repo.rhizomatica.org/ubuntu/',
       release           => 'precise',
       repos             => 'main',
+      allow_unsigned => true,
       include  => {
         'src' => false,
         'deb' => true,
