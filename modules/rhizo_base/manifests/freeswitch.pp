@@ -147,7 +147,12 @@ class rhizo_base::freeswitch::common {
     }
 
   file { '/tmp/libfreeswitch.so.1.0.0':
-      source  => 'puppet:///modules/rhizo_base/usr/lib/libfreeswitch.so.1.0.0',
+      source  => 'puppet:///modules/rhizo_base/usr/lib/libfreeswitch.so.1.0.0-10.2',
+      require => Package['freeswitch'],
+    }
+
+  file { '/tmp/libfreeswitch.so.1.0.0-3':
+      source  => 'puppet:///modules/rhizo_base/usr/lib/libfreeswitch.so.1.0.0-10.3',
       require => Package['freeswitch'],
     }
 
