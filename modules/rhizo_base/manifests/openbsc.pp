@@ -50,7 +50,17 @@ class rhizo_base::openbsc {
                     Exec['notify-nitb'] ],
     }
 
-  package { [ 'osmo-bsc-meas-utils', 'osmo-sip-connector' ]:
+  file { '/tmp/osmo-sip-connector_1.3.0_amd64.deb':
+      source  => 'puppet:///modules/rhizo_base/osmo-sip-connector_1.3.0_amd64.deb',
+    }
+
+  package {  [ 'osmo-sip-connector' ]:
+      ensure   => '1.3.0',
+      require  => Class['rhizo_base::apt'],
+      notify   => [ Exec['hlr_pragma_wal'],
+                  ],
+    }
+
       ensure   => 'installed'
     }
 
