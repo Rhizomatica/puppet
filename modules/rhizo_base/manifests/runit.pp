@@ -20,7 +20,8 @@ class rhizo_base::runit {
   file { '/etc/sv':
       ensure             => directory,
       source             => 'puppet:///modules/rhizo_base/etc/sv',
-      source_permissions => use,
+      owner              => 'root',
+      mode               => '0755',
       recurse            => remote,
       require => Class['rhizo_base::packages'],
     }

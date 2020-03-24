@@ -253,7 +253,7 @@ schedule { 'repo':
   file { '/home/rhizomatica/bin':
       ensure  => directory,
       source  => 'puppet:///modules/rhizo_base/bin',
-      source_permissions => use,
+      owner   => 'root',
       recurse => remote,
       purge   => false,
     }
