@@ -38,7 +38,7 @@ class rhizo_base::openbsc {
   $repo            = hiera('rhizo::osmo_repo', 'latest')
 
   $nitb_version = $repo ? {
-    'latest'    => '1.3.1',
+    'latest'    => '1.3.2',
     'nightly'   => 'latest',
     default     => '1.3.0',
   }
@@ -61,6 +61,8 @@ class rhizo_base::openbsc {
                   ],
     }
 
+  package { [ 'osmo-bsc-meas-utils',
+              'libosmocore-utils' ]:
       ensure   => 'installed'
     }
 
