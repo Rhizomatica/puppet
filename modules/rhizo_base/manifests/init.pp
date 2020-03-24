@@ -67,8 +67,12 @@ class rhizo_base {
   $mncc_codec      = hiera('rhizo::mncc_codec', 'GSM')
   $inter_codec     = hiera('rhizo::inter_codec', 'G729')
 
-  # IP address
   $lcls = hiera('rhizo::lcls', '0')
+  $jb_in = hiera('rhizo::jb_in', '')
+  $jb_out = hiera('rhizo::jb_out', '')
+  $jb_bts = hiera('rhizo::jb_bts', '100')
+
+  # IP address
   $mncc_ip_address = hiera('rhizo::mncc_ip_address', '172.16.0.1')
   $vpn_ip_address = hiera('rhizo::vpn_ip_address')
   $wan_ip_address = hiera('rhizo::wan_ip_address')
