@@ -61,9 +61,18 @@ class rhizo_base::openbsc {
                   ],
     }
 
-  package { [ 'osmo-bsc-meas-utils',
-              'libosmocore-utils' ]:
-      ensure   => 'installed'
+  $utils_version = $repo ? {
+    'latest'    => '1.6.0',
+    'nightly'   => 'latest',
+    default     => '1.6.0',
+    }
+
+  package { [ 'osmo-bsc-meas-utils' ]:
+      ensure   => $utils_version,
+    }
+
+  package { [ 'libosmocore-utils' ]:
+      ensure   => 'installed',
     }
 
   if $mncc_codec == "AMR" {
