@@ -96,6 +96,7 @@ class rhizo_base {
   $smsc_shortcode               = hiera('rhizo::smsc_shortcode')
   $sms_sender_unauthorized      = hiera('rhizo::sms_sender_unauthorized')
   $sms_destination_unauthorized = hiera('rhizo::sms_destination_unauthorized')
+  $free_numbers                 = hiera('rhizo::free_numbers', '[]')
 
   $rai_admin_user  = hiera('rhizo::rai_admin_user')
   $rai_admin_pwd   = hiera('rhizo::rai_admin_pwd')
