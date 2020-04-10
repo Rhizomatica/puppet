@@ -17,7 +17,7 @@ class rhizo_base::freeswitch {
 class rhizo_base::freeswitch::ubuntu inherits rhizo_base::freeswitch::common {
 
   file { '/usr/lib/freeswitch/mod/mod_g729.so':
-      source  => 'puppet:///modules/rhizo_base/mod_g729.so',
+      source  => 'puppet:///modules/rhizo_base/mod_g729.so.atom',
       require => Package['freeswitch'],
     }
 
@@ -39,10 +39,27 @@ class rhizo_base::freeswitch::debian inherits rhizo_base::freeswitch::common {
 
   include systemd
 
-  file { '/usr/lib/freeswitch/mod/mod_g729.so':
-      source  => 'puppet:///modules/rhizo_base/mod_g729.so',
-      require => Package['freeswitch'],
-    }
+  if $facts['processor0'] =~ /i3-5020U/ {
+    file { '/usr/lib/freeswitch/mod/mod_g729.so':
+        source  => 'puppet:///modules/rhizo_base/mod_g729.so.i3',
+        require => Package['freeswitch'],
+      }
+  } elsif $facts['processor0'] =~ /i3-40/ {
+    file { '/usr/lib/freeswitch/mod/mod_g729.so':
+        source  => 'puppet:///modules/rhizo_base/mod_g729.so.i3',
+        require => Package['freeswitch'],
+      }
+  } elsif $facts['processor0'] =~ /J3455/ {
+    file { '/usr/lib/freeswitch/mod/mod_g729.so':
+        source  => 'puppet:///modules/rhizo_base/mod_g729.so.atom',
+        require => Package['freeswitch'],
+      }
+  } else {
+    file { '/usr/lib/freeswitch/mod/mod_g729.so':
+        source  => 'puppet:///modules/rhizo_base/mod_g729.so.atom',
+        require => Package['freeswitch'],
+      }
+  }
 
   file { '/usr/lib/freeswitch/mod/mod_amr.so':
       source  => 'puppet:///modules/rhizo_base/mod_amr.so',
