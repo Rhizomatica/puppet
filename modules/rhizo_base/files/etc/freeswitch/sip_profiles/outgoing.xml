@@ -29,8 +29,8 @@
     <param name="dialplan" value="XML"/>
     <param name="context" value="public"/>
     <param name="dtmf-duration" value="2000"/>
-    <param name="inbound-codec-prefs" value="G729,PCMA,PCMU"/>
-    <param name="outbound-codec-prefs" value="G729,PCMA,PCMU"/>
+    <param name="inbound-codec-prefs" value="OPUS@8000h@20i,G729,PCMA,PCMU"/>
+    <param name="outbound-codec-prefs" value="OPUS@8000h@20i,G729,PCMA,PCMU"/>
     <!--<param name="hold-music" value="$${hold_music}"/>-->
     <param name="rtp-timer-name" value="soft"/>
     <!--<param name="enable-100rel" value="true"/>-->

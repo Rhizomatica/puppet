@@ -72,6 +72,12 @@ class rhizo_base::freeswitch::debian inherits rhizo_base::freeswitch::common {
       require => Class['rhizo_base::apt'],
     }
 
+  package {
+    [ 'freeswitch-mod-opus' ]:
+      ensure  => installed,
+      require => Class['rhizo_base::apt'],
+  }
+
   file { '/etc/default/freeswitch':
       source  => 'puppet:///modules/rhizo_base/etc/default/freeswitch',
       require => Package['freeswitch'],
