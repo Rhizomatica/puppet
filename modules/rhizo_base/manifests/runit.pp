@@ -77,4 +77,10 @@ class rhizo_base::runit {
        require => [ File['/etc/sv'], Package['websocketd'] ],
     }
 
+  file { '/etc/service/meas-json':
+       ensure  => link,
+       target  => '/etc/sv/meas-json',
+       require => [ File['/etc/sv'] ],
+    }
+
   }

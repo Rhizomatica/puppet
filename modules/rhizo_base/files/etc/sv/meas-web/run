@@ -1,3 +1,8 @@
-#!/bin/sh
+#!/bin/bash
 exec 2>&1
-exec /usr/bin/websocketd --staticdir=/var/www/meas --port=8080 /usr/bin/stdbuf -oL /usr/bin/meas_json
+
+if [ ! -p /tmp/json_pipe ] ; then
+  mkfifo /tmp/json_pipe
+fi
+
+exec /usr/bin/websocketd --staticdir=/var/www/meas --port=8080 cat /tmp/json_pipe
