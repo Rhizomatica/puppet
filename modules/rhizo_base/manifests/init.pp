@@ -46,6 +46,7 @@ class rhizo_base {
 
   #BTSs configuration
   $bts_type        = hiera('rhizo::bts_type')
+  $bts_amps        = hiera('rhizo::bts_amps', "on")
   $bts1_ip_address = hiera('rhizo::bts1_ip_address')
   $arfcn_A         = hiera('rhizo::arfcn_A')
   $arfcn_B         = hiera('rhizo::arfcn_B', false)
@@ -251,6 +252,11 @@ schedule { 'repo':
       source_permissions => use,
       recurse => remote,
       purge   => false,
+    }
+
+  file { '/home/rhizomatica/bin/monitor_amp.sh':
+      ensure  => present,
+      source => "puppet:///modules/rhizo_base/monitor_amp.sh.${bts_amps}",
     }
 
   file { '/home/rhizomatica/bin/monitor_freeswitch.sh':
