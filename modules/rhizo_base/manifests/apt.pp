@@ -83,7 +83,7 @@ class rhizo_base::apt::debian inherits rhizo_base::apt::common {
       repos       => 'main',
       key         => {
          'id'     => '20B06EE621AB150D40F6079FD76EDC7725E010CF',
-         'source' => 'http://files.freeswitch.org/repo/deb/debian/freeswitch_archive_g0.pub'
+         'source' => 'https://files.freeswitch.org/repo/deb/freeswitch-1.6/key.gpg'
        }
     }
 
