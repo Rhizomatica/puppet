@@ -105,12 +105,12 @@ class rhizo_base::apt::buster inherits rhizo_base::apt::common {
 class rhizo_base::apt::stretch inherits rhizo_base::apt::common {
 
   apt::source { 'freeswitch':
-      location    => 'http://files.freeswitch.org/repo/deb/freeswitch-1.6/',
-      release     => 'jessie',
+      location    => 'http://files.freeswitch.org/repo/deb/freeswitch-1.8/',
+      release     => 'stretch',
       repos       => 'main',
       key         => {
          'id'     => '20B06EE621AB150D40F6079FD76EDC7725E010CF',
-         'source' => 'https://files.freeswitch.org/repo/deb/freeswitch-1.6/key.gpg'
+         'source' => 'https://files.freeswitch.org/repo/deb/freeswitch-1.8/key.gpg'
        }
     }
 
