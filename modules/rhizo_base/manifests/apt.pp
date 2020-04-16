@@ -52,7 +52,7 @@ class rhizo_base::apt::common {
       require           => File['/etc/apt/apt.conf.d/90unsigned'],
     }
 
-  package {'apt-transport-https':
+  package { 'apt-transport-https':
       ensure  => installed,
     }
 }
