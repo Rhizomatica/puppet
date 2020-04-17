@@ -15,10 +15,19 @@ class rhizo_base::kiwi {
   $site_name     = $rhizo_base::site_name
 
   package {
-    ['make', 'npm']:
+    ['make']:
       ensure  => installed,
       require => Class['rhizo_base::apt'],
     }
+
+  if ($lsbdistcodename == 'buster') {
+
+    package {
+      [ 'npm']:
+        ensure  => installed,
+        require => Class['rhizo_base::apt'],
+      }
+  }
 
   package {
     ['nodejs']:
