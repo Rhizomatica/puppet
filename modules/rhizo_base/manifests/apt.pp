@@ -71,17 +71,6 @@ class rhizo_base::apt::buster inherits rhizo_base::apt::common {
        }
     }
 
-  apt::source { 'nodesource':
-      location    => 'https://deb.nodesource.com/node_0.10',
-      release     => 'buster',
-      repos       => 'main',
-      key         => {
-        'id'      => '9FD3B784BC1C6FC31A8A0A1C1655A0AB68576280',
-        'source'  => 'https://deb.nodesource.com/gpgkey/nodesource.gpg.key'
-      },
-      require     => Package['apt-transport-https'],
-    }
-
   apt::source { 'irontec':
       location    => 'http://packages.irontec.com/debian',
       release     => 'buster',
