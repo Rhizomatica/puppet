@@ -51,6 +51,8 @@ class rhizo_base::packages::ubuntu inherits rhizo_base::packages::common {
 
 class rhizo_base::packages::debian inherits rhizo_base::packages::common {
 
+  include stdlib
+
   package { ['apache2','libapache2-mod-php', 'php', 'php-pgsql',
   'php-curl', 'php-cli', 'php-gd', 'php-intl', 'php-gettext',
   'sudo']:
@@ -58,10 +60,23 @@ class rhizo_base::packages::debian inherits rhizo_base::packages::common {
       require => Class['rhizo_base::apt'],
     }
 
-  file { '/etc/php/7.0/apache2/php.ini':
-      ensure  => present,
-      source  => "puppet:///modules/rhizo_base/php.ini",
-      require => Package['libapache2-mod-php']
+
+  if ($lsbdistcodename == 'buster') {
+    # FIXME: An Apache restart is required after this change.
+    file_line { 'apache_php':
+      ensure             => present,
+      path               => '/etc/php/7.3/apache2/php.ini',
+      line               => 'short_open_tag = On',
+      match              => '^short_open_tag',
+      append_on_no_match => false,
     }
 
+  } else {
+
+    file { '/etc/php/7.0/apache2/php.ini':
+        ensure  => present,
+        source  => "puppet:///modules/rhizo_base/php.ini",
+        require => Package['libapache2-mod-php']
+      }
+  }
 }
