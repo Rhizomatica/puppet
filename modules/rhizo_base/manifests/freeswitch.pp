@@ -119,7 +119,7 @@ class rhizo_base::freeswitch::common {
   $mncc_ip_address = $rhizo_base::mncc_ip_address
 
   package {
-    ['freeswitch', 'freeswitch-lang-en',
+    ['freeswitch-lang-en',
     'freeswitch-mod-amr', 'freeswitch-mod-amrwb',
     'freeswitch-mod-b64', 'freeswitch-mod-bv',
     'freeswitch-mod-commands', 'freeswitch-mod-conference',
@@ -143,6 +143,15 @@ class rhizo_base::freeswitch::common {
     'libfreeswitch1',
     'freeswitch-sounds-es-mx-maria' ]:
       ensure  => installed,
+      require => Class['rhizo_base::apt'],
+    }
+
+  package {
+    ['freeswitch' ]:
+      ensure  => $lsbdistcodename ? {
+        "stretch" => '1.10.2~release~14~f7bdd3845a~stretch-1~stretch+1',
+        "buster"  => '1.10.2~release~14~f7bdd3845a~buster-1~buster+1',
+        },
       require => Class['rhizo_base::apt'],
     }
 
