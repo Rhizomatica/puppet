@@ -93,13 +93,13 @@ class rhizo_base::apt::buster inherits rhizo_base::apt::common {
     }
 
   apt::source { 'osmocom':
-      location    => "http://download.opensuse.org/repositories/network:/osmocom:/${osmo_repo}/Debian_10.0/",
+      location    => "http://download.opensuse.org/repositories/network:/osmocom:/${osmo_repo}/Debian_10/",
       release     => './',
       repos       => '',
       notify      => Exec['apt_update'],
       key         => {
         'id'      => '0080689BE757A876CB7DC26962EB1A0917280DDF',
-        'source'  => "http://download.opensuse.org/repositories/network:/osmocom:/${osmo_repo}/Debian_10.0/Release.key"
+        'source'  => "http://download.opensuse.org/repositories/network:/osmocom:/${osmo_repo}/Debian_10/Release.key"
        }
     }
 }
