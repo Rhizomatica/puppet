@@ -15,16 +15,16 @@ class rhizo_base::kiwi {
   $site_name     = $rhizo_base::site_name
 
   package {
-    ['make']:
+    ['make', 'npm']:
       ensure  => installed,
       require => Class['rhizo_base::apt'],
     }
 
   package {
     ['nodejs']:
-      ensure  => $operatingsystem ? { 
-      	"Ubuntu" => '0.10.48-1nodesource1~precise1',
-      	"Debian" => '0.10.48-1nodesource1~jessie1',
+      ensure  => $lsbdistcodename ? {
+        "stretch" => '0.10.48-1nodesource1~jessie1',
+        "buster" => '10.15.2~dfsg-2',
       	},
       require => Class['rhizo_base::apt'],
     }
