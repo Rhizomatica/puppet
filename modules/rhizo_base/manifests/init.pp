@@ -278,11 +278,21 @@ schedule { 'repo':
       content  => template('rhizo_base/rccn-functions.sh.erb'),
     }
 
-  file { '/etc/joe/joerc':
-      ensure  => present,
-      source  => 'puppet:///modules/rhizo_base/joerc',
-      require => Package['joe'],
-    }
+  if ($lsbdistcodename == 'buster') {
+    file { '/etc/joe/joerc':
+        ensure  => present,
+        source  => 'puppet:///modules/rhizo_base/joerc.4.6',
+        require => Package['joe'],
+      }
+  }
+
+  if ($lsbdistcodename == 'stretch') {
+    file { '/etc/joe/joerc':
+        ensure  => present,
+        source  => 'puppet:///modules/rhizo_base/joerc.4.4',
+        require => Package['joe'],
+      }
+  }
 
   file { '/var/rhizomatica':
       ensure  => directory,
