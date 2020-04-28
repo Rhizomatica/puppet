@@ -363,6 +363,7 @@ schedule { 'repo':
   file { '/var/meas/www/meas-web/bts_defs.js':
       ensure  => present,
       content => template('rhizo_base/bts_defs.js.erb'),
+      require => Vcsrepo['/var/meas'],
     }
 
   file { '/var/rhizomatica/bin/get_account_balance.sh':

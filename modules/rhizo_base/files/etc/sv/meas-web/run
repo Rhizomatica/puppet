@@ -2,6 +2,9 @@
 exec 2>&1
 
 if [ ! -p /tmp/json_pipe ] ; then
+  if [ -f /tmp/json_pipe ] ; then
+    rm -f /tmp/json_pipe
+  fi
   mkfifo /tmp/json_pipe
 fi
 
