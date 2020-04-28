@@ -66,7 +66,7 @@ class rhizo_base::apt::buster inherits rhizo_base::apt::common {
       release     => 'buster',
       repos       => 'main',
       key         => {
-         'id'     => '20B06EE621AB150D40F6079FD76EDC7725E010CF',
+         'id'     => '5E098B3D18406E8E19543709BD3189F5A2B57698',
          'source' => 'https://files.freeswitch.org/repo/deb/freeswitch-1.8/fsstretch-archive-keyring.gpg'
        }
     }
