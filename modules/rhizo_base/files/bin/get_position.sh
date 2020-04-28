@@ -3,7 +3,7 @@
 RHIZO_SCRIPT="/home/rhizomatica/bin"
 . $RHIZO_SCRIPT/vars.sh
 n=0
-for bts in $BTS1 $BTS2 $BTS3; do
+for bts in $BTS0 $BTS1 $BTS2; do
     echo "BTS $bts:";
     let "n++"
     #ssh root@$bts "/etc/init.d/gpsd stop ; sleep 1 ;/etc/init.d/gpsd start; sleep 1"

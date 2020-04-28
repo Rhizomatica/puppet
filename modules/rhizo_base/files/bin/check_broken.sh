@@ -8,7 +8,7 @@ NACK=`echo "show lchan" | nc -q1 localhost 4242 | grep "BROKEN UNUSABLE Error re
 if [ $NACK -gt 0 ]; then
 	waitfor0calls
 	_bts=0
-	for bts in $BTS1 $BTS2 $BTS3; do
+	for bts in $BTS0 $BTS1 $BTS2; do
 	  echo "Dropping BTS connection $_bts due to $NACK broken (NACK) Channels"
 	  echo -e "enable\n drop bts connection $_bts oml" | nc -q1 localhost 4242
 	done
