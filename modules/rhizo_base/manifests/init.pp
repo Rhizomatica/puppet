@@ -45,6 +45,7 @@ class rhizo_base {
   $mnc             = hiera('rhizo::mnc', '7')
 
   #BTSs configuration
+  $bts             = hiera('rhizo::bts')
   $bts_type        = hiera('rhizo::bts_type')
   $bts_amps        = hiera('rhizo::bts_amps', "on")
   $bts1_ip_address = hiera('rhizo::bts1_ip_address')
@@ -348,14 +349,20 @@ schedule { 'repo':
                     Exec['restart-esme'], ],
     }
 
-  vcsrepo { '/var/meas_web':
+  vcsrepo { '/var/meas':
       schedule => 'always',
       ensure   => latest,
       provider => git,
-      source   => 'https://github.com/whyteks/meas_web.git',
+      # source   => 'https://github.com/whyteks/meas_web.git',
+      source   => 'https://gitlab.tic-ac.org/keith/meas_web.git',
       revision => 'master',
       require  => [ Package['git'] ],
       notify   => [ Exec['restart-meas'] ],
+    }
+
+  file { '/var/meas/www/meas-web/bts_defs.js':
+      ensure  => present,
+      content => template('rhizo_base/bts_defs.js.erb'),
     }
 
   file { '/var/rhizomatica/bin/get_account_balance.sh':
@@ -483,8 +490,8 @@ schedule { 'repo':
 
   file { '/var/www/meas':
       ensure  => link,
-      target  => '/var/meas_web/usr/share/fairwaves-meas-web/',
-      require => [ Vcsrepo['/var/meas_web'] ],
+      target  => '/var/meas/www/meas-web',
+      require => [ Vcsrepo['/var/meas'] ],
     }
 
   file { '/var/www/html/rai':
