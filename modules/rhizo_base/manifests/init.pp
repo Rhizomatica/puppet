@@ -46,6 +46,7 @@ class rhizo_base {
 
   #BTSs configuration
   $bts             = hiera('rhizo::bts')
+  $bts_pass        = hiera('rhizo::bts_pass')
   $bts_type        = hiera('rhizo::bts_type')
   $bts_amps        = hiera('rhizo::bts_amps', "on")
   $bts1_ip_address = hiera('rhizo::bts1_ip_address')
@@ -490,6 +491,22 @@ schedule { 'repo':
       source  => 'puppet:///modules/rhizo_base/var/SysmoBTS/check.sh',
       mode    => '0750'
     }
+
+  file { '/var/SysmoBTS/provision.sh':
+      source  => 'puppet:///modules/rhizo_base/var/SysmoBTS/provision.sh',
+      mode    => '0750'
+    }
+
+  file { '/var/SysmoBTS/chk_masq':
+      source  => 'puppet:///modules/rhizo_base/var/SysmoBTS/chk_masq',
+      mode    => '0750'
+    }
+
+  file { '/root/.ssh/bts_key':
+      ensure  => present,
+      mode    => '0600',
+      content => hiera('rhizo::bts_key'),
+  }
 
   file { '/var/log/rccn':
       ensure  => link,

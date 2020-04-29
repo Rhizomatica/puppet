@@ -6,6 +6,8 @@ function logc() {
     echo "[`date '+%d-%m-%Y %H:%M:%S'`] $txt" >> $LOGFILE
 }
 
+SITE=<%= @site_name %>
+
 #BTSs IP addresses (for amps etc)
 declare -a BTS
 declare -a BTS_MASTER
@@ -16,6 +18,8 @@ BTS[<%= index %>]=<%= bts["ip"] %>
 BTS_MASTER[<%= index %>]=<%= bts["ip"] %>
 <% end -%>
 <% end -%>
+
+BTSPASS=<%= @bts_pass %>
 
 LATENCY_HOST=<%= @latency_check_address %>
 LATENCY_TINC=<%= @latency_check_vpn %>
