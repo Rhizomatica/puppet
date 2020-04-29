@@ -1,0 +1,32 @@
+#!/usr/bin/expect -f
+
+spawn telnet localhost 4241
+expect ">"
+send "enable\r"
+expect "#"
+send "logging enable\r"
+expect "#"
+send "logging level all everything\r"
+expect "#"
+send "logging print category 1\r"
+expect "#"
+
+send "logging level rr notice\r"
+expect "#"
+send "logging level oml info\r"
+expect "#"
+send "logging level pag info\r"
+expect "#"
+send "logging level rsl info\r"
+expect "#"
+send "logging level rll notice\r"
+expect "#"
+send "logging level meas notice\r"
+expect "#"
+send "logging level pcu info\r"
+expect "#"
+
+send "logging filter all 1\r"
+expect "#"
+interact
+

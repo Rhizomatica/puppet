@@ -1,0 +1,35 @@
+#!/usr/bin/expect -f
+
+spawn telnet localhost 4240
+expect ">"
+send "enable\r"
+expect "#"
+send "logging enable\r"
+expect "#"
+send "logging level all everything\r"
+expect "#"
+send "logging print category 1\r"
+expect "#"
+
+send "logging level l1if info\r"
+expect "#"
+send "logging level rlcmac info\r"
+expect "#"
+send "logging level rlcmacmeas notice\r"
+expect "#"
+send "logging level tbf info\r"
+expect "#"
+send "logging level tbful info\r"
+expect "#"
+send "logging level tbfdl info\r"
+expect "#"
+send "logging level rlcmacsched info\r"
+expect "#"
+
+send "logging level set-all error\r"
+expect "#"
+
+send "logging filter all 1\r"
+expect "#"
+interact
+

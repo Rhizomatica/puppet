@@ -18,6 +18,10 @@ for bts in "${!BTS[@]}" ; do
   ssh $SSH_OPTS root@${BTS[$bts]} "date -s '$(date)'"
   ssh $SSH_OPTS root@${BTS[$bts]} "echo nameserver 1.1.1.1 > /etc/resolv.conf; echo nameserver 9.9.9.9 >> /etc/resolv.conf"
   scp $SSH_OPTS osmo-pcu.cfg root@${BTS[$bts]}:/etc/osmocom/osmo-pcu.cfg
+  ssh $SSH_OPTS root@${BTS[$bts]} "mkdir /tmp/ipk"
+  scp $SSH_OPTS *.ipk root@${BTS[$bts]}:/tmp/ipk/
+  ssh $SSH_OPTS root@${BTS[$bts]} "opkg install /tmp/ipk/*.ipk"
+  ssh $SSH_OPTS root@${BTS[$bts]} "rm -r /tmp/ipk"
 
   if [ "$(ssh $SSH_OPTS ${BTS[$bts]} sysmobts-util trx-nr)" == "0" ] ; then
     # Master Verified.
