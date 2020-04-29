@@ -80,3 +80,9 @@ rk_imsi() {
 check_trx() {
   echo "show trx" | nc -q1 localhost 4242 | awk 'BEGIN { RS="TRX"; } /OK/ { print "BTS"$4" TRX"$1": OK";  }'
 }
+
+<% @bts.each_with_index do |bts, index| -%>
+lc<%= index %>() {
+  ssh root@<%= bts["ip"] %>
+}
+<% end -%>
