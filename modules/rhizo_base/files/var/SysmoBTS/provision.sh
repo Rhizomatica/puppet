@@ -27,7 +27,8 @@ for bts in "${!BTS[@]}" ; do
     scp $SSH_OPTS master/ntp.conf root@${BTS[$bts]}:/etc/ntp.conf
     scp $SSH_OPTS leds.sh root@${BTS[$bts]}:/etc/init.d/leds.sh
     scp $SSH_OPTS led.service root@${BTS[$bts]}:/lib/systemd/system/led.service
-    scp $SSH_OPTS osmo-bts.service root@${BTS[$bts]}:/lib/systemd/system/osmo-bts.service
+    scp $SSH_OPTS osmo-bts.service root@${BTS[$bts]}:/lib/systemd/system/osmo-bts-sysmo.service
+    ssh $SSH_OPTS root@${BTS[$bts]} "systemctl enable led.service"
   fi
 
   if [ "$(ssh $SSH_OPTS ${BTS[$bts]} sysmobts-util trx-nr)" == "1" ] ; then
