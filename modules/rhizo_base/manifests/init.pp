@@ -497,6 +497,11 @@ schedule { 'repo':
       mode    => '0750'
     }
 
+  file { '/var/SysmoBTS/opkg.sh':
+      source  => 'puppet:///modules/rhizo_base/var/SysmoBTS/opkg.sh',
+      mode    => '0750'
+    }
+
   file { '/var/SysmoBTS/chk_masq':
       source  => 'puppet:///modules/rhizo_base/var/SysmoBTS/chk_masq',
       mode    => '0750'
