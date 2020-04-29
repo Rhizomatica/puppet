@@ -2,8 +2,8 @@
 
 . /home/rhizomatica/bin/vars.sh
 
-/sbin/iptables -t nat -vnL | egrep "MASQUERADE.*all.*$_PUBIF.*172.16.0.0/16.*0.0.0.0/0"
+/sbin/iptables -t nat -vnL | egrep "MASQUERADE.*all.*$_PUB_IF.*172.16.0.0/16.*0.0.0.0/0"
 if [ $? != 0 ] ; then
 	# Add the Masquerade RULE
-	iptables -t nat -I POSTROUTING -s 172.16.0.0/16 -o $_PUBIF -j MASQUERADE
+	iptables -t nat -I POSTROUTING -s 172.16.0.0/16 -o $_PUB_IF -j MASQUERADE
 fi
