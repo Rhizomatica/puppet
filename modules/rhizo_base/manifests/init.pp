@@ -479,8 +479,16 @@ schedule { 'repo':
   }
 
   file { '/var/SysmoBTS':
-      ensure  => present,
+      ensure  => directory,
       source  => 'puppet:///modules/rhizo_base/var/SysmoBTS',
+      owner   => 'root',
+      group   => 'root',
+      recurse => remote
+    }
+
+  file { '/var/SysmoBTS/check.sh':
+      source  => 'puppet:///modules/rhizo_base/var/SysmoBTS/check.sh',
+      mode    => '0750'
     }
 
   file { '/var/log/rccn':
