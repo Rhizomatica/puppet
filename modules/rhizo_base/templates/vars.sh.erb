@@ -6,16 +6,22 @@ function logc() {
     echo "[`date '+%d-%m-%Y %H:%M:%S'`] $txt" >> $LOGFILE
 }
 
-#BTSs IP addresses
+#BTSs IP addresses (for amps etc)
+declare -a BTS
+declare -a BTS_MASTER
 
 <% @bts.each_with_index do |bts, index| -%>
-BTS<%= index %>=<%= bts["ip"] %>
+BTS[<%= index %>]=<%= bts["ip"] %>
+<% if bts ["model"] == '2050M' -%>
+BTS_MASTER[<%= index %>]=<%= bts["ip"] %>
+<% end -%>
 <% end -%>
 
 LATENCY_HOST=<%= @latency_check_address %>
 LATENCY_TINC=<%= @latency_check_vpn %>
 STAT_DISK=<%= @stats_disk %>
 STAT_IF=<%= @stats_if %>
+_PUB_IF=<%= @stats_if %>
 
 RECIPIENTS="<%= @mail_admins -%>"
 
