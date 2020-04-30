@@ -28,3 +28,6 @@
 [submodule "modules/concat"]
 	path = modules/concat
 	url = https://github.com/puppetlabs/puppetlabs-concat.git
+[submodule "modules/recursive_file_permissions"]
+	path = modules/recursive_file_permissions
+	url = https://github.com/npwalker/recursive_file_permissions.git

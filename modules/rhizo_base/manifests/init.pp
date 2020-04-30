@@ -275,6 +275,13 @@ schedule { 'repo':
       content => template('rhizo_base/vars.sh.erb'),
     }
 
+  recursive_file_permissions { '/home/rhizomatica/bin':
+    file_mode => '0750',
+    dir_mode  => '0755',
+    owner     => 'root',
+    group     => 'root',
+  }
+
   file { "/etc/profile.d/rccn-functions.sh":
       ensure  => present,
       content  => template('rhizo_base/rccn-functions.sh.erb'),
