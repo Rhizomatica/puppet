@@ -86,3 +86,12 @@ b<%= index %>() {
   ssh -o StrictHostKeyChecking=no root@<%= bts["ip"] %>
 }
 <% end -%>
+
+pdp () {
+  expect -c 'spawn -noecho telnet 0 4245; expect >; send enable\r; expect #; send "show pdp-context all\r"; expect #' | grep "PDP Address" | grep -v invalid | sort;
+  echo Count: $(pdpc)
+}
+
+pdpc () {
+  expect -c 'spawn -noecho telnet 0 4245; expect >; send enable\r; expect #; send "show pdp-context all\r"; expect #' | grep "PDP Address" | grep -v invalid | wc -l
+}
