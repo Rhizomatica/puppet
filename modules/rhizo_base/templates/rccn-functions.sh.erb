@@ -82,7 +82,7 @@ check_trx() {
 }
 
 <% @bts.each_with_index do |bts, index| -%>
-lc<%= index %>() {
-  ssh root@<%= bts["ip"] %>
+b<%= index %>() {
+  ssh -o StrictHostKeyChecking=no root@<%= bts["ip"] %>
 }
 <% end -%>
