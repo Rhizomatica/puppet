@@ -99,6 +99,11 @@ class rhizo_base::openbsc {
       require => Package['osmo-sip-connector'],
     }
 
+  file { '/usr/local/bin/vty':
+      source  => 'puppet:///modules/rhizo_base/vty',
+      owner   => 'root',
+      mode    => '0755',
+    }
 
   file { '/etc/default/osmocom-nitb':
       source  => 'puppet:///modules/rhizo_base/etc/default/osmocom-nitb',
