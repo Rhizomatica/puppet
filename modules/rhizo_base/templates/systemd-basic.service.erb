@@ -1,0 +1,11 @@
+[Unit]
+Description=<%= @svc_name %>
+Wants=basic.target
+After=basic.target network.target
+
+[Service]
+WorkingDirectory=/etc
+ExecStart=<%= @svc_command %>
+
+[Install]
+WantedBy=multi-user.target
