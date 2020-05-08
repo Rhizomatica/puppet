@@ -1,5 +1,6 @@
 #Admin config
 rhizo::mail_admins:                  "postmaster@rhizomatica.org"
+rhizo::advice_email:                 "[ 'postmaster@rhizomatica.org' ]"
 rhizo::smsc_password:                "Password"
 rhizo::rhizomatica_dir:              "/var/rhizomatica"
 rhizo::sq_hlr_path:                  "/var/lib/osmocom/hlr.sqlite3"
@@ -42,21 +43,76 @@ rhizo::kannel_username:              "rhizomatica"
 rhizo::kannel_sendsms_password:      "123abcde"
 rhizo::kannel_admin_password:        "123abcde"
 
+rhizo::sgsn_ip_address:              "172.16.0.1"
+rhizo::ggsn_ip_address:              "192.168.1.1"
+
 #Monthly subscription messages
 rhizo::notice_msg:                   "Favor de pagar su cooperacion mensual de 40 pesos. Gracias."
 rhizo::reminder_msg:                 "Recuerda: su servicio sera desactivado si no paga su cuota antes del 7 de cada mes. Gracias."
 rhizo::deactivate_msg:               "Su servicio ha sido desactivado hasta que haga su cooperacion mensual."
 
 #OpenBSC config
+rhizo::ms_max_power:                 "33"
 rhizo::max_power_red:                "0"
 rhizo::bts_type:                     "litecel"
+rhizo::gprs:                         "active"
+rhizo::local_bsc_cfg:                "0"
+
+rhizo::bts_opkg_creds:               "USER:PASS"
+rhizo::bts_pass:                     "password"
+# Typical BTS Config (one SysmoBTS 2050):
+# Master
+rhizo::bts:
+-
+  ip:      "172.16.0.11"
+  name:    "Master BTS"
+  model:   "2050M"
+  band:    "GSM850"
+  lac:     "100"
+  type:    "sysmobts"
+  bsic:    "63"
+  uid:     "0"
+  ms_maxp: "33"
+  gprs_m:  "egprs"
+  nom:     "37"
+  red:     "0"
+  trx:
+  -
+    chan:  "247"
+# Slave
+-
+  ip:      "172.16.0.12"
+  name:    "Slave BTS"
+  model:   "2050S"
+  band:    "GSM850"
+  lac:     "100"
+  type:    "sysmobts"
+  bsic:    "63"
+  uid:     "1"
+  ms_maxp: "33"
+  gprs_m:  "egprs"
+  nom:     "37"
+  red:     "0"
+  trx:
+  -
+    chan:  "249"
 
 #Misc
+rhizo::free_numbers:                 [ "1234567890", "0987654321" ]
 rhizo::use_ups:                      "no"
 rhizo::use_sip:                      "no"
-rhizo::advice_email:                 "[ 'your@email.address' ]"
-rhizo::sip_central_ip_address:       "127.0.0.1"
-rhizo::ntp_servers:                  ['mx.pool.ntp.org', 'pool.ntp.org']
+rhizo::sip_central_ip_address:       [ "192.168.1.1", "192.168.1.254" ]
+rhizo::webphone_prefix:              [ "50505", "99999" ]
+rhizo::support_contact:              "12345"
+rhizo::test_playback:                "shout://server1.usatelk.com:27547/"
+rhizo::voip_mod:                     "lambda num: (str(int(num) + 150)[2:])"
+rhizo::stats_disk:                   "sda1"
+rhizo::ntp_servers:                  ['0.debian.pool.ntp.org', '1.debian.pool.ntp.org', '2.debian.pool.ntp.org', '3.debian.pool.ntp.org', ]
+
+rhizo::bot:        "111111111"
+rhizo::btkn:       "replace-with-token"
+rhizo::btdest:     "2222222222"
+rhizo::alert_url:  "https://api.telegram.org/bot%{hiera('rhizo::bot')}:%{hiera('rhizo::btkn')}/sendMessage?chat_id=-%{hiera('rhizo::btdest')}&text="
 
 #SSH keys
 sshkeys::keys:
@@ -68,6 +124,7 @@ sshkeys::keys:
 sshkeys::users:
   rhizomatica:
     home: /home/rhizomatica
+    gid: rhizomatica
     keys:
       - test
 
