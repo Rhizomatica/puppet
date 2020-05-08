@@ -57,6 +57,18 @@ class rhizo_base::apt::common {
   package { 'apt-transport-https':
       ensure  => installed,
     }
+
+  apt::key { 'freeswitch':
+      id      => '5E098B3D18406E8E19543709BD3189F5A2B57698',
+      source  => 'https://files.freeswitch.org/repo/deb/freeswitch-1.8/fsstretch-archive-keyring.gpg',
+      ensure  => refreshed
+    }
+
+  apt::key { 'opensuse':
+      id      => '0080689BE757A876CB7DC26962EB1A0917280DDF',
+      source  => 'https://download.opensuse.org/repositories/network:/osmocom:/latest/Debian_10/Release.key',
+      ensure  => refreshed
+    }
 }
 
 class rhizo_base::apt::buster inherits rhizo_base::apt::common {
@@ -64,11 +76,7 @@ class rhizo_base::apt::buster inherits rhizo_base::apt::common {
   apt::source { 'freeswitch':
       location    => 'http://files.freeswitch.org/repo/deb/freeswitch-1.8/',
       release     => 'buster',
-      repos       => 'main',
-      key         => {
-         'id'     => '5E098B3D18406E8E19543709BD3189F5A2B57698',
-         'source' => 'https://files.freeswitch.org/repo/deb/freeswitch-1.8/fsstretch-archive-keyring.gpg'
-       }
+      repos       => 'main'
     }
 
   apt::source { 'irontec':
@@ -86,10 +94,6 @@ class rhizo_base::apt::buster inherits rhizo_base::apt::common {
       release     => './',
       repos       => '',
       notify      => Exec['apt_update'],
-      key         => {
-        'id'      => '0080689BE757A876CB7DC26962EB1A0917280DDF',
-        'source'  => "http://download.opensuse.org/repositories/network:/osmocom:/${osmo_repo}/Debian_10/Release.key"
-       }
     }
 }
 
@@ -99,10 +103,6 @@ class rhizo_base::apt::stretch inherits rhizo_base::apt::common {
       location    => 'http://files.freeswitch.org/repo/deb/freeswitch-1.8/',
       release     => 'stretch',
       repos       => 'main',
-      key         => {
-         'id'     => '20B06EE621AB150D40F6079FD76EDC7725E010CF',
-         'source' => 'https://files.freeswitch.org/repo/deb/freeswitch-1.8/key.gpg'
-       }
     }
 
   apt::source { 'nodesource':
@@ -139,10 +139,6 @@ class rhizo_base::apt::stretch inherits rhizo_base::apt::common {
       release     => './',
       repos       => '',
       notify      => Exec['apt_update'],
-      key         => {
-        'id'      => '0080689BE757A876CB7DC26962EB1A0917280DDF',
-        'source'  => "http://download.opensuse.org/repositories/network:/osmocom:/${osmo_repo}/Debian_9.0/Release.key"
-       }
     }
 
    file { [ '/etc/apt/sources.list.d/osmocom-latest.list',
