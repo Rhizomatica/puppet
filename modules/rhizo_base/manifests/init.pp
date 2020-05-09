@@ -45,6 +45,7 @@ class rhizo_base {
   $mnc             = hiera('rhizo::mnc', '7')
 
   #BTSs configuration
+  $opkg_creds      = hiera('rhizo::bts_opkg_creds')
   $bts             = hiera('rhizo::bts')
   $bts_pass        = hiera('rhizo::bts_pass')
   $bts_type        = hiera('rhizo::bts_type')
