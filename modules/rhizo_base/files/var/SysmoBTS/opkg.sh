@@ -18,7 +18,7 @@ for bts in "${!BTS[@]}" ; do
       sed -i s/OPKG_CREDS/$OPKG_CREDS/g base-feeds-nightly.conf
     fi
     scp $SSH_OPTS base-feeds-nightly.conf root@${BTS[$bts]}:/etc/opkg/base-feeds.conf
-    ssh $SSH_OPTS root@${BTS[$bts]} "opkg update; opkg install osmo-bts osmo-pcu sysmobts-util ntp"
+    ssh $SSH_OPTS root@${BTS[$bts]} "PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin opkg update; opkg install osmo-bts osmo-pcu sysmobts-util ntp"
     ssh $SSH_OPTS root@${BTS[$bts]} "systemctl enable osmo-pcu; systemctl start osmo-pcu"
 
   fi 
@@ -28,3 +28,4 @@ done
 if [ "$OLDPWD" != "" ]; then
   cd $OLDPWD
 fi
+ 
