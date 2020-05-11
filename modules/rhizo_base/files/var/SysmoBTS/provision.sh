@@ -23,7 +23,29 @@ for bts in "${!BTS[@]}" ; do
   ssh $SSH_OPTS root@${BTS[$bts]} "opkg install /tmp/ipk/*.ipk"
   ssh $SSH_OPTS root@${BTS[$bts]} "rm -r /tmp/ipk"
 
-  if [ "$(ssh $SSH_OPTS ${BTS[$bts]} sysmobts-util trx-nr)" == "0" ] ; then
+
+  _modelNR=$(ssh $SSH_OPTS ${BTS[$bts]} sysmobts-util model-nr)
+
+  if [ "$?" == "127" ]; then
+    echo "No sysmobts-util?"
+    continue
+  fi
+
+  _trxNR=$(ssh $SSH_OPTS ${BTS[$bts]} sysmobts-util trx-nr)
+
+  if [ "$?" != "0" ] ; then
+    echo "TRX Number?"
+    continue
+  fi
+
+  if [ "$_modelNR" == "65535" ] && [ "$_trxNR" == "255" ] ; then
+    echo "Looks like a SysmoBTS"
+    ssh $SSH_OPTS root@${BTS[$bts]} "echo '$SITE-$bts' > /etc/hostname"
+    scp $SSH_OPTS master/gpsd root@${BTS[$bts]}:/etc/default/gpsd
+    scp $SSH_OPTS master/ntp.conf root@${BTS[$bts]}:/etc/ntp.conf
+  fi
+
+  if [ "$_trxNR" == "0" ] ; then
     # Master Verified.
     echo "BTS is a 2050 Master"
     ssh $SSH_OPTS root@${BTS[$bts]} "echo '$SITE-Master-$bts' > /etc/hostname"
@@ -35,7 +57,7 @@ for bts in "${!BTS[@]}" ; do
     ssh $SSH_OPTS root@${BTS[$bts]} "systemctl enable led.service"
   fi
 
-  if [ "$(ssh $SSH_OPTS ${BTS[$bts]} sysmobts-util trx-nr)" == "1" ] ; then
+  if [ "$_trxNR" == "1" ] ; then
     # Slave Verified.
     echo "BTS is a 2050 Slave"
     ssh $SSH_OPTS root@${BTS[$bts]} "echo '$SITE-Slave-$bts' > /etc/hostname"
