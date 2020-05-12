@@ -149,8 +149,8 @@ class rhizo_base::freeswitch::common {
   package {
     ['freeswitch' ]:
       ensure  => $lsbdistcodename ? {
-        "stretch" => '1.10.2~release~14~f7bdd3845a~stretch-1~stretch+1',
-        "buster"  => '1.10.2~release~14~f7bdd3845a~buster-1~buster+1',
+        "stretch" => '1.10.3~release~15~129de34d84~stretch-1~stretch+1',
+        "buster"  => '1.10.3~release~15~129de34d84~buster-1~buster+1',
         },
       require => Class['rhizo_base::apt'],
     }
