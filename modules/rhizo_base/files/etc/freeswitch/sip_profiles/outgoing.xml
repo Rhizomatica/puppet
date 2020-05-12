@@ -18,7 +18,7 @@
 
   <settings>
 
-    <param name="auto-jitterbuffer-msec" value="400"/>
+    <param name="auto-jitterbuffer-msec" value="100"/>
     <param name="minimum-session-expires" value="90"/>
     <param name="enable-time" value="false"/>
     <param name="debug" value="0"/>
