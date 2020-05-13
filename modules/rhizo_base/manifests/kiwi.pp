@@ -33,7 +33,7 @@ class rhizo_base::kiwi {
     ['nodejs']:
       ensure  => $lsbdistcodename ? {
         "stretch" => '0.10.48-1nodesource1~jessie1',
-        "buster" => '10.15.2~dfsg-2',
+        "buster" => '10.19.0~dfsg1-1',
       	},
       require => Class['rhizo_base::apt'],
     }
