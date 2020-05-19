@@ -95,3 +95,7 @@ pdp () {
 pdpc () {
   expect -c 'spawn -noecho telnet 0 4245; expect >; send enable\r; expect #; send "show pdp-context all\r"; expect #' | grep "PDP Address" | grep -v invalid | wc -l
 }
+
+ns () {
+  expect -c 'spawn -noecho telnet 0 4245; expect >; send enable\r; expect #; send "show ns\r"; expect #' | grep ALIVE;
+}
