@@ -27,7 +27,7 @@ class rhizo_base::packages::common {
 
   package { ['mosh', 'tmux', 'git', 'openvpn', 'lm-sensors', 'runit-systemd', 'sqlite3',
             'libffi-dev', 'apcupsd', 'expect', 'gawk', 'swig', 'g++', 'tinc', 'tcpdump',
-            'sngrep', 'rrdtool', 'dnsmasq', 'joe', 'curl', 'htop', 'screen',
+            'sngrep', 'rrdtool', 'dnsmasq', 'joe', 'curl', 'htop', 'screen', 'iperf3',
             'websocketd', 'fping', 'mtr-tiny', 'openssh-server', 'telnet', 'netcat-traditional',
             'python-unidecode', 'python-dateutil', 'python-yaml', 'python-formencode',
             'python-smpplib', 'python-psycopg2', 'python-pysqlite2' ]:
