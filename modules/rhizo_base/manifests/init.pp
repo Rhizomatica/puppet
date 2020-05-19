@@ -17,6 +17,7 @@ class rhizo_base {
   $password_hash           = hiera('rhizo::password_hash')
 
   # Configuration settings
+  $notouchcron     = hiera('rhizo::notouchcron', 0)
   $use_ups         = hiera('rhizo::use_ups')
   $rhizomatica_dir = hiera('rhizo::rhizomatica_dir')
   $sq_hlr_path     = hiera('rhizo::sq_hlr_path')
@@ -613,9 +614,11 @@ schedule { 'repo':
       content => template('rhizo_base/apcupsd.erb'),
     }
 
-  file { '/etc/cron.d/rhizomatica':
-      ensure => 'present',
-      content => template('rhizo_base/rhizomatica.cron.erb'),
+  unless $notouchcron == 1 {
+    file { '/etc/cron.d/rhizomatica':
+        ensure => 'present',
+        content => template('rhizo_base/rhizomatica.cron.erb'),
+      }
     }
 
   host { 'mail':
