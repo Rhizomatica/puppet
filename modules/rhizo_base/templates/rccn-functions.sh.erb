@@ -27,7 +27,7 @@ topcalls () {
   do 
     clear
     fs_cli -x "show calls" \
-    | gawk -F, '!/uuid/ && !/^$/ && !/total/ { printf $8 "("$28") calls "$10"("$30") for %02d:%02d:%02d \t Call State: "$6"/"$13"/"$33 "\n",(systime()-$4)/60/60%24,(systime()-$4)/60%60,(systime()-$4)%60 }' \
+    | gawk -F, '!/uuid/ && !/^$/ && !/total/ { printf "\033[34;1m" $8 "("$28") \033[0m \033[200D\033[25C calls \033[32;1m "$10"("$30") \033[0m \033[200D\033[60C for %02d:%02d:%02d \033[200D\033[80C \033[31;1m Call State: "$6"/"$13"/"$33 "\n",(systime()-$4)/60/60%24,(systime()-$4)/60%60,(systime()-$4)%60 }' \
     | sed "s/$DID/DID/g" \
     | sort -r -k5
     echo "show lchan " | nc -q1 localhost 4242 | awk 'BEGIN { RS = "BTS"; FS = "\n" } /TCH/ {print $7"\t\t\t\t BTS"$1} '  
