@@ -285,6 +285,7 @@ schedule { 'repo':
     group     => 'root',
   }
 
+  $bts_user = { 'UmSite' => 'fairwaves', '2050M' => 'root', '2050S' => 'root' }
   file { "/etc/profile.d/rccn-functions.sh":
       ensure  => present,
       content  => template('rhizo_base/rccn-functions.sh.erb'),
