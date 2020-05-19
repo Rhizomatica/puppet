@@ -55,7 +55,7 @@ class rhizo_base::openbsc {
     }
 
   package {  [ 'osmo-sip-connector' ]:
-      ensure   => '1.3.0',
+      ensure   => 'installed',
       require  => Class['rhizo_base::apt'],
       notify   => [ Exec['hlr_pragma_wal'],
                   ],
