@@ -102,6 +102,7 @@ class rhizo_base {
   $charge_inbound_calls         = hiera('rhizo::charge_inbound_calls')
   $charge_inbound_rate          = hiera('rhizo::charge_inbound_rate')
   $charge_inbound_rate_type     = hiera('rhizo::charge_inbound_rate_type')
+  $charge_outbound_rate_type    = hiera('rhizo::charge_outbound_rate_type')
   $smsc_shortcode               = hiera('rhizo::smsc_shortcode')
   $sms_sender_unauthorized      = hiera('rhizo::sms_sender_unauthorized')
   $sms_destination_unauthorized = hiera('rhizo::sms_destination_unauthorized')
