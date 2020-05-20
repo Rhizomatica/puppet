@@ -70,6 +70,7 @@ class rhizo_base {
   $max_power_red   = hiera('rhizo::max_power_red', '24')
   $mncc_codec      = hiera('rhizo::mncc_codec', 'GSM')
   $inter_codec     = hiera('rhizo::inter_codec', 'G729')
+  $dids            = hiera('rhizo::dids', '')
 
   $lcls = hiera('rhizo::lcls', '0')
   $jb_in = hiera('rhizo::jb_in', '')

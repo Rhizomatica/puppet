@@ -8,6 +8,10 @@ function logc() {
 
 SITE=<%= @site_name %>
 
+<% @dids.each_with_index do |did, index| -%>
+DID[<%= index %>]=<%= did %>
+<% end -%>
+
 #BTSs IP addresses (for amps etc)
 declare -a BTS
 declare -a BTS_MASTER

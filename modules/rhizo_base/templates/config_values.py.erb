@@ -80,6 +80,7 @@ voip_cli = "<%= @voip_cli %>"
 unlimit_chans_max = 5
 voip_chans_max = <%= @voip_chans_max %>
 voip_mod = <%= @voip_mod %>
+dids = [<% @dids.each do |did| -%>"<%= did -%>", <% end -%>]
 
 # Subscription SMS notification
 notice_msg = '<%= @notice_msg %>'
