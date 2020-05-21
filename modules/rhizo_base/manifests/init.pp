@@ -277,13 +277,20 @@ schedule { 'repo':
   file { '/home/rhizomatica/bin/vars.sh':
       ensure  => present,
       content => template('rhizo_base/vars.sh.erb'),
+      owner   => 'root',
+      group   => 'rhizomatica'
+    }
+
+  file { '/home/rhizomatica/bin/pg_backup_rotated.sh':
+      source  => 'puppet:///modules/rhizo_base/bin/pg_backup_rotated.sh',
+      owner   => 'root',
+      group   => 'postgres'
     }
 
   recursive_file_permissions { '/home/rhizomatica/bin':
     file_mode => '0750',
     dir_mode  => '0755',
     owner     => 'root',
-    group     => 'root',
   }
 
   $bts_user = { 'UmSite' => 'fairwaves', '2050M' => 'root', '2050S' => 'root' }
