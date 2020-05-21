@@ -293,7 +293,8 @@ schedule { 'repo':
     owner     => 'root',
   }
 
-  $bts_user = { 'UmSite' => 'fairwaves', '2050M' => 'root', '2050S' => 'root', '2100' => 'root', 'ocsdr' => 'oc' }
+  $bts_user = { 'UmSite' => 'fairwaves', '2050M' => 'root', '2050S' => 'root',
+                '1020' => 'root', '2100' => 'root', 'ocsdr' => 'oc', '1002' => 'root' }
   file { "/etc/profile.d/rccn-functions.sh":
       ensure  => present,
       content  => template('rhizo_base/rccn-functions.sh.erb'),
