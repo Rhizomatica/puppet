@@ -74,6 +74,9 @@ PYTHONPATH=$PYTHONPATH:/var/rhizomatica/rccn
 #Restart osmo-nitb every 6 hours (This wasn't working anyway. If it is needed, do something more elegant!)
 #  0 */6   *   *   *     root /usr/bin/sv restart osmo-nitb 2>&1 > /dev/null
 
+# Rebuild ACL config and restart the SGSN (stopgap pre HLR solution, we loose all PDP contexts)
+  55 2     *   *   *    root /etc/osmocom/make_sgsn_acl_config > /etc/osmocom/osmo-sgsn.cfg ; systemctl restart osmo-sgsn
+
 # It's a new day....
   30  5  *   *   *      root /home/rhizomatica/bin/check_broken.sh
 
