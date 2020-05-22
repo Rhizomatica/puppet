@@ -1,0 +1,31 @@
+#!/usr/bin/expect -f
+
+set bts [lindex $argv 0]
+if { $bts < 0 } { set bts 0 }
+
+spawn telnet localhost 4242
+expect ">"
+send "enable\r"
+expect "#"
+send "configure terminal\r"
+expect "#"
+send "network\r"
+expect "#"
+send "bts $bts\r"
+expect "#"
+send "trx 0\r"
+expect "#"
+send "rf_locked 1\r"
+expect "#"
+send "exit\r"
+expect "#"
+send "exit\r"
+expect "#"
+send "exit\r"
+expect "#"
+send "exit\r"
+expect "#"
+
+
+
+
