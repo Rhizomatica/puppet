@@ -18,6 +18,8 @@ for bts in "${!BTS[@]}" ; do
   ssh $SSH_OPTS root@${BTS[$bts]} "date -s '$(date)'"
   ssh $SSH_OPTS root@${BTS[$bts]} "echo nameserver 1.1.1.1 > /etc/resolv.conf; echo nameserver 9.9.9.9 >> /etc/resolv.conf"
   scp $SSH_OPTS osmo-pcu.cfg root@${BTS[$bts]}:/etc/osmocom/osmo-pcu.cfg
+  scp $SSH_OPTS pcu bts root@${BTS[$bts]}:/bin/
+  ssh $SSH_OPTS root@${BTS[$bts]} "chmod 750 /bin/pcu /bin/bts"
   ssh $SSH_OPTS root@${BTS[$bts]} "expect -v 2>/dev/null"
 
   if [ "$?" != "0" ]; then
