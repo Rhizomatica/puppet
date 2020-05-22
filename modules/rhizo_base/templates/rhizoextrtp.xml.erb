@@ -1,0 +1,10 @@
+<include>
+  <gateway name="rhizoextrtp">
+  <param name="username" value="rhizomatica"/>
+  <param name="from-user" value="<%= @voip_fromuser %>"/>
+  <param name="password" value="<%= @voip_password %>"/>
+  <param name="proxy" value="<%= @sip_central_ip_address[0] %>"/>
+  <param name="register" value="false"/>
+  <param name="caller-id-in-from" value="true"/>
+  </gateway>
+</include>

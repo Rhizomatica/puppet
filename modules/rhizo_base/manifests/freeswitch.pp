@@ -172,6 +172,17 @@ class rhizo_base::freeswitch::common {
       require => Package['freeswitch'],
     }
 
+  file {'/etc/freeswitch/sip_profiles/extrtp':
+      ensure  => directory,
+    }
+
+  file { '/etc/freeswitch/sip_profiles/extrtp/rhizoextrtp.xml':
+      content => template('rhizo_base/rhizoextrtp.xml.erb'),
+      require =>
+                [ Package['freeswitch'],
+                File['/etc/freeswitch/sip_profiles/outgoing'] ],
+    }
+
   file {'/etc/freeswitch/sip_profiles/external':
       ensure  => directory,
     }
