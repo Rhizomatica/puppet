@@ -79,17 +79,17 @@ class rhizo_base {
 
   # IP address
   $mncc_ip_address = hiera('rhizo::mncc_ip_address', '172.16.0.1')
-  $vpn_ip_address = hiera('rhizo::vpn_ip_address')
-  $wan_ip_address = hiera('rhizo::wan_ip_address')
   $bsc_ip_address  = hiera('rhizo::bsc_ip_address', '172.16.0.1')
+  $vpn_ip_address  = hiera('rhizo::vpn_ip_address')
+  $wan_ip_address  = hiera('rhizo::wan_ip_address')
   $riak_ip_address = hiera('rhizo::riak_ip_address', $vpn_ip_address)
   $sip_central_ip_address = hiera('rhizo::sip_central_ip_address')
-  $webphone_prefix       = hiera('rhizo::webphone_prefix', '[]')
-  $latency_check_address = hiera('rhizo::latency_check_address','1.1.1.1')
-  $latency_check_vpn     = hiera('rhizo::latency_check_vpn','10.23.0.2')
+  $webphone_prefix        = hiera('rhizo::webphone_prefix', '[]')
+  $latency_check_address  = hiera('rhizo::latency_check_address','1.1.1.1')
+  $latency_check_vpn      = hiera('rhizo::latency_check_vpn','10.23.0.2')
 
   $stats_disk = hiera('rhizo::stats_disk','sda1')
-  $stats_if = hiera('rhizo::stats_if','eth0')
+  $stats_if   = hiera('rhizo::stats_if','eth0')
 
   # SITE settings
   # rate type can be "call" or "min"
@@ -499,6 +499,9 @@ schedule { 'repo':
         source      => 'puppet:///modules/rhizo_base/etc/locale.gen',
      }
   }
+
+# Files and scripts that will be used to (re)provision a connected BTS
+# of the osmocom variety.
 
   file { '/var/SysmoBTS':
       ensure  => directory,

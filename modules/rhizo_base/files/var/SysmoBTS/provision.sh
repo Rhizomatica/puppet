@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # This script will copy files to the 2050 BTS(s) on the site
-# running the script more than once should be safe.
+# running the script more than once is expected to be safe.
 
 if [ "$PWD" != "/var/SysmoBTS" ]; then
   OLDPWD=$PWD

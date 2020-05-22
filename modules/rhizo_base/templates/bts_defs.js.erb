@@ -1,5 +1,5 @@
 const bts_defs = [
-// Index, Name, ARFCN, BSIC
+// Index, TRX, Name, ARFCN, BSIC
 <% @bts.each_with_index do |bts, index| -%>
 <% bts["trx"].each_with_index do |trx, trx_i| -%>
  [<%= index %>, <%= trx_i %>, "<%= bts["name"] %>", <%= trx["chan"]%>, <%= bts["bsic"]%>],
