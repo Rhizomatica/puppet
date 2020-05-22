@@ -40,7 +40,7 @@ class rhizo_base {
   $network_name    = hiera('rhizo::network_name')
   $auth_policy     = hiera('rhizo::auth_policy')
   $lac             = hiera('rhizo::lac')
-  $gprs            = hiera('rhizo::gprs')
+  $gprs            = hiera('rhizo::gprs', 'egprs')
   $gsm_band        = hiera('rhizo::gsm_band', "GSM850")
   $mcc             = hiera('rhizo::mcc', '334')
   $mnc             = hiera('rhizo::mnc', '7')
@@ -81,6 +81,7 @@ class rhizo_base {
   $mncc_ip_address = hiera('rhizo::mncc_ip_address', '172.16.0.1')
   $vpn_ip_address = hiera('rhizo::vpn_ip_address')
   $wan_ip_address = hiera('rhizo::wan_ip_address')
+  $bsc_ip_address  = hiera('rhizo::bsc_ip_address', '172.16.0.1')
   $riak_ip_address = hiera('rhizo::riak_ip_address', $vpn_ip_address)
   $sip_central_ip_address = hiera('rhizo::sip_central_ip_address')
   $webphone_prefix       = hiera('rhizo::webphone_prefix', '[]')
@@ -505,6 +506,20 @@ schedule { 'repo':
       owner   => 'root',
       group   => 'root',
       recurse => remote
+    }
+
+  $bts.each |Integer $i, Hash $b| {
+    file { "/var/SysmoBTS/osmo-bts_${i}.cfg":
+        ensure  => present,
+        content => template('rhizo_base/osmo-bts-sysmo.cfg.erb'),
+        mode    => '0640',
+      }
+  }
+
+  file { '/var/SysmoBTS/osmo-pcu.cfg':
+      ensure  => present,
+      content => template('rhizo_base/osmo-pcu.cfg.erb'),
+      mode    => '0640',
     }
 
   file { '/var/SysmoBTS/check.sh':
