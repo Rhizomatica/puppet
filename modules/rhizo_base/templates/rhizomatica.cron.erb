@@ -90,4 +90,4 @@ PYTHONPATH=$PYTHONPATH:/var/rhizomatica/rccn
   0  4    *   *   *     root /home/rhizomatica/bin/sqlite_backup_rotated.sh > /dev/null 2>&1
 
 #Check for hung puppet process
-  */20 *    *   *   *     root _PPID=$(pidof puppet) ; if [ "$?" -eq "0" ]; then /bin/kill $(ps -p $_PPID -o etimes,pid,cmd | awk '{if ($3$4$5 == "puppetagent:applying" && $1 >= 3600) print $2}'); fi
+  */20 *    *   *   *   root _PPID=$(pidof puppet) ; if [ $? -eq 0 ]; then _RPID=$(ps -p $_PPID -o etimes,pid,cmd | awk '{if ($3$4$5 =="puppetagent:applying" && $1 >= 3600) print $2}') ; if [ -n "$_RPID" ]; then kill $_RPID; fi; fi
