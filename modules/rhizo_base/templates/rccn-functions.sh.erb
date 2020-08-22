@@ -81,12 +81,6 @@ check_trx() {
   echo "show trx" | nc -q1 localhost 4242 | awk 'BEGIN { RS="TRX"; } /OK/ { print "BTS"$4" TRX"$1": OK";  }'
 }
 
-<% @bts.each_with_index do |bts, index| -%>
-b<%= index %>() {
-  ssh -o StrictHostKeyChecking=no root@<%= bts["ip"] %>
-}
-<% end -%>
-
 pdp () {
   expect -c 'spawn -noecho telnet 0 4245; expect >; send enable\r; expect #; send "show pdp-context all\r"; expect #' | grep "PDP Address" | grep -v invalid | sort;
   echo Count: $(pdpc)
