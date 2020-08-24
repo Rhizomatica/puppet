@@ -1,0 +1,92 @@
+!
+! OpenBSC (UNKNOWN) configuration by puppet
+!!
+password foo
+!
+log stderr
+ logging filter all 1
+ logging color 1
+ logging print category-hex 0
+ logging print category 1
+ logging timestamp 0
+ logging print file 1
+ logging level all everything
+ logging level rll notice
+ logging level cc info
+ logging level mm info
+ logging level rr notice
+ logging level rsl error
+ logging level nm notice
+ logging level mncc notice
+ logging level pag notice
+ logging level meas notice
+ logging level sccp notice
+ logging level msc notice
+ logging level mgcp notice
+ logging level ho notice
+ logging level db notice
+ logging level ref notice
+ logging level gprs notice
+ logging level ns notice
+ logging level bssgp notice
+ logging level llc notice
+ logging level sndcp notice
+ logging level nat notice
+ logging level ctrl notice
+ logging level smpp fatal
+ logging level filter notice
+ logging level ranap debug
+ logging level sua debug
+ logging level pcu debug
+ logging level lglobal error
+ logging level llapd notice
+ logging level linp notice
+ logging level lmux notice
+ logging level lmi notice
+ logging level lmib notice
+ logging level lsms debug
+ logging level lctrl notice
+ logging level lgtp notice
+ logging level lstats notice
+ logging level lgsup notice
+ logging level loap notice
+ logging level lss7 notice
+ logging level lsccp notice
+ logging level lsua notice
+ logging level lm3ua notice
+ logging level lmgcp notice
+ logging level ljibuf notice
+ logging level lrspro notice
+!
+stats interval 5
+!
+line vty
+ no login
+!
+e1_input
+ e1_line 0 driver ipa
+ e1_line 0 port 0
+ no e1_line 0 keepalive
+network
+ network country code <%= @mcc %>
+ mobile network code <%= @mnc %>
+ short name <%= @network_name %>
+ long name <%= @network_name %>
+ auth policy <%= @auth_policy %>
+ authorized-regexp .*
+ location updating reject cause 13
+ encryption a5 0
+ neci 1
+ paging any use tch 1
+ rrlp mode none
+ mm info 1
+ handover 0
+ handover window rxlev averaging 10
+ handover window rxqual averaging 1
+ handover window rxlev neighbor averaging 10
+ handover power budget interval 6
+ handover power budget hysteresis 3
+ handover maximum distance 9999
+ timer t3109 4
+ dyn_ts_allow_tch_f 0
+ subscriber-keep-in-ram 0

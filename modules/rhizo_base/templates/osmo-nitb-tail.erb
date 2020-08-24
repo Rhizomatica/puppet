@@ -1,0 +1,21 @@
+mncc-int
+ default-codec tch-f amr
+ default-codec tch-h amr
+ meas-feed destination 127.0.0.1 8888
+nitb
+ subscriber-create-on-demand
+ no assign-tmsi
+smpp
+ local-tcp-port 2775
+ policy closed
+ smpp-first
+ esme OSMPP
+  password <%= @smsc_password %>
+  default-route
+  no alert-notifications
+ esme ISMPP
+  password <%= @smsc_password %>
+  no alert-notifications
+ esme NOTIFY
+  password <%= @smpp_password %>
+  no deliver-src-imsi

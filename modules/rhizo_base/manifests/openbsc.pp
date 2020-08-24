@@ -36,6 +36,7 @@ class rhizo_base::openbsc {
   $sgsn_ip_address = hiera('rhizo::sgsn_ip_address')
   $ggsn_ip_address = hiera('rhizo::ggsn_ip_address')
   $repo            = hiera('rhizo::osmo_repo', 'latest')
+  $bts             = hiera('rhizo::bts')
 
   $nitb_version = $repo ? {
     'latest'    => '1.3.2',
@@ -112,7 +113,10 @@ class rhizo_base::openbsc {
 
   unless hiera('rhizo::local_bsc_cfg') == "1" {
     file { '/etc/osmocom/osmo-nitb.cfg':
-        content => template('rhizo_base/osmo-nitb.cfg.erb'),
+        content => template(
+            'rhizo_base/osmo-nitb-head.erb',
+            'rhizo_base/osmo-nitb-bts.erb',
+            'rhizo_base/osmo-nitb-tail.erb'),
         require => Package['osmocom-nitb'],
         notify  => Exec['notify-nitb'],
       }
