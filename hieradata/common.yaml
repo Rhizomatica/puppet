@@ -99,6 +99,8 @@ rhizo::bts:
 
 #Misc
 rhizo::free_numbers:                 [ "1234567890", "0987654321" ]
+rhizo::dids:
+- ""
 rhizo::use_ups:                      "no"
 rhizo::use_sip:                      "no"
 rhizo::sip_central_ip_address:       [ "192.168.1.1", "192.168.1.254" ]
