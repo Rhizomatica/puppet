@@ -95,6 +95,16 @@ class rhizo_base::apt::buster inherits rhizo_base::apt::common {
       repos       => '',
       notify      => Exec['apt_update'],
     }
+
+  apt::source { 'rhizo-buster':
+      location    => 'http://repo.rhizomatica.org/debian/',
+      release     => 'buster',
+      repos       => 'main',
+      key         => {
+        'id'      => '857FD282A0CD2282207556C67DF075856A6A0AD5',
+        'source'  => 'http://repo.rhizomatica.org/debian/repo.key'
+       }
+    }
 }
 
 class rhizo_base::apt::stretch inherits rhizo_base::apt::common {
