@@ -130,8 +130,10 @@ class rhizo_base::apt::stretch inherits rhizo_base::apt::common {
       location    => 'http://repo.rhizomatica.org/debian/',
       release     => 'jessie',
       repos       => 'main',
-      allow_unsigned => true,
-      require     => File['/etc/apt/apt.conf.d/90unsigned'],
+      key         => {
+        'id'      => '857FD282A0CD2282207556C67DF075856A6A0AD5',
+        'source'  => 'http://repo.rhizomatica.org/debian/repo.key'
+       }
     }
 
   apt::source { 'osmocom':
