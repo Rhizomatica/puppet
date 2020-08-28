@@ -1,0 +1,17 @@
+!
+! MGCP (UNKNOWN) configuration by puppet
+!
+mgcp
+  bind ip 127.0.0.1
+  rtp port-range 4002 8001
+  rtp bind-ip 172.16.0.1
+  rtp ip-probing
+  rtp ip-tos 184
+  bind port 2427
+  number endpoints 31
+  loop 0
+  force-realloc 1
+  rtcp-omit
+  rtp-patch ssrc
+  rtp-patch timestamp
+  rtp-accept-all 1

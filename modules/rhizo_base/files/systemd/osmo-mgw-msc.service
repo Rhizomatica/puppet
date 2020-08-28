@@ -1,0 +1,11 @@
+[Unit]
+Description=Osmocom Media Gateway for MSC (MGW)
+
+[Service]
+Type=simple
+Restart=always
+ExecStart=/usr/bin/osmo-mgw -s -c /etc/osmocom/osmo-mgw2.cfg
+RestartSec=2
+
+[Install]
+WantedBy=multi-user.target

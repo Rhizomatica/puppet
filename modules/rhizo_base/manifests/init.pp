@@ -36,6 +36,10 @@ class rhizo_base {
   $site_name    = hiera('rhizo::site_name')
   $postcode     = hiera('rhizo::postcode')
   $pbxcode      = hiera('rhizo::pbxcode')
+
+  # Network Stack
+  $osmo_stack      = hiera('rhizo::osmo_stack', 'nitb')
+
   # network name
   $network_name    = hiera('rhizo::network_name')
   $auth_policy     = hiera('rhizo::auth_policy')
@@ -193,7 +197,12 @@ class rhizo_base {
   include rhizo_base::postgresql
   include rhizo_base::freeswitch
   include rhizo_base::runit
-  include rhizo_base::openbsc
+  unless $osmo_stack == "split" {
+    include rhizo_base::openbsc
+  }
+  if $osmo_stack == "split" {
+    include rhizo_base::osmocom
+  }
   include rhizo_base::sudo
   include rhizo_base::kiwi
 
