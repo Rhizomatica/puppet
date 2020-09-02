@@ -54,8 +54,14 @@ class rhizo_base::osmocom {
       notify   => Exec['hlr_pragma_wal']
     }
 
+  $sipcon_version = $repo ? {
+     'latest'    => '1.4.1',
+     'nightly'   => 'latest',
+     default     => '1.4.1',
+    }
+
   package {  [ 'osmo-sip-connector' ]:
-      ensure   => '1.4.1',
+      ensure   => $sipcon_version,
       require  => Class['rhizo_base::apt'],
     }
 
