@@ -25,8 +25,16 @@
   neighbor-list mode automatic
   codec-support fr amr
   amr tch-f modes 4 5
+  amr tch-f threshold ms 32
+  amr tch-f hysteresis ms 8
+  amr tch-f threshold bts 32
+  amr tch-f hysteresis bts 8
   amr tch-f start-mode 1
   amr tch-h modes 4 5
+  amr tch-h threshold ms 32
+  amr tch-h hysteresis ms 8
+  amr tch-h threshold bts 32
+  amr tch-h hysteresis bts 8
   amr tch-h start-mode 1
   gprs mode <%= bts["gprs_m"] %>
   gprs routing area 21
