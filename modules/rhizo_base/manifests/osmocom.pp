@@ -17,6 +17,7 @@ class rhizo_base::osmocom {
   $smsc_password   = $rhizo_base::smsc_password
   $smpp_password   = $rhizo_base::smpp_password
 
+  $sms_db          = $rhizo_base::sms_db
   $mncc_codec      = $rhizo_base::mncc_codec
 
   $mncc_ip_address = $rhizo_base::mncc_ip_address

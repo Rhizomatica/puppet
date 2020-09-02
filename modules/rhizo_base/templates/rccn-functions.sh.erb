@@ -2,7 +2,8 @@
 # Shell Functions for Rhizomatica Community Celular Network
 #
 
-OSMO_HLR="<%= @sq_hlr_path %>"
+OSMO_HLR="<%= @hlr_db %>"
+OSMO_SMS="<%= @sms_db %>"
 DID="<%= @voip_did %>"
 
 waitfor0calls () {
@@ -41,6 +42,10 @@ nitb() {
 
 hlr() {
   sudo /usr/bin/sqlite3 -column -header $OSMO_HLR
+}
+
+sms() {
+  sudo /usr/bin/sqlite3 -column -header $OSMO_SMS
 }
 
 tl() {
