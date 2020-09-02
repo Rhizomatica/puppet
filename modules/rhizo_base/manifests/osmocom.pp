@@ -99,6 +99,12 @@ class rhizo_base::osmocom {
   # but with the service outage that restarting the split stack entails,
   # I don't want to even give puppet the possibility to do that.
 
+
+  file { '/etc/osmocom/osmo-stp.cfg':
+      content => template('rhizo_base/osmo-stp.cfg.erb'),
+      require => Package['osmo-stp'],
+    }
+
   file { '/etc/osmocom/osmo-hlr.cfg':
       content => template('rhizo_base/osmo-hlr.cfg.erb'),
       require => Package['osmo-hlr'],
