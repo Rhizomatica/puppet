@@ -17,7 +17,6 @@
   channel-description bs-pa-mfrms 5
   channel-description bs-ag-blks-res 1
   no access-control-class-ramping
-  access-control-class-ramping-step-interval dynamic
   access-control-class-ramping-step-size 1
   early-classmark-sending forbidden
   early-classmark-sending-3g allowed
@@ -30,7 +29,6 @@
   amr tch-h modes 4 5
   amr tch-h start-mode 1
   gprs mode <%= bts["gprs_m"] %>
-  gprs 11bit_rach_support_for_egprs 0
   gprs routing area 21
   gprs network-control-order nc0
   gprs cell bvci <%= index+2 %>
