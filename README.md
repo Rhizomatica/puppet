@@ -183,9 +183,12 @@ Ahora reinicia el sistema y [realice un informe de error](https://github.com/Rhi
 
 **CAVEATS:**
 - Debido a que no tienes acceso a nuestro repo privado, no tendrás ningun audio in `/usr/share/freeswitch/sounds/rccn/`.
+
 TIC no distribuye públicamente los archivos de audio usados en la red TIC. Alguien necesita hacer algunos audios genericos.
+
 Puedes grabar audios propios en mp3 y convetirlo con sox a gsm, para ello también desde de tener instalado `sox` y  `libsox-fmt-mp3`
 Instalar sox y libsox-fmt-mp3: 
+
 `sudo apt-get install sox libsox-fmt-base
 sudo apt-get install libsox-fmt-mp3` 
 
